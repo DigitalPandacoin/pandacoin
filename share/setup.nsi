@@ -5,7 +5,7 @@ SetCompressor /SOLID lzma
 
 # General Symbol Definitions
 !define REGKEY "SOFTWARE\$(^Name)"
-!define VERSION 0.3.0.2
+!define VERSION 0.3.0.3
 !define COMPANY "Digital Pandacoin"
 !define URL http://dev.digitalpandacoin.org/
 
@@ -51,7 +51,7 @@ CRCCheck on
 XPStyle on
 BrandingText " "
 ShowInstDetails show
-VIProductVersion 0.3.0.2
+VIProductVersion 0.3.0.3
 VIAddVersionKey ProductName Pandacoin
 VIAddVersionKey ProductVersion "${VERSION}"
 VIAddVersionKey CompanyName "${COMPANY}"

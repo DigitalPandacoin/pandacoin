@@ -67,11 +67,11 @@ void CreateAccountWidget::createAccount()
             model->getWallet()->SetAddressBookName(CBitcoinAddress(key.GetID()).Get(), accountName.toStdString());
             ui->account_create_button->setEnabled(false);
 
-            QMessageBox::information(this, tr("PandaBank account created"), tr("Your PandaBank Account has been created."), QMessageBox::Ok);
+            QMessageBox::information(this, tr("Digital PandaBank account created"), tr("Your Digital PandaBank Account has been created."), QMessageBox::Ok);
         }
         catch(...)
         {
-            QMessageBox::warning(this, tr("Error"), tr("Error creating PandaBank account."), QMessageBox::Ok);
+            QMessageBox::warning(this, tr("Error"), tr("Error creating Digital PandaBank account."), QMessageBox::Ok);
         }
     }
 }

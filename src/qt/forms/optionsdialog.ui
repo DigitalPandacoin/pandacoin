@@ -140,7 +140,7 @@
           <string>Automatically start Pandacoin after logging in to the system.</string>
          </property>
          <property name="text">
-          <string>&amp;Start PandaBank on system login</string>
+          <string>&amp;Start Digital PandaBank on system login</string>
          </property>
         </widget>
        </item>

@@ -10,7 +10,7 @@
     </message>
     <message>
         <location filename="../forms/aboutdialog.ui" line="+14"/>
-        <source>About PandaBank</source>
+        <source>About Digital PandaBank</source>
         <translation type="unfinished">关于熊猫币</translation>
     </message>
     <message>
@@ -198,7 +198,7 @@ This product includes software developed by the OpenSSL Project for use in the O
     </message>
     <message>
         <location line="+9"/>
-        <source>Error could not change name of PandaBank account.</source>
+        <source>Error could not change name of Digital PandaBank account.</source>
         <translation type="unfinished">错误！不能更改熊猫币帐号名！</translation>
     </message>
 </context>
@@ -541,17 +541,17 @@ This product includes software developed by the OpenSSL Project for use in the O
     </message>
     <message>
         <location line="+1"/>
-        <source>Encrypt PandaBank</source>
+        <source>Encrypt Digital PandaBank</source>
         <translation type="unfinished">加密熊猫银行</translation>
     </message>
     <message>
         <location line="+4"/>
-        <source>Log on to PandaBank</source>
+        <source>Log on to Digital PandaBank</source>
         <translation type="unfinished">登录熊猫银行</translation>
     </message>
     <message>
         <location line="+1"/>
-        <source>Please enter your PandaBank password to log on to PandaBank.</source>
+        <source>Please enter your Digital PandaBank password to log on to Digital PandaBank.</source>
         <translation type="unfinished">请输入你的密码以登录熊猫银行</translation>
     </message>
     <message>
@@ -561,22 +561,22 @@ This product includes software developed by the OpenSSL Project for use in the O
     </message>
     <message>
         <location line="+11"/>
-        <source>This operation needs your PandaBank password to unlock PandaBank.</source>
+        <source>This operation needs your Digital PandaBank password to unlock Digital PandaBank.</source>
         <translation type="unfinished">此操作需要你的密码以解锁熊猫银行</translation>
     </message>
     <message>
         <location line="+5"/>
-        <source>Unlock PandaBank</source>
+        <source>Unlock Digital PandaBank</source>
         <translation type="unfinished">解锁熊猫银行</translation>
     </message>
     <message>
         <location line="+3"/>
-        <source>This operation needs your PandaBank password to decrypt PandaBank.</source>
+        <source>This operation needs your Digital PandaBank password to decrypt Digital PandaBank.</source>
         <translation type="unfinished">此操作需要你的密码以解密熊猫银行</translation>
     </message>
     <message>
         <location line="+5"/>
-        <source>Decrypt PandaBank</source>
+        <source>Decrypt Digital PandaBank</source>
         <translation type="unfinished">解密熊猫银行</translation>
     </message>
     <message>
@@ -586,33 +586,33 @@ This product includes software developed by the OpenSSL Project for use in the O
     </message>
     <message>
         <location line="+1"/>
-        <source>Enter the old and new password to PandaBank.</source>
+        <source>Enter the old and new password to Digital PandaBank.</source>
         <translation type="unfinished">输入旧密码和新密码</translation>
     </message>
     <message>
         <location line="+46"/>
-        <source>Confirm PandaBank encryption</source>
+        <source>Confirm Digital PandaBank encryption</source>
         <translation type="unfinished">确认加密熊猫银行</translation>
     </message>
     <message>
         <location line="+1"/>
-        <source>Warning: If you encrypt your PandaBank and lose your password, you will &lt;b&gt;LOSE ALL OF YOUR COINS&lt;/b&gt;!</source>
+        <source>Warning: If you encrypt your Digital PandaBank and lose your password, you will &lt;b&gt;LOSE ALL OF YOUR COINS&lt;/b&gt;!</source>
         <translation type="unfinished">警告：如果你加密熊猫银行又忘记密码，你将会&lt;b&gt;丢失所有币&lt;/b&gt;！</translation>
     </message>
     <message>
         <location line="+0"/>
-        <source>Are you sure you wish to encrypt your PandaBank?</source>
+        <source>Are you sure you wish to encrypt your Digital PandaBank?</source>
         <translation type="unfinished">你确定要加密你的熊猫银行？</translation>
     </message>
     <message>
         <location line="+9"/>
         <location line="+61"/>
-        <source>PandaBank encrypted</source>
+        <source>Digital PandaBank encrypted</source>
         <translation type="unfinished">熊猫银行加密</translation>
     </message>
     <message>
         <location line="-59"/>
-        <source>PandaBank will close now to finish the encryption process. Remember that encrypting your PandaBank cannot fully protect your coins from being stolen by malware infecting your computer.</source>
+        <source>Digital PandaBank will close now to finish the encryption process. Remember that encrypting your Digital PandaBank cannot fully protect your coins from being stolen by malware infecting your computer.</source>
         <translation type="unfinished">熊猫银行现在将会关闭以完成加密进程。请注意，加密你的熊猫银行并不能完全确保你的币不被你电脑里的恶意软件窃取。</translation>
     </message>
     <message>
@@ -625,12 +625,12 @@ This product includes software developed by the OpenSSL Project for use in the O
         <location line="+7"/>
         <location line="+45"/>
         <location line="+6"/>
-        <source>PandaBank encryption failed</source>
+        <source>Digital PandaBank encryption failed</source>
         <translation type="unfinished">熊猫银行加密失败</translation>
     </message>
     <message>
         <location line="-57"/>
-        <source>PandaBank encryption failed due to an internal error. Your PandaBank was not encrypted.</source>
+        <source>Digital PandaBank encryption failed due to an internal error. Your Digital PandaBank was not encrypted.</source>
         <translation type="unfinished">因为一个内部错误，熊猫银行加密失败。你的熊猫银行并未被加密。</translation>
     </message>
     <message>
@@ -641,19 +641,19 @@ This product includes software developed by the OpenSSL Project for use in the O
     </message>
     <message>
         <location line="-38"/>
-        <source>PandaBank unlock failed</source>
+        <source>Digital PandaBank unlock failed</source>
         <translation type="unfinished">解锁熊猫银行失败</translation>
     </message>
     <message>
         <location line="+1"/>
         <location line="+12"/>
         <location line="+19"/>
-        <source>The password entered for your PandaBank was incorrect.</source>
+        <source>The password entered for your Digital PandaBank was incorrect.</source>
         <translation type="unfinished">密码输入错误。</translation>
     </message>
     <message>
         <location line="-20"/>
-        <source>PandaBank decryption failed</source>
+        <source>Digital PandaBank decryption failed</source>
         <translation type="unfinished">解密熊猫银行失败</translation>
     </message>
     <message>
@@ -713,7 +713,7 @@ This product includes software developed by the OpenSSL Project for use in the O
     </message>
     <message>
         <location line="+240"/>
-        <source>%1 active %2 to PandaBank network</source>
+        <source>%1 active %2 to Digital PandaBank network</source>
         <translation type="unfinished">%1 活跃 %2 到熊猫银行网络</translation>
     </message>
     <message>
@@ -868,7 +868,7 @@ This product includes software developed by the OpenSSL Project for use in the O
     </message>
     <message>
         <location line="-156"/>
-        <source>PandaBank</source>
+        <source>Digital PandaBank</source>
         <translation type="unfinished">熊猫银行</translation>
     </message>
     <message>
@@ -893,7 +893,7 @@ This product includes software developed by the OpenSSL Project for use in the O
     </message>
     <message>
         <location line="+6"/>
-        <source>Send coins to a PandaBank address</source>
+        <source>Send coins to a Digital PandaBank address</source>
         <translation type="unfinished">发币到一个熊猫银行地址</translation>
     </message>
     <message>
@@ -1157,7 +1157,7 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location line="-250"/>
         <location line="+15"/>
-        <source>URI can not be parsed! This can be caused by an invalid PandaBank address or malformed URI parameters.</source>
+        <source>URI can not be parsed! This can be caused by an invalid Digital PandaBank address or malformed URI parameters.</source>
         <translation type="unfinished">无法解析URI！这可能是因为通过一个无效的熊猫币地址或URI参数引起的畸形。</translation>
     </message>
     <message>
@@ -1201,37 +1201,37 @@ This product includes software developed by the OpenSSL Project for use in the O
     </message>
     <message>
         <location line="-1045"/>
-        <source>&amp;About PandaBank</source>
+        <source>&amp;About Digital PandaBank</source>
         <translation type="unfinished">&amp;关于熊猫银行</translation>
     </message>
     <message>
         <location line="+1"/>
-        <source>Show information about PandaBank</source>
+        <source>Show information about Digital PandaBank</source>
         <translation type="unfinished">显示关于熊猫银行的资料</translation>
     </message>
     <message>
         <location line="+6"/>
-        <source>Modify configuration options for PandaBank</source>
+        <source>Modify configuration options for Digital PandaBank</source>
         <translation type="unfinished">修改熊猫银行配置选项</translation>
     </message>
     <message>
         <location line="+3"/>
-        <source>&amp;Encrypt PandaBank...</source>
+        <source>&amp;Encrypt Digital PandaBank...</source>
         <translation type="unfinished">&amp;加密熊猫银行...</translation>
     </message>
     <message>
         <location line="+1"/>
-        <source>Encrypt or decrypt PandaBank</source>
+        <source>Encrypt or decrypt Digital PandaBank</source>
         <translation type="unfinished">加密或解密熊猫银行</translation>
     </message>
     <message>
         <location line="+2"/>
-        <source>&amp;Backup PandaBank...</source>
+        <source>&amp;Backup Digital PandaBank...</source>
         <translation type="unfinished">&amp;备份熊猫银行...</translation>
     </message>
     <message>
         <location line="+1"/>
-        <source>Backup PandaBank to another location</source>
+        <source>Backup Digital PandaBank to another location</source>
         <translation type="unfinished">备份熊猫银行到另一个地址</translation>
     </message>
     <message>
@@ -1246,22 +1246,22 @@ This product includes software developed by the OpenSSL Project for use in the O
     </message>
     <message>
         <location line="+1"/>
-        <source>&amp;Unlock PandaBank...</source>
+        <source>&amp;Unlock Digital PandaBank...</source>
         <translation type="unfinished">&amp;解锁熊猫银行...</translation>
     </message>
     <message>
         <location line="+1"/>
-        <source>Unlock PandaBank</source>
+        <source>Unlock Digital PandaBank</source>
         <translation type="unfinished">解锁熊猫银行</translation>
     </message>
     <message>
         <location line="+1"/>
-        <source>&amp;Lock PandaBank</source>
+        <source>&amp;Lock Digital PandaBank</source>
         <translation type="unfinished">&amp;锁定熊猫银行</translation>
     </message>
     <message>
         <location line="+1"/>
-        <source>Lock PandaBank</source>
+        <source>Lock Digital PandaBank</source>
         <translation type="unfinished">锁定熊猫银行</translation>
     </message>
     <message>
@@ -1285,7 +1285,7 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location line="+91"/>
         <location line="+71"/>
-        <source>PandaBank client</source>
+        <source>Digital PandaBank client</source>
         <translation type="unfinished">熊猫银行客户端</translation>
     </message>
     <message>
@@ -1367,16 +1367,16 @@ Address: %4
     </message>
     <message>
         <location line="+116"/>
-        <source>Activate PandaBank ‘Classic’</source>
+        <source>Activate Digital PandaBank ‘Classic’</source>
         <translation type="unfinished">启用 熊猫银行 “经典模式”</translation>
     </message>
     <message>
         <location line="+1"/>
-        <source>PandaBank &apos;Classic&apos; allows you to earn interest and help secure the Pandacoin Network once synchronization and download of the blockchain is completed. It operates using the outdated method of synchronization and downloading of the blockchain, which could take between 4 to 24 hours to complete. We recommend most Pandacoin users to use Pandacoin &apos;Hybrid&apos;.
+        <source>Digital PandaBank &apos;Classic&apos; allows you to earn interest and help secure the Pandacoin Network once synchronization and download of the blockchain is completed. It operates using the outdated method of synchronization and downloading of the blockchain, which could take between 4 to 24 hours to complete. We recommend most Pandacoin users to use Pandacoin &apos;Hybrid&apos;.
 
-Switching to PandaBank &apos;Classic&apos; from other modes will wipe out your existing blockchain data.
+Switching to Digital PandaBank &apos;Classic&apos; from other modes will wipe out your existing blockchain data.
 
-Activate PandaBank &apos;Classic&apos;?</source>
+Activate Digital PandaBank &apos;Classic&apos;?</source>
         <translation type="unfinished">使用熊猫银行的“经典模式”可在你下载完整区块链，同步到熊猫币网络后获取利息并帮助熊猫币网络保持安全。它是传统的同步手段，需要4到24小时来下载区块链。我们推荐你启用&quot;混合模式&quot;。
 
 从其他模式切换到“经典模式”将会重新擦写你的区块链数据。
@@ -1385,16 +1385,16 @@ Activate PandaBank &apos;Classic&apos;?</source>
     </message>
     <message>
         <location line="+21"/>
-        <source>Activate PandaBank ‘Hybrid’</source>
+        <source>Activate Digital PandaBank ‘Hybrid’</source>
         <translation type="unfinished">启用 熊猫银行 “混合模式”</translation>
     </message>
     <message>
         <location line="+1"/>
-        <source>PandaBank &apos;Hybrid&apos; is the recommended mode for most Pandacoin users. Synchronization with the Pandacoin Network will only take seconds after installation so you can see and use your Pandacoins immediately. 
+        <source>Digital PandaBank &apos;Hybrid&apos; is the recommended mode for most Pandacoin users. Synchronization with the Pandacoin Network will only take seconds after installation so you can see and use your Pandacoins immediately. 
 
-PandaBank &apos;Hybrid allows you to earn interest and help secure the Pandacoin Network in approximately 5 to 15 minutes after installation, once both synchronization and download of the blockchain is completed.
+Digital PandaBank &apos;Hybrid allows you to earn interest and help secure the Pandacoin Network in approximately 5 to 15 minutes after installation, once both synchronization and download of the blockchain is completed.
 
-Activate PandaBank &apos;Hybrid&apos;?</source>
+Activate Digital PandaBank &apos;Hybrid&apos;?</source>
         <translation type="unfinished">熊猫银行的“混合模式”是官方推荐模式，适合大部分用户。其快速同步可使你在安装钱包后很快就可使用你的熊猫币。
 
 如启用熊猫银行的“混合模式”，你可以在安装钱包后5-15分钟左右下载完整区块链与网络同步，获取利息并帮助熊猫币网络保持安全。
@@ -1403,16 +1403,16 @@ Activate PandaBank &apos;Hybrid&apos;?</source>
     </message>
     <message>
         <location line="+19"/>
-        <source>Activate PandaBank ‘Lite’</source>
+        <source>Activate Digital PandaBank ‘Lite’</source>
         <translation type="unfinished">启用 熊猫银行 “轻量模式”</translation>
     </message>
     <message>
         <location line="+1"/>
-        <source>PandaBank &apos;Lite&apos; is for users that have access to limited download or hard drive storage space. Stored data is only a few megabytes. Synchronization with the Pandacoin Network will only take seconds after installation so you can see and use your Pandacoins immediately.
+        <source>Digital PandaBank &apos;Lite&apos; is for users that have access to limited download or hard drive storage space. Stored data is only a few megabytes. Synchronization with the Pandacoin Network will only take seconds after installation so you can see and use your Pandacoins immediately.
 
 Pandacoin &apos;Lite&apos; DOES NOT allow you to earn interest or help secure the Pandacoin Network.
 
-Activate PandaBank &apos;Lite&apos;?</source>
+Activate Digital PandaBank &apos;Lite&apos;?</source>
         <translation type="unfinished">熊猫银行的“轻量模式”为带宽有限，硬盘空间有限的用户所设计。只占用几兆空间。数秒即可完成同步，因此你可以立即应用你的熊猫币。
 
 使用熊猫银行的“轻量模式”不能获取利息，也不能帮助熊猫币网络保持安全。
@@ -1808,7 +1808,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     </message>
     <message>
         <location line="+53"/>
-        <source>Creating a new PandaBank account is easy</source>
+        <source>Creating a new Digital PandaBank account is easy</source>
         <translation type="unfinished">创建一个新的熊猫银行帐号是很简单的</translation>
     </message>
     <message>
@@ -1844,17 +1844,17 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     </message>
     <message>
         <location line="+15"/>
-        <source>PandaBank account created</source>
+        <source>Digital PandaBank account created</source>
         <translation type="unfinished">熊猫银行账号创建成功</translation>
     </message>
     <message>
         <location line="+0"/>
-        <source>Your PandaBank Account has been created.</source>
+        <source>Your Digital PandaBank Account has been created.</source>
         <translation type="unfinished">你的熊猫银行账号已创建成功</translation>
     </message>
     <message>
         <location line="+4"/>
-        <source>Error creating PandaBank account.</source>
+        <source>Error creating Digital PandaBank account.</source>
         <translation type="unfinished">熊猫银行账号创建错误</translation>
     </message>
 </context>
@@ -2074,7 +2074,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     </message>
     <message>
         <location line="+3"/>
-        <source>&amp;Start PandaBank on system login</source>
+        <source>&amp;Start Digital PandaBank on system login</source>
         <translation type="unfinished">&amp;开机时自动启动熊猫银行</translation>
     </message>
     <message>
@@ -2284,7 +2284,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     </message>
     <message>
         <location line="+26"/>
-        <source>Welcome to your PandaBank, You last logged on at &lt;TIME&gt; on &lt;DATE&gt;</source>
+        <source>Welcome to your Digital PandaBank, You last logged on at &lt;TIME&gt; on &lt;DATE&gt;</source>
         <translation type="unfinished">欢迎来到你的熊猫银行，你上次登录于 &lt;TIME&gt; 时 &lt;DATE&gt;日</translation>
     </message>
     <message>
@@ -2429,7 +2429,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     </message>
     <message>
         <location line="+13"/>
-        <source>Welcome to your PandaBank, You last logged on at</source>
+        <source>Welcome to your Digital PandaBank, You last logged on at</source>
         <translation type="unfinished">欢迎来到你的熊猫银行，你上次登录于</translation>
     </message>
     <message>

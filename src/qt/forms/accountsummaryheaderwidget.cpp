@@ -69,7 +69,7 @@ void AccountSummaryHeaderWidget::accept()
     {
         if(!model->getAddressTableModel()->setData(model->getAddressTableModel()->index(index,AddressTableModel::Label,QModelIndex()), newLabel, Qt::EditRole))
         {
-            QMessageBox::warning(this, tr("Error"), tr("Error could not change name of PandaBank account."), QMessageBox::Ok);
+            QMessageBox::warning(this, tr("Error"), tr("Error could not change name of Digital PandaBank account."), QMessageBox::Ok);
         }
     }
 }

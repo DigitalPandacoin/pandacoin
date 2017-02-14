@@ -56,7 +56,7 @@ OverviewPage::OverviewPage(QWidget *parent)
     contextMenu->addAction(copyAmountAction);
 
     //fixme: hardcoded
-    ui->welcome_heading->setText(tr("Welcome to your PandaBank, You last logged on at") + " " + QDateTime::currentDateTime().time().toString() + " " + tr("on") + " " + QDateTime::currentDateTime().date().toString());
+    ui->welcome_heading->setText(tr("Welcome to your Digital PandaBank, You last logged on at") + " " + QDateTime::currentDateTime().time().toString() + " " + tr("on") + " " + QDateTime::currentDateTime().date().toString());
 
     //Hide for now (apparently this will only be visible in later versions of UI).
     ui->portfolio_overview_description->setVisible(false);

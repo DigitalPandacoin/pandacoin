@@ -86,7 +86,7 @@ BitcoinGUI::BitcoinGUI(QWidget *parent)
 , transferPage(NULL)
 {
     resize(850, 550);
-    setWindowTitle(tr("PandaBank"));
+    setWindowTitle(tr("Digital PandaBank"));
 #ifndef Q_OS_MAC
     qApp->setWindowIcon(QIcon(":icons/bitcoin"));
     setWindowIcon(QIcon(":icons/bitcoin"));
@@ -249,7 +249,7 @@ void BitcoinGUI::createActions()
     tabGroup->addAction(overviewAction);
 
     sendCoinsAction = new QAction(QIcon(":/icons/send"), tr("&Send coins"), this);
-    sendCoinsAction->setToolTip(tr("Send coins to a PandaBank address"));
+    sendCoinsAction->setToolTip(tr("Send coins to a Digital PandaBank address"));
     sendCoinsAction->setCheckable(true);
     sendCoinsAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_2));
     tabGroup->addAction(sendCoinsAction);
@@ -285,27 +285,27 @@ void BitcoinGUI::createActions()
     quitAction->setToolTip(tr("Quit application"));
     quitAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Q));
     quitAction->setMenuRole(QAction::QuitRole);
-    aboutAction = new QAction(QIcon(":/icons/bitcoin"), tr("&About PandaBank"), this);
-    aboutAction->setToolTip(tr("Show information about PandaBank"));
+    aboutAction = new QAction(QIcon(":/icons/bitcoin"), tr("&About Digital PandaBank"), this);
+    aboutAction->setToolTip(tr("Show information about Digital PandaBank"));
     aboutAction->setMenuRole(QAction::AboutRole);
     aboutQtAction = new QAction(QIcon(":/trolltech/qmessagebox/images/qtlogo-64.png"), tr("About &Qt"), this);
     aboutQtAction->setToolTip(tr("Show information about Qt"));
     aboutQtAction->setMenuRole(QAction::AboutQtRole);
     optionsAction = new QAction(QIcon(":/icons/options"), tr("&Options..."), this);
-    optionsAction->setToolTip(tr("Modify configuration options for PandaBank"));
+    optionsAction->setToolTip(tr("Modify configuration options for Digital PandaBank"));
     optionsAction->setMenuRole(QAction::PreferencesRole);
     toggleHideAction = new QAction(QIcon(":/icons/bitcoin"), tr("&Show / Hide"), this);
-    encryptWalletAction = new QAction(QIcon(":/icons/lock_closed"), tr("&Encrypt PandaBank..."), this);
-    encryptWalletAction->setToolTip(tr("Encrypt or decrypt PandaBank"));
+    encryptWalletAction = new QAction(QIcon(":/icons/lock_closed"), tr("&Encrypt Digital PandaBank..."), this);
+    encryptWalletAction->setToolTip(tr("Encrypt or decrypt Digital PandaBank"));
     encryptWalletAction->setCheckable(true);
-    backupWalletAction = new QAction(QIcon(":/icons/filesave"), tr("&Backup PandaBank..."), this);
-    backupWalletAction->setToolTip(tr("Backup PandaBank to another location"));
+    backupWalletAction = new QAction(QIcon(":/icons/filesave"), tr("&Backup Digital PandaBank..."), this);
+    backupWalletAction->setToolTip(tr("Backup Digital PandaBank to another location"));
     changePassphraseAction = new QAction(QIcon(":/icons/key"), tr("&Change Password..."), this);
     changePassphraseAction->setToolTip(tr("Change the password used for wallet encryption"));
-    unlockWalletAction = new QAction(QIcon(":/icons/lock_open"), tr("&Unlock PandaBank..."), this);
-    unlockWalletAction->setToolTip(tr("Unlock PandaBank"));
-    lockWalletAction = new QAction(QIcon(":/icons/lock_closed"), tr("&Lock PandaBank"), this);
-    lockWalletAction->setToolTip(tr("Lock PandaBank"));
+    unlockWalletAction = new QAction(QIcon(":/icons/lock_open"), tr("&Unlock Digital PandaBank..."), this);
+    unlockWalletAction->setToolTip(tr("Unlock Digital PandaBank"));
+    lockWalletAction = new QAction(QIcon(":/icons/lock_closed"), tr("&Lock Digital PandaBank"), this);
+    lockWalletAction->setToolTip(tr("Lock Digital PandaBank"));
     signMessageAction = new QAction(QIcon(":/icons/edit"), tr("Sign &message..."), this);
     verifyMessageAction = new QAction(QIcon(":/icons/transaction_0"), tr("&Verify message..."), this);
 
@@ -405,7 +405,7 @@ void BitcoinGUI::setClientModel(ClientModel *clientModel)
 #endif
             if(trayIcon)
             {
-                trayIcon->setToolTip(tr("PandaBank client") + QString(" ") + tr("[testnet]"));
+                trayIcon->setToolTip(tr("Digital PandaBank client") + QString(" ") + tr("[testnet]"));
                 trayIcon->setIcon(QIcon(":/icons/toolbar_testnet"));
                 toggleHideAction->setIcon(QIcon(":/icons/toolbar_testnet"));
             }
@@ -476,7 +476,7 @@ void BitcoinGUI::createTrayIcon()
     trayIcon = new QSystemTrayIcon(this);
     trayIconMenu = new QMenu(this);
     trayIcon->setContextMenu(trayIconMenu);
-    trayIcon->setToolTip(tr("PandaBank client"));
+    trayIcon->setToolTip(tr("Digital PandaBank client"));
     trayIcon->setIcon(QIcon(":/icons/toolbar"));
     connect(trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
             this, SLOT(trayIconActivated(QSystemTrayIcon::ActivationReason)));
@@ -546,7 +546,7 @@ void BitcoinGUI::setNumConnections(int count)
     default: icon = ":/icons/connect_4"; break;
     }
     labelConnectionsIcon->setPixmap(QIcon(icon).pixmap(STATUSBAR_ICONSIZE,STATUSBAR_ICONSIZE));
-    labelConnectionsIcon->setToolTip(tr("%1 active %2 to PandaBank network").arg(count).arg(count == 1 ? tr("connection") : tr("connections")));
+    labelConnectionsIcon->setToolTip(tr("%1 active %2 to Digital PandaBank network").arg(count).arg(count == 1 ? tr("connection") : tr("connections")));
 }
 
 void BitcoinGUI::setNumBlocks(int count, int nTotalBlocks)
@@ -1076,7 +1076,7 @@ void BitcoinGUI::dropEvent(QDropEvent *event)
         if (nValidUrisFound)
             gotoSendCoinsPage();
         else
-            notificator->notify(Notificator::Warning, tr("URI handling"), tr("URI can not be parsed! This can be caused by an invalid PandaBank address or malformed URI parameters."));
+            notificator->notify(Notificator::Warning, tr("URI handling"), tr("URI can not be parsed! This can be caused by an invalid Digital PandaBank address or malformed URI parameters."));
     }
 
     event->acceptProposedAction();
@@ -1091,7 +1091,7 @@ void BitcoinGUI::handleURI(QString strURI)
         gotoSendCoinsPage();
     }
     else
-        notificator->notify(Notificator::Warning, tr("URI handling"), tr("URI can not be parsed! This can be caused by an invalid PandaBank address or malformed URI parameters."));
+        notificator->notify(Notificator::Warning, tr("URI handling"), tr("URI can not be parsed! This can be caused by an invalid Digital PandaBank address or malformed URI parameters."));
 }
 
 void BitcoinGUI::setEncryptionStatus(int status)
@@ -1207,8 +1207,8 @@ void BitcoinGUI::setFullClientMode()
         return;
 
     QMessageBox msgBox(this);
-    msgBox.setWindowTitle(tr("Activate PandaBank ‘Classic’"));
-    msgBox.setText(tr("PandaBank 'Classic' allows you to earn interest and help secure the Pandacoin Network once synchronization and download of the blockchain is completed. It operates using the outdated method of synchronization and downloading of the blockchain, which could take between 4 to 24 hours to complete. We recommend most Pandacoin users to use Pandacoin 'Hybrid'.\n\nSwitching to PandaBank 'Classic' from other modes will wipe out your existing blockchain data.\n\nActivate PandaBank 'Classic'?"));
+    msgBox.setWindowTitle(tr("Activate Digital PandaBank ‘Classic’"));
+    msgBox.setText(tr("Digital PandaBank 'Classic' allows you to earn interest and help secure the Pandacoin Network once synchronization and download of the blockchain is completed. It operates using the outdated method of synchronization and downloading of the blockchain, which could take between 4 to 24 hours to complete. We recommend most Pandacoin users to use Pandacoin 'Hybrid'.\n\nSwitching to Digital PandaBank 'Classic' from other modes will wipe out your existing blockchain data.\n\nActivate Digital PandaBank 'Classic'?"));
     msgBox.setStandardButtons(QMessageBox::Yes|QMessageBox::No);
     msgBox.setDefaultButton(QMessageBox::No);
     msgBox.setIconPixmap(QPixmap(":/icons/mode_full_35"));
@@ -1229,8 +1229,8 @@ void BitcoinGUI::setHybridClientMode()
         return;
 
     QMessageBox msgBox(this);
-    msgBox.setWindowTitle(tr("Activate PandaBank ‘Hybrid’"));
-    msgBox.setText(tr("PandaBank 'Hybrid' is the recommended mode for most Pandacoin users. Synchronization with the Pandacoin Network will only take seconds after installation so you can see and use your Pandacoins immediately. \n\nPandaBank 'Hybrid allows you to earn interest and help secure the Pandacoin Network in approximately 5 to 15 minutes after installation, once both synchronization and download of the blockchain is completed.\n\nActivate PandaBank 'Hybrid'?"));
+    msgBox.setWindowTitle(tr("Activate Digital PandaBank ‘Hybrid’"));
+    msgBox.setText(tr("Digital PandaBank 'Hybrid' is the recommended mode for most Pandacoin users. Synchronization with the Pandacoin Network will only take seconds after installation so you can see and use your Pandacoins immediately. \n\nDigital PandaBank 'Hybrid allows you to earn interest and help secure the Pandacoin Network in approximately 5 to 15 minutes after installation, once both synchronization and download of the blockchain is completed.\n\nActivate Digital PandaBank 'Hybrid'?"));
     msgBox.setStandardButtons(QMessageBox::Yes|QMessageBox::No);
     msgBox.setDefaultButton(QMessageBox::No);
     msgBox.setIconPixmap(QPixmap(":/icons/mode_hybrid_35"));
@@ -1249,8 +1249,8 @@ void BitcoinGUI::setLightClientMode()
         return;
 
     QMessageBox msgBox(this);
-    msgBox.setWindowTitle(tr("Activate PandaBank ‘Lite’"));
-    msgBox.setText(tr("PandaBank 'Lite' is for users that have access to limited download or hard drive storage space. Stored data is only a few megabytes. Synchronization with the Pandacoin Network will only take seconds after installation so you can see and use your Pandacoins immediately.\n\nPandacoin 'Lite' DOES NOT allow you to earn interest or help secure the Pandacoin Network.\n\nActivate PandaBank 'Lite'?"));
+    msgBox.setWindowTitle(tr("Activate Digital PandaBank ‘Lite’"));
+    msgBox.setText(tr("Digital PandaBank 'Lite' is for users that have access to limited download or hard drive storage space. Stored data is only a few megabytes. Synchronization with the Pandacoin Network will only take seconds after installation so you can see and use your Pandacoins immediately.\n\nPandacoin 'Lite' DOES NOT allow you to earn interest or help secure the Pandacoin Network.\n\nActivate Digital PandaBank 'Lite'?"));
     msgBox.setStandardButtons(QMessageBox::Yes|QMessageBox::No);
     msgBox.setDefaultButton(QMessageBox::No);
     msgBox.setIconPixmap(QPixmap(":/icons/mode_light_35"));

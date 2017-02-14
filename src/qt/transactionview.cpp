@@ -235,7 +235,7 @@ void TransactionView::showDetails()
 
 void TransactionView::viewOnBlockExplorer()
 {
-    QString format("http://pnd.showed.us/tx/");
+    QString format("https://chainz.cryptoid.info/pnd/tx.dws?");
     format += contextMenuTriggerIndex.data(TransactionTableModel::TxIDRole).toString();
     QDesktopServices::openUrl(QUrl(format));
 }

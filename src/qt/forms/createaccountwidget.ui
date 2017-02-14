@@ -70,7 +70,7 @@
         </font>
        </property>
        <property name="text">
-        <string>Creating a new PandaBank account is easy</string>
+        <string>Creating a new Digital PandaBank account is easy</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>

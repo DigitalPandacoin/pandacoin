@@ -10,7 +10,7 @@
     </message>
     <message>
         <location filename="../forms/aboutdialog.ui" line="+14"/>
-        <source>About PandaBank</source>
+        <source>About Digital PandaBank</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -201,7 +201,7 @@ Eric Young (eay@cryptsoft.com) y el software UPnP escrito por Thomas Bernard.</t
     </message>
     <message>
         <location line="+9"/>
-        <source>Error could not change name of PandaBank account.</source>
+        <source>Error could not change name of Digital PandaBank account.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -544,17 +544,17 @@ Eric Young (eay@cryptsoft.com) y el software UPnP escrito por Thomas Bernard.</t
     </message>
     <message>
         <location line="+1"/>
-        <source>Encrypt PandaBank</source>
+        <source>Encrypt Digital PandaBank</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+4"/>
-        <source>Log on to PandaBank</source>
+        <source>Log on to Digital PandaBank</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+1"/>
-        <source>Please enter your PandaBank password to log on to PandaBank.</source>
+        <source>Please enter your Digital PandaBank password to log on to Digital PandaBank.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -564,22 +564,22 @@ Eric Young (eay@cryptsoft.com) y el software UPnP escrito por Thomas Bernard.</t
     </message>
     <message>
         <location line="+11"/>
-        <source>This operation needs your PandaBank password to unlock PandaBank.</source>
+        <source>This operation needs your Digital PandaBank password to unlock Digital PandaBank.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+5"/>
-        <source>Unlock PandaBank</source>
+        <source>Unlock Digital PandaBank</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+3"/>
-        <source>This operation needs your PandaBank password to decrypt PandaBank.</source>
+        <source>This operation needs your Digital PandaBank password to decrypt Digital PandaBank.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+5"/>
-        <source>Decrypt PandaBank</source>
+        <source>Decrypt Digital PandaBank</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -589,33 +589,33 @@ Eric Young (eay@cryptsoft.com) y el software UPnP escrito por Thomas Bernard.</t
     </message>
     <message>
         <location line="+1"/>
-        <source>Enter the old and new password to PandaBank.</source>
+        <source>Enter the old and new password to Digital PandaBank.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+46"/>
-        <source>Confirm PandaBank encryption</source>
+        <source>Confirm Digital PandaBank encryption</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+1"/>
-        <source>Warning: If you encrypt your PandaBank and lose your password, you will &lt;b&gt;LOSE ALL OF YOUR COINS&lt;/b&gt;!</source>
+        <source>Warning: If you encrypt your Digital PandaBank and lose your password, you will &lt;b&gt;LOSE ALL OF YOUR COINS&lt;/b&gt;!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+0"/>
-        <source>Are you sure you wish to encrypt your PandaBank?</source>
+        <source>Are you sure you wish to encrypt your Digital PandaBank?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+9"/>
         <location line="+61"/>
-        <source>PandaBank encrypted</source>
+        <source>Digital PandaBank encrypted</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="-59"/>
-        <source>PandaBank will close now to finish the encryption process. Remember that encrypting your PandaBank cannot fully protect your coins from being stolen by malware infecting your computer.</source>
+        <source>Digital PandaBank will close now to finish the encryption process. Remember that encrypting your Digital PandaBank cannot fully protect your coins from being stolen by malware infecting your computer.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -628,12 +628,12 @@ Eric Young (eay@cryptsoft.com) y el software UPnP escrito por Thomas Bernard.</t
         <location line="+7"/>
         <location line="+45"/>
         <location line="+6"/>
-        <source>PandaBank encryption failed</source>
+        <source>Digital PandaBank encryption failed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="-57"/>
-        <source>PandaBank encryption failed due to an internal error. Your PandaBank was not encrypted.</source>
+        <source>Digital PandaBank encryption failed due to an internal error. Your Digital PandaBank was not encrypted.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -644,19 +644,19 @@ Eric Young (eay@cryptsoft.com) y el software UPnP escrito por Thomas Bernard.</t
     </message>
     <message>
         <location line="-38"/>
-        <source>PandaBank unlock failed</source>
+        <source>Digital PandaBank unlock failed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+1"/>
         <location line="+12"/>
         <location line="+19"/>
-        <source>The password entered for your PandaBank was incorrect.</source>
+        <source>The password entered for your Digital PandaBank was incorrect.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="-20"/>
-        <source>PandaBank decryption failed</source>
+        <source>Digital PandaBank decryption failed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -716,7 +716,7 @@ Eric Young (eay@cryptsoft.com) y el software UPnP escrito por Thomas Bernard.</t
     </message>
     <message>
         <location line="+240"/>
-        <source>%1 active %2 to PandaBank network</source>
+        <source>%1 active %2 to Digital PandaBank network</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -871,7 +871,7 @@ Eric Young (eay@cryptsoft.com) y el software UPnP escrito por Thomas Bernard.</t
     </message>
     <message>
         <location line="-156"/>
-        <source>PandaBank</source>
+        <source>Digital PandaBank</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -896,7 +896,7 @@ Eric Young (eay@cryptsoft.com) y el software UPnP escrito por Thomas Bernard.</t
     </message>
     <message>
         <location line="+6"/>
-        <source>Send coins to a PandaBank address</source>
+        <source>Send coins to a Digital PandaBank address</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1162,7 +1162,7 @@ Eric Young (eay@cryptsoft.com) y el software UPnP escrito por Thomas Bernard.</t
     <message>
         <location line="-250"/>
         <location line="+15"/>
-        <source>URI can not be parsed! This can be caused by an invalid PandaBank address or malformed URI parameters.</source>
+        <source>URI can not be parsed! This can be caused by an invalid Digital PandaBank address or malformed URI parameters.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1207,37 +1207,37 @@ Eric Young (eay@cryptsoft.com) y el software UPnP escrito por Thomas Bernard.</t
     </message>
     <message>
         <location line="-1045"/>
-        <source>&amp;About PandaBank</source>
+        <source>&amp;About Digital PandaBank</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+1"/>
-        <source>Show information about PandaBank</source>
+        <source>Show information about Digital PandaBank</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+6"/>
-        <source>Modify configuration options for PandaBank</source>
+        <source>Modify configuration options for Digital PandaBank</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+3"/>
-        <source>&amp;Encrypt PandaBank...</source>
+        <source>&amp;Encrypt Digital PandaBank...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+1"/>
-        <source>Encrypt or decrypt PandaBank</source>
+        <source>Encrypt or decrypt Digital PandaBank</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+2"/>
-        <source>&amp;Backup PandaBank...</source>
+        <source>&amp;Backup Digital PandaBank...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+1"/>
-        <source>Backup PandaBank to another location</source>
+        <source>Backup Digital PandaBank to another location</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1252,22 +1252,22 @@ Eric Young (eay@cryptsoft.com) y el software UPnP escrito por Thomas Bernard.</t
     </message>
     <message>
         <location line="+1"/>
-        <source>&amp;Unlock PandaBank...</source>
+        <source>&amp;Unlock Digital PandaBank...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+1"/>
-        <source>Unlock PandaBank</source>
+        <source>Unlock Digital PandaBank</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+1"/>
-        <source>&amp;Lock PandaBank</source>
+        <source>&amp;Lock Digital PandaBank</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+1"/>
-        <source>Lock PandaBank</source>
+        <source>Lock Digital PandaBank</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1291,7 +1291,7 @@ Eric Young (eay@cryptsoft.com) y el software UPnP escrito por Thomas Bernard.</t
     <message>
         <location line="+91"/>
         <location line="+71"/>
-        <source>PandaBank client</source>
+        <source>Digital PandaBank client</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1376,44 +1376,44 @@ Dirección: %4
     </message>
     <message>
         <location line="+116"/>
-        <source>Activate PandaBank ‘Classic’</source>
+        <source>Activate Digital PandaBank ‘Classic’</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+1"/>
-        <source>PandaBank &apos;Classic&apos; allows you to earn interest and help secure the Pandacoin Network once synchronization and download of the blockchain is completed. It operates using the outdated method of synchronization and downloading of the blockchain, which could take between 4 to 24 hours to complete. We recommend most Pandacoin users to use Pandacoin &apos;Hybrid&apos;.
+        <source>Digital PandaBank &apos;Classic&apos; allows you to earn interest and help secure the Pandacoin Network once synchronization and download of the blockchain is completed. It operates using the outdated method of synchronization and downloading of the blockchain, which could take between 4 to 24 hours to complete. We recommend most Pandacoin users to use Pandacoin &apos;Hybrid&apos;.
 
-Switching to PandaBank &apos;Classic&apos; from other modes will wipe out your existing blockchain data.
+Switching to Digital PandaBank &apos;Classic&apos; from other modes will wipe out your existing blockchain data.
 
-Activate PandaBank &apos;Classic&apos;?</source>
+Activate Digital PandaBank &apos;Classic&apos;?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+21"/>
-        <source>Activate PandaBank ‘Hybrid’</source>
+        <source>Activate Digital PandaBank ‘Hybrid’</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+1"/>
-        <source>PandaBank &apos;Hybrid&apos; is the recommended mode for most Pandacoin users. Synchronization with the Pandacoin Network will only take seconds after installation so you can see and use your Pandacoins immediately. 
+        <source>Digital PandaBank &apos;Hybrid&apos; is the recommended mode for most Pandacoin users. Synchronization with the Pandacoin Network will only take seconds after installation so you can see and use your Pandacoins immediately. 
 
-PandaBank &apos;Hybrid allows you to earn interest and help secure the Pandacoin Network in approximately 5 to 15 minutes after installation, once both synchronization and download of the blockchain is completed.
+Digital PandaBank &apos;Hybrid allows you to earn interest and help secure the Pandacoin Network in approximately 5 to 15 minutes after installation, once both synchronization and download of the blockchain is completed.
 
-Activate PandaBank &apos;Hybrid&apos;?</source>
+Activate Digital PandaBank &apos;Hybrid&apos;?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+19"/>
-        <source>Activate PandaBank ‘Lite’</source>
+        <source>Activate Digital PandaBank ‘Lite’</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+1"/>
-        <source>PandaBank &apos;Lite&apos; is for users that have access to limited download or hard drive storage space. Stored data is only a few megabytes. Synchronization with the Pandacoin Network will only take seconds after installation so you can see and use your Pandacoins immediately.
+        <source>Digital PandaBank &apos;Lite&apos; is for users that have access to limited download or hard drive storage space. Stored data is only a few megabytes. Synchronization with the Pandacoin Network will only take seconds after installation so you can see and use your Pandacoins immediately.
 
 Pandacoin &apos;Lite&apos; DOES NOT allow you to earn interest or help secure the Pandacoin Network.
 
-Activate PandaBank &apos;Lite&apos;?</source>
+Activate Digital PandaBank &apos;Lite&apos;?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1816,7 +1816,7 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     </message>
     <message>
         <location line="+53"/>
-        <source>Creating a new PandaBank account is easy</source>
+        <source>Creating a new Digital PandaBank account is easy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1852,17 +1852,17 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     </message>
     <message>
         <location line="+15"/>
-        <source>PandaBank account created</source>
+        <source>Digital PandaBank account created</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+0"/>
-        <source>Your PandaBank Account has been created.</source>
+        <source>Your Digital PandaBank Account has been created.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+4"/>
-        <source>Error creating PandaBank account.</source>
+        <source>Error creating Digital PandaBank account.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2082,7 +2082,7 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     </message>
     <message>
         <location line="+3"/>
-        <source>&amp;Start PandaBank on system login</source>
+        <source>&amp;Start Digital PandaBank on system login</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2292,7 +2292,7 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     </message>
     <message>
         <location line="+26"/>
-        <source>Welcome to your PandaBank, You last logged on at &lt;TIME&gt; on &lt;DATE&gt;</source>
+        <source>Welcome to your Digital PandaBank, You last logged on at &lt;TIME&gt; on &lt;DATE&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2437,7 +2437,7 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     </message>
     <message>
         <location line="+13"/>
-        <source>Welcome to your PandaBank, You last logged on at</source>
+        <source>Welcome to your Digital PandaBank, You last logged on at</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

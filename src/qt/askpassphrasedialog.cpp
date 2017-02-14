@@ -37,12 +37,12 @@ AskPassphraseDialog::AskPassphraseDialog(Mode mode_, QWidget *parent_)
             ui->passLabel1->hide();
             ui->passEdit1->hide();
             ui->warningLabel->setText(tr("Enter the new password to the wallet.<br/>Please use a password of <b>10 or more random characters</b>, or <b>eight or more words</b>."));
-            setWindowTitle(tr("Encrypt PandaBank"));
+            setWindowTitle(tr("Encrypt Digital PandaBank"));
             break;
         case Login:
             mode = UnlockStaking;
-            setWindowTitle(tr("Log on to PandaBank"));
-            ui->warningLabel->setText(tr("Please enter your PandaBank password to log on to PandaBank."));
+            setWindowTitle(tr("Log on to Digital PandaBank"));
+            ui->warningLabel->setText(tr("Please enter your Digital PandaBank password to log on to Digital PandaBank."));
             ui->passLabel1->setText(tr("Enter password"));
             ui->stakingCheckBox->setChecked(true);
             ui->stakingCheckBox->hide();
@@ -57,24 +57,24 @@ AskPassphraseDialog::AskPassphraseDialog(Mode mode_, QWidget *parent_)
             ui->stakingCheckBox->show();
             // fallthru
         case Unlock: // Ask passphrase
-            ui->warningLabel->setText(tr("This operation needs your PandaBank password to unlock PandaBank."));
+            ui->warningLabel->setText(tr("This operation needs your Digital PandaBank password to unlock Digital PandaBank."));
             ui->passLabel2->hide();
             ui->passEdit2->hide();
             ui->passLabel3->hide();
             ui->passEdit3->hide();
-            setWindowTitle(tr("Unlock PandaBank"));
+            setWindowTitle(tr("Unlock Digital PandaBank"));
             break;
         case Decrypt:   // Ask passphrase
-            ui->warningLabel->setText(tr("This operation needs your PandaBank password to decrypt PandaBank."));
+            ui->warningLabel->setText(tr("This operation needs your Digital PandaBank password to decrypt Digital PandaBank."));
             ui->passLabel2->hide();
             ui->passEdit2->hide();
             ui->passLabel3->hide();
             ui->passEdit3->hide();
-            setWindowTitle(tr("Decrypt PandaBank"));
+            setWindowTitle(tr("Decrypt Digital PandaBank"));
             break;
         case ChangePass: // Ask old passphrase + new passphrase x2
             setWindowTitle(tr("Change password"));
-            ui->warningLabel->setText(tr("Enter the old and new password to PandaBank."));
+            ui->warningLabel->setText(tr("Enter the old and new password to Digital PandaBank."));
             break;
     }
 
@@ -120,8 +120,8 @@ void AskPassphraseDialog::accept()
             // Cannot encrypt with empty passphrase
             break;
         }
-        QMessageBox::StandardButton retval = QMessageBox::question(this, tr("Confirm PandaBank encryption"),
-                 tr("Warning: If you encrypt your PandaBank and lose your password, you will <b>LOSE ALL OF YOUR COINS</b>!") + "<br><br>" + tr("Are you sure you wish to encrypt your PandaBank?"),
+        QMessageBox::StandardButton retval = QMessageBox::question(this, tr("Confirm Digital PandaBank encryption"),
+                 tr("Warning: If you encrypt your Digital PandaBank and lose your password, you will <b>LOSE ALL OF YOUR COINS</b>!") + "<br><br>" + tr("Are you sure you wish to encrypt your Digital PandaBank?"),
                  QMessageBox::Yes|QMessageBox::Cancel,
                  QMessageBox::Cancel);
         if(retval == QMessageBox::Yes)
@@ -130,10 +130,10 @@ void AskPassphraseDialog::accept()
             {
                 if(model->setWalletEncrypted(true, newpass1))
                 {
-                    QMessageBox::warning(this, tr("PandaBank encrypted"),
+                    QMessageBox::warning(this, tr("Digital PandaBank encrypted"),
                                          "<qt>" + 
-                                         tr("PandaBank will close now to finish the encryption process. "
-                                         "Remember that encrypting your PandaBank cannot fully protect "
+                                         tr("Digital PandaBank will close now to finish the encryption process. "
+                                         "Remember that encrypting your Digital PandaBank cannot fully protect "
                                          "your coins from being stolen by malware infecting your computer.") + 
                                          "<br><br><b>" + 
                                          tr("IMPORTANT: Any previous backups you have made of your wallet file "
@@ -145,14 +145,14 @@ void AskPassphraseDialog::accept()
                 }
                 else
                 {
-                    QMessageBox::critical(this, tr("PandaBank encryption failed"),
-                                         tr("PandaBank encryption failed due to an internal error. Your PandaBank was not encrypted."));
+                    QMessageBox::critical(this, tr("Digital PandaBank encryption failed"),
+                                         tr("Digital PandaBank encryption failed due to an internal error. Your Digital PandaBank was not encrypted."));
                 }
                 QDialog::accept(); // Success
             }
             else
             {
-                QMessageBox::critical(this, tr("PandaBank encryption failed"),
+                QMessageBox::critical(this, tr("Digital PandaBank encryption failed"),
                                      tr("The supplied passwords do not match."));
             }
         }
@@ -166,8 +166,8 @@ void AskPassphraseDialog::accept()
     case Unlock:
         if(!model->setWalletLocked(false, oldpass))
         {
-            QMessageBox::critical(this, tr("PandaBank unlock failed"),
-                                  tr("The password entered for your PandaBank was incorrect."));
+            QMessageBox::critical(this, tr("Digital PandaBank unlock failed"),
+                                  tr("The password entered for your Digital PandaBank was incorrect."));
         }
         else
         {
@@ -178,8 +178,8 @@ void AskPassphraseDialog::accept()
     case Decrypt:
         if(!model->setWalletEncrypted(false, oldpass))
         {
-            QMessageBox::critical(this, tr("PandaBank decryption failed"),
-                                  tr("The password entered for your PandaBank was incorrect."));
+            QMessageBox::critical(this, tr("Digital PandaBank decryption failed"),
+                                  tr("The password entered for your Digital PandaBank was incorrect."));
         }
         else
         {
@@ -191,19 +191,19 @@ void AskPassphraseDialog::accept()
         {
             if(model->changePassphrase(oldpass, newpass1))
             {
-                QMessageBox::information(this, tr("PandaBank encrypted"),
+                QMessageBox::information(this, tr("Digital PandaBank encrypted"),
                                      tr("Wallet password was successfully changed."));
                 QDialog::accept(); // Success
             }
             else
             {
-                QMessageBox::critical(this, tr("PandaBank encryption failed"),
-                                     tr("The password entered for your PandaBank was incorrect."));
+                QMessageBox::critical(this, tr("Digital PandaBank encryption failed"),
+                                     tr("The password entered for your Digital PandaBank was incorrect."));
             }
         }
         else
         {
-            QMessageBox::critical(this, tr("PandaBank encryption failed"),
+            QMessageBox::critical(this, tr("Digital PandaBank encryption failed"),
                                  tr("The supplied passwords do not match."));
         }
         break;
