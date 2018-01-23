@@ -19,7 +19,7 @@ if [ -e "$(which git)" ]; then
     #DESC="$(git describe --dirty 2>/dev/null)"
 
 	DESC="v3.0.5.7"
-=======
+
 
     # get a string like "2012-04-10 16:27:19 +0200"
     TIME="$(git log -n 1 --format="%ci")"
