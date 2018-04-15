@@ -22,9 +22,9 @@
         <source>Copyright © 2009-2014 The Bitcoin developers
 Copyright © 2012-2014 The NovaCoin developers
 Copyright © 2014 The Pandacoin developers</source>
-        <translation>Copyright © 2009-2014 Die Bitcoin-Entwickler
-Copyright © 2012-2014 Die NovaCoin Entwickler
-Copyright © 20142018 Die Pandacoin-Entwickler</translation>
+        <translation>Urheberrechte  © 2009-2014 Die Bitcoin-Entwickler
+Urheberrechte  © 2012-2014 Die NovaCoin Entwickler
+Urheberrechte  © 2014-2018 Die Pandacoin-Entwickler</translation>
     </message>
     <message>
         <location line="+15"/>
@@ -711,12 +711,12 @@ Dieses Produkt enthält Software, die vom OpenSSL-Projekt zur Verwendung im Open
     <message>
         <location line="-156"/>
         <source>Digital PandaBank</source>
-        <translation type="unfinished"></translation>
+        <translation>Digitale PandaBank</translation>
     </message>
     <message>
         <location line="+58"/>
         <source>My Home</source>
-        <translation type="unfinished"></translation>
+        <translation>Mein Zuhause</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -726,7 +726,7 @@ Dieses Produkt enthält Software, die vom OpenSSL-Projekt zur Verwendung im Open
     <message>
         <location line="+2"/>
         <source>Transfers</source>
-        <translation type="unfinished"></translation>
+        <translation>Transfers</translation>
     </message>
     <message>
         <location line="+96"/>
@@ -736,7 +736,7 @@ Dieses Produkt enthält Software, die vom OpenSSL-Projekt zur Verwendung im Open
     <message>
         <location line="+6"/>
         <source>Send coins to a Digital PandaBank address</source>
-        <translation type="unfinished"></translation>
+        <translation>Senden Sie Münzen an eine Digital PandaBank-Adresse</translation>
     </message>
     <message>
         <location line="+11"/>
@@ -751,27 +751,27 @@ Dieses Produkt enthält Software, die vom OpenSSL-Projekt zur Verwendung im Open
     <message>
         <location line="+5"/>
         <source>&amp;Address Book</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Adressbuch</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Edit the list of stored addresses and labels</source>
-        <translation type="unfinished"></translation>
+        <translation>Bearbeiten Sie die Liste der gespeicherten Adressen und Labels</translation>
     </message>
     <message>
         <location line="-13"/>
         <source>&amp;Receive coins</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Münzen erhalten</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Show the list of addresses for receiving payments</source>
-        <translation type="unfinished"></translation>
+        <translation>Zeigen Sie die Adressenliste für den Empfang von Zahlungen an</translation>
     </message>
     <message>
         <location line="-7"/>
         <source>&amp;Send coins</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Münzen senden</translation>
     </message>
     <message>
         <location line="+33"/>
@@ -813,17 +813,17 @@ Dieses Produkt enthält Software, die vom OpenSSL-Projekt zur Verwendung im Open
     <message>
         <location line="+537"/>
         <source>Downloaded %1 of %2 blocks of transaction history (%3% done).</source>
-        <translation type="unfinished"></translation>
+        <translation>Heruntergeladene %1 von %2 Blöcken des Transaktionsverlaufs (%3% erledigt).</translation>
     </message>
     <message>
         <location line="-512"/>
         <source>&amp;Export...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Export...</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Export the data in the current tab to a file</source>
-        <translation type="unfinished"></translation>
+        <translation>Exportieren Sie die Daten in der aktuellen Registerkarte in eine Datei</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -882,7 +882,7 @@ Dieses Produkt enthält Software, die vom OpenSSL-Projekt zur Verwendung im Open
     <message>
         <location line="+431"/>
         <source>Downloaded %1 blocks of transaction history.</source>
-        <translation type="unfinished"></translation>
+        <translation>Heruntergeladene %1 Blöcke des Transaktionsverlaufs.</translation>
     </message>
     <message>
         <location line="+240"/>
@@ -893,101 +893,101 @@ Dieses Produkt enthält Software, die vom OpenSSL-Projekt zur Verwendung im Open
     <message>
         <location line="+239"/>
         <source>Staking.&lt;br&gt;Your weight is %1&lt;br&gt;Network weight is %2&lt;br&gt;Expected time to earn reward is %3</source>
-        <translation type="unfinished"></translation>
+        <translation>Stake. &lt;br&gt; Ihr Gewicht ist %1 &lt;br&gt; Netzwerkgewicht ist %2 &lt;br&gt; Erwartete Zeit, um eine Belohnung zu erhalten, ist %3</translation>
     </message>
     <message>
         <location line="-1045"/>
         <source>&amp;About Digital PandaBank</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Über digitale PandaBank</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Show information about Digital PandaBank</source>
-        <translation type="unfinished"></translation>
+        <translation>Informationen über Digital PandaBank anzeigen</translation>
     </message>
     <message>
         <location line="+6"/>
         <source>Modify configuration options for Digital PandaBank</source>
-        <translation type="unfinished"></translation>
+        <translation>Ändern Sie die Konfigurationsoptionen für Digital PandaBank</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>&amp;Encrypt Digital PandaBank...</source>
-        <translation type="unfinished"></translation>
+        <translation>Digitale PandaBank &amp;verschlüsseln ...</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Encrypt or decrypt Digital PandaBank</source>
-        <translation type="unfinished"></translation>
+        <translation>Verschlüsseln oder entschlüsseln Sie Digital PandaBank</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>&amp;Backup Digital PandaBank...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Sichern Sie die digitale PandaBank ...</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Backup Digital PandaBank to another location</source>
-        <translation type="unfinished"></translation>
+        <translation>Sichern Sie die digitale PandaBank an einem anderen Ort</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>&amp;Change Password...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Passwort ändern...</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Change the password used for wallet encryption</source>
-        <translation type="unfinished"></translation>
+        <translation>Ändern Sie das Passwort für die Wallet-Verschlüsselung</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>&amp;Unlock Digital PandaBank...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Digitale PandaBank ...</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Unlock Digital PandaBank</source>
-        <translation type="unfinished"></translation>
+        <translation>Schalte die digitale PandaBank frei</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>&amp;Lock Digital PandaBank</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Sperren Sie die digitale PandaBank</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Lock Digital PandaBank</source>
-        <translation type="unfinished"></translation>
+        <translation>Sperren Sie die digitale PandaBank</translation>
     </message>
     <message>
         <location line="+4"/>
         <location line="+1"/>
         <source>Activate &apos;Classic&apos; client mode.</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktivieren Sie den klassischen Client-Modus.</translation>
     </message>
     <message>
         <location line="+1"/>
         <location line="+1"/>
         <source>Activate &apos;Hybrid&apos; client mode.</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktivieren Sie den Hybrid-Client-Modus.</translation>
     </message>
     <message>
         <location line="+1"/>
         <location line="+1"/>
         <source>Activate &apos;Lite&apos; client mode.</source>
-        <translation type="unfinished"></translation>
+        <translation>Activate &apos;Lite&apos; client mode.</translation>
     </message>
     <message>
         <location line="+91"/>
         <location line="+71"/>
         <source>Digital PandaBank client</source>
-        <translation type="unfinished"></translation>
+        <translation>Digitaler PandaBank-Client</translation>
     </message>
     <message>
         <location line="+134"/>
         <source>Downloaded %1 of %2 checkpoints (%3% done).</source>
-        <translation type="unfinished"></translation>
+        <translation>Heruntergeladene %1 von %2 Checkpoints (%3% erledigt).</translation>
     </message>
     <message>
         <location line="+268"/>
@@ -1002,17 +1002,17 @@ Dieses Produkt enthält Software, die vom OpenSSL-Projekt zur Verwendung im Open
     <message>
         <location line="+10"/>
         <source>Last received block was generated %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Der zuletzt empfangene Block wurde %1 generiert.</translation>
     </message>
     <message>
         <location line="+64"/>
         <source>This transaction is over the size limit.  You can still send it for a fee of %1, which goes to the nodes that process your transaction and helps to support the network.  Do you want to pay the fee?</source>
-        <translation type="unfinished"></translation>
+        <translation>Diese Transaktion überschreitet die Größenbeschränkung. Sie können es dennoch für eine Gebühr von %1 senden, die an die Knoten weitergeleitet wird, die Ihre Transaktion verarbeiten und das Netzwerk unterstützen. Willst du die Gebühr bezahlen?</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Confirm transaction fee</source>
-        <translation type="unfinished"></translation>
+        <translation>Transaktionsgebühr bestätigen</translation>
     </message>
     <message>
         <location line="+27"/>
@@ -1034,7 +1034,8 @@ Address: %4
         <translation>Datum: %1
 Betrag: %2
 Typ: %3
-Adresse: %4</translation>
+Adresse: %4
+</translation>
     </message>
     <message>
         <location line="+83"/>
@@ -1045,7 +1046,7 @@ Adresse: %4</translation>
     <message>
         <location line="+116"/>
         <source>Activate Digital PandaBank ‘Classic’</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktivieren Sie die digitale PandaBank &quot;Classic&quot;</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -1054,12 +1055,16 @@ Adresse: %4</translation>
 Switching to Digital PandaBank &apos;Classic&apos; from other modes will wipe out your existing blockchain data.
 
 Activate Digital PandaBank &apos;Classic&apos;?</source>
-        <translation type="unfinished"></translation>
+        <translation>Digital PandaBank &apos;Classic&apos; ermöglicht es Ihnen, Interesse zu gewinnen und das PandaCoin-Netzwerk abzusichern, sobald die Synchronisierung und der Download der Blockchain abgeschlossen sind. Es funktioniert mit der veralteten Methode der Synchronisation und dem Herunterladen der Blockchain, die zwischen 4 bis 24 Stunden dauern kann. Wir empfehlen den meisten Pandacoin-Benutzern, Pandacoin &apos;Hybrid&apos; zu verwenden.
+
+Wenn Sie von anderen Modi auf Digital PandaBank &apos;Classic&apos; umschalten, werden Ihre bestehenden Blockchain-Daten gelöscht.
+
+Aktivieren Sie Digital PandaBank &apos;Classic&apos;?</translation>
     </message>
     <message>
         <location line="+21"/>
         <source>Activate Digital PandaBank ‘Hybrid’</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktivieren Sie die digitale PandaBank &quot;Hybrid&quot;</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -1068,12 +1073,16 @@ Activate Digital PandaBank &apos;Classic&apos;?</source>
 Digital PandaBank &apos;Hybrid allows you to earn interest and help secure the Pandacoin Network in approximately 5 to 15 minutes after installation, once both synchronization and download of the blockchain is completed.
 
 Activate Digital PandaBank &apos;Hybrid&apos;?</source>
-        <translation type="unfinished"></translation>
+        <translation>Digital PandaBank &quot;Hybrid&quot; ist der empfohlene Modus für die meisten Pandacoin-Benutzer. Die Synchronisierung mit dem PandaCoin-Netzwerk dauert nur Sekunden nach der Installation, so dass Sie Ihre PandaCoins sofort sehen und verwenden können.
+
+Digital PandaBank &apos;Hybrid ermöglicht es Ihnen, Interesse zu gewinnen und das PandaCoin-Netzwerk in ca. 5 bis 15 Minuten nach der Installation zu sichern, sobald sowohl die Synchronisation als auch der Download der Blockchain abgeschlossen ist.
+
+Aktivieren Sie den digitalen PandaBank &quot;Hybrid&quot;?</translation>
     </message>
     <message>
         <location line="+19"/>
         <source>Activate Digital PandaBank ‘Lite’</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktivieren Sie die digitale PandaBank &quot;Lite&quot;</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -1082,17 +1091,21 @@ Activate Digital PandaBank &apos;Hybrid&apos;?</source>
 Pandacoin &apos;Lite&apos; DOES NOT allow you to earn interest or help secure the Pandacoin Network.
 
 Activate Digital PandaBank &apos;Lite&apos;?</source>
-        <translation type="unfinished"></translation>
+        <translation>Digital PandaBank &quot;Lite&quot; ist für Benutzer, die Zugriff auf begrenzten Download- oder Festplattenspeicher haben. Gespeicherte Daten sind nur ein paar Megabyte. Die Synchronisierung mit dem PandaCoin-Netzwerk dauert nur Sekunden nach der Installation, so dass Sie Ihre PandaCoins sofort sehen und verwenden können.
+
+Pandacoin &apos;Lite&apos; erlaubt es NICHT, Zinsen zu verdienen oder das PandaCoin-Netzwerk abzusichern.
+
+Aktivieren Sie Digital PandaBank &quot;Lite&quot;?</translation>
     </message>
     <message>
         <location line="+42"/>
         <source>Unable to earn interest in light mode.&lt;br/&gt;Switch to hybrid mode if you would like to earn interest.</source>
-        <translation type="unfinished"></translation>
+        <translation>Im Light-Modus kann man keine Zinsen verdienen. &lt;br/&gt; Wechseln Sie in den Hybrid-Modus, wenn Sie Zinsen verdienen möchte.</translation>
     </message>
     <message>
         <location line="+6"/>
         <source>Unable to earn interest until syncing is completed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kann keine Zinsen verdienen, bis die Synchronisierung abgeschlossen ist.</translation>
     </message>
     <message>
         <location line="+16"/>
@@ -1100,32 +1113,32 @@ Activate Digital PandaBank &apos;Lite&apos;?</source>
         <location line="+4"/>
         <location line="+4"/>
         <source>%1 %2</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 %2</translation>
     </message>
     <message>
         <location line="+10"/>
         <source>Not earning interest because wallet is locked</source>
-        <translation type="unfinished"></translation>
+        <translation>Keine Zinsen verdienen, weil die Brieftasche gesperrt ist</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Not earning interest because wallet is offline</source>
-        <translation type="unfinished"></translation>
+        <translation>Keine Zinsen verdienen, weil die Brieftasche offline ist</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Not earning interest because wallet is syncing</source>
-        <translation type="unfinished"></translation>
+        <translation>Keine Zinsen verdienen, weil Wallet synchronisiert wird</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Not earning interest because you don&apos;t have mature coins</source>
-        <translation type="unfinished"></translation>
+        <translation>Keine Zinsen verdienen, weil Sie keine reifen Münzen haben</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Not earning interest</source>
-        <translation type="unfinished"></translation>
+        <translation>Keine Zinsen verdienen</translation>
     </message>
     <message>
         <location line="-235"/>
@@ -1135,32 +1148,32 @@ Activate Digital PandaBank &apos;Lite&apos;?</source>
     <message>
         <location line="-563"/>
         <source>%1 active %2 to Digital PandaBank network</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 aktiv %2 ​​für das digitale PandaBank-Netzwerk</translation>
     </message>
     <message>
         <location line="+0"/>
         <source>connection</source>
-        <translation type="unfinished"></translation>
+        <translation>Verbindung</translation>
     </message>
     <message>
         <location line="+0"/>
         <source>connections</source>
-        <translation type="unfinished"></translation>
+        <translation>Verbindungen</translation>
     </message>
     <message>
         <location line="+16"/>
         <source>Searching for peers.</source>
-        <translation type="unfinished"></translation>
+        <translation>Suche nach Peers.</translation>
     </message>
     <message>
         <location line="+17"/>
         <source>Connecting to peers.</source>
-        <translation type="unfinished"></translation>
+        <translation>Verbindung mit Peers.</translation>
     </message>
     <message>
         <location line="+16"/>
         <source>Fetching checkpoints.</source>
-        <translation type="unfinished"></translation>
+        <translation>Checkpoints werden abgerufen.</translation>
     </message>
     <message>
         <location line="+8"/>
@@ -1172,51 +1185,51 @@ Activate Digital PandaBank &apos;Lite&apos;?</source>
         <location line="+29"/>
         <location line="+29"/>
         <source>%1 %2 remaining</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 %2 übrig</translation>
     </message>
     <message>
         <location line="-217"/>
         <source>checkpoint</source>
-        <translation type="unfinished"></translation>
+        <translation>Kontrollpunkt</translation>
     </message>
     <message>
         <location line="+0"/>
         <source>checkpoints</source>
-        <translation type="unfinished"></translation>
+        <translation>Punkte prüfen</translation>
     </message>
     <message>
         <location line="+22"/>
         <location line="+33"/>
         <source>Performing Instant Sync</source>
-        <translation type="unfinished"></translation>
+        <translation>Sofort-Synchronisierung durchführen</translation>
     </message>
     <message>
         <location line="-31"/>
         <source>(Phase 1 of 3)</source>
-        <translation type="unfinished"></translation>
+        <translation>(Phase 1 von 3)</translation>
     </message>
     <message>
         <location line="+9"/>
         <location line="+96"/>
         <source>header</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopfzeilen</translation>
     </message>
     <message>
         <location line="-96"/>
         <location line="+96"/>
         <source>headers</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopfzeilen</translation>
     </message>
     <message>
         <location line="-88"/>
         <location line="+96"/>
         <source>Downloaded %1 of %2 headers (%3% done).</source>
-        <translation type="unfinished"></translation>
+        <translation>Heruntergeladene %1 von %2-Kopfzeilen (%3% erledigt).</translation>
     </message>
     <message>
         <location line="-80"/>
         <source>(Phase 2 of 3)</source>
-        <translation type="unfinished"></translation>
+        <translation>(Phase 2 von 3)</translation>
     </message>
     <message>
         <location line="+9"/>
@@ -1225,7 +1238,7 @@ Activate Digital PandaBank &apos;Lite&apos;?</source>
         <location line="+29"/>
         <location line="+29"/>
         <source>block</source>
-        <translation type="unfinished"></translation>
+        <translation>Blöcke</translation>
     </message>
     <message>
         <location line="-151"/>
@@ -1234,38 +1247,38 @@ Activate Digital PandaBank &apos;Lite&apos;?</source>
         <location line="+29"/>
         <location line="+29"/>
         <source>blocks</source>
-        <translation type="unfinished"></translation>
+        <translation>Blöcke</translation>
     </message>
     <message>
         <location line="-143"/>
         <location line="+93"/>
         <source>Downloaded %1 of %2 blocks (%3% done).</source>
-        <translation type="unfinished"></translation>
+        <translation>Heruntergeladene %1 von %2 Blöcken (%3% erledigt).</translation>
     </message>
     <message>
         <location line="-79"/>
         <source>Scanning wallet transactions</source>
-        <translation type="unfinished"></translation>
+        <translation>Brieftaschentransaktionen scannen</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>(Phase 3 of 3)</source>
-        <translation type="unfinished"></translation>
+        <translation>(Phase 3 von 3)</translation>
     </message>
     <message>
         <location line="+17"/>
         <source>Scanned %1 of %2 blocks (%3% done).</source>
-        <translation type="unfinished"></translation>
+        <translation>Gescannt %1 von %2 Blöcken (%3% erledigt).</translation>
     </message>
     <message>
         <location line="+14"/>
         <source>Rapid Blockchain Download (Phase 1 of 2).</source>
-        <translation type="unfinished"></translation>
+        <translation>Rapid Blockchain Download (Phase 1 von 2).</translation>
     </message>
     <message>
         <location line="+30"/>
         <source>Rapid Blockchain Download (Phase 2 of 2).</source>
-        <translation type="unfinished"></translation>
+        <translation>Rapid Blockchain Download (Phase 2 von 2).</translation>
     </message>
     <message>
         <location line="+29"/>
@@ -1283,55 +1296,55 @@ Activate Digital PandaBank &apos;Lite&apos;?</source>
         <location line="+4"/>
         <location line="+4"/>
         <source>%1 %2 ago</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 %2 vor</translation>
     </message>
     <message>
         <location line="-12"/>
         <location line="+454"/>
         <source>second</source>
-        <translation type="unfinished"></translation>
+        <translation>zweite</translation>
     </message>
     <message>
         <location line="-454"/>
         <location line="+454"/>
         <source>seconds</source>
-        <translation type="unfinished"></translation>
+        <translation>Sekunden</translation>
     </message>
     <message>
         <location line="-450"/>
         <location line="+454"/>
         <source>minute</source>
-        <translation type="unfinished"></translation>
+        <translation>Protokoll</translation>
     </message>
     <message>
         <location line="-454"/>
         <location line="+454"/>
         <source>minutes</source>
-        <translation type="unfinished"></translation>
+        <translation>Protokoll</translation>
     </message>
     <message>
         <location line="-450"/>
         <location line="+454"/>
         <source>hour</source>
-        <translation type="unfinished"></translation>
+        <translation>Stunde</translation>
     </message>
     <message>
         <location line="-454"/>
         <location line="+454"/>
         <source>hours</source>
-        <translation type="unfinished"></translation>
+        <translation>Stunde</translation>
     </message>
     <message>
         <location line="-450"/>
         <location line="+454"/>
         <source>day</source>
-        <translation type="unfinished"></translation>
+        <translation>Tag</translation>
     </message>
     <message>
         <location line="-454"/>
         <location line="+454"/>
         <source>days</source>
-        <translation type="unfinished"></translation>
+        <translation>Tage</translation>
     </message>
     <message>
         <location line="-207"/>
@@ -1341,7 +1354,7 @@ Activate Digital PandaBank &apos;Lite&apos;?</source>
     <message>
         <location line="+26"/>
         <source>Backup Wallet</source>
-        <translation type="unfinished"></translation>
+        <translation>Wallet sichern</translation>
     </message>
     <message>
         <location line="+0"/>
@@ -1351,12 +1364,12 @@ Activate Digital PandaBank &apos;Lite&apos;?</source>
     <message>
         <location line="+3"/>
         <source>Backup Failed</source>
-        <translation type="unfinished"></translation>
+        <translation>Sicherung fehlgeschlagen</translation>
     </message>
     <message>
         <location line="+0"/>
         <source>There was an error trying to save the wallet data to the new location.</source>
-        <translation type="unfinished"></translation>
+        <translation>Beim Versuch, die Brieftaschendaten an dem neuen Speicherort zu speichern, ist ein Fehler aufgetreten.</translation>
     </message>
     <message numerus="yes">
         <source>%n hour(s)</source>
@@ -1375,7 +1388,7 @@ Activate Digital PandaBank &apos;Lite&apos;?</source>
     <message>
         <location filename="../bitcoin.cpp" line="+111"/>
         <source>A fatal error occurred. Pandacoin can no longer continue safely and will quit.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ein schwerwiegender Fehler ist aufgetreten. Pandacoin kann nicht mehr sicher weitermachen und wird aufhören.</translation>
     </message>
 </context>
 <context>
