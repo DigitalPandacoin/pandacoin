@@ -217,7 +217,7 @@ BitcoinGUI::BitcoinGUI(QWidget *parent)
     connect(transactionsPage, SIGNAL(signMessage(QString)), this, SLOT(gotoSignMessageTab(QString)));
 
     //Show menus as needed
-    connect(centralWidget->getMenuBar(), SIGNAL(showModeMenu(QPoint)), this, SLOT(showModeMenu(QPoint)));
+    //connect(centralWidget->getMenuBar(), SIGNAL(showModeMenu(QPoint)), this, SLOT(showModeMenu(QPoint)));
     connect(centralWidget->getMenuBar(), SIGNAL(showFileMenu(QPoint)), this, SLOT(showFileMenu(QPoint)));
     connect(centralWidget->getMenuBar(), SIGNAL(showSettingsMenu(QPoint)), this, SLOT(showSettingsMenu(QPoint)));
     connect(centralWidget->getMenuBar(), SIGNAL(showHelpMenu(QPoint)), this, SLOT(showHelpMenu(QPoint)));

@@ -52,7 +52,7 @@
         </sizepolicy>
        </property>
        <property name="text">
-        <string>Mode</string>
+        <string> </string>
        </property>
        <property name="icon">
         <iconset resource="../bitcoin.qrc">
