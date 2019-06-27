@@ -14,7 +14,6 @@
 #include "editaddressdialog.h"
 #include "signverifymessagedialog.h"
 
-
 class AddressFilterModel: public QSortFilterProxyModel
 {
 public:
@@ -26,6 +25,9 @@ public:
     bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const
     {
         QModelIndex index = sourceModel()->index(sourceRow, 0, sourceParent);
+        QVariant vtype = sourceModel()->data(index, AccountModel::TypeRole);
+        if (!vtype.isNull() && vtype.toInt() == AddressTableEntry::Donation)
+            return false; // skip donation addresses
         if(index.data().toString().contains(filterString))
         {
             return true;
@@ -286,4 +288,3 @@ void AddressBookPage_new::updateDisplayUnit()
         ui->address_book_transfer_from_amount->setDisplayUnit(unit);
     }
 }
-

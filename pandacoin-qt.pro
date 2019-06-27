@@ -116,50 +116,17 @@ contains(BITCOIN_NEED_QT_PLUGINS, 1) {
 }
 
 macx: {
-    isEmpty(DEPSDIR) {
-
-        check_dir = /usr/local/Cellar
-        exists($$check_dir) {
-            DEPSDIR = /usr/local
-        }
-
-        !exists($$check_dir) {
-            DEPSDIR = /opt/local
-        }
-    }
-
-    isEmpty(BOOST_LIB_PATH) {
-         BOOST_LIB_PATH = $$DEPSDIR/lib
-    }
-
-    isEmpty(BOOST_INCLUDE_PATH) {
-         BOOST_INCLUDE_PATH = $$DEPSDIR/include
-    }
-
-    isEmpty(BDB_LIB_PATH) {
-        BDB_LIB_PATH = $$DEPSDIR/lib
-    }
-
-    isEmpty(BDB_INCLUDE_PATH) {
-        BDB_INCLUDE_PATH = $$DEPSDIR/include
-    }
-
     HEADERS += src/qt/macdockiconhandler.h src/qt/macnotificationhandler.h
     OBJECTIVE_SOURCES += src/qt/macdockiconhandler.mm src/qt/macnotificationhandler.mm
-    LIBS += -framework Foundation -framework ApplicationServices -framework AppKit -framework CoreServices \
-        $$BDB_LIB_PATH/libdb_cxx.a \
-        $$BOOST_LIB_PATH/libboost_system-mt.a \
-        $$BOOST_LIB_PATH/libboost_filesystem-mt.a \
-        $$BOOST_LIB_PATH/libboost_program_options-mt.a \
-        $$BOOST_LIB_PATH/libboost_thread-mt.a \
-        $$BOOST_LIB_PATH/libboost_chrono-mt.a
+    LIBS += -framework Foundation -framework ApplicationServices -framework AppKit -framework CoreServices
     DEFINES += MAC_OSX MSG_NOSIGNAL=0
-    ICON = src/mac/artwork/PandaCoin.icns
+    ICON = src/qt/res/icons/PandaCoin.icns
     QMAKE_INFO_PLIST=src/mac/Info.plist
     # osx 10.9 has changed the stdlib default to libc++. To prevent some link error, you may need to use libstdc++
-    QMAKE_CXXFLAGS += -stdlib=libstdc++
+#    QMAKE_CXXFLAGS += -stdlib=libstdc++
 
     QMAKE_CFLAGS_THREAD += -pthread
+    QMAKE_LFLAGS_THREAD += -pthread
     QMAKE_CXXFLAGS_THREAD += -pthread
 }
 
@@ -176,6 +143,7 @@ SOURCES += src/txdb-leveldb.cpp \
     src/qt/forms/createaccountwidget.cpp \
     src/qt/forms/transferpage.cpp \
     src/qt/forms/addressbookpage_new.cpp \
+    src/qt/forms/donationbook.cpp \
     src/qt/addresstablemodel_impl.cpp \
     src/qt/forms/sendcoinstargetwidget.cpp \
     src/qt/portfoliooverviewtable.cpp \
@@ -232,7 +200,7 @@ contains(USE_O3, 1) {
     QMAKE_CFLAGS += -msse2
 }
 
-QMAKE_CXXFLAGS_WARN_ON = -fdiagnostics-show-option -Wall -Wextra -Wno-ignored-qualifiers -Wformat -Wformat-security -Wno-unused-parameter -Wstack-protector
+QMAKE_CXXFLAGS_WARN_ON = -fdiagnostics-show-option -Wall -Wextra -Wno-ignored-qualifiers -Wformat -Wformat-security -Wno-unused-parameter -Wstack-protector -Wno-unused-local-typedefs
 
 # Input
 DEPENDPATH += src src/json src/qt
@@ -337,6 +305,7 @@ HEADERS += src/qt/bitcoingui.h \
     src/qt/forms/createaccountwidget.h \
     src/qt/forms/transferpage.h \
     src/qt/forms/addressbookpage_new.h \
+    src/qt/forms/donationbook.h \
     src/qt/addresstablemodel_impl.h \
     src/qt/forms/sendcoinstargetwidget.h \
     src/qt/portfoliooverviewtable.h \
@@ -456,6 +425,7 @@ FORMS += \
     src/qt/forms/createaccountwidget.ui \
     src/qt/forms/transferpage.ui \
     src/qt/forms/addressbookpage_new.ui \
+    src/qt/forms/donationbook.ui \
     src/qt/forms/sendcoinstargetwidget.ui
 
 contains(USE_QRCODE, 1) {
@@ -508,7 +478,7 @@ isEmpty(BOOST_INCLUDE_PATH) {
 }
 
 isEmpty(BDB_LIB_PATH) {
-    macx:BDB_LIB_PATH = /opt/local/lib/db60
+    macx:BDB_LIB_PATH = /opt/local/lib/db48
 }
 
 isEmpty(BDB_LIB_SUFFIX) {
@@ -516,7 +486,7 @@ isEmpty(BDB_LIB_SUFFIX) {
 }
 
 isEmpty(BDB_INCLUDE_PATH) {
-    macx:BDB_INCLUDE_PATH = /opt/local/include/db60
+    macx:BDB_INCLUDE_PATH = /opt/local/include/db48
 }
 
 windows:DEFINES += WIN32
