@@ -65,6 +65,10 @@ public:
      */
     QString addressForLabel(const QString &label) const;
 
+    /* Look up description for label in address book, if not found return empty string.
+     */
+    QString descriptionForLabel(const QString &label) const;
+
     /* Look up row index of an address in the model.
        Return -1 if not found.
      */

@@ -141,6 +141,9 @@ public slots:
     void showSettingsMenu(QPoint pos);
     void showHelpMenu(QPoint pos);
 
+ 	/** Shorcut to show Address Book as needed. */
+	void showAddressBook(QPoint pos);
+    void showDonationBook(QPoint pos);
 private slots:
     /** Switch to overview (home) page */
     void gotoOverviewPage();

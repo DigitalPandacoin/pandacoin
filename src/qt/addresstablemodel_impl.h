@@ -12,20 +12,23 @@ class AddressTable_impl;
 struct AddressTableEntry
 {
     enum Type {
+        None,
         Sending,
-        Receiving
+        Receiving,
+        Donation
     };
 
     Type type;
     QString label;
     QString address;
+    QString description;
 
     private:
-    AddressTableEntry() {}
-    AddressTableEntry(Type type, const CTxDestination& destination, const QString &label, const QString &address)
-    : type(type), label(label), address(address), destination(destination) {}
-    AddressTableEntry(Type type, const QString &label, const QString &address)
-    : type(type), label(label), address(address) {destination = CBitcoinAddress(address.toStdString()).Get();}
+    AddressTableEntry() { type = None;}
+    AddressTableEntry(Type type, const CTxDestination& destination, const QString &label, const QString &address, const QString &description = QString())
+    : type(type), label(label), address(address), description(description), destination(destination) {}
+    AddressTableEntry(Type type, const QString &label, const QString &address, const QString &description = QString())
+    : type(type), label(label), address(address), description(description) {destination = CBitcoinAddress(address.toStdString()).Get();}
     CTxDestination destination;
     friend class AddressTable_impl;
 };
@@ -35,17 +38,21 @@ class QAbstractAddressTableModel;
 class AddressTable_impl
 {
 public:
+
     CWallet *wallet;
+    QList<AddressTableEntry> donationAddressTable;
     QList<AddressTableEntry> cachedAddressTable;
     QAbstractAddressTableModel *parent;
 
     AddressTable_impl(CWallet *wallet, QAbstractAddressTableModel *parent, bool includeExternalAccounts, bool includeMyAccounts);
+    void addDonationAddress(const QString &label, const QString &address, const QString &description = QString());
     void refreshAddressTable();
     void updateEntry(const QString &address, const QString &label, bool isMine, int status);
     int size();
     QString getLabel(int idx);
     QString getAddress(int idx);
     qint64 getBalance(int idx);
+    AddressTableEntry::Type getType(int idx);
     AddressTableEntry *index(int idx);
 private:
     bool includeExternalAccounts;

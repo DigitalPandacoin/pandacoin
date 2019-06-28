@@ -143,6 +143,7 @@ SOURCES += src/txdb-leveldb.cpp \
     src/qt/forms/createaccountwidget.cpp \
     src/qt/forms/transferpage.cpp \
     src/qt/forms/addressbookpage_new.cpp \
+    src/qt/forms/donationbook.cpp \
     src/qt/addresstablemodel_impl.cpp \
     src/qt/forms/sendcoinstargetwidget.cpp \
     src/qt/portfoliooverviewtable.cpp \
@@ -304,6 +305,7 @@ HEADERS += src/qt/bitcoingui.h \
     src/qt/forms/createaccountwidget.h \
     src/qt/forms/transferpage.h \
     src/qt/forms/addressbookpage_new.h \
+    src/qt/forms/donationbook.h \
     src/qt/addresstablemodel_impl.h \
     src/qt/forms/sendcoinstargetwidget.h \
     src/qt/portfoliooverviewtable.h \
@@ -423,6 +425,7 @@ FORMS += \
     src/qt/forms/createaccountwidget.ui \
     src/qt/forms/transferpage.ui \
     src/qt/forms/addressbookpage_new.ui \
+    src/qt/forms/donationbook.ui \
     src/qt/forms/sendcoinstargetwidget.ui
 
 contains(USE_QRCODE, 1) {
