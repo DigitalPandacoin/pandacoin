@@ -20,6 +20,11 @@ public:
     explicit AccountModel(CWallet *wallet, bool includeExternalAccounts, bool includeMyAccounts, WalletModel *parent = 0);
     ~AccountModel();
 
+    enum RoleIndex {
+        RawData = Qt::UserRole,
+        TypeRole /**< Type of address (donation or address) */
+    };
+
     enum ColumnIndex
     {
         Label = 0,   /**< User specified label */

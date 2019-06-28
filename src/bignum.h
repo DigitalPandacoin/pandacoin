@@ -55,10 +55,10 @@ public:
 
 
 /** C++ wrapper for BIGNUM (OpenSSL bignum) */
-class CBigNum
+class CBigNum 
 {
     private:
-    BIGNUM *self = nullptr;
+    BIGNUM *self = 0;
 
     void init()
     {
@@ -102,15 +102,13 @@ public:
 
     //CBigNum(char n) is not portable.  Use 'signed char' or 'unsigned char'.
     CBigNum(signed char n)      { init(); if (n >= 0) setulong(n); else setint64(n); }
-    CBigNum(short n)            { init(); if (n >= 0) setulong(n); else setint64(n); }
-    CBigNum(int n)              { init(); if (n >= 0) setulong(n); else setint64(n); }
-    CBigNum(long n)             { init(); if (n >= 0) setulong(n); else setint64(n); }
-    CBigNum(int64 n)            { init(); setint64(n); }
+    CBigNum(int16_t n)          { init(); if (n >= 0) setulong(n); else setint64(n); }
+    CBigNum(int32_t n)          { init(); if (n >= 0) setulong(n); else setint64(n); }
+    CBigNum(int64_t n)          { init(); setint64(n); }
     CBigNum(unsigned char n)    { init(); setulong(n); }
-    CBigNum(unsigned short n)   { init(); setulong(n); }
-    CBigNum(unsigned int n)     { init(); setulong(n); }
-    CBigNum(unsigned long n)    { init(); setulong(n); }
-    CBigNum(uint64 n)           { init(); setuint64(n); }
+    CBigNum(uint16_t n)         { init(); setulong(n); }
+    CBigNum(uint32_t n)         { init(); setulong(n); }
+    CBigNum(uint64_t n)         { init(); setuint64(n); }
     explicit CBigNum(uint256 n) { init(); setuint256(n); }
 
     explicit CBigNum(const std::vector<unsigned char>& vch)
@@ -126,7 +124,7 @@ public:
     */
     static CBigNum  randBignum(const CBigNum& range) {
         CBigNum ret;
-        if(!BN_rand_range(&ret, &range)){
+        if(!BN_rand_range(ret.get(), range.cget())){
             throw bignum_error("CBigNum:rand element : BN_rand_range failed");
         }
         return ret;
@@ -138,7 +136,7 @@ public:
     */
     static CBigNum RandKBitBigum(const uint32_t k){
         CBigNum ret;
-        if(!BN_rand(&ret, k, -1, 0)){
+        if(!BN_rand(ret.get(), k, -1, 0)){
             throw bignum_error("CBigNum:rand element : BN_rand failed");
         }
         return ret;
@@ -149,7 +147,7 @@ public:
      * @return the size
      */
     int bitSize() const{
-        return  BN_num_bits(this);
+        return  BN_num_bits(self);
     }
 
 
@@ -456,7 +454,7 @@ public:
     CBigNum pow(const CBigNum& e) const {
         CAutoBN_CTX pctx;
         CBigNum ret;
-        if (!BN_exp(&ret, this, &e, pctx))
+        if (!BN_exp(ret.get(), self, e.cget(), pctx))
             throw bignum_error("CBigNum::pow : BN_exp failed");
         return ret;
     }
@@ -469,7 +467,7 @@ public:
     CBigNum mul_mod(const CBigNum& b, const CBigNum& m) const {
         CAutoBN_CTX pctx;
         CBigNum ret;
-        if (!BN_mod_mul(&ret, this, &b, &m, pctx))
+        if (!BN_mod_mul(ret.get(), self, b.cget(), m.cget(), pctx))
             throw bignum_error("CBigNum::mul_mod : BN_mod_mul failed");
         
         return ret;
@@ -487,10 +485,10 @@ public:
             // g^-x = (g^-1)^x
             CBigNum inv = this->inverse(m);
             CBigNum posE = e * -1;
-            if (!BN_mod_exp(&ret, &inv, &posE, &m, pctx))
+            if (!BN_mod_exp(ret.get(), inv.cget(), posE.cget(), m.cget(), pctx))
                 throw bignum_error("CBigNum::pow_mod: BN_mod_exp failed on negative exponent");
         }else
-            if (!BN_mod_exp(&ret, this, &e, &m, pctx))
+            if (!BN_mod_exp(ret.get(), self, e.cget(), m.cget(), pctx))
                 throw bignum_error("CBigNum::pow_mod : BN_mod_exp failed");
 
         return ret;
@@ -505,7 +503,7 @@ public:
     CBigNum inverse(const CBigNum& m) const {
         CAutoBN_CTX pctx;
         CBigNum ret;
-        if (!BN_mod_inverse(&ret, this, &m, pctx))
+        if (!BN_mod_inverse(ret.get(), self, m.cget(), pctx))
             throw bignum_error("CBigNum::inverse*= :BN_mod_inverse");
         return ret;
     }
@@ -518,7 +516,7 @@ public:
      */
     static CBigNum generatePrime(const unsigned int numBits, bool safe = false) {
         CBigNum ret;
-        if(!BN_generate_prime_ex(&ret, numBits, (safe == true), NULL, NULL, NULL))
+        if(!BN_generate_prime_ex(ret.get(), numBits, (safe == true), NULL, NULL, NULL))
             throw bignum_error("CBigNum::generatePrime*= :BN_generate_prime_ex");
         return ret;
     }
@@ -531,7 +529,7 @@ public:
     CBigNum gcd( const CBigNum& b) const{
         CAutoBN_CTX pctx;
         CBigNum ret;
-        if (!BN_gcd(&ret, this, &b, pctx))
+        if (!BN_gcd(ret.get(), self, b.cget(), pctx))
             throw bignum_error("CBigNum::gcd*= :BN_gcd");
         return ret;
     }
@@ -544,7 +542,7 @@ public:
     */
     bool isPrime(const int checks=BN_prime_checks) const {
         CAutoBN_CTX pctx;
-        int ret = BN_is_prime(this, checks, NULL, pctx, NULL);
+        int ret = BN_is_prime(self, checks, NULL, pctx, NULL);
         if(ret < 0){
             throw bignum_error("CBigNum::isPrime :BN_is_prime");
         }
@@ -552,7 +550,7 @@ public:
     }
 
     bool isOne() const {
-        return BN_is_one(this);
+        return BN_is_one(self);
     }
 
 
@@ -622,7 +620,7 @@ public:
     CBigNum& operator++()
     {
         // prefix operator
-        iif (!BN_add(self, self, BN_value_one()))
+        if (!BN_add(self, self, BN_value_one()))
             throw bignum_error("CBigNum::operator++ : BN_add failed");
         return *this;
     }
@@ -652,7 +650,6 @@ public:
         --(*this);
         return ret;
     }
-
 
     friend inline const CBigNum operator-(const CBigNum& a, const CBigNum& b);
     friend inline const CBigNum operator/(const CBigNum& a, const CBigNum& b);

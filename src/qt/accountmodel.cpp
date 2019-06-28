@@ -13,8 +13,6 @@
 #include <QColor>
 #include <QIcon>
 
-
-
 AccountModel::AccountModel(CWallet *wallet, bool includeExternalAccounts, bool includeMyAccounts, WalletModel *parent)
 : QAbstractAddressTableModel(parent)
 , walletModel(parent)
@@ -80,7 +78,7 @@ QVariant AccountModel::data(const QModelIndex &index, int role) const
                 return QVariant();
         }
     }
-    else if(role == Qt::UserRole)
+    else if(role == RawData)
     {
         switch(index.column())
         {
@@ -93,6 +91,10 @@ QVariant AccountModel::data(const QModelIndex &index, int role) const
             default:
                 return QVariant();
         }
+    }
+    else if(role == TypeRole)
+    {
+        return QVariant((int)priv->getType(index.row()));
     }
     /*else if (role == Qt::DecorationRole)
     {
@@ -282,6 +284,10 @@ QVariant SingleColumnAccountModel::data(const QModelIndex &index, int role) cons
                 return parentModel->data(parentModel->index(row,col), role);
             }
         }
+    }
+    else if (role == AccountModel::TypeRole)
+    {
+        return parentModel->data(parentModel->index(index.row(),index.column()), role);
     }
     return QVariant();
 }

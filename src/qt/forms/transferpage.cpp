@@ -19,6 +19,7 @@ void TransferPage::setModel(WalletModel *model)
 {
     ui->transfer_pane->setModel(model);
     ui->address_pane->setModel(model);
+    ui->donation_pane->setModel(model); 
 }
 
 bool TransferPage::handleURI(const QString &uri)
@@ -34,4 +35,9 @@ void TransferPage::setFocusToTransferPane()
 void TransferPage::setFocusToAddessBookPane()
 {
     ui->tabWidget->setCurrentIndex(1);
+}
+
+void TransferPage::setFocusToDonationBookPane()
+{
+    ui->tabWidget->setCurrentIndex(2);
 }
