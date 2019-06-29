@@ -2034,7 +2034,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <name>MenuBar</name>
     <message>
         <location filename="../forms/menubar.ui" line="+55"/>
-        <source>Mode</source>
+        <source>Contacts</source>
         <translation>Режим</translation>
     </message>
     <message>

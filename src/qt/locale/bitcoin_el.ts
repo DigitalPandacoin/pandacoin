@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="af_ZA">
+<TS version="2.1" language="af_ZA">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -1797,7 +1797,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <name>MenuBar</name>
     <message>
         <location filename="../forms/menubar.ui" line="+55"/>
-        <source>Mode</source>
+        <source>Contacts</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

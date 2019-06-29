@@ -2028,7 +2028,7 @@ Dit betekend dat een fee van %2 is vereist.</translation>
     <name>MenuBar</name>
     <message>
         <location filename="../forms/menubar.ui" line="+55"/>
-        <source>Mode</source>
+        <source>Contacts</source>
         <translation>Mode</translation>
     </message>
     <message>

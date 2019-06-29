@@ -2006,7 +2006,7 @@ Tämä tarkoittaa, että ainakin %2 rahansiirtopalkkio tarvitaan.</translation>
     <name>MenuBar</name>
     <message>
         <location filename="../forms/menubar.ui" line="+55"/>
-        <source>Mode</source>
+        <source>Contacts</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

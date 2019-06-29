@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="da">
+<TS version="2.1" language="da">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -2016,8 +2016,9 @@ Det betyder, at et gebyr på mindst %2 er påkrævet.</translation>
     <name>MenuBar</name>
     <message>
         <location filename="../forms/menubar.ui" line="+55"/>
-        <source>Mode</source>
-        <translation type="unfinished"></translation>
+        <source>Contacts</source>
+        <translatorcomment>Cysylltiadau</translatorcomment>
+        <translation>Cysylltiadau</translation>
     </message>
     <message>
         <location line="+26"/>
