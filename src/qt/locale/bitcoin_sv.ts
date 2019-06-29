@@ -2017,7 +2017,7 @@ Detta betyder att en avgift på minst %2 krävs.</translation>
     <name>MenuBar</name>
     <message>
         <location filename="../forms/menubar.ui" line="+55"/>
-        <source>Mode</source>
+        <source>Contacts</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

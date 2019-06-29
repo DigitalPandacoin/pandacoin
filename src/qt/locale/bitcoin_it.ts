@@ -1876,7 +1876,7 @@ Questa etichetta diventa rossa se la priorità è inferiore a &quot;media&quot;.
     <name>MenuBar</name>
     <message>
         <location filename="../forms/menubar.ui" line="+55"/>
-        <source>Mode</source>
+        <source>Contacts</source>
         <translation>Modalità</translation>
     </message>
     <message>

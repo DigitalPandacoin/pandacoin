@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="eo">
+<TS version="2.1" language="eo">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -1357,12 +1357,14 @@ Activate Digital PandaBank &apos;Lite&apos;?</source>
         <source>%n hour(s)</source>
         <translation type="obsolete">
             <numerusform>%n horo</numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>%n day(s)</source>
         <translation type="obsolete">
             <numerusform>%n tago</numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -1846,8 +1848,9 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <name>MenuBar</name>
     <message>
         <location filename="../forms/menubar.ui" line="+55"/>
-        <source>Mode</source>
-        <translation type="unfinished"></translation>
+        <source>Contacts</source>
+        <translatorcomment>Kontaktoj</translatorcomment>
+        <translation>Kontaktoj</translation>
     </message>
     <message>
         <location line="+26"/>
@@ -3225,6 +3228,7 @@ Please select the &quot;from&quot; address at the top of this page.</source>
         <source>Open for %n block(s)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -3257,6 +3261,7 @@ Please select the &quot;from&quot; address at the top of this page.</source>
         <source>, broadcast through %n node(s)</source>
         <translation>
             <numerusform>, elsendita(j) tra %n nodo</numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -3312,6 +3317,7 @@ Please select the &quot;from&quot; address at the top of this page.</source>
         <source>matures in %n more block(s)</source>
         <translation>
             <numerusform>maturiĝos post %n bloko</numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -3485,6 +3491,7 @@ Please select the &quot;from&quot; address at the top of this page.</source>
         <source>Open for %n more block(s)</source>
         <translation>
             <numerusform>Malferma dum ankoraŭ %n bloko</numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
     <message>

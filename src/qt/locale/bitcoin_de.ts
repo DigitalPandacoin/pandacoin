@@ -1880,8 +1880,9 @@ Diese Beschriftung wird rot, wenn die Priorität kleiner als &quot;mittel&quot; 
     <name>MenuBar</name>
     <message>
         <location filename="../forms/menubar.ui" line="+55"/>
-        <source>Mode</source>
-        <translation>Modus</translation>
+        <source>Contacts</source>
+        <translatorcomment>Επαφές</translatorcomment>
+        <translation>Επαφές</translation>
     </message>
     <message>
         <location line="+26"/>

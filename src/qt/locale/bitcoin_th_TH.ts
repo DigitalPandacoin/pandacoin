@@ -1789,7 +1789,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
 <context>
     <name>MenuBar</name>
     <message>
-        <source>Mode</source>
+        <source>Contacts</source>
         <translation type="vanished">โหมด</translation>
     </message>
     <message>

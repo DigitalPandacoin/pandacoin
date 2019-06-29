@@ -2026,7 +2026,7 @@ Acest lucru înseamnă că o taxă de cel puțin %2 este necesară</translation>
     <name>MenuBar</name>
     <message>
         <location filename="../forms/menubar.ui" line="+55"/>
-        <source>Mode</source>
+        <source>Contacts</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

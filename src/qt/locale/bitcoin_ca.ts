@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="ca">
+<TS version="2.1" language="ca">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -1793,8 +1793,9 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <name>MenuBar</name>
     <message>
         <location filename="../forms/menubar.ui" line="+55"/>
-        <source>Mode</source>
-        <translation type="unfinished"></translation>
+        <source>Contacts</source>
+        <translatorcomment>Contactes</translatorcomment>
+        <translation>Contactes</translation>
     </message>
     <message>
         <location line="+26"/>
@@ -2997,7 +2998,6 @@ Please select the &quot;from&quot; address at the top of this page.</source>
         <translation type="unfinished">
             <numerusform></numerusform>
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -3029,7 +3029,6 @@ Please select the &quot;from&quot; address at the top of this page.</source>
         <location line="+7"/>
         <source>, broadcast through %n node(s)</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
@@ -3086,7 +3085,6 @@ Please select the &quot;from&quot; address at the top of this page.</source>
         <location line="-102"/>
         <source>matures in %n more block(s)</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
@@ -3261,7 +3259,6 @@ Please select the &quot;from&quot; address at the top of this page.</source>
         <location line="-15"/>
         <source>Open for %n more block(s)</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>

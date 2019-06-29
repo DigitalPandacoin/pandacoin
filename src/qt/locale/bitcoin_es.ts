@@ -2031,8 +2031,9 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     <name>MenuBar</name>
     <message>
         <location filename="../forms/menubar.ui" line="+55"/>
-        <source>Mode</source>
-        <translation>Modo</translation>
+        <source>Contacts</source>
+        <translatorcomment>Contactos</translatorcomment>
+        <translation>Contactos</translation>
     </message>
     <message>
         <location line="+26"/>
