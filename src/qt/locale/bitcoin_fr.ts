@@ -30,7 +30,7 @@ Copyright © 2014 - 2018, les développeurs Pandacoin</translation>
         <source>Copyright © 2009-2014 The Bitcoin developers
 Copyright © 2012-2014 The NovaCoin developers
 Copyright © 2014 The Pandacoin developers</source>
-        <translation>Copyright © 2009-2014 Les développeurs Bitcoin
+        <translation type="vanished">Copyright © 2009-2014 Les développeurs Bitcoin
 Copyright © 2012-2014 Les développeurs NovaCoin
 Copyright © 2014-2019 Les développeurs Pandacoin</translation>
     </message>
@@ -53,7 +53,7 @@ Ce produit comprend des logiciels développés par le projet OpenSSL afin d&apos
 <context>
     <name>AccountModel</name>
     <message>
-        <location filename="../accountmodel.cpp" line="+24"/>
+        <location filename="../accountmodel.cpp" line="+22"/>
         <source>Account Name</source>
         <translation>Nom du compte</translation>
     </message>
@@ -151,7 +151,7 @@ Ce produit comprend des logiciels développés par le projet OpenSSL afin d&apos
     </message>
     <message>
         <source>transaction found</source>
-        <translation>transaction trouvée</translation>
+        <translation type="vanished">transaction trouvée</translation>
     </message>
 </context>
 <context>
@@ -438,7 +438,7 @@ Ce produit comprend des logiciels développés par le projet OpenSSL afin d&apos
 <context>
     <name>AddressTableModel</name>
     <message>
-        <location filename="../addresstablemodel.cpp" line="+29"/>
+        <location filename="../addresstablemodel.cpp" line="+26"/>
         <source>Label</source>
         <translation>Étiquette</translation>
     </message>
@@ -448,7 +448,7 @@ Ce produit comprend des logiciels développés par le projet OpenSSL afin d&apos
         <translation>Adresse</translation>
     </message>
     <message>
-        <location line="+36"/>
+        <location line="+35"/>
         <source>(no label)</source>
         <translation>(aucune étiquette)</translation>
     </message>
@@ -719,12 +719,12 @@ Ce produit comprend des logiciels développés par le projet OpenSSL afin d&apos
 <context>
     <name>BitcoinGUI</name>
     <message>
-        <location filename="../bitcoingui.cpp" line="+309"/>
+        <location filename="../bitcoingui.cpp" line="+311"/>
         <source>Sign &amp;message...</source>
         <translation>Signer le &amp;message...</translation>
     </message>
     <message>
-        <location line="+240"/>
+        <location line="+252"/>
         <source>%1 active %2 to Digital PandaBank network</source>
         <translation>%1 %2 au réseau Pandacoin</translation>
     </message>
@@ -874,12 +874,12 @@ Ce produit comprend des logiciels développés par le projet OpenSSL afin d&apos
         <translation>Synchronisation avec le réseau en cours…</translation>
     </message>
     <message>
-        <location line="-570"/>
+        <location line="-582"/>
         <source>&amp;Overview</source>
         <translation>&amp;Vue d&apos;ensemble</translation>
     </message>
     <message>
-        <location line="-156"/>
+        <location line="-158"/>
         <source>Digital PandaBank</source>
         <translation>Digital PandaBank</translation>
     </message>
@@ -899,7 +899,7 @@ Ce produit comprend des logiciels développés par le projet OpenSSL afin d&apos
         <translation>Transactions</translation>
     </message>
     <message>
-        <location line="+96"/>
+        <location line="+98"/>
         <source>Show general overview of wallet</source>
         <translation>Afficher une vue d’ensemble du portefeuille</translation>
     </message>
@@ -992,12 +992,12 @@ Ce produit comprend des logiciels développés par le projet OpenSSL afin d&apos
         </translation>
     </message>
     <message>
-        <location line="+537"/>
+        <location line="+549"/>
         <source>Downloaded %1 of %2 blocks of transaction history (%3% done).</source>
         <translation type="unfinished">Progression :   (%1) %2 %3%</translation>
     </message>
     <message>
-        <location line="-512"/>
+        <location line="-524"/>
         <source>&amp;Export...</source>
         <translation>&amp;Exporter...</translation>
     </message>
@@ -1091,7 +1091,7 @@ Ce produit comprend des logiciels développés par le projet OpenSSL afin d&apos
         <translation type="obsolete">Barre d&apos;actions</translation>
     </message>
     <message>
-        <location line="+102"/>
+        <location line="+114"/>
         <location line="+9"/>
         <source>[testnet]</source>
         <translation>[testnet]</translation>
@@ -1215,7 +1215,7 @@ Ce produit comprend des logiciels développés par le projet OpenSSL afin d&apos
         <translation type="obsolete">&amp;Déverrouiller le portefeuille</translation>
     </message>
     <message>
-        <location line="-1045"/>
+        <location line="-1057"/>
         <source>&amp;About Digital PandaBank</source>
         <translation>À &amp;propos de Digital PandaBank</translation>
     </message>
@@ -1298,7 +1298,7 @@ Ce produit comprend des logiciels développés par le projet OpenSSL afin d&apos
         <translation>Activer le mode &quot;léger&quot;.</translation>
     </message>
     <message>
-        <location line="+91"/>
+        <location line="+103"/>
         <location line="+71"/>
         <source>Digital PandaBank client</source>
         <translation>Client Digital PandaBank</translation>
@@ -1889,6 +1889,74 @@ Cela implique que des frais à hauteur d&apos;au moins %2 seront nécessaires.</
     </message>
 </context>
 <context>
+    <name>DonationBookPage</name>
+    <message>
+        <location filename="../forms/donationbook.ui" line="+14"/>
+        <source>Frame</source>
+        <translation type="unfinished">Cadre</translation>
+    </message>
+    <message>
+        <location line="+34"/>
+        <source>Donation Book</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+26"/>
+        <source>Copy the currently selected address to the system clipboard</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>&amp;Copy Address</source>
+        <translation type="unfinished">&amp;Copier l&apos;adresse</translation>
+    </message>
+    <message>
+        <location line="+11"/>
+        <source>Show &amp;QR Code</source>
+        <translation type="unfinished">&amp;QR Code</translation>
+    </message>
+    <message>
+        <location line="+11"/>
+        <source>Verify a message to ensure it was signed with a specified Pandacoin address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>&amp;Verify Message</source>
+        <translation type="unfinished">&amp;Vérifier un message</translation>
+    </message>
+    <message>
+        <location line="+25"/>
+        <source>Search address book</source>
+        <translation type="unfinished">Chercher dans le répertoire</translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>...</source>
+        <translation type="unfinished">...</translation>
+    </message>
+    <message>
+        <location line="+209"/>
+        <source>Send Pandacoins</source>
+        <translation type="unfinished">Envoyer des Pandacoins</translation>
+    </message>
+    <message>
+        <location line="+40"/>
+        <source>From</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+36"/>
+        <source>Amount</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+15"/>
+        <source>Next</source>
+        <translation type="unfinished">Suivant</translation>
+    </message>
+</context>
+<context>
     <name>EditAddressDialog</name>
     <message>
         <location filename="../forms/editaddressdialog.ui" line="+14"/>
@@ -2041,9 +2109,14 @@ Cela implique que des frais à hauteur d&apos;au moins %2 seront nécessaires.</
 <context>
     <name>MenuBar</name>
     <message>
-        <location filename="../forms/menubar.ui" line="+55"/>
+        <location filename="../forms/menubar.ui" line="+64"/>
         <source>Contacts</source>
         <translation>Contacts</translation>
+    </message>
+    <message>
+        <location line="+26"/>
+        <source>Donate</source>
+        <translation>Faire un don</translation>
     </message>
     <message>
         <location line="+26"/>
@@ -3511,7 +3584,7 @@ Veuillez sélectionner une adresse source à partir du haut de cette page.</tran
 <context>
     <name>SingleColumnAccountModel</name>
     <message>
-        <location filename="../accountmodel.cpp" line="+241"/>
+        <location filename="../accountmodel.cpp" line="+245"/>
         <location line="+4"/>
         <source>All Accounts</source>
         <translation>Tous les comptes</translation>
@@ -4127,14 +4200,19 @@ Veuillez sélectionner une adresse source à partir du haut de cette page.</tran
         <translation>Cadre</translation>
     </message>
     <message>
-        <location line="+22"/>
+        <location line="+31"/>
         <source>Transfers</source>
         <translation>Transferts</translation>
     </message>
     <message>
-        <location line="+16"/>
+        <location line="+25"/>
         <source>Address Book</source>
         <translation>Carnet d&apos;adresses</translation>
+    </message>
+    <message>
+        <location line="+25"/>
+        <source>Donation Book</source>
+        <translation>Livre de donation</translation>
     </message>
 </context>
 <context>
