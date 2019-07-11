@@ -74,14 +74,18 @@ This product includes software developed by the OpenSSL Project for use in the O
         <translation></translation>
     </message>
     <message>
-        <location line="+31"/>
+        <location line="+40"/>
         <source>Transactions</source>
         <translation>交易記錄</translation>
     </message>
     <message>
-        <location line="+38"/>
         <source>View transactions for</source>
-        <translation>查看此帳號的交易記錄</translation>
+        <translation type="obsolete">查看此帳號的交易記錄</translation>
+    </message>
+    <message>
+        <location line="+38"/>
+        <source>View Transactions for</source>
+        <translation></translation>
     </message>
     <message>
         <location line="+36"/>
@@ -99,7 +103,7 @@ This product includes software developed by the OpenSSL Project for use in the O
         <translation>簽署訊息</translation>
     </message>
     <message>
-        <location line="+132"/>
+        <location line="+141"/>
         <source>Last 30 Days</source>
         <translation>最近30天</translation>
     </message>
@@ -116,23 +120,27 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location line="+23"/>
         <location line="+10"/>
-        <location line="+140"/>
+        <location line="+149"/>
         <source>PND</source>
         <translation></translation>
     </message>
     <message>
-        <location line="-128"/>
+        <location line="-137"/>
         <source>Interest Gained</source>
         <translation>已獲取的利息</translation>
     </message>
     <message>
-        <location line="+115"/>
+        <location line="+124"/>
+        <source>Total Interest</source>
+        <translation></translation>
+    </message>
+    <message>
         <source>Total interest</source>
-        <translation>總利息</translation>
+        <translation type="obsolete">總利息</translation>
     </message>
     <message>
         <location line="+32"/>
-        <location line="+25"/>
+        <location line="+43"/>
         <source>Create Account</source>
         <translation>製造新賬號</translation>
     </message>
@@ -172,17 +180,17 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location line="+153"/>
         <source>Edit account name.</source>
-        <translation>編輯帳號名.</translation>
+        <translation>編輯帳號名</translation>
     </message>
     <message>
         <location line="+20"/>
         <source>Accept new account name.</source>
-        <translation>確認新帳號名.</translation>
+        <translation>確認新帳號名</translation>
     </message>
     <message>
         <location line="+20"/>
         <source>Cancel editing of account name.</source>
-        <translation>取消編輯帳號名.</translation>
+        <translation>取消編輯帳號名</translation>
     </message>
     <message>
         <location line="-156"/>
@@ -203,12 +211,12 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location line="-9"/>
         <source>An account with this name already exists.</source>
-        <translation>此帳號名已存在.</translation>
+        <translation>此帳號名已存在</translation>
     </message>
     <message>
         <location line="+9"/>
         <source>Error could not change name of Digital PandaBank account.</source>
-        <translation>錯誤！不能更改熊貓幣帳號名.</translation>
+        <translation>錯誤！不能更改熊貓幣帳號名！</translation>
     </message>
 </context>
 <context>
@@ -236,7 +244,7 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location line="-11"/>
         <source>&amp;New Address</source>
-        <translation>&amp;新位址</translation>
+        <translation>新位址</translation>
     </message>
     <message>
         <location line="-46"/>
@@ -246,12 +254,12 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location line="+60"/>
         <source>&amp;Copy Address</source>
-        <translation>&amp;複製位址</translation>
+        <translation>複製位址</translation>
     </message>
     <message>
         <location line="+11"/>
         <source>Show &amp;QR Code</source>
-        <translation>顯示&amp;二維碼</translation>
+        <translation>顯示二維碼</translation>
     </message>
     <message>
         <location line="+11"/>
@@ -276,7 +284,7 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location line="+3"/>
         <source>&amp;Verify Message</source>
-        <translation>&amp;驗證訊息</translation>
+        <translation>驗證訊息</translation>
     </message>
     <message>
         <location line="+14"/>
@@ -382,22 +390,31 @@ This product includes software developed by the OpenSSL Project for use in the O
         <translation></translation>
     </message>
     <message>
+        <location line="+357"/>
+        <source>Account Name</source>
+        <translation>帳號名</translation>
+    </message>
+    <message>
+        <location line="+17"/>
+        <source>Account Address</source>
+        <translation>賬號位址</translation>
+    </message>
+    <message>
         <source>label</source>
         <translation type="obsolete">標記</translation>
     </message>
     <message>
-        <location line="+80"/>
+        <location line="-285"/>
         <location line="+245"/>
         <source>Edit</source>
         <translation>編輯</translation>
     </message>
     <message>
-        <location line="+40"/>
         <source>Account address</source>
-        <translation>帳號位址</translation>
+        <translation type="obsolete">帳號位址</translation>
     </message>
     <message>
-        <location line="-191"/>
+        <location line="-151"/>
         <source>Send Pandacoins</source>
         <translation>發送熊貓幣</translation>
     </message>
@@ -422,12 +439,11 @@ This product includes software developed by the OpenSSL Project for use in the O
         <translation>完成</translation>
     </message>
     <message>
-        <location line="+16"/>
         <source>Account name</source>
-        <translation>帳號名</translation>
+        <translation type="obsolete">帳號名</translation>
     </message>
     <message>
-        <location line="+57"/>
+        <location line="+82"/>
         <source>Delete</source>
         <translation>刪除</translation>
     </message>
@@ -459,22 +475,34 @@ This product includes software developed by the OpenSSL Project for use in the O
     </message>
     <message>
         <location line="+21"/>
+        <source>Enter Password</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location line="+14"/>
+        <source>New Password</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location line="+14"/>
+        <source>Repeat New Password</source>
+        <translation></translation>
+    </message>
+    <message>
         <location filename="../askpassphrasedialog.cpp" line="+46"/>
         <source>Enter password</source>
         <translation>輸入密碼</translation>
     </message>
     <message>
-        <location line="+14"/>
         <source>New password</source>
-        <translation>新密碼</translation>
+        <translation type="obsolete">新密碼</translation>
     </message>
     <message>
-        <location line="+14"/>
         <source>Repeat new password</source>
-        <translation>重複新密碼</translation>
+        <translation type="obsolete">重複新密碼</translation>
     </message>
     <message>
-        <location line="+39"/>
+        <location filename="../forms/askpassphrasedialog.ui" line="+39"/>
         <source>For earning interest only</source>
         <translation>僅用於獲取利息</translation>
     </message>
@@ -1445,12 +1473,22 @@ Activate Digital PandaBank &apos;Lite&apos;?</source>
         <translation>低輸出:</translation>
     </message>
     <message>
+        <location line="+168"/>
+        <source>Tree Mode</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location line="+16"/>
+        <source>List Mode</source>
+        <translation></translation>
+    </message>
+    <message>
         <location filename="../coincontroldialog.cpp" line="+555"/>
         <source>no</source>
         <translation>否</translation>
     </message>
     <message>
-        <location filename="../forms/coincontroldialog.ui" line="+51"/>
+        <location filename="../forms/coincontroldialog.ui" line="-133"/>
         <source>After Fee:</source>
         <translation>計費後金額:</translation>
     </message>
@@ -1465,17 +1503,15 @@ Activate Digital PandaBank &apos;Lite&apos;?</source>
         <translation>全選或全不選</translation>
     </message>
     <message>
-        <location line="+13"/>
         <source>Tree mode</source>
-        <translation>樹狀模式</translation>
+        <translation type="vanished">樹狀模式</translation>
     </message>
     <message>
-        <location line="+16"/>
         <source>List mode</source>
-        <translation>列表模式</translation>
+        <translation type="vanished">列表模式</translation>
     </message>
     <message>
-        <location line="+45"/>
+        <location line="+74"/>
         <source>Amount</source>
         <translation>金額</translation>
     </message>
@@ -1687,13 +1723,21 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     </message>
     <message>
         <location line="+19"/>
-        <source>Account name</source>
+        <source>Account Name</source>
         <translation>帳號名</translation>
     </message>
     <message>
         <location line="+15"/>
+        <source>Account Address</source>
+        <translation>賬號位址</translation>
+    </message>
+    <message>
+        <source>Account name</source>
+        <translation type="obsolete">帳號名</translation>
+    </message>
+    <message>
         <source>Account address</source>
-        <translation>賬戶地址</translation>
+        <translation type="obsolete">賬戶地址</translation>
     </message>
     <message>
         <location line="+27"/>
@@ -1775,7 +1819,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
         <translation></translation>
     </message>
     <message>
-        <location line="+209"/>
+        <location line="+223"/>
         <source>Send Pandacoins</source>
         <translation>發送熊貓幣</translation>
     </message>
@@ -1950,12 +1994,12 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location filename="../forms/menubar.ui" line="+64"/>
         <source>Contacts</source>
-        <translation></translation>
+        <translation>往来</translation>
     </message>
     <message>
         <location line="+26"/>
         <source>Donate</source>
-        <translation></translation>
+        <translation>捐</translation>
     </message>
     <message>
         <location line="+26"/>
@@ -1991,12 +2035,11 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
         <translation>支付可選的交易手續費以加速交易(每kB)。大多數交易的數據量為1kB。推薦額0.01。</translation>
     </message>
     <message>
-        <location line="+21"/>
         <source>Pay transaction &amp;fee</source>
-        <translation>付交易手續費</translation>
+        <translation type="vanished">付交易手續費</translation>
     </message>
     <message>
-        <location line="+31"/>
+        <location line="+52"/>
         <source>Reserved amount does not participate in staking and is therefore spendable at any time.</source>
         <translation>保留金額不參與權益累積，可以隨時使用。</translation>
     </message>
@@ -2021,9 +2064,18 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
         <translation>關機時斷開區塊和地址數據連接使得它們可以被移動到其他目錄。這樣做會使關機速度變慢。錢包數據總是斷開存儲的。</translation>
     </message>
     <message>
-        <location line="+3"/>
         <source>&amp;Detach databases at shutdown</source>
-        <translation>關機時斷開區塊和地址數據庫連接(&amp;D)</translation>
+        <translation type="obsolete">關機時斷開區塊和地址數據庫連接(&amp;D)</translation>
+    </message>
+    <message>
+        <location line="-93"/>
+        <source>Pay Transaction &amp;Fee</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location line="+96"/>
+        <source>&amp;Detach Databases at shutdown</source>
+        <translation></translation>
     </message>
     <message>
         <location line="+21"/>
@@ -2112,11 +2164,20 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     </message>
     <message>
         <location line="+8"/>
-        <source>User Interface &amp;language:</source>
-        <translation>使用界面語言:</translation>
+        <source>User Interface &amp;Language:</source>
+        <translation></translation>
     </message>
     <message>
-        <location line="+13"/>
+        <location line="+49"/>
+        <source>&amp;Display Addresses in transaction list</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>User Interface &amp;language:</source>
+        <translation type="vanished">使用界面語言:</translation>
+    </message>
+    <message>
+        <location line="-36"/>
         <source>The user interface language can be set here. This setting will take effect after restarting Pandacoin.</source>
         <translation>在此設置用戶界面語言。重啟熊貓幣客戶端後設置生效。</translation>
     </message>
@@ -2136,12 +2197,11 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
         <translation>是否在交易列表中顯示熊貓幣地址</translation>
     </message>
     <message>
-        <location line="+3"/>
         <source>&amp;Display addresses in transaction list</source>
-        <translation>在交易列表顯示位址</translation>
+        <translation type="vanished">在交易列表顯示位址</translation>
     </message>
     <message>
-        <location line="+7"/>
+        <location line="+10"/>
         <source>Whether to show coin control features or not.</source>
         <translation>是否要顯示錢幣控制功能。</translation>
     </message>
@@ -2541,12 +2601,11 @@ Should you encounter this error repeatedly please seek assistance.</source>
 <context>
     <name>RPCConsole</name>
     <message>
-        <location filename="../forms/rpcconsole.ui" line="+46"/>
         <source>Client name</source>
-        <translation>客戶端軟體名稱</translation>
+        <translation type="vanished">客戶端軟體名稱</translation>
     </message>
     <message>
-        <location line="+10"/>
+        <location filename="../forms/rpcconsole.ui" line="+56"/>
         <location line="+23"/>
         <location line="+26"/>
         <location line="+23"/>
@@ -2560,37 +2619,33 @@ Should you encounter this error repeatedly please seek assistance.</source>
         <translation>未知</translation>
     </message>
     <message>
-        <location line="-217"/>
         <source>Client version</source>
-        <translation>客戶端軟體版本</translation>
+        <translation type="vanished">客戶端軟體版本</translation>
     </message>
     <message>
-        <location line="-45"/>
+        <location line="-262"/>
         <source>&amp;Information</source>
         <translation>資訊</translation>
     </message>
     <message>
-        <location line="+68"/>
         <source>Using OpenSSL version</source>
-        <translation>使用的 OpenSSL 版本</translation>
+        <translation type="vanished">使用的 OpenSSL 版本</translation>
     </message>
     <message>
-        <location line="+49"/>
         <source>Startup time</source>
-        <translation>啓動時間</translation>
+        <translation type="vanished">啓動時間</translation>
     </message>
     <message>
-        <location line="+29"/>
+        <location line="+146"/>
         <source>Network</source>
         <translation>網路</translation>
     </message>
     <message>
-        <location line="+7"/>
         <source>Number of connections</source>
-        <translation>連線數</translation>
+        <translation type="vanished">連線數</translation>
     </message>
     <message>
-        <location line="+23"/>
+        <location line="+30"/>
         <source>On testnet</source>
         <translation></translation>
     </message>
@@ -2600,32 +2655,28 @@ Should you encounter this error repeatedly please seek assistance.</source>
         <translation>區塊鏈</translation>
     </message>
     <message>
-        <location line="+7"/>
         <source>Current number of blocks</source>
-        <translation>目前區塊數</translation>
+        <translation type="vanished">目前區塊數</translation>
     </message>
     <message>
-        <location line="+23"/>
         <source>Estimated total blocks</source>
-        <translation>估計總區塊數</translation>
+        <translation type="vanished">估計總區塊數</translation>
     </message>
     <message>
-        <location line="+23"/>
         <source>Last block time</source>
-        <translation>最近區塊時間</translation>
+        <translation type="vanished">最近區塊時間</translation>
     </message>
     <message>
-        <location line="+52"/>
+        <location line="+105"/>
         <source>&amp;Open</source>
         <translation>開啓</translation>
     </message>
     <message>
-        <location line="+16"/>
         <source>Command-line options</source>
-        <translation>命令行選項</translation>
+        <translation type="obsolete">命令行選項</translation>
     </message>
     <message>
-        <location line="+7"/>
+        <location line="+23"/>
         <source>Show the Pandacoin-Qt help message to get a list with possible Pandacoin command-line options.</source>
         <translation>顯示關於命令行選項的幫助信息。</translation>
     </message>
@@ -2640,12 +2691,11 @@ Should you encounter this error repeatedly please seek assistance.</source>
         <translation>主控台</translation>
     </message>
     <message>
-        <location line="-260"/>
         <source>Build date</source>
-        <translation>建置日期</translation>
+        <translation type="vanished">建置日期</translation>
     </message>
     <message>
-        <location line="-104"/>
+        <location line="-364"/>
         <source>Pandacoin - Debug window</source>
         <translation>熊貓幣客戶端-除錯窗口</translation>
     </message>
@@ -2655,7 +2705,52 @@ Should you encounter this error repeatedly please seek assistance.</source>
         <translation>熊貓幣核心進程</translation>
     </message>
     <message>
-        <location line="+279"/>
+        <location line="+7"/>
+        <source>Client Name</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location line="+23"/>
+        <source>Client Version</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location line="+23"/>
+        <source>Using OpenSSL Version</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location line="+26"/>
+        <source>Build Date</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location line="+23"/>
+        <source>Startup Time</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location line="+36"/>
+        <source>Number of Connections</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location line="+53"/>
+        <source>Current Number of Blocks</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location line="+23"/>
+        <source>Estimated Total Blocks</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location line="+23"/>
+        <source>Last Block Time</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location line="+42"/>
         <source>Debug log file</source>
         <translation>除錯紀錄檔</translation>
     </message>
@@ -2665,7 +2760,12 @@ Should you encounter this error repeatedly please seek assistance.</source>
         <translation>打開除錯日誌文件，對於較大的文件，這可能持續幾秒鐘。</translation>
     </message>
     <message>
-        <location line="+102"/>
+        <location line="+19"/>
+        <source>Command-line Options</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location line="+83"/>
         <source>Clear console</source>
         <translation>清主控台</translation>
     </message>
@@ -3944,7 +4044,7 @@ Please select the &quot;from&quot; address at the top of this page.</source>
     <message>
         <location line="+25"/>
         <source>Donation Book</source>
-        <translation></translation>
+        <translation>捐赠书</translation>
     </message>
 </context>
 <context>

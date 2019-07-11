@@ -76,13 +76,13 @@ Acest produs include programe dezvoltate de către OpenSSL Project pentru a fi f
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+31"/>
+        <location line="+40"/>
         <source>Transactions</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+38"/>
-        <source>View transactions for</source>
+        <source>View Transactions for</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -101,7 +101,7 @@ Acest produs include programe dezvoltate de către OpenSSL Project pentru a fi f
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+132"/>
+        <location line="+141"/>
         <source>Last 30 Days</source>
         <translation type="unfinished"></translation>
     </message>
@@ -118,23 +118,23 @@ Acest produs include programe dezvoltate de către OpenSSL Project pentru a fi f
     <message>
         <location line="+23"/>
         <location line="+10"/>
-        <location line="+140"/>
+        <location line="+149"/>
         <source>PND</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-128"/>
+        <location line="-137"/>
         <source>Interest Gained</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+115"/>
-        <source>Total interest</source>
+        <location line="+124"/>
+        <source>Total Interest</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+32"/>
-        <location line="+25"/>
+        <location line="+43"/>
         <source>Create Account</source>
         <translation type="unfinished"></translation>
     </message>
@@ -380,22 +380,27 @@ Acest produs include programe dezvoltate de către OpenSSL Project pentru a fi f
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location line="+357"/>
+        <source>Account Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+17"/>
+        <source>Account Address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>label</source>
         <translation type="obsolete">etichetă</translation>
     </message>
     <message>
-        <location line="+80"/>
+        <location line="-285"/>
         <location line="+245"/>
         <source>Edit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+40"/>
-        <source>Account address</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-191"/>
+        <location line="-151"/>
         <source>Send Pandacoins</source>
         <translation type="unfinished"></translation>
     </message>
@@ -420,12 +425,7 @@ Acest produs include programe dezvoltate de către OpenSSL Project pentru a fi f
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+16"/>
-        <source>Account name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+57"/>
+        <location line="+82"/>
         <source>Delete</source>
         <translation type="unfinished"></translation>
     </message>
@@ -457,22 +457,26 @@ Acest produs include programe dezvoltate de către OpenSSL Project pentru a fi f
     </message>
     <message>
         <location line="+21"/>
+        <source>Enter Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+14"/>
+        <source>New Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+14"/>
+        <source>Repeat New Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../askpassphrasedialog.cpp" line="+46"/>
         <source>Enter password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+14"/>
-        <source>New password</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+14"/>
-        <source>Repeat new password</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+39"/>
+        <location filename="../forms/askpassphrasedialog.ui" line="+39"/>
         <source>For earning interest only</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1591,12 +1595,22 @@ Activate Digital PandaBank &apos;Lite&apos;?</source>
         <translation>Ieşire minimă: </translation>
     </message>
     <message>
+        <location line="+168"/>
+        <source>Tree Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+16"/>
+        <source>List Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../coincontroldialog.cpp" line="+555"/>
         <source>no</source>
         <translation>nu</translation>
     </message>
     <message>
-        <location filename="../forms/coincontroldialog.ui" line="+51"/>
+        <location filename="../forms/coincontroldialog.ui" line="-133"/>
         <source>After Fee:</source>
         <translation>După taxe:</translation>
     </message>
@@ -1611,17 +1625,15 @@ Activate Digital PandaBank &apos;Lite&apos;?</source>
         <translation>(de)selectaţi tot</translation>
     </message>
     <message>
-        <location line="+13"/>
         <source>Tree mode</source>
-        <translation>Modul arborescent</translation>
+        <translation type="vanished">Modul arborescent</translation>
     </message>
     <message>
-        <location line="+16"/>
         <source>List mode</source>
-        <translation>Modul lista</translation>
+        <translation type="vanished">Modul lista</translation>
     </message>
     <message>
-        <location line="+45"/>
+        <location line="+74"/>
         <source>Amount</source>
         <translation>Sumă</translation>
     </message>
@@ -1840,12 +1852,12 @@ Acest lucru înseamnă că o taxă de cel puțin %2 este necesară</translation>
     </message>
     <message>
         <location line="+19"/>
-        <source>Account name</source>
+        <source>Account Name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+15"/>
-        <source>Account address</source>
+        <source>Account Address</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1928,7 +1940,7 @@ Acest lucru înseamnă că o taxă de cel puțin %2 este necesară</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+209"/>
+        <location line="+223"/>
         <source>Send Pandacoins</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2144,12 +2156,11 @@ Acest lucru înseamnă că o taxă de cel puțin %2 este necesară</translation>
         <translation>Comision de tranzacție opțional pe kB, care vă ajută ca tranzacțiile sa fie procesate rapid. Majoritatea tranzactiilor sunt de 1 kB. Comision de 0.01 recomandat</translation>
     </message>
     <message>
-        <location line="+21"/>
         <source>Pay transaction &amp;fee</source>
-        <translation>Plăteşte comision pentru tranzacţie &amp;f</translation>
+        <translation type="vanished">Plăteşte comision pentru tranzacţie &amp;f</translation>
     </message>
     <message>
-        <location line="+31"/>
+        <location line="+52"/>
         <source>Reserved amount does not participate in staking and is therefore spendable at any time.</source>
         <translation>Suma rezervată nu participă la maturare și, prin urmare, se poate cheltui  în orice moment.</translation>
     </message>
@@ -2178,9 +2189,18 @@ Acest lucru înseamnă că o taxă de cel puțin %2 este necesară</translation>
         <translation>Detașați bloc și baze de date de adrese la închidere. Acest lucru înseamnă că pot fi mutate într-u  alt director de date, dar incetineste închiderea. Portofelul este întotdeauna detașat.</translation>
     </message>
     <message>
-        <location line="+3"/>
         <source>&amp;Detach databases at shutdown</source>
-        <translation>&amp;Detasaza baza de date la inchidere</translation>
+        <translation type="vanished">&amp;Detasaza baza de date la inchidere</translation>
+    </message>
+    <message>
+        <location line="-93"/>
+        <source>Pay Transaction &amp;Fee</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+96"/>
+        <source>&amp;Detach Databases at shutdown</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+21"/>
@@ -2269,11 +2289,20 @@ Acest lucru înseamnă că o taxă de cel puțin %2 este necesară</translation>
     </message>
     <message>
         <location line="+8"/>
-        <source>User Interface &amp;language:</source>
-        <translation>Interfata &amp; limba userului</translation>
+        <source>User Interface &amp;Language:</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+13"/>
+        <location line="+49"/>
+        <source>&amp;Display Addresses in transaction list</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User Interface &amp;language:</source>
+        <translation type="vanished">Interfata &amp; limba userului</translation>
+    </message>
+    <message>
+        <location line="-36"/>
         <source>The user interface language can be set here. This setting will take effect after restarting Pandacoin.</source>
         <translation>Limba interfeței utilizator poate fi setat aici. Această setare va avea efect după repornirea Pandacoin.</translation>
     </message>
@@ -2293,12 +2322,11 @@ Acest lucru înseamnă că o taxă de cel puțin %2 este necesară</translation>
         <translation>Dacă să arate adrese Pandacoin din lista de tranzacție sau nu.</translation>
     </message>
     <message>
-        <location line="+3"/>
         <source>&amp;Display addresses in transaction list</source>
-        <translation>&amp;Afişează adresele în lista de tranzacţii</translation>
+        <translation type="vanished">&amp;Afişează adresele în lista de tranzacţii</translation>
     </message>
     <message>
-        <location line="+7"/>
+        <location line="+10"/>
         <source>Whether to show coin control features or not.</source>
         <translation>Dacă să se afişeze controlul caracteristicilor monedei sau nu.</translation>
     </message>
@@ -2706,12 +2734,11 @@ Should you encounter this error repeatedly please seek assistance.</source>
 <context>
     <name>RPCConsole</name>
     <message>
-        <location filename="../forms/rpcconsole.ui" line="+46"/>
         <source>Client name</source>
-        <translation>Nume client</translation>
+        <translation type="vanished">Nume client</translation>
     </message>
     <message>
-        <location line="+10"/>
+        <location filename="../forms/rpcconsole.ui" line="+56"/>
         <location line="+23"/>
         <location line="+26"/>
         <location line="+23"/>
@@ -2725,37 +2752,33 @@ Should you encounter this error repeatedly please seek assistance.</source>
         <translation>N/A</translation>
     </message>
     <message>
-        <location line="-217"/>
         <source>Client version</source>
-        <translation>Versiune client</translation>
+        <translation type="vanished">Versiune client</translation>
     </message>
     <message>
-        <location line="-45"/>
+        <location line="-262"/>
         <source>&amp;Information</source>
         <translation>&amp;Informație</translation>
     </message>
     <message>
-        <location line="+68"/>
         <source>Using OpenSSL version</source>
-        <translation>Foloseste versiunea OpenSSL</translation>
+        <translation type="vanished">Foloseste versiunea OpenSSL</translation>
     </message>
     <message>
-        <location line="+49"/>
         <source>Startup time</source>
-        <translation>Durata pornirii</translation>
+        <translation type="vanished">Durata pornirii</translation>
     </message>
     <message>
-        <location line="+29"/>
+        <location line="+146"/>
         <source>Network</source>
         <translation>Rețea</translation>
     </message>
     <message>
-        <location line="+7"/>
         <source>Number of connections</source>
-        <translation>Numărul de conexiuni</translation>
+        <translation type="vanished">Numărul de conexiuni</translation>
     </message>
     <message>
-        <location line="+23"/>
+        <location line="+30"/>
         <source>On testnet</source>
         <translation>Pe testnet</translation>
     </message>
@@ -2765,32 +2788,28 @@ Should you encounter this error repeatedly please seek assistance.</source>
         <translation>Lanț de blocuri</translation>
     </message>
     <message>
-        <location line="+7"/>
         <source>Current number of blocks</source>
-        <translation>Numărul curent de blocuri</translation>
+        <translation type="vanished">Numărul curent de blocuri</translation>
     </message>
     <message>
-        <location line="+23"/>
         <source>Estimated total blocks</source>
-        <translation>Blocurile totale estimate</translation>
+        <translation type="vanished">Blocurile totale estimate</translation>
     </message>
     <message>
-        <location line="+23"/>
         <source>Last block time</source>
-        <translation>Data ultimului bloc</translation>
+        <translation type="vanished">Data ultimului bloc</translation>
     </message>
     <message>
-        <location line="+52"/>
+        <location line="+105"/>
         <source>&amp;Open</source>
         <translation>&amp;Deschide</translation>
     </message>
     <message>
-        <location line="+16"/>
         <source>Command-line options</source>
-        <translation>Optiuni linii de comandă</translation>
+        <translation type="vanished">Optiuni linii de comandă</translation>
     </message>
     <message>
-        <location line="+7"/>
+        <location line="+23"/>
         <source>Show the Pandacoin-Qt help message to get a list with possible Pandacoin command-line options.</source>
         <translation>Afișa mesajul de ajutor Pandacoin-Qt pentru a obține o listă cu posibile opțiuni de linie de comandă Pandacoin.</translation>
     </message>
@@ -2805,12 +2824,11 @@ Should you encounter this error repeatedly please seek assistance.</source>
         <translation>&amp;Consolă</translation>
     </message>
     <message>
-        <location line="-260"/>
         <source>Build date</source>
-        <translation>Construit la data</translation>
+        <translation type="vanished">Construit la data</translation>
     </message>
     <message>
-        <location line="-104"/>
+        <location line="-364"/>
         <source>Pandacoin - Debug window</source>
         <translation>Pandacoin - fereastră depanare</translation>
     </message>
@@ -2820,7 +2838,52 @@ Should you encounter this error repeatedly please seek assistance.</source>
         <translation>Pandacoin Core</translation>
     </message>
     <message>
-        <location line="+279"/>
+        <location line="+7"/>
+        <source>Client Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+23"/>
+        <source>Client Version</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+23"/>
+        <source>Using OpenSSL Version</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+26"/>
+        <source>Build Date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+23"/>
+        <source>Startup Time</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+36"/>
+        <source>Number of Connections</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+53"/>
+        <source>Current Number of Blocks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+23"/>
+        <source>Estimated Total Blocks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+23"/>
+        <source>Last Block Time</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+42"/>
         <source>Debug log file</source>
         <translation>Loguri debug</translation>
     </message>
@@ -2830,7 +2893,12 @@ Should you encounter this error repeatedly please seek assistance.</source>
         <translation>Deschideti fisierul de depanare Pandacoin din folderul curent. Acest lucru poate dura cateva secunde pentru fisiere de log mari.</translation>
     </message>
     <message>
-        <location line="+102"/>
+        <location line="+19"/>
+        <source>Command-line Options</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+83"/>
         <source>Clear console</source>
         <translation>Curăță consola</translation>
     </message>

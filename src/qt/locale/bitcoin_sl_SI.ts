@@ -66,13 +66,13 @@ Ta proizvod vključuje softver razvit s strani projekta OpenSSL za uporabo v Ope
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+31"/>
+        <location line="+40"/>
         <source>Transactions</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+38"/>
-        <source>View transactions for</source>
+        <source>View Transactions for</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -91,7 +91,7 @@ Ta proizvod vključuje softver razvit s strani projekta OpenSSL za uporabo v Ope
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+132"/>
+        <location line="+141"/>
         <source>Last 30 Days</source>
         <translation type="unfinished"></translation>
     </message>
@@ -108,23 +108,23 @@ Ta proizvod vključuje softver razvit s strani projekta OpenSSL za uporabo v Ope
     <message>
         <location line="+23"/>
         <location line="+10"/>
-        <location line="+140"/>
+        <location line="+149"/>
         <source>PND</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-128"/>
+        <location line="-137"/>
         <source>Interest Gained</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+115"/>
-        <source>Total interest</source>
+        <location line="+124"/>
+        <source>Total Interest</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+32"/>
-        <location line="+25"/>
+        <location line="+43"/>
         <source>Create Account</source>
         <translation type="unfinished"></translation>
     </message>
@@ -370,22 +370,27 @@ Ta proizvod vključuje softver razvit s strani projekta OpenSSL za uporabo v Ope
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location line="+357"/>
+        <source>Account Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+17"/>
+        <source>Account Address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>label</source>
         <translation type="obsolete">oznaka</translation>
     </message>
     <message>
-        <location line="+80"/>
+        <location line="-285"/>
         <location line="+245"/>
         <source>Edit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+40"/>
-        <source>Account address</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-191"/>
+        <location line="-151"/>
         <source>Send Pandacoins</source>
         <translation type="unfinished"></translation>
     </message>
@@ -410,12 +415,7 @@ Ta proizvod vključuje softver razvit s strani projekta OpenSSL za uporabo v Ope
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+16"/>
-        <source>Account name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+57"/>
+        <location line="+82"/>
         <source>Delete</source>
         <translation type="unfinished"></translation>
     </message>
@@ -447,22 +447,26 @@ Ta proizvod vključuje softver razvit s strani projekta OpenSSL za uporabo v Ope
     </message>
     <message>
         <location line="+21"/>
+        <source>Enter Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+14"/>
+        <source>New Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+14"/>
+        <source>Repeat New Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../askpassphrasedialog.cpp" line="+46"/>
         <source>Enter password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+14"/>
-        <source>New password</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+14"/>
-        <source>Repeat new password</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+39"/>
+        <location filename="../forms/askpassphrasedialog.ui" line="+39"/>
         <source>For earning interest only</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1583,12 +1587,22 @@ Activate Digital PandaBank &apos;Lite&apos;?</source>
         <translation>Nizek output:</translation>
     </message>
     <message>
+        <location line="+168"/>
+        <source>Tree Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+16"/>
+        <source>List Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../coincontroldialog.cpp" line="+555"/>
         <source>no</source>
         <translation>ne</translation>
     </message>
     <message>
-        <location filename="../forms/coincontroldialog.ui" line="+51"/>
+        <location filename="../forms/coincontroldialog.ui" line="-133"/>
         <source>After Fee:</source>
         <translation>Po proviziji:</translation>
     </message>
@@ -1603,17 +1617,15 @@ Activate Digital PandaBank &apos;Lite&apos;?</source>
         <translation>od/obkljukaj vse</translation>
     </message>
     <message>
-        <location line="+13"/>
         <source>Tree mode</source>
-        <translation>Drevo</translation>
+        <translation type="vanished">Drevo</translation>
     </message>
     <message>
-        <location line="+16"/>
         <source>List mode</source>
-        <translation>Seznam</translation>
+        <translation type="vanished">Seznam</translation>
     </message>
     <message>
-        <location line="+45"/>
+        <location line="+74"/>
         <source>Amount</source>
         <translation>Količina</translation>
     </message>
@@ -1832,12 +1844,12 @@ Ta oznaka se obarva rdeče, če je prioriteta manjša kot &quot;srednja&quot;.
     </message>
     <message>
         <location line="+19"/>
-        <source>Account name</source>
+        <source>Account Name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+15"/>
-        <source>Account address</source>
+        <source>Account Address</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1920,7 +1932,7 @@ Ta oznaka se obarva rdeče, če je prioriteta manjša kot &quot;srednja&quot;.
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+209"/>
+        <location line="+223"/>
         <source>Send Pandacoins</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2136,12 +2148,11 @@ Ta oznaka se obarva rdeče, če je prioriteta manjša kot &quot;srednja&quot;.
         <translation>Izbirne transakcijske provizije za kB, ki pomagajo pri tem, da so vaše transakcije procesirane hitreje. Večina transakcij je velikih 1 kB. Priporočena je provizija 0.01.</translation>
     </message>
     <message>
-        <location line="+21"/>
         <source>Pay transaction &amp;fee</source>
-        <translation>Nakazilo plačila &amp; provizija</translation>
+        <translation type="vanished">Nakazilo plačila &amp; provizija</translation>
     </message>
     <message>
-        <location line="+31"/>
+        <location line="+52"/>
         <source>Reserved amount does not participate in staking and is therefore spendable at any time.</source>
         <translation>Rezervirana količina ne deleži in je tako na voljo za potrošnjo.</translation>
     </message>
@@ -2170,9 +2181,18 @@ Ta oznaka se obarva rdeče, če je prioriteta manjša kot &quot;srednja&quot;.
         <translation>Loči podatkovne baze blokov in naslovov ob zaustavitvi. To pomeni da jih lahko prenesete na drugo lokacijo, a upočasni zaustavitev. Denarnica je vedno ločena. </translation>
     </message>
     <message>
-        <location line="+3"/>
         <source>&amp;Detach databases at shutdown</source>
-        <translation>&amp;Loči podatkovne baze ob zaustavitvi</translation>
+        <translation type="vanished">&amp;Loči podatkovne baze ob zaustavitvi</translation>
+    </message>
+    <message>
+        <location line="-93"/>
+        <source>Pay Transaction &amp;Fee</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+96"/>
+        <source>&amp;Detach Databases at shutdown</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+21"/>
@@ -2261,11 +2281,20 @@ Ta oznaka se obarva rdeče, če je prioriteta manjša kot &quot;srednja&quot;.
     </message>
     <message>
         <location line="+8"/>
-        <source>User Interface &amp;language:</source>
-        <translation>Uporabniški vmesnik &amp;jezik:</translation>
+        <source>User Interface &amp;Language:</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+13"/>
+        <location line="+49"/>
+        <source>&amp;Display Addresses in transaction list</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User Interface &amp;language:</source>
+        <translation type="vanished">Uporabniški vmesnik &amp;jezik:</translation>
+    </message>
+    <message>
+        <location line="-36"/>
         <source>The user interface language can be set here. This setting will take effect after restarting Pandacoin.</source>
         <translation>Tu lahko nastavite jezik uporabniškega vmesnika. Nastavitve bodo pričele delovati ob ponovnem zagonu Pandacoin aplikacije. </translation>
     </message>
@@ -2285,12 +2314,11 @@ Ta oznaka se obarva rdeče, če je prioriteta manjša kot &quot;srednja&quot;.
         <translation>Izbira prikaza Pandacoin naslovov v seznamu transakcij.</translation>
     </message>
     <message>
-        <location line="+3"/>
         <source>&amp;Display addresses in transaction list</source>
-        <translation>&amp;Prikaz naslovov v seznamu transakcij</translation>
+        <translation type="vanished">&amp;Prikaz naslovov v seznamu transakcij</translation>
     </message>
     <message>
-        <location line="+7"/>
+        <location line="+10"/>
         <source>Whether to show coin control features or not.</source>
         <translation>Izbira prikaza lastnosti kontrole kovancev.</translation>
     </message>
@@ -2698,12 +2726,11 @@ Should you encounter this error repeatedly please seek assistance.</source>
 <context>
     <name>RPCConsole</name>
     <message>
-        <location filename="../forms/rpcconsole.ui" line="+46"/>
         <source>Client name</source>
-        <translation>Ime odjemalca</translation>
+        <translation type="vanished">Ime odjemalca</translation>
     </message>
     <message>
-        <location line="+10"/>
+        <location filename="../forms/rpcconsole.ui" line="+56"/>
         <location line="+23"/>
         <location line="+26"/>
         <location line="+23"/>
@@ -2717,37 +2744,33 @@ Should you encounter this error repeatedly please seek assistance.</source>
         <translation>Neznano</translation>
     </message>
     <message>
-        <location line="-217"/>
         <source>Client version</source>
-        <translation>Različica odjemalca</translation>
+        <translation type="vanished">Različica odjemalca</translation>
     </message>
     <message>
-        <location line="-45"/>
+        <location line="-262"/>
         <source>&amp;Information</source>
         <translation>&amp;Informacije</translation>
     </message>
     <message>
-        <location line="+68"/>
         <source>Using OpenSSL version</source>
-        <translation>OpenSSL različica v rabi</translation>
+        <translation type="vanished">OpenSSL različica v rabi</translation>
     </message>
     <message>
-        <location line="+49"/>
         <source>Startup time</source>
-        <translation>Čas zagona</translation>
+        <translation type="vanished">Čas zagona</translation>
     </message>
     <message>
-        <location line="+29"/>
+        <location line="+146"/>
         <source>Network</source>
         <translation>Omrežje</translation>
     </message>
     <message>
-        <location line="+7"/>
         <source>Number of connections</source>
-        <translation>Število povezav</translation>
+        <translation type="vanished">Število povezav</translation>
     </message>
     <message>
-        <location line="+23"/>
+        <location line="+30"/>
         <source>On testnet</source>
         <translation>Na testnet</translation>
     </message>
@@ -2757,32 +2780,28 @@ Should you encounter this error repeatedly please seek assistance.</source>
         <translation>veriga blokov</translation>
     </message>
     <message>
-        <location line="+7"/>
         <source>Current number of blocks</source>
-        <translation>Trenutno število blokov</translation>
+        <translation type="vanished">Trenutno število blokov</translation>
     </message>
     <message>
-        <location line="+23"/>
         <source>Estimated total blocks</source>
-        <translation>Ocena vseh blokov</translation>
+        <translation type="vanished">Ocena vseh blokov</translation>
     </message>
     <message>
-        <location line="+23"/>
         <source>Last block time</source>
-        <translation>Čas zadnjega bloka</translation>
+        <translation type="vanished">Čas zadnjega bloka</translation>
     </message>
     <message>
-        <location line="+52"/>
+        <location line="+105"/>
         <source>&amp;Open</source>
         <translation>&amp;Odpri</translation>
     </message>
     <message>
-        <location line="+16"/>
         <source>Command-line options</source>
-        <translation>Možnosti ukazne vrstice.</translation>
+        <translation type="vanished">Možnosti ukazne vrstice.</translation>
     </message>
     <message>
-        <location line="+7"/>
+        <location line="+23"/>
         <source>Show the Pandacoin-Qt help message to get a list with possible Pandacoin command-line options.</source>
         <translation>Prikaži Pandacoin-Qt sporočilo za pomoč , ki prikaže vse možnosti ukazne vrstice Pandacoin aplikacije</translation>
     </message>
@@ -2797,12 +2816,11 @@ Should you encounter this error repeatedly please seek assistance.</source>
         <translation>&amp;Konzola</translation>
     </message>
     <message>
-        <location line="-260"/>
         <source>Build date</source>
-        <translation>Datum izgradnje</translation>
+        <translation type="vanished">Datum izgradnje</translation>
     </message>
     <message>
-        <location line="-104"/>
+        <location line="-364"/>
         <source>Pandacoin - Debug window</source>
         <translation>Pandacoin - okno za odpravljanje napak</translation>
     </message>
@@ -2812,7 +2830,52 @@ Should you encounter this error repeatedly please seek assistance.</source>
         <translation>Pandacoin jedro</translation>
     </message>
     <message>
-        <location line="+279"/>
+        <location line="+7"/>
+        <source>Client Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+23"/>
+        <source>Client Version</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+23"/>
+        <source>Using OpenSSL Version</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+26"/>
+        <source>Build Date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+23"/>
+        <source>Startup Time</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+36"/>
+        <source>Number of Connections</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+53"/>
+        <source>Current Number of Blocks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+23"/>
+        <source>Estimated Total Blocks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+23"/>
+        <source>Last Block Time</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+42"/>
         <source>Debug log file</source>
         <translation>Razhroščevalna dnevniška datoteka</translation>
     </message>
@@ -2822,7 +2885,12 @@ Should you encounter this error repeatedly please seek assistance.</source>
         <translation>Odpri Pandacoin datoteko zapisov odpravljanja napak iz trenutnega direktorija podatkov. Če so datoteke zapisov velike, to lahko traja nekaj sekund.</translation>
     </message>
     <message>
-        <location line="+102"/>
+        <location line="+19"/>
+        <source>Command-line Options</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+83"/>
         <source>Clear console</source>
         <translation>Počisti konzolo</translation>
     </message>

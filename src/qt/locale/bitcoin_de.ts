@@ -76,14 +76,18 @@ Dieses Produkt enthält Software, die vom OpenSSL-Projekt zur Verwendung im Open
         <translation>Rahmen</translation>
     </message>
     <message>
-        <location line="+31"/>
+        <location line="+40"/>
         <source>Transactions</source>
         <translation>Transaktionen</translation>
     </message>
     <message>
-        <location line="+38"/>
         <source>View transactions for</source>
-        <translation>Transaktionen anzeigen für</translation>
+        <translation type="vanished">Transaktionen anzeigen für</translation>
+    </message>
+    <message>
+        <location line="+38"/>
+        <source>View Transactions for</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+36"/>
@@ -101,7 +105,7 @@ Dieses Produkt enthält Software, die vom OpenSSL-Projekt zur Verwendung im Open
         <translation>Nachricht signieren</translation>
     </message>
     <message>
-        <location line="+132"/>
+        <location line="+141"/>
         <source>Last 30 Days</source>
         <translation>Letzte 30 Tage</translation>
     </message>
@@ -118,23 +122,27 @@ Dieses Produkt enthält Software, die vom OpenSSL-Projekt zur Verwendung im Open
     <message>
         <location line="+23"/>
         <location line="+10"/>
-        <location line="+140"/>
+        <location line="+149"/>
         <source>PND</source>
         <translation>PND</translation>
     </message>
     <message>
-        <location line="-128"/>
+        <location line="-137"/>
         <source>Interest Gained</source>
         <translation>Interesse gewonnen</translation>
     </message>
     <message>
-        <location line="+115"/>
+        <location line="+124"/>
+        <source>Total Interest</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Total interest</source>
-        <translation>Gesamtinteresse</translation>
+        <translation type="vanished">Gesamtinteresse</translation>
     </message>
     <message>
         <location line="+32"/>
-        <location line="+25"/>
+        <location line="+43"/>
         <source>Create Account</source>
         <translation>Benutzerkonto anlegen</translation>
     </message>
@@ -384,22 +392,31 @@ Dieses Produkt enthält Software, die vom OpenSSL-Projekt zur Verwendung im Open
         <translation>...</translation>
     </message>
     <message>
+        <location line="+357"/>
+        <source>Account Name</source>
+        <translation type="unfinished">Kontobezeichnung</translation>
+    </message>
+    <message>
+        <location line="+17"/>
+        <source>Account Address</source>
+        <translation type="unfinished">Kontoadresse</translation>
+    </message>
+    <message>
         <source>label</source>
         <translation type="obsolete">Bezeichnung</translation>
     </message>
     <message>
-        <location line="+80"/>
+        <location line="-285"/>
         <location line="+245"/>
         <source>Edit</source>
         <translation>Editieren</translation>
     </message>
     <message>
-        <location line="+40"/>
         <source>Account address</source>
-        <translation>Kontoadresse</translation>
+        <translation type="vanished">Kontoadresse</translation>
     </message>
     <message>
-        <location line="-191"/>
+        <location line="-151"/>
         <source>Send Pandacoins</source>
         <translation>Über Pandacoin</translation>
     </message>
@@ -424,12 +441,11 @@ Dieses Produkt enthält Software, die vom OpenSSL-Projekt zur Verwendung im Open
         <translation>Nächster</translation>
     </message>
     <message>
-        <location line="+16"/>
         <source>Account name</source>
-        <translation>Kontobezeichnung</translation>
+        <translation type="vanished">Kontobezeichnung</translation>
     </message>
     <message>
-        <location line="+57"/>
+        <location line="+82"/>
         <source>Delete</source>
         <translation>Löschen</translation>
     </message>
@@ -461,22 +477,34 @@ Dieses Produkt enthält Software, die vom OpenSSL-Projekt zur Verwendung im Open
     </message>
     <message>
         <location line="+21"/>
+        <source>Enter Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+14"/>
+        <source>New Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+14"/>
+        <source>Repeat New Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../askpassphrasedialog.cpp" line="+46"/>
         <source>Enter password</source>
         <translation>Passphrase eingeben</translation>
     </message>
     <message>
-        <location line="+14"/>
         <source>New password</source>
-        <translation>Neue Passphrase</translation>
+        <translation type="vanished">Neue Passphrase</translation>
     </message>
     <message>
-        <location line="+14"/>
         <source>Repeat new password</source>
-        <translation>Neue Passphrase wiederholen</translation>
+        <translation type="vanished">Neue Passphrase wiederholen</translation>
     </message>
     <message>
-        <location line="+39"/>
+        <location filename="../forms/askpassphrasedialog.ui" line="+39"/>
         <source>For earning interest only</source>
         <translation>Interesse verdienen</translation>
     </message>
@@ -1449,12 +1477,22 @@ Aktivieren Sie Digital PandaBank &quot;Lite&quot;?</translation>
         <translation>Zu geringer Ausgabebetrag:</translation>
     </message>
     <message>
+        <location line="+168"/>
+        <source>Tree Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+16"/>
+        <source>List Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../coincontroldialog.cpp" line="+555"/>
         <source>no</source>
         <translation>nein</translation>
     </message>
     <message>
-        <location filename="../forms/coincontroldialog.ui" line="+51"/>
+        <location filename="../forms/coincontroldialog.ui" line="-133"/>
         <source>After Fee:</source>
         <translation>Abzüglich Gebühr:</translation>
     </message>
@@ -1469,17 +1507,15 @@ Aktivieren Sie Digital PandaBank &quot;Lite&quot;?</translation>
         <translation>Alles (de)selektieren</translation>
     </message>
     <message>
-        <location line="+13"/>
         <source>Tree mode</source>
-        <translation>Baumansicht</translation>
+        <translation type="vanished">Baumansicht</translation>
     </message>
     <message>
-        <location line="+16"/>
         <source>List mode</source>
-        <translation>Listenansicht</translation>
+        <translation type="vanished">Listenansicht</translation>
     </message>
     <message>
-        <location line="+45"/>
+        <location line="+74"/>
         <source>Amount</source>
         <translation>Betrag</translation>
     </message>
@@ -1698,13 +1734,21 @@ Diese Beschriftung wird rot, wenn die Priorität kleiner als &quot;mittel&quot; 
     </message>
     <message>
         <location line="+19"/>
-        <source>Account name</source>
-        <translation>Kontobezeichnung</translation>
+        <source>Account Name</source>
+        <translation type="unfinished">Kontobezeichnung</translation>
     </message>
     <message>
         <location line="+15"/>
+        <source>Account Address</source>
+        <translation type="unfinished">Kontoadresse</translation>
+    </message>
+    <message>
+        <source>Account name</source>
+        <translation type="vanished">Kontobezeichnung</translation>
+    </message>
+    <message>
         <source>Account address</source>
-        <translation>Kontoadresse</translation>
+        <translation type="vanished">Kontoadresse</translation>
     </message>
     <message>
         <location line="+27"/>
@@ -1786,7 +1830,7 @@ Diese Beschriftung wird rot, wenn die Priorität kleiner als &quot;mittel&quot; 
         <translation type="unfinished">...</translation>
     </message>
     <message>
-        <location line="+209"/>
+        <location line="+223"/>
         <source>Send Pandacoins</source>
         <translation type="unfinished">Über Pandacoin</translation>
     </message>
@@ -2003,12 +2047,11 @@ Diese Beschriftung wird rot, wenn die Priorität kleiner als &quot;mittel&quot; 
         <translation>Optionale Transaktionsgebühr pro kB, die dafür sorgt, dass Ihre Transaktionen schnell bearbeitet werden. Die meisten Transaktionen sind 1 kB. Gebühr 0,01 empfohlen.</translation>
     </message>
     <message>
-        <location line="+21"/>
         <source>Pay transaction &amp;fee</source>
-        <translation>Transaktions&amp;gebühr bezahlen</translation>
+        <translation type="vanished">Transaktions&amp;gebühr bezahlen</translation>
     </message>
     <message>
-        <location line="+31"/>
+        <location line="+52"/>
         <source>Reserved amount does not participate in staking and is therefore spendable at any time.</source>
         <translation>Der reservierte Betrag nimmt nicht am Staking teil und ist daher jederzeit verfügbar.</translation>
     </message>
@@ -2037,9 +2080,18 @@ Diese Beschriftung wird rot, wenn die Priorität kleiner als &quot;mittel&quot; 
         <translation>Trennen Sie die Block- und Adressdatenbanken beim Herunterfahren. Dies bedeutet, dass sie in ein anderes Datenverzeichnis verschoben werden können, das Herunterfahren jedoch verlangsamt wird. Die Brieftasche ist immer getrennt.</translation>
     </message>
     <message>
-        <location line="+3"/>
         <source>&amp;Detach databases at shutdown</source>
-        <translation>&amp;Trennen Sie Datenbanken beim Herunterfahren</translation>
+        <translation type="vanished">&amp;Trennen Sie Datenbanken beim Herunterfahren</translation>
+    </message>
+    <message>
+        <location line="-93"/>
+        <source>Pay Transaction &amp;Fee</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+96"/>
+        <source>&amp;Detach Databases at shutdown</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+21"/>
@@ -2128,11 +2180,20 @@ Diese Beschriftung wird rot, wenn die Priorität kleiner als &quot;mittel&quot; 
     </message>
     <message>
         <location line="+8"/>
-        <source>User Interface &amp;language:</source>
-        <translation>&amp;Sprache der Benutzeroberfläche:</translation>
+        <source>User Interface &amp;Language:</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+13"/>
+        <location line="+49"/>
+        <source>&amp;Display Addresses in transaction list</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User Interface &amp;language:</source>
+        <translation type="vanished">&amp;Sprache der Benutzeroberfläche:</translation>
+    </message>
+    <message>
+        <location line="-36"/>
         <source>The user interface language can be set here. This setting will take effect after restarting Pandacoin.</source>
         <translation>Die Sprache der GUI kann hier verändert werden. Die Einstellung wird nach einem Neustart übernommen.</translation>
     </message>
@@ -2152,12 +2213,11 @@ Diese Beschriftung wird rot, wenn die Priorität kleiner als &quot;mittel&quot; 
         <translation>Pandacoin Adressen in der Überweisung anzeigen oder nicht.</translation>
     </message>
     <message>
-        <location line="+3"/>
         <source>&amp;Display addresses in transaction list</source>
-        <translation>Adressen in der Transaktionsliste &amp;anzeigen</translation>
+        <translation type="vanished">Adressen in der Transaktionsliste &amp;anzeigen</translation>
     </message>
     <message>
-        <location line="+7"/>
+        <location line="+10"/>
         <source>Whether to show coin control features or not.</source>
         <translation>Legt fest, ob die &quot;Coin Control&quot;-Funktionen angezeigt werden.</translation>
     </message>
@@ -2565,12 +2625,11 @@ Sollten Sie wiederholt auf diesen Fehler stoßen, suchen Sie Hilfe.</translation
 <context>
     <name>RPCConsole</name>
     <message>
-        <location filename="../forms/rpcconsole.ui" line="+46"/>
         <source>Client name</source>
-        <translation>Clientname</translation>
+        <translation type="vanished">Clientname</translation>
     </message>
     <message>
-        <location line="+10"/>
+        <location filename="../forms/rpcconsole.ui" line="+56"/>
         <location line="+23"/>
         <location line="+26"/>
         <location line="+23"/>
@@ -2584,37 +2643,33 @@ Sollten Sie wiederholt auf diesen Fehler stoßen, suchen Sie Hilfe.</translation
         <translation>N/A</translation>
     </message>
     <message>
-        <location line="-217"/>
         <source>Client version</source>
-        <translation>Clientversion</translation>
+        <translation type="vanished">Clientversion</translation>
     </message>
     <message>
-        <location line="-45"/>
+        <location line="-262"/>
         <source>&amp;Information</source>
         <translation>&amp;Information</translation>
     </message>
     <message>
-        <location line="+68"/>
         <source>Using OpenSSL version</source>
-        <translation>Verwendete OpenSSL-Version</translation>
+        <translation type="vanished">Verwendete OpenSSL-Version</translation>
     </message>
     <message>
-        <location line="+49"/>
         <source>Startup time</source>
-        <translation>Startzeit</translation>
+        <translation type="vanished">Startzeit</translation>
     </message>
     <message>
-        <location line="+29"/>
+        <location line="+146"/>
         <source>Network</source>
         <translation>Netzwerk</translation>
     </message>
     <message>
-        <location line="+7"/>
         <source>Number of connections</source>
-        <translation>Anzahl Verbindungen</translation>
+        <translation type="vanished">Anzahl Verbindungen</translation>
     </message>
     <message>
-        <location line="+23"/>
+        <location line="+30"/>
         <source>On testnet</source>
         <translation>Am Testnetz</translation>
     </message>
@@ -2624,32 +2679,28 @@ Sollten Sie wiederholt auf diesen Fehler stoßen, suchen Sie Hilfe.</translation
         <translation>Block kette</translation>
     </message>
     <message>
-        <location line="+7"/>
         <source>Current number of blocks</source>
-        <translation>Aktuelle Anzahl Blöcke</translation>
+        <translation type="vanished">Aktuelle Anzahl Blöcke</translation>
     </message>
     <message>
-        <location line="+23"/>
         <source>Estimated total blocks</source>
-        <translation>Geschätzte Gesamtzahl Blöcke</translation>
+        <translation type="vanished">Geschätzte Gesamtzahl Blöcke</translation>
     </message>
     <message>
-        <location line="+23"/>
         <source>Last block time</source>
-        <translation>Letzte Blockzeit</translation>
+        <translation type="vanished">Letzte Blockzeit</translation>
     </message>
     <message>
-        <location line="+52"/>
+        <location line="+105"/>
         <source>&amp;Open</source>
         <translation>&amp;Öffnen</translation>
     </message>
     <message>
-        <location line="+16"/>
         <source>Command-line options</source>
-        <translation>Kommandozeilen Optionen</translation>
+        <translation type="vanished">Kommandozeilen Optionen</translation>
     </message>
     <message>
-        <location line="+7"/>
+        <location line="+23"/>
         <source>Show the Pandacoin-Qt help message to get a list with possible Pandacoin command-line options.</source>
         <translation>Zeigen Sie die Pandacoin-Qt-Hilfemeldung an, um eine Liste mit möglichen Pandacoin-Befehlszeilenoptionen zu erhalten.</translation>
     </message>
@@ -2664,12 +2715,11 @@ Sollten Sie wiederholt auf diesen Fehler stoßen, suchen Sie Hilfe.</translation
         <translation>&amp;Konsole</translation>
     </message>
     <message>
-        <location line="-260"/>
         <source>Build date</source>
-        <translation>Erstellungsdatum</translation>
+        <translation type="vanished">Erstellungsdatum</translation>
     </message>
     <message>
-        <location line="-104"/>
+        <location line="-364"/>
         <source>Pandacoin - Debug window</source>
         <translation>Pandacoin - Debug Fenster</translation>
     </message>
@@ -2679,7 +2729,52 @@ Sollten Sie wiederholt auf diesen Fehler stoßen, suchen Sie Hilfe.</translation
         <translation>Pandacoin Kern</translation>
     </message>
     <message>
-        <location line="+279"/>
+        <location line="+7"/>
+        <source>Client Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+23"/>
+        <source>Client Version</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+23"/>
+        <source>Using OpenSSL Version</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+26"/>
+        <source>Build Date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+23"/>
+        <source>Startup Time</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+36"/>
+        <source>Number of Connections</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+53"/>
+        <source>Current Number of Blocks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+23"/>
+        <source>Estimated Total Blocks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+23"/>
+        <source>Last Block Time</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+42"/>
         <source>Debug log file</source>
         <translation>Debugprotokolldatei</translation>
     </message>
@@ -2689,7 +2784,12 @@ Sollten Sie wiederholt auf diesen Fehler stoßen, suchen Sie Hilfe.</translation
         <translation>Öffnen Sie die Pandacoin-Debugprotokolldatei aus dem aktuellen Datenverzeichnis. Bei großen Protokolldateien kann dies einige Sekunden dauern.</translation>
     </message>
     <message>
-        <location line="+102"/>
+        <location line="+19"/>
+        <source>Command-line Options</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+83"/>
         <source>Clear console</source>
         <translation>Konsole zurücksetzen</translation>
     </message>

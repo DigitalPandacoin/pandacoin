@@ -67,13 +67,13 @@ Tämä tuote sisältää OpenSSL-projektin kehittämää ohjelmistoa OpenSSL-ty�
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+31"/>
+        <location line="+40"/>
         <source>Transactions</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+38"/>
-        <source>View transactions for</source>
+        <source>View Transactions for</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -92,7 +92,7 @@ Tämä tuote sisältää OpenSSL-projektin kehittämää ohjelmistoa OpenSSL-ty�
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+132"/>
+        <location line="+141"/>
         <source>Last 30 Days</source>
         <translation type="unfinished"></translation>
     </message>
@@ -109,23 +109,23 @@ Tämä tuote sisältää OpenSSL-projektin kehittämää ohjelmistoa OpenSSL-ty�
     <message>
         <location line="+23"/>
         <location line="+10"/>
-        <location line="+140"/>
+        <location line="+149"/>
         <source>PND</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-128"/>
+        <location line="-137"/>
         <source>Interest Gained</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+115"/>
-        <source>Total interest</source>
+        <location line="+124"/>
+        <source>Total Interest</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+32"/>
-        <location line="+25"/>
+        <location line="+43"/>
         <source>Create Account</source>
         <translation type="unfinished"></translation>
     </message>
@@ -371,22 +371,27 @@ Tämä tuote sisältää OpenSSL-projektin kehittämää ohjelmistoa OpenSSL-ty�
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location line="+357"/>
+        <source>Account Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+17"/>
+        <source>Account Address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>label</source>
         <translation type="obsolete">nimi</translation>
     </message>
     <message>
-        <location line="+80"/>
+        <location line="-285"/>
         <location line="+245"/>
         <source>Edit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+40"/>
-        <source>Account address</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-191"/>
+        <location line="-151"/>
         <source>Send Pandacoins</source>
         <translation type="unfinished"></translation>
     </message>
@@ -411,12 +416,7 @@ Tämä tuote sisältää OpenSSL-projektin kehittämää ohjelmistoa OpenSSL-ty�
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+16"/>
-        <source>Account name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+57"/>
+        <location line="+82"/>
         <source>Delete</source>
         <translation type="unfinished"></translation>
     </message>
@@ -448,22 +448,26 @@ Tämä tuote sisältää OpenSSL-projektin kehittämää ohjelmistoa OpenSSL-ty�
     </message>
     <message>
         <location line="+21"/>
+        <source>Enter Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+14"/>
+        <source>New Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+14"/>
+        <source>Repeat New Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../askpassphrasedialog.cpp" line="+46"/>
         <source>Enter password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+14"/>
-        <source>New password</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+14"/>
-        <source>Repeat new password</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+39"/>
+        <location filename="../forms/askpassphrasedialog.ui" line="+39"/>
         <source>For earning interest only</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1563,12 +1567,22 @@ Activate Digital PandaBank &apos;Lite&apos;?</source>
         <translation>Heikko ulosanti:</translation>
     </message>
     <message>
+        <location line="+168"/>
+        <source>Tree Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+16"/>
+        <source>List Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../coincontroldialog.cpp" line="+555"/>
         <source>no</source>
         <translation>ei</translation>
     </message>
     <message>
-        <location filename="../forms/coincontroldialog.ui" line="+51"/>
+        <location filename="../forms/coincontroldialog.ui" line="-133"/>
         <source>After Fee:</source>
         <translation>Kulujen jälkeen:</translation>
     </message>
@@ -1583,17 +1597,15 @@ Activate Digital PandaBank &apos;Lite&apos;?</source>
         <translation>(tai ei)Valitse kaikki</translation>
     </message>
     <message>
-        <location line="+13"/>
         <source>Tree mode</source>
-        <translation>Puunäkymä</translation>
+        <translation type="vanished">Puunäkymä</translation>
     </message>
     <message>
-        <location line="+16"/>
         <source>List mode</source>
-        <translation>Listanäkymä</translation>
+        <translation type="vanished">Listanäkymä</translation>
     </message>
     <message>
-        <location line="+45"/>
+        <location line="+74"/>
         <source>Amount</source>
         <translation>Määrä</translation>
     </message>
@@ -1812,12 +1824,12 @@ Tämä tarkoittaa, että ainakin %2 rahansiirtopalkkio tarvitaan.</translation>
     </message>
     <message>
         <location line="+19"/>
-        <source>Account name</source>
+        <source>Account Name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+15"/>
-        <source>Account address</source>
+        <source>Account Address</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1900,7 +1912,7 @@ Tämä tarkoittaa, että ainakin %2 rahansiirtopalkkio tarvitaan.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+209"/>
+        <location line="+223"/>
         <source>Send Pandacoins</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2116,12 +2128,11 @@ Tämä tarkoittaa, että ainakin %2 rahansiirtopalkkio tarvitaan.</translation>
         <translation>Vapaavalintainen rahansiirtopalkkio kilotavua kohden auttaa varmistamaan että rahansiirtosi käsitellään nopeasti. Suurin osa rahansiirroista on alle yhden kilotavun. Palkkiota 0.01 suositellaan.</translation>
     </message>
     <message>
-        <location line="+21"/>
         <source>Pay transaction &amp;fee</source>
-        <translation>Maksa rahansiirtopalkkio</translation>
+        <translation type="vanished">Maksa rahansiirtopalkkio</translation>
     </message>
     <message>
-        <location line="+31"/>
+        <location line="+52"/>
         <source>Reserved amount does not participate in staking and is therefore spendable at any time.</source>
         <translation>Varattu määrä ei vaadi osakkuutta jonka vuoksi se on mahdollista käyttää milloin tahansa.</translation>
     </message>
@@ -2150,9 +2161,18 @@ Tämä tarkoittaa, että ainakin %2 rahansiirtopalkkio tarvitaan.</translation>
         <translation>Irroita lohko- ja osoitetietokannat lopetettaessa. Tämä tarkoittaa, että tietokannat voidaan siirtää eri hakemistoon mutta se hidastaa ohjelman sammumista. Lompakko on aina irroitettuna.</translation>
     </message>
     <message>
-        <location line="+3"/>
         <source>&amp;Detach databases at shutdown</source>
-        <translation>%Irroita tietokannat lopetettaessa</translation>
+        <translation type="vanished">%Irroita tietokannat lopetettaessa</translation>
+    </message>
+    <message>
+        <location line="-93"/>
+        <source>Pay Transaction &amp;Fee</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+96"/>
+        <source>&amp;Detach Databases at shutdown</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+21"/>
@@ -2241,11 +2261,20 @@ Tämä tarkoittaa, että ainakin %2 rahansiirtopalkkio tarvitaan.</translation>
     </message>
     <message>
         <location line="+8"/>
-        <source>User Interface &amp;language:</source>
-        <translation>&amp;Käyttöliittymän kieli</translation>
+        <source>User Interface &amp;Language:</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+13"/>
+        <location line="+49"/>
+        <source>&amp;Display Addresses in transaction list</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User Interface &amp;language:</source>
+        <translation type="vanished">&amp;Käyttöliittymän kieli</translation>
+    </message>
+    <message>
+        <location line="-36"/>
         <source>The user interface language can be set here. This setting will take effect after restarting Pandacoin.</source>
         <translation>Käyttöliittymän kieli voidaan valita tästä. Tämä asetus tulee voimaan vasta Pandacoin-asiakasohjelman uudelleenkäynnistyksen jälkeen.</translation>
     </message>
@@ -2265,12 +2294,11 @@ Tämä tarkoittaa, että ainakin %2 rahansiirtopalkkio tarvitaan.</translation>
         <translation>Näytä tai piilota Pandacoin-osoitteet rahansiirtolistassa.</translation>
     </message>
     <message>
-        <location line="+3"/>
         <source>&amp;Display addresses in transaction list</source>
-        <translation>&amp;Näytä osoitteet rahansiirrot listassa</translation>
+        <translation type="vanished">&amp;Näytä osoitteet rahansiirrot listassa</translation>
     </message>
     <message>
-        <location line="+7"/>
+        <location line="+10"/>
         <source>Whether to show coin control features or not.</source>
         <translation>Näytä tai piilota rahanhallintaominaisuudet.</translation>
     </message>
@@ -2678,12 +2706,11 @@ Should you encounter this error repeatedly please seek assistance.</source>
 <context>
     <name>RPCConsole</name>
     <message>
-        <location filename="../forms/rpcconsole.ui" line="+46"/>
         <source>Client name</source>
-        <translation>Pääteohjelman nimi</translation>
+        <translation type="vanished">Pääteohjelman nimi</translation>
     </message>
     <message>
-        <location line="+10"/>
+        <location filename="../forms/rpcconsole.ui" line="+56"/>
         <location line="+23"/>
         <location line="+26"/>
         <location line="+23"/>
@@ -2697,37 +2724,33 @@ Should you encounter this error repeatedly please seek assistance.</source>
         <translation>Ei saatavilla</translation>
     </message>
     <message>
-        <location line="-217"/>
         <source>Client version</source>
-        <translation>Pääteohjelman versio</translation>
+        <translation type="vanished">Pääteohjelman versio</translation>
     </message>
     <message>
-        <location line="-45"/>
+        <location line="-262"/>
         <source>&amp;Information</source>
         <translation>T&amp;ietoa</translation>
     </message>
     <message>
-        <location line="+68"/>
         <source>Using OpenSSL version</source>
-        <translation>Käytössä oleva OpenSSL-versio</translation>
+        <translation type="vanished">Käytössä oleva OpenSSL-versio</translation>
     </message>
     <message>
-        <location line="+49"/>
         <source>Startup time</source>
-        <translation>Käynnistysaika</translation>
+        <translation type="vanished">Käynnistysaika</translation>
     </message>
     <message>
-        <location line="+29"/>
+        <location line="+146"/>
         <source>Network</source>
         <translation>Verkko</translation>
     </message>
     <message>
-        <location line="+7"/>
         <source>Number of connections</source>
-        <translation>Yhteyksien lukumäärä</translation>
+        <translation type="vanished">Yhteyksien lukumäärä</translation>
     </message>
     <message>
-        <location line="+23"/>
+        <location line="+30"/>
         <source>On testnet</source>
         <translation>Testiverkossa</translation>
     </message>
@@ -2737,32 +2760,28 @@ Should you encounter this error repeatedly please seek assistance.</source>
         <translation>Lohkoketju</translation>
     </message>
     <message>
-        <location line="+7"/>
         <source>Current number of blocks</source>
-        <translation>Nykyinen Lohkojen määrä</translation>
+        <translation type="vanished">Nykyinen Lohkojen määrä</translation>
     </message>
     <message>
-        <location line="+23"/>
         <source>Estimated total blocks</source>
-        <translation>Arvioitu lohkojen kokonaismäärä</translation>
+        <translation type="vanished">Arvioitu lohkojen kokonaismäärä</translation>
     </message>
     <message>
-        <location line="+23"/>
         <source>Last block time</source>
-        <translation>Viimeisimmän lohkon aika</translation>
+        <translation type="vanished">Viimeisimmän lohkon aika</translation>
     </message>
     <message>
-        <location line="+52"/>
+        <location line="+105"/>
         <source>&amp;Open</source>
         <translation>&amp;Avaa</translation>
     </message>
     <message>
-        <location line="+16"/>
         <source>Command-line options</source>
-        <translation>Komentokehotteen ominaisuudet</translation>
+        <translation type="vanished">Komentokehotteen ominaisuudet</translation>
     </message>
     <message>
-        <location line="+7"/>
+        <location line="+23"/>
         <source>Show the Pandacoin-Qt help message to get a list with possible Pandacoin command-line options.</source>
         <translation>Näytä Pandacoin-Qt:n avustusohje saadaksesi listan käytettävistä Pandacoinin komentokehotteen määritteistä.</translation>
     </message>
@@ -2777,12 +2796,11 @@ Should you encounter this error repeatedly please seek assistance.</source>
         <translation>&amp;Konsoli</translation>
     </message>
     <message>
-        <location line="-260"/>
         <source>Build date</source>
-        <translation>Kääntöpäiväys</translation>
+        <translation type="vanished">Kääntöpäiväys</translation>
     </message>
     <message>
-        <location line="-104"/>
+        <location line="-364"/>
         <source>Pandacoin - Debug window</source>
         <translation>Pandacoin - Debug-ikkuna</translation>
     </message>
@@ -2792,7 +2810,52 @@ Should you encounter this error repeatedly please seek assistance.</source>
         <translation>Pandacoinin ydin</translation>
     </message>
     <message>
-        <location line="+279"/>
+        <location line="+7"/>
+        <source>Client Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+23"/>
+        <source>Client Version</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+23"/>
+        <source>Using OpenSSL Version</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+26"/>
+        <source>Build Date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+23"/>
+        <source>Startup Time</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+36"/>
+        <source>Number of Connections</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+53"/>
+        <source>Current Number of Blocks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+23"/>
+        <source>Estimated Total Blocks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+23"/>
+        <source>Last Block Time</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+42"/>
         <source>Debug log file</source>
         <translation>Debug lokitiedosto</translation>
     </message>
@@ -2802,7 +2865,12 @@ Should you encounter this error repeatedly please seek assistance.</source>
         <translation>Avaa Pandacoin-asiakasohjelman debug-lokitiedosto nykyisestä hakemistostaan. Tämä voi kestää muutaman sekunnin avattaessa suuria lokitiedostoja.</translation>
     </message>
     <message>
-        <location line="+102"/>
+        <location line="+19"/>
+        <source>Command-line Options</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+83"/>
         <source>Clear console</source>
         <translation>Tyhjennä konsoli</translation>
     </message>

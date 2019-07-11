@@ -76,14 +76,18 @@ Dit product bevat software ontwikkeld door het OpenSSL Project voor gebruik in d
         <translation>omlijsting</translation>
     </message>
     <message>
-        <location line="+31"/>
+        <location line="+40"/>
         <source>Transactions</source>
         <translation>Transactie</translation>
     </message>
     <message>
-        <location line="+38"/>
         <source>View transactions for</source>
-        <translation>Bekijk transacties voor</translation>
+        <translation type="vanished">Bekijk transacties voor</translation>
+    </message>
+    <message>
+        <location line="+38"/>
+        <source>View Transactions for</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+36"/>
@@ -101,7 +105,7 @@ Dit product bevat software ontwikkeld door het OpenSSL Project voor gebruik in d
         <translation>Teken bericht</translation>
     </message>
     <message>
-        <location line="+132"/>
+        <location line="+141"/>
         <source>Last 30 Days</source>
         <translation>Laatste 30 dagen</translation>
     </message>
@@ -118,23 +122,27 @@ Dit product bevat software ontwikkeld door het OpenSSL Project voor gebruik in d
     <message>
         <location line="+23"/>
         <location line="+10"/>
-        <location line="+140"/>
+        <location line="+149"/>
         <source>PND</source>
         <translation>PND</translation>
     </message>
     <message>
-        <location line="-128"/>
+        <location line="-137"/>
         <source>Interest Gained</source>
         <translation>Geïnteresseerde rente</translation>
     </message>
     <message>
-        <location line="+115"/>
+        <location line="+124"/>
+        <source>Total Interest</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Total interest</source>
-        <translation>Totale rente</translation>
+        <translation type="vanished">Totale rente</translation>
     </message>
     <message>
         <location line="+32"/>
-        <location line="+25"/>
+        <location line="+43"/>
         <source>Create Account</source>
         <translation>Account aanmaken</translation>
     </message>
@@ -384,22 +392,31 @@ Dit product bevat software ontwikkeld door het OpenSSL Project voor gebruik in d
         <translation>...</translation>
     </message>
     <message>
+        <location line="+357"/>
+        <source>Account Name</source>
+        <translation type="unfinished">Accountnaam</translation>
+    </message>
+    <message>
+        <location line="+17"/>
+        <source>Account Address</source>
+        <translation type="unfinished">Account adres</translation>
+    </message>
+    <message>
         <source>label</source>
         <translation type="obsolete">label</translation>
     </message>
     <message>
-        <location line="+80"/>
+        <location line="-285"/>
         <location line="+245"/>
         <source>Edit</source>
         <translation>Bewerk</translation>
     </message>
     <message>
-        <location line="+40"/>
         <source>Account address</source>
-        <translation>Account adres</translation>
+        <translation type="vanished">Account adres</translation>
     </message>
     <message>
-        <location line="-191"/>
+        <location line="-151"/>
         <source>Send Pandacoins</source>
         <translation>Stuur Pandacoins</translation>
     </message>
@@ -424,12 +441,11 @@ Dit product bevat software ontwikkeld door het OpenSSL Project voor gebruik in d
         <translation>Gedaan</translation>
     </message>
     <message>
-        <location line="+16"/>
         <source>Account name</source>
-        <translation>Accountnaam</translation>
+        <translation type="vanished">Accountnaam</translation>
     </message>
     <message>
-        <location line="+57"/>
+        <location line="+82"/>
         <source>Delete</source>
         <translation>Verwijder</translation>
     </message>
@@ -461,22 +477,34 @@ Dit product bevat software ontwikkeld door het OpenSSL Project voor gebruik in d
     </message>
     <message>
         <location line="+21"/>
+        <source>Enter Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+14"/>
+        <source>New Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+14"/>
+        <source>Repeat New Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../askpassphrasedialog.cpp" line="+46"/>
         <source>Enter password</source>
         <translation>Voer wachtwoord in</translation>
     </message>
     <message>
-        <location line="+14"/>
         <source>New password</source>
-        <translation>Nieuw paswoord</translation>
+        <translation type="vanished">Nieuw paswoord</translation>
     </message>
     <message>
-        <location line="+14"/>
         <source>Repeat new password</source>
-        <translation>Herhaal nieuw wachtwoord</translation>
+        <translation type="vanished">Herhaal nieuw wachtwoord</translation>
     </message>
     <message>
-        <location line="+39"/>
+        <location filename="../forms/askpassphrasedialog.ui" line="+39"/>
         <source>For earning interest only</source>
         <translation>Alleen voor het verdienen van rente</translation>
     </message>
@@ -1597,12 +1625,22 @@ Activeer Digital PandaBank &apos;Lite&apos;?</translation>
         <translation>Lage uitvoer:</translation>
     </message>
     <message>
+        <location line="+168"/>
+        <source>Tree Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+16"/>
+        <source>List Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../coincontroldialog.cpp" line="+555"/>
         <source>no</source>
         <translation>nee</translation>
     </message>
     <message>
-        <location filename="../forms/coincontroldialog.ui" line="+51"/>
+        <location filename="../forms/coincontroldialog.ui" line="-133"/>
         <source>After Fee:</source>
         <translation>Na vergoeding:</translation>
     </message>
@@ -1617,17 +1655,15 @@ Activeer Digital PandaBank &apos;Lite&apos;?</translation>
         <translation>(de)selecteer alles</translation>
     </message>
     <message>
-        <location line="+13"/>
         <source>Tree mode</source>
-        <translation>Boom modus</translation>
+        <translation type="vanished">Boom modus</translation>
     </message>
     <message>
-        <location line="+16"/>
         <source>List mode</source>
-        <translation>Lijst modus</translation>
+        <translation type="vanished">Lijst modus</translation>
     </message>
     <message>
-        <location line="+45"/>
+        <location line="+74"/>
         <source>Amount</source>
         <translation>Bedrag</translation>
     </message>
@@ -1846,13 +1882,21 @@ Dit betekend dat een fee van %2 is vereist.</translation>
     </message>
     <message>
         <location line="+19"/>
-        <source>Account name</source>
-        <translation>Accountnaam</translation>
+        <source>Account Name</source>
+        <translation type="unfinished">Accountnaam</translation>
     </message>
     <message>
         <location line="+15"/>
+        <source>Account Address</source>
+        <translation type="unfinished">Account adres</translation>
+    </message>
+    <message>
+        <source>Account name</source>
+        <translation type="vanished">Accountnaam</translation>
+    </message>
+    <message>
         <source>Account address</source>
-        <translation>Account adres</translation>
+        <translation type="vanished">Account adres</translation>
     </message>
     <message>
         <location line="+27"/>
@@ -1934,7 +1978,7 @@ Dit betekend dat een fee van %2 is vereist.</translation>
         <translation type="unfinished">...</translation>
     </message>
     <message>
-        <location line="+209"/>
+        <location line="+223"/>
         <source>Send Pandacoins</source>
         <translation type="unfinished">Stuur Pandacoins</translation>
     </message>
@@ -2150,12 +2194,11 @@ Dit betekend dat een fee van %2 is vereist.</translation>
         <translation>Optioneel transactiekosten per kB dat helpt ervoor zorgen dat uw transacties worden snel verwerkt. De meeste transacties zijn 1 kB. Fee 0.01 aanbevolen.</translation>
     </message>
     <message>
-        <location line="+21"/>
         <source>Pay transaction &amp;fee</source>
-        <translation>Betaal &amp;transactiekosten</translation>
+        <translation type="vanished">Betaal &amp;transactiekosten</translation>
     </message>
     <message>
-        <location line="+31"/>
+        <location line="+52"/>
         <source>Reserved amount does not participate in staking and is therefore spendable at any time.</source>
         <translation>Gereserveerde hoeveelheid doet niet mee in staking en is daarom altijd uitgeefbaar.</translation>
     </message>
@@ -2184,9 +2227,18 @@ Dit betekend dat een fee van %2 is vereist.</translation>
         <translation>Los blok en adressenbestanden bij het afsluiten. Dit betekent dat ze naar een ander data-map worden verplaatst, maar het vertraagt ​​shutdown. De portemonnee is altijd vrijstaand.</translation>
     </message>
     <message>
-        <location line="+3"/>
         <source>&amp;Detach databases at shutdown</source>
-        <translation>&amp;Koppel database los bij afsluiten</translation>
+        <translation type="vanished">&amp;Koppel database los bij afsluiten</translation>
+    </message>
+    <message>
+        <location line="-93"/>
+        <source>Pay Transaction &amp;Fee</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+96"/>
+        <source>&amp;Detach Databases at shutdown</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+21"/>
@@ -2275,11 +2327,20 @@ Dit betekend dat een fee van %2 is vereist.</translation>
     </message>
     <message>
         <location line="+8"/>
-        <source>User Interface &amp;language:</source>
-        <translation>Taal &amp;Gebruikersinterface:</translation>
+        <source>User Interface &amp;Language:</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+13"/>
+        <location line="+49"/>
+        <source>&amp;Display Addresses in transaction list</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User Interface &amp;language:</source>
+        <translation type="vanished">Taal &amp;Gebruikersinterface:</translation>
+    </message>
+    <message>
+        <location line="-36"/>
         <source>The user interface language can be set here. This setting will take effect after restarting Pandacoin.</source>
         <translation>De user interface-taal kan hier ingesteld worden. Deze instelling word toegepast na Pandacoin opnieuw op te starten.</translation>
     </message>
@@ -2299,12 +2360,11 @@ Dit betekend dat een fee van %2 is vereist.</translation>
         <translation>Pandacoin adressen in de transactielijst weergeven of niet.</translation>
     </message>
     <message>
-        <location line="+3"/>
         <source>&amp;Display addresses in transaction list</source>
-        <translation>Toon a&amp;dressen in de transactielijst</translation>
+        <translation type="vanished">Toon a&amp;dressen in de transactielijst</translation>
     </message>
     <message>
-        <location line="+7"/>
+        <location line="+10"/>
         <source>Whether to show coin control features or not.</source>
         <translation>Munt controle functies weergeven of niet.</translation>
     </message>
@@ -2716,12 +2776,11 @@ Mocht u herhaaldelijk tegen deze fout aanlopen, vraag dan om hulp.</translation>
 <context>
     <name>RPCConsole</name>
     <message>
-        <location filename="../forms/rpcconsole.ui" line="+46"/>
         <source>Client name</source>
-        <translation>Clientnaam</translation>
+        <translation type="vanished">Clientnaam</translation>
     </message>
     <message>
-        <location line="+10"/>
+        <location filename="../forms/rpcconsole.ui" line="+56"/>
         <location line="+23"/>
         <location line="+26"/>
         <location line="+23"/>
@@ -2735,37 +2794,33 @@ Mocht u herhaaldelijk tegen deze fout aanlopen, vraag dan om hulp.</translation>
         <translation>N/A</translation>
     </message>
     <message>
-        <location line="-217"/>
         <source>Client version</source>
-        <translation>Clientversie</translation>
+        <translation type="vanished">Clientversie</translation>
     </message>
     <message>
-        <location line="-45"/>
+        <location line="-262"/>
         <source>&amp;Information</source>
         <translation>&amp;Informatie</translation>
     </message>
     <message>
-        <location line="+68"/>
         <source>Using OpenSSL version</source>
-        <translation>Gebruikt OpenSSL versie</translation>
+        <translation type="vanished">Gebruikt OpenSSL versie</translation>
     </message>
     <message>
-        <location line="+49"/>
         <source>Startup time</source>
-        <translation>Opstarttijd</translation>
+        <translation type="vanished">Opstarttijd</translation>
     </message>
     <message>
-        <location line="+29"/>
+        <location line="+146"/>
         <source>Network</source>
         <translation>Netwerk</translation>
     </message>
     <message>
-        <location line="+7"/>
         <source>Number of connections</source>
-        <translation>Aantal connecties</translation>
+        <translation type="vanished">Aantal connecties</translation>
     </message>
     <message>
-        <location line="+23"/>
+        <location line="+30"/>
         <source>On testnet</source>
         <translation>Op testnetwerk</translation>
     </message>
@@ -2775,32 +2830,28 @@ Mocht u herhaaldelijk tegen deze fout aanlopen, vraag dan om hulp.</translation>
         <translation>Blokketen</translation>
     </message>
     <message>
-        <location line="+7"/>
         <source>Current number of blocks</source>
-        <translation>Huidig aantal blokken</translation>
+        <translation type="vanished">Huidig aantal blokken</translation>
     </message>
     <message>
-        <location line="+23"/>
         <source>Estimated total blocks</source>
-        <translation>Geschat totaal aantal blokken</translation>
+        <translation type="vanished">Geschat totaal aantal blokken</translation>
     </message>
     <message>
-        <location line="+23"/>
         <source>Last block time</source>
-        <translation>Tijd laatste blok</translation>
+        <translation type="vanished">Tijd laatste blok</translation>
     </message>
     <message>
-        <location line="+52"/>
+        <location line="+105"/>
         <source>&amp;Open</source>
         <translation>&amp;Open</translation>
     </message>
     <message>
-        <location line="+16"/>
         <source>Command-line options</source>
-        <translation>Commandoregel-opties</translation>
+        <translation type="vanished">Commandoregel-opties</translation>
     </message>
     <message>
-        <location line="+7"/>
+        <location line="+23"/>
         <source>Show the Pandacoin-Qt help message to get a list with possible Pandacoin command-line options.</source>
         <translation>Laat het Pandacoin-QT help bericht zien om een lijst te krijgen met mogelijke Pandacoin command-regel opties.</translation>
     </message>
@@ -2815,12 +2866,11 @@ Mocht u herhaaldelijk tegen deze fout aanlopen, vraag dan om hulp.</translation>
         <translation>&amp;Console</translation>
     </message>
     <message>
-        <location line="-260"/>
         <source>Build date</source>
-        <translation>Bouwdatum</translation>
+        <translation type="vanished">Bouwdatum</translation>
     </message>
     <message>
-        <location line="-104"/>
+        <location line="-364"/>
         <source>Pandacoin - Debug window</source>
         <translation>Pandacoin - Debugscherm</translation>
     </message>
@@ -2830,7 +2880,52 @@ Mocht u herhaaldelijk tegen deze fout aanlopen, vraag dan om hulp.</translation>
         <translation>Pandacoin Kern</translation>
     </message>
     <message>
-        <location line="+279"/>
+        <location line="+7"/>
+        <source>Client Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+23"/>
+        <source>Client Version</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+23"/>
+        <source>Using OpenSSL Version</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+26"/>
+        <source>Build Date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+23"/>
+        <source>Startup Time</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+36"/>
+        <source>Number of Connections</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+53"/>
+        <source>Current Number of Blocks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+23"/>
+        <source>Estimated Total Blocks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+23"/>
+        <source>Last Block Time</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+42"/>
         <source>Debug log file</source>
         <translation>Debug-logbestand</translation>
     </message>
@@ -2840,7 +2935,12 @@ Mocht u herhaaldelijk tegen deze fout aanlopen, vraag dan om hulp.</translation>
         <translation>Open het Pandacoin debug log bestand van de huidige data map. Dit kan een paar seconden duren voor grote log bestanden.</translation>
     </message>
     <message>
-        <location line="+102"/>
+        <location line="+19"/>
+        <source>Command-line Options</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+83"/>
         <source>Clear console</source>
         <translation>Maak console leeg</translation>
     </message>

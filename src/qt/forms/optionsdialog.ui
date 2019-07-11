@@ -23,7 +23,7 @@
       <enum>QTabWidget::North</enum>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>3</number>
      </property>
      <widget class="QWidget" name="tabMain">
       <attribute name="title">
@@ -54,7 +54,7 @@
             </size>
            </property>
            <property name="text">
-            <string>Pay transaction &amp;fee</string>
+            <string>Pay Transaction &amp;Fee</string>
            </property>
            <property name="textFormat">
             <enum>Qt::PlainText</enum>
@@ -150,7 +150,7 @@
           <string>Detach block and address databases at shutdown. This means they can be moved to another data directory, but it slows down shutdown. The wallet is always detached.</string>
          </property>
          <property name="text">
-          <string>&amp;Detach databases at shutdown</string>
+          <string>&amp;Detach Databases at shutdown</string>
          </property>
         </widget>
        </item>
@@ -348,7 +348,7 @@
          <item>
           <widget class="QLabel" name="langLabel">
            <property name="text">
-            <string>User Interface &amp;language:</string>
+            <string>User Interface &amp;Language:</string>
            </property>
            <property name="textFormat">
             <enum>Qt::PlainText</enum>
@@ -397,7 +397,7 @@
           <string>Whether to show Pandacoin addresses in the transaction list or not.</string>
          </property>
          <property name="text">
-          <string>&amp;Display addresses in transaction list</string>
+          <string>&amp;Display Addresses in transaction list</string>
          </property>
         </widget>
        </item>
