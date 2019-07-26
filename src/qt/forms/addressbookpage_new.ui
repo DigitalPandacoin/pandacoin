@@ -193,7 +193,16 @@
         <property name="spacing">
          <number>14</number>
         </property>
-        <property name="margin">
+        <property name="leftMargin">
+         <number>14</number>
+        </property>
+        <property name="topMargin">
+         <number>14</number>
+        </property>
+        <property name="rightMargin">
+         <number>14</number>
+        </property>
+        <property name="bottomMargin">
          <number>14</number>
         </property>
         <item>
@@ -281,7 +290,7 @@
            <item>
             <widget class="QLabel" name="addressbook_account_address_heading">
              <property name="text">
-              <string notr="true">Account address</string>
+              <string notr="true">Account Address</string>
              </property>
             </widget>
            </item>
@@ -507,7 +516,7 @@
            <item>
             <widget class="QLabel" name="label_5">
              <property name="text">
-              <string>Account name</string>
+              <string>Account Name</string>
              </property>
             </widget>
            </item>
@@ -524,7 +533,7 @@
            <item>
             <widget class="QLabel" name="label_6">
              <property name="text">
-              <string>Account address</string>
+              <string>Account Address</string>
              </property>
             </widget>
            </item>
@@ -556,7 +565,16 @@
               <property name="spacing">
                <number>0</number>
               </property>
-              <property name="margin">
+              <property name="leftMargin">
+               <number>0</number>
+              </property>
+              <property name="topMargin">
+               <number>0</number>
+              </property>
+              <property name="rightMargin">
+               <number>0</number>
+              </property>
+              <property name="bottomMargin">
                <number>0</number>
               </property>
               <item>

@@ -379,7 +379,7 @@
         <height>41</height>
        </rect>
       </property>
-      <layout class="QHBoxLayout" name="horizontalLayoutPanel" stretch="0,0,0,0,0">
+      <layout class="QHBoxLayout" name="horizontalLayoutPanel" stretch="0,0,0,0">
        <property name="spacing">
         <number>14</number>
        </property>
@@ -405,7 +405,7 @@
           </sizepolicy>
          </property>
          <property name="text">
-          <string>Tree mode</string>
+          <string>Tree Mode</string>
          </property>
          <property name="checked">
           <bool>true</bool>
@@ -421,7 +421,7 @@
           </sizepolicy>
          </property>
          <property name="text">
-          <string>List mode</string>
+          <string>List Mode</string>
          </property>
         </widget>
        </item>
