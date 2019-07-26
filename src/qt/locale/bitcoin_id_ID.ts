@@ -42,7 +42,7 @@ Produk ini mencakup perangkat lunak yang dikembangkan oleh OpenSSL Project untuk
 <context>
     <name>AccountModel</name>
     <message>
-        <location filename="../accountmodel.cpp" line="+24"/>
+        <location filename="../accountmodel.cpp" line="+22"/>
         <source>Account Name</source>
         <translation>Salin jumlah</translation>
     </message>
@@ -65,14 +65,18 @@ Produk ini mencakup perangkat lunak yang dikembangkan oleh OpenSSL Project untuk
         <translation>Bingkai</translation>
     </message>
     <message>
-        <location line="+31"/>
+        <location line="+40"/>
         <source>Transactions</source>
         <translation>Transaksi</translation>
     </message>
     <message>
-        <location line="+38"/>
         <source>View transactions for</source>
-        <translation>Transaksi diterima</translation>
+        <translation type="vanished">Transaksi diterima</translation>
+    </message>
+    <message>
+        <location line="+38"/>
+        <source>View Transactions for</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+36"/>
@@ -90,7 +94,7 @@ Produk ini mencakup perangkat lunak yang dikembangkan oleh OpenSSL Project untuk
         <translation>Tanda tangani pesan</translation>
     </message>
     <message>
-        <location line="+132"/>
+        <location line="+141"/>
         <source>Last 30 Days</source>
         <translation>Bulan kemarin</translation>
     </message>
@@ -107,23 +111,27 @@ Produk ini mencakup perangkat lunak yang dikembangkan oleh OpenSSL Project untuk
     <message>
         <location line="+23"/>
         <location line="+10"/>
-        <location line="+140"/>
+        <location line="+149"/>
         <source>PND</source>
         <translation>PND</translation>
     </message>
     <message>
-        <location line="-128"/>
+        <location line="-137"/>
         <source>Interest Gained</source>
         <translation>Bunga Diterima</translation>
     </message>
     <message>
-        <location line="+115"/>
+        <location line="+124"/>
+        <source>Total Interest</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Total interest</source>
-        <translation>Bunga total</translation>
+        <translation type="vanished">Bunga total</translation>
     </message>
     <message>
         <location line="+32"/>
-        <location line="+25"/>
+        <location line="+43"/>
         <source>Create Account</source>
         <translation>Membuat akun</translation>
     </message>
@@ -369,15 +377,24 @@ Produk ini mencakup perangkat lunak yang dikembangkan oleh OpenSSL Project untuk
         <translation>...</translation>
     </message>
     <message>
-        <location line="+80"/>
+        <location line="+89"/>
         <location line="+245"/>
         <source>Edit</source>
         <translation>Edit</translation>
     </message>
     <message>
-        <location line="+40"/>
+        <location line="+23"/>
+        <source>Account Name</source>
+        <translation type="unfinished">Salin jumlah</translation>
+    </message>
+    <message>
+        <location line="+17"/>
+        <source>Account Address</source>
+        <translation type="unfinished">Salin Alamat</translation>
+    </message>
+    <message>
         <source>Account address</source>
-        <translation>Alamat akun</translation>
+        <translation type="vanished">Alamat akun</translation>
     </message>
     <message>
         <location line="-191"/>
@@ -405,12 +422,11 @@ Produk ini mencakup perangkat lunak yang dikembangkan oleh OpenSSL Project untuk
         <translation>Selesai</translation>
     </message>
     <message>
-        <location line="+16"/>
         <source>Account name</source>
-        <translation>Nama akun</translation>
+        <translation type="vanished">Nama akun</translation>
     </message>
     <message>
-        <location line="+57"/>
+        <location line="+82"/>
         <source>Delete</source>
         <translation>Menghapus</translation>
     </message>
@@ -418,7 +434,7 @@ Produk ini mencakup perangkat lunak yang dikembangkan oleh OpenSSL Project untuk
 <context>
     <name>AddressTableModel</name>
     <message>
-        <location filename="../addresstablemodel.cpp" line="+29"/>
+        <location filename="../addresstablemodel.cpp" line="+26"/>
         <source>Label</source>
         <translation>Label</translation>
     </message>
@@ -428,7 +444,7 @@ Produk ini mencakup perangkat lunak yang dikembangkan oleh OpenSSL Project untuk
         <translation>Alamat</translation>
     </message>
     <message>
-        <location line="+36"/>
+        <location line="+35"/>
         <source>(no label)</source>
         <translation>(tanpa label)</translation>
     </message>
@@ -442,22 +458,34 @@ Produk ini mencakup perangkat lunak yang dikembangkan oleh OpenSSL Project untuk
     </message>
     <message>
         <location line="+21"/>
+        <source>Enter Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+14"/>
+        <source>New Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+14"/>
+        <source>Repeat New Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../askpassphrasedialog.cpp" line="+46"/>
         <source>Enter password</source>
         <translation>Masukkan kata kunci</translation>
     </message>
     <message>
-        <location line="+14"/>
         <source>New password</source>
-        <translation>Kata sandi baru</translation>
+        <translation type="vanished">Kata sandi baru</translation>
     </message>
     <message>
-        <location line="+14"/>
         <source>Repeat new password</source>
-        <translation>Ulangi kata sandi baru</translation>
+        <translation type="vanished">Ulangi kata sandi baru</translation>
     </message>
     <message>
-        <location line="+39"/>
+        <location filename="../forms/askpassphrasedialog.ui" line="+39"/>
         <source>For earning interest only</source>
         <translation>Untuk mendapatkan bunga saja</translation>
     </message>
@@ -679,22 +707,22 @@ Produk ini mencakup perangkat lunak yang dikembangkan oleh OpenSSL Project untuk
 <context>
     <name>BitcoinGUI</name>
     <message>
-        <location filename="../bitcoingui.cpp" line="+309"/>
+        <location filename="../bitcoingui.cpp" line="+311"/>
         <source>Sign &amp;message...</source>
         <translation>Tanda &amp;pesan ...</translation>
     </message>
     <message>
-        <location line="+506"/>
+        <location line="+518"/>
         <source>Synchronizing with network...</source>
         <translation>Sinkronisasi dengan jaringan ...</translation>
     </message>
     <message>
-        <location line="-570"/>
+        <location line="-582"/>
         <source>&amp;Overview</source>
         <translation>&amp;Ringkasan</translation>
     </message>
     <message>
-        <location line="-156"/>
+        <location line="-158"/>
         <source>Digital PandaBank</source>
         <translation>PandaBank Digital</translation>
     </message>
@@ -714,7 +742,7 @@ Produk ini mencakup perangkat lunak yang dikembangkan oleh OpenSSL Project untuk
         <translation>Transfers</translation>
     </message>
     <message>
-        <location line="+96"/>
+        <location line="+98"/>
         <source>Show general overview of wallet</source>
         <translation>Tampilkan gambaran umum dompet</translation>
     </message>
@@ -796,12 +824,12 @@ Produk ini mencakup perangkat lunak yang dikembangkan oleh OpenSSL Project untuk
         <translation type="obsolete">&amp;Ubah Kata Kunci...</translation>
     </message>
     <message>
-        <location line="+537"/>
+        <location line="+549"/>
         <source>Downloaded %1 of %2 blocks of transaction history (%3% done).</source>
         <translation>Mengunduh%1 dari%2 blok riwayat transaksi (%3% selesai).</translation>
     </message>
     <message>
-        <location line="-512"/>
+        <location line="-524"/>
         <source>&amp;Export...</source>
         <translation>&amp;Ekspor...</translation>
     </message>
@@ -859,7 +887,7 @@ Produk ini mencakup perangkat lunak yang dikembangkan oleh OpenSSL Project untuk
         <translation type="obsolete">Baris tab</translation>
     </message>
     <message>
-        <location line="+102"/>
+        <location line="+114"/>
         <location line="+9"/>
         <source>[testnet]</source>
         <translation>[testnet]</translation>
@@ -881,7 +909,7 @@ Produk ini mencakup perangkat lunak yang dikembangkan oleh OpenSSL Project untuk
         <translation>Staking. &lt;br&gt; Berat badan Anda %1 &lt;br&gt; Berat jaringan adalah %2 &lt;br&gt; Waktu yang diharapkan untuk mendapatkan hadiah adalah%3</translation>
     </message>
     <message>
-        <location line="-1045"/>
+        <location line="-1057"/>
         <source>&amp;About Digital PandaBank</source>
         <translation>&amp;Tentang PandaBank Digital</translation>
     </message>
@@ -964,7 +992,7 @@ Produk ini mencakup perangkat lunak yang dikembangkan oleh OpenSSL Project untuk
         <translation>Aktifkan mode klien &apos;Lite&apos;.</translation>
     </message>
     <message>
-        <location line="+91"/>
+        <location line="+103"/>
         <location line="+71"/>
         <source>Digital PandaBank client</source>
         <translation>Klien Digital PandaBank</translation>
@@ -1408,12 +1436,22 @@ Aktifkan PandaBank &apos;Lite&apos; Digital?</translation>
         <translation>tidak tersinkron</translation>
     </message>
     <message>
+        <location line="+168"/>
+        <source>Tree Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+16"/>
+        <source>List Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../coincontroldialog.cpp" line="+555"/>
         <source>no</source>
         <translation>T/S</translation>
     </message>
     <message>
-        <location filename="../forms/coincontroldialog.ui" line="+51"/>
+        <location filename="../forms/coincontroldialog.ui" line="-133"/>
         <source>After Fee:</source>
         <translation>Dari</translation>
     </message>
@@ -1428,17 +1466,15 @@ Aktifkan PandaBank &apos;Lite&apos; Digital?</translation>
         <translation>Dekripsi dompet</translation>
     </message>
     <message>
-        <location line="+13"/>
         <source>Tree mode</source>
-        <translation>Bulan ini</translation>
+        <translation type="vanished">Bulan ini</translation>
     </message>
     <message>
-        <location line="+16"/>
         <source>List mode</source>
-        <translation>Bulan kemarin</translation>
+        <translation type="vanished">Bulan kemarin</translation>
     </message>
     <message>
-        <location line="+45"/>
+        <location line="+74"/>
         <source>Amount</source>
         <translation>Jumlah</translation>
     </message>
@@ -1651,13 +1687,21 @@ Jika berkas tidak ada, buatlah dengan permisi berkas hanya-dapat-dibaca-oleh-pem
     </message>
     <message>
         <location line="+19"/>
-        <source>Account name</source>
-        <translation>Salin jumlah</translation>
+        <source>Account Name</source>
+        <translation type="unfinished">Salin jumlah</translation>
     </message>
     <message>
         <location line="+15"/>
+        <source>Account Address</source>
+        <translation type="unfinished">Salin Alamat</translation>
+    </message>
+    <message>
+        <source>Account name</source>
+        <translation type="vanished">Salin jumlah</translation>
+    </message>
+    <message>
         <source>Account address</source>
-        <translation>Salin Alamat</translation>
+        <translation type="vanished">Salin Alamat</translation>
     </message>
     <message>
         <location line="+27"/>
@@ -1689,6 +1733,74 @@ Jika berkas tidak ada, buatlah dengan permisi berkas hanya-dapat-dibaca-oleh-pem
         <location line="+4"/>
         <source>Error creating Digital PandaBank account.</source>
         <translation>Masukkan kata kunci lama dan baru ke dompet ini</translation>
+    </message>
+</context>
+<context>
+    <name>DonationBookPage</name>
+    <message>
+        <location filename="../forms/donationbook.ui" line="+14"/>
+        <source>Frame</source>
+        <translation type="unfinished">Bingkai</translation>
+    </message>
+    <message>
+        <location line="+34"/>
+        <source>Donation Book</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+26"/>
+        <source>Copy the currently selected address to the system clipboard</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>&amp;Copy Address</source>
+        <translation type="unfinished">&amp;Salin Alamat</translation>
+    </message>
+    <message>
+        <location line="+11"/>
+        <source>Show &amp;QR Code</source>
+        <translation type="unfinished">Tampilkan Kode &amp;QR</translation>
+    </message>
+    <message>
+        <location line="+11"/>
+        <source>Verify a message to ensure it was signed with a specified Pandacoin address</source>
+        <translation type="unfinished">Verifikasi pesan untuk memastikannya ditandatangani dengan alamat Pandacoin tertentu</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>&amp;Verify Message</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+25"/>
+        <source>Search address book</source>
+        <translation type="unfinished">Cari buku alamat</translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>...</source>
+        <translation type="unfinished">...</translation>
+    </message>
+    <message>
+        <location line="+223"/>
+        <source>Send Pandacoins</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+40"/>
+        <source>From</source>
+        <translation type="unfinished">Dari</translation>
+    </message>
+    <message>
+        <location line="+36"/>
+        <source>Amount</source>
+        <translation type="unfinished">Jumlah</translation>
+    </message>
+    <message>
+        <location line="+15"/>
+        <source>Next</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1844,9 +1956,14 @@ Jika berkas tidak ada, buatlah dengan permisi berkas hanya-dapat-dibaca-oleh-pem
 <context>
     <name>MenuBar</name>
     <message>
-        <location filename="../forms/menubar.ui" line="+55"/>
+        <location filename="../forms/menubar.ui" line="+64"/>
         <source>Contacts</source>
         <translation></translation>
+    </message>
+    <message>
+        <location line="+26"/>
+        <source>Donate</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+26"/>
@@ -1882,12 +1999,11 @@ Jika berkas tidak ada, buatlah dengan permisi berkas hanya-dapat-dibaca-oleh-pem
         <translation></translation>
     </message>
     <message>
-        <location line="+21"/>
         <source>Pay transaction &amp;fee</source>
-        <translation>Bayar &amp;biaya transaksi</translation>
+        <translation type="vanished">Bayar &amp;biaya transaksi</translation>
     </message>
     <message>
-        <location line="+31"/>
+        <location line="+52"/>
         <source>Reserved amount does not participate in staking and is therefore spendable at any time.</source>
         <translation></translation>
     </message>
@@ -1912,9 +2028,14 @@ Jika berkas tidak ada, buatlah dengan permisi berkas hanya-dapat-dibaca-oleh-pem
         <translation></translation>
     </message>
     <message>
-        <location line="+3"/>
-        <source>&amp;Detach databases at shutdown</source>
-        <translation></translation>
+        <location line="-93"/>
+        <source>Pay Transaction &amp;Fee</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+96"/>
+        <source>&amp;Detach Databases at shutdown</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+21"/>
@@ -2005,11 +2126,20 @@ Jika berkas tidak ada, buatlah dengan permisi berkas hanya-dapat-dibaca-oleh-pem
     </message>
     <message>
         <location line="+8"/>
-        <source>User Interface &amp;language:</source>
-        <translation>&amp;Bahasa Antarmuka Pengguna:</translation>
+        <source>User Interface &amp;Language:</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+13"/>
+        <location line="+49"/>
+        <source>&amp;Display Addresses in transaction list</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User Interface &amp;language:</source>
+        <translation type="vanished">&amp;Bahasa Antarmuka Pengguna:</translation>
+    </message>
+    <message>
+        <location line="-36"/>
         <source>The user interface language can be set here. This setting will take effect after restarting Pandacoin.</source>
         <translation>Enkripsi dompet gagal karena kesalahan internal. Dompet Anda tidak dienkripsi.</translation>
     </message>
@@ -2029,12 +2159,11 @@ Jika berkas tidak ada, buatlah dengan permisi berkas hanya-dapat-dibaca-oleh-pem
         <translation>Alamat yang dimasukkan &quot;%1&quot; sudah ada di dalam buku alamat.</translation>
     </message>
     <message>
-        <location line="+3"/>
         <source>&amp;Display addresses in transaction list</source>
-        <translation>&amp;Tampilkan alamat dalam daftar transaksi</translation>
+        <translation type="vanished">&amp;Tampilkan alamat dalam daftar transaksi</translation>
     </message>
     <message>
-        <location line="+7"/>
+        <location line="+10"/>
         <source>Whether to show coin control features or not.</source>
         <translation>Alamat yang dimasukkan &quot;%1&quot; sudah ada di dalam buku alamat.</translation>
     </message>
@@ -2425,12 +2554,11 @@ Jika berkas tidak ada, buatlah dengan permisi berkas hanya-dapat-dibaca-oleh-pem
 <context>
     <name>RPCConsole</name>
     <message>
-        <location filename="../forms/rpcconsole.ui" line="+46"/>
         <source>Client name</source>
-        <translation>Nama Klien</translation>
+        <translation type="vanished">Nama Klien</translation>
     </message>
     <message>
-        <location line="+10"/>
+        <location filename="../forms/rpcconsole.ui" line="+56"/>
         <location line="+23"/>
         <location line="+26"/>
         <location line="+23"/>
@@ -2444,37 +2572,33 @@ Jika berkas tidak ada, buatlah dengan permisi berkas hanya-dapat-dibaca-oleh-pem
         <translation>T/S</translation>
     </message>
     <message>
-        <location line="-217"/>
         <source>Client version</source>
-        <translation>Versi Klien</translation>
+        <translation type="vanished">Versi Klien</translation>
     </message>
     <message>
-        <location line="-45"/>
+        <location line="-262"/>
         <source>&amp;Information</source>
         <translation>&amp;Informasi</translation>
     </message>
     <message>
-        <location line="+68"/>
         <source>Using OpenSSL version</source>
-        <translation>&lt;b&gt; versi Pandacoin &lt;/ b&gt;</translation>
+        <translation type="vanished">&lt;b&gt; versi Pandacoin &lt;/ b&gt;</translation>
     </message>
     <message>
-        <location line="+49"/>
         <source>Startup time</source>
-        <translation>Waktu nyala</translation>
+        <translation type="vanished">Waktu nyala</translation>
     </message>
     <message>
-        <location line="+29"/>
+        <location line="+146"/>
         <source>Network</source>
         <translation>Jaringan</translation>
     </message>
     <message>
-        <location line="+7"/>
         <source>Number of connections</source>
-        <translation>Jumlah hubungan</translation>
+        <translation type="vanished">Jumlah hubungan</translation>
     </message>
     <message>
-        <location line="+23"/>
+        <location line="+30"/>
         <source>On testnet</source>
         <translation>[testnet]</translation>
     </message>
@@ -2484,32 +2608,28 @@ Jika berkas tidak ada, buatlah dengan permisi berkas hanya-dapat-dibaca-oleh-pem
         <translation>Rantai blok</translation>
     </message>
     <message>
-        <location line="+7"/>
         <source>Current number of blocks</source>
-        <translation>Jumlah blok terkini</translation>
+        <translation type="vanished">Jumlah blok terkini</translation>
     </message>
     <message>
-        <location line="+23"/>
         <source>Estimated total blocks</source>
-        <translation>Perkiraan blok total</translation>
+        <translation type="vanished">Perkiraan blok total</translation>
     </message>
     <message>
-        <location line="+23"/>
         <source>Last block time</source>
-        <translation>Waktu blok terakhir</translation>
+        <translation type="vanished">Waktu blok terakhir</translation>
     </message>
     <message>
-        <location line="+52"/>
+        <location line="+105"/>
         <source>&amp;Open</source>
         <translation>&amp;Buka</translation>
     </message>
     <message>
-        <location line="+16"/>
         <source>Command-line options</source>
-        <translation>Transaksi diterima</translation>
+        <translation type="vanished">Transaksi diterima</translation>
     </message>
     <message>
-        <location line="+7"/>
+        <location line="+23"/>
         <source>Show the Pandacoin-Qt help message to get a list with possible Pandacoin command-line options.</source>
         <translation>Menjalankan perintah ketika perubahan blok terbaik (%s dalam cmd digantikan oleh hash blok)</translation>
     </message>
@@ -2524,12 +2644,11 @@ Jika berkas tidak ada, buatlah dengan permisi berkas hanya-dapat-dibaca-oleh-pem
         <translation>&amp;Konsol</translation>
     </message>
     <message>
-        <location line="-260"/>
         <source>Build date</source>
-        <translation>Tanggal pembuatan</translation>
+        <translation type="vanished">Tanggal pembuatan</translation>
     </message>
     <message>
-        <location line="-104"/>
+        <location line="-364"/>
         <source>Pandacoin - Debug window</source>
         <translation>&amp;Jendela Debug</translation>
     </message>
@@ -2539,7 +2658,52 @@ Jika berkas tidak ada, buatlah dengan permisi berkas hanya-dapat-dibaca-oleh-pem
         <translation>Kirim Koin</translation>
     </message>
     <message>
-        <location line="+279"/>
+        <location line="+7"/>
+        <source>Client Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+23"/>
+        <source>Client Version</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+23"/>
+        <source>Using OpenSSL Version</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+26"/>
+        <source>Build Date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+23"/>
+        <source>Startup Time</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+36"/>
+        <source>Number of Connections</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+53"/>
+        <source>Current Number of Blocks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+23"/>
+        <source>Estimated Total Blocks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+23"/>
+        <source>Last Block Time</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+42"/>
         <source>Debug log file</source>
         <translation>&amp;Jendela Debug</translation>
     </message>
@@ -2549,7 +2713,12 @@ Jika berkas tidak ada, buatlah dengan permisi berkas hanya-dapat-dibaca-oleh-pem
         <translation>Enkripsi dompet gagal karena kesalahan internal. Dompet Anda tidak dienkripsi.</translation>
     </message>
     <message>
-        <location line="+102"/>
+        <location line="+19"/>
+        <source>Command-line Options</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+83"/>
         <source>Clear console</source>
         <translation>Bersihkan konsol</translation>
     </message>
@@ -3127,7 +3296,7 @@ Jika berkas tidak ada, buatlah dengan permisi berkas hanya-dapat-dibaca-oleh-pem
 <context>
     <name>SingleColumnAccountModel</name>
     <message>
-        <location filename="../accountmodel.cpp" line="+241"/>
+        <location filename="../accountmodel.cpp" line="+245"/>
         <location line="+4"/>
         <source>All Accounts</source>
         <translation>Salin jumlah</translation>
@@ -3744,14 +3913,19 @@ Produk ini mencakup perangkat lunak yang dikembangkan oleh OpenSSL Project untuk
         <translation>Bingkai</translation>
     </message>
     <message>
-        <location line="+22"/>
+        <location line="+31"/>
         <source>Transfers</source>
         <translation>Transaksi</translation>
     </message>
     <message>
-        <location line="+16"/>
+        <location line="+25"/>
         <source>Address Book</source>
         <translation>Salin alamat</translation>
+    </message>
+    <message>
+        <location line="+25"/>
+        <source>Donation Book</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
