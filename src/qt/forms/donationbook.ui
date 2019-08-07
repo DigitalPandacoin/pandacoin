@@ -254,8 +254,15 @@
            </item>
            <item>
             <widget class="QLabel" name="addressbook_account_address_heading">
+             <property name="font">
+              <font>
+               <pointsize>10</pointsize>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
              <property name="text">
-              <string notr="true">Account address</string>
+              <string notr="true">Account Address</string>
              </property>
             </widget>
            </item>
@@ -281,8 +288,15 @@
            </item>
            <item>
             <widget class="QLabel" name="donationbook_account_description_heading">
+             <property name="font">
+              <font>
+               <pointsize>10</pointsize>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
              <property name="text">
-              <string notr="true">Web Address</string>
+              <string notr="true">Description</string>
              </property>
             </widget>
            </item>

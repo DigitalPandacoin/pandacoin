@@ -17,7 +17,7 @@
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="tab_info">
       <attribute name="title">
@@ -43,7 +43,7 @@
        <item row="1" column="0">
         <widget class="QLabel" name="label_5">
          <property name="text">
-          <string>Client name</string>
+          <string>Client Name</string>
          </property>
         </widget>
        </item>
@@ -66,7 +66,7 @@
        <item row="2" column="0">
         <widget class="QLabel" name="label_6">
          <property name="text">
-          <string>Client version</string>
+          <string>Client Version</string>
          </property>
         </widget>
        </item>
@@ -89,7 +89,7 @@
        <item row="3" column="0">
         <widget class="QLabel" name="label_14">
          <property name="text">
-          <string>Using OpenSSL version</string>
+          <string>Using OpenSSL Version</string>
          </property>
          <property name="indent">
           <number>10</number>
@@ -115,7 +115,7 @@
        <item row="4" column="0">
         <widget class="QLabel" name="label_12">
          <property name="text">
-          <string>Build date</string>
+          <string>Build Date</string>
          </property>
         </widget>
        </item>
@@ -138,7 +138,7 @@
        <item row="5" column="0">
         <widget class="QLabel" name="label_13">
          <property name="text">
-          <string>Startup time</string>
+          <string>Startup Time</string>
          </property>
         </widget>
        </item>
@@ -174,7 +174,7 @@
        <item row="7" column="0">
         <widget class="QLabel" name="label_7">
          <property name="text">
-          <string>Number of connections</string>
+          <string>Number of Connections</string>
          </property>
         </widget>
        </item>
@@ -227,7 +227,7 @@
        <item row="10" column="0">
         <widget class="QLabel" name="label_3">
          <property name="text">
-          <string>Current number of blocks</string>
+          <string>Current Number of Blocks</string>
          </property>
         </widget>
        </item>
@@ -250,7 +250,7 @@
        <item row="11" column="0">
         <widget class="QLabel" name="label_4">
          <property name="text">
-          <string>Estimated total blocks</string>
+          <string>Estimated Total Blocks</string>
          </property>
         </widget>
        </item>
@@ -273,7 +273,7 @@
        <item row="12" column="0">
         <widget class="QLabel" name="label_2">
          <property name="text">
-          <string>Last block time</string>
+          <string>Last Block Time</string>
          </property>
         </widget>
        </item>
@@ -341,7 +341,7 @@
           </font>
          </property>
          <property name="text">
-          <string>Command-line options</string>
+          <string>Command-line Options</string>
          </property>
         </widget>
        </item>

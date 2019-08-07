@@ -18,7 +18,7 @@ if [ -e "$(which git)" ]; then
     # get a string like "v0.6.0-66-g59887e8-dirty"
     #DESC="$(git describe --dirty 2>/dev/null)"
 
-	DESC="v3.0.7.0"
+	DESC="v3.0.7.1"
 
 
     # get a string like "2012-04-10 16:27:19 +0200"
