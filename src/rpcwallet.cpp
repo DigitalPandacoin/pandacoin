@@ -1606,8 +1606,13 @@ Value gettransaction(const Array& params, bool fHelp)
         WalletTxToJSON(wtx, entry);
 
         Array details;
-        ListTransactions(pwalletMain->mapWallet[hash], "*", 0, false, details);
-        entry.push_back(Pair("details", details));
+        // ListTransactions(pwalletMain->mapWallet[hash], "*", 0, false, details);
+        // entry.push_back(Pair("details", details));
+//        ListTransactions(wtx, "*", 0, false, details);
+//        entry.push_back(Pair("details", details));
+ListTransactions(wtx, "*", 0, false, details);
+    entry.push_back(Pair("details", details));
+
     }
     else
     {
@@ -2117,7 +2122,7 @@ Value makekeypair(const Array& params, bool fHelp)
     string strPrefix = "";
     if (params.size() > 0)
         strPrefix = params[0].get_str();
- 
+
     CKey key;
     key.MakeNewKey(false);
 
