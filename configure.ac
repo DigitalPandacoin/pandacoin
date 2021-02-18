@@ -252,6 +252,12 @@ AC_ARG_ENABLE([zmq],
   [use_zmq=$enableval],
   [use_zmq=yes])
 
+AC_ARG_ENABLE([sse2],
+    [AS_HELP_STRING([--enable-sse2],
+    [enable SSE2 instructions in the scrypt library. (default is disabled)])],
+    [use_sse2=$enableval],
+    [use_sse2=no])
+
 AC_ARG_WITH([libmultiprocess],
   [AS_HELP_STRING([--with-libmultiprocess=yes|no|auto],
   [Build with libmultiprocess library. (default: auto, i.e. detect with pkg-config)])],
