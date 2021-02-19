@@ -78,6 +78,7 @@ FUZZ_SUITE_LD_COMMON = \
  $(EVENT_PTHREADS_LIBS)
 
 # test_bitcoin binary #
+# PANDACOIN todo add test/dogecoin_tests.cpp
 BITCOIN_TESTS =\
   test/arith_uint256_tests.cpp \
   test/scriptnum10.h \
