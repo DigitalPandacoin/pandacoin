@@ -19,33 +19,21 @@ int static generateMTRandom(unsigned int s, int range)
 unsigned int CalculateDogecoinNextWorkRequired(const CBlockIndex* pindexLast, int64_t nFirstBlockTime, const Consensus::Params& params)
 {
     int nHeight = pindexLast->nHeight + 1;
-    bool fNewDifficultyProtocol = (nHeight >= 145000);
-    // bool fNewDifficultyProtocol = (nHeight >= params.GetDigiShieldForkBlock());
-    const int64_t retargetTimespan = fNewDifficultyProtocol
-                             ? 60 // params.DigiShieldTargetTimespan()
-                             : params.nPowTargetTimespan;
 
     const int64_t nActualTimespan = pindexLast->GetBlockTime() - nFirstBlockTime;
     int64_t nModulatedTimespan = nActualTimespan;
     int64_t nMaxTimespan;
     int64_t nMinTimespan;
 
-    if (fNewDifficultyProtocol) //DigiShield implementation - thanks to RealSolid & WDC for this code
-    {
-        // amplitude filter - thanks to daft27 for this code
-        nModulatedTimespan = retargetTimespan + (nModulatedTimespan - retargetTimespan) / 8;
-
-        nMinTimespan = retargetTimespan - (retargetTimespan / 4);
-        nMaxTimespan = retargetTimespan + (retargetTimespan / 2);
-    } else if (nHeight > 10000) {
-        nMinTimespan = retargetTimespan / 4;
-        nMaxTimespan = retargetTimespan * 4;
-    } else if (nHeight > 5000) {
-        nMinTimespan = retargetTimespan / 8;
-        nMaxTimespan = retargetTimespan * 4;
+    // Pandaoin: we won't go above 6499.
+    // KGW retargeting will come into effect starting block 6500
+    // PoS retargeting will come into effect starting block 136114
+    if (nHeight > 5000) {
+        nMinTimespan = params.nPowTargetTimespan / 8;
+        nMaxTimespan = params.nPowTargetTimespan * 4;
     } else {
-        nMinTimespan = retargetTimespan / 16;
-        nMaxTimespan = retargetTimespan * 4;
+        nMinTimespan = params.nPowTargetTimespan / 16;
+        nMaxTimespan = params.nPowTargetTimespan * 4;
     }
 
     // Limit adjustment step
@@ -61,16 +49,16 @@ unsigned int CalculateDogecoinNextWorkRequired(const CBlockIndex* pindexLast, in
     bnNew.SetCompact(pindexLast->nBits);
     bnOld = bnNew;
     bnNew *= nModulatedTimespan;
-    bnNew /= retargetTimespan;
+    bnNew /= params.nPowTargetTimespan;
 
     if (bnNew > bnPowLimit)
         bnNew = bnPowLimit;
 
     /// debug print
-    LogPrintf("GetNextWorkRequired RETARGET\n");
-    LogPrintf("params.nPowTargetTimespan = %d    nActualTimespan = %d\n", params.nPowTargetTimespan, nActualTimespan);
-    LogPrintf("Before: %08x  %s\n", pindexLast->nBits, bnOld.ToString());
-    LogPrintf("After:  %08x  %s\n", bnNew.GetCompact(), bnNew.ToString());
+    //LogPrintf("GetNextWorkRequired RETARGET\n");
+    //LogPrintf("params.nPowTargetTimespan = %d    nActualTimespan = %d\n", params.nPowTargetTimespan, nActualTimespan);
+    //LogPrintf("Before: %08x  %s\n", pindexLast->nBits, bnOld.ToString());
+    //LogPrintf("After:  %08x  %s\n", bnNew.GetCompact(), bnNew.ToString());
 
     return bnNew.GetCompact();
 }
