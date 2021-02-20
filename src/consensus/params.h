@@ -23,6 +23,7 @@ enum DeploymentPos
  */
 struct Params {
     uint256 hashGenesisBlock;
+    int nSubsidyHalvingInterval;
     /* Block hash that is excepted from BIP16 enforcement */
     uint256 BIP16Exception;
     /** Block height and hash at which BIP34 becomes active */
@@ -49,6 +50,7 @@ struct Params {
     bool fPowAllowMinDifficultyBlocks;
     bool fPowNoRetargeting;
     int64_t nPowTargetSpacing;
+    int64_t nPowTargetTimespan;
     uint256 nMinimumChainWork;
     uint256 defaultAssumeValid;
 

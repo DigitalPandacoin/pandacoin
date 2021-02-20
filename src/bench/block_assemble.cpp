@@ -27,7 +27,7 @@ static void AssembleBlock(benchmark::State& state)
     const CScript SCRIPT_PUB{CScript(OP_0) << std::vector<unsigned char>{witness_program.begin(), witness_program.end()}};
 
     // Collect some loose transactions that spend the coinbases of our mined blocks
-    constexpr size_t NUM_BLOCKS{200};
+    constexpr size_t NUM_BLOCKS{400};
     std::vector<CTransactionRef> txs;
     txs.reserve(NUM_BLOCKS - ::Params().GetConsensus().nCoinbaseMaturity + 1);
     for (size_t b{0}; b < NUM_BLOCKS; ++b) {

@@ -183,6 +183,9 @@ public:
     uint32_t nBits{0};
     uint32_t nNonce{0};
 
+    //! Dogecoin: Keep the Scrypt hash as well as SHA256
+    uint256 hashBlockPoW{};
+
     //! (memory only) Sequential id assigned to distinguish order in which blocks are received.
     int32_t nSequenceId{0};
 
@@ -258,7 +261,8 @@ public:
           hashMerkleRoot{block.hashMerkleRoot},
           nTime{block.nTime},
           nBits{block.nBits},
-          nNonce{block.nNonce}
+          nNonce{block.nNonce},
+          hashBlockPoW{block.GetPoWHash()}
     {
     }
 
@@ -307,6 +311,11 @@ public:
      * Does not imply the transactions are still stored on disk. (IsBlockPruned might return true)
      */
     bool HaveTxsDownloaded() const { return nChainTx != 0; }
+
+    uint256 GetBlockPoWHash() const
+    {
+        return GetBlockHeader().GetPoWHash();
+    }
 
     int64_t GetBlockTime() const
     {
@@ -455,6 +464,7 @@ public:
         READWRITE(obj.nTime);
         READWRITE(obj.nBits);
         READWRITE(obj.nNonce);
+        READWRITE(obj.hashBlockPoW);
     }
 
     uint256 GetBlockHash() const
