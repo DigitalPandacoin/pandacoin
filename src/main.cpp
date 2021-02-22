@@ -1284,9 +1284,9 @@ bool AcceptToMemoryPoolWorker(CTxMemPool& pool, CValidationState& state, const C
         return state.DoS(0, false, REJECT_NONSTANDARD, "non-final");
 
     // For the same reasons as in the case with non-final transactions
-    if (tx.nTime > FutureDrift(GetAdjustedTime())) {
-        return state.DoS(0, false, REJECT_NONSTANDARD, "time-too-new");
-    }
+    //if (tx.nTime > FutureDrift(GetAdjustedTime())) {
+    //    return state.DoS(0, false, REJECT_NONSTANDARD, "time-too-new");
+    //}
 
     // is it already in the memory pool?
     if (pool.exists(hash))
@@ -2041,9 +2041,9 @@ bool CheckTxInputs(const CTransaction& tx, CValidationState& state, const CCoins
 
 
             // Check transaction timestamp
-            if (coins->nTime > tx.nTime)
-                    return state.DoS(100, error("CheckInputs() : transaction timestamp earlier than input transaction"),
-                                REJECT_INVALID, "bad-txns-time-earlier-than-input");
+            //if (coins->nTime > tx.nTime)
+            //        return state.DoS(100, error("CheckInputs() : transaction timestamp earlier than input transaction"),
+            //                    REJECT_INVALID, "bad-txns-time-earlier-than-input");
 
             // Check for negative or overflow input values
             nValueIn += coins->vout[prevout.n].nValue;
@@ -2444,7 +2444,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
                   error("ConnectBlock(): tried to stake at depth %d", pindex->nHeight - coins->nHeight),
                     REJECT_INVALID, "bad-cs-premature");
 
-         if (!CheckStakeKernelHash(pindex->pprev, block.nBits, coins, prevout, block.vtx[1].nTime))
+         if (!CheckStakeKernelHash(pindex->pprev, block.nBits, coins, prevout, block.nTime))
               return state.DoS(100, error("ConnectBlock(): proof-of-stake hash doesn't match nBits"),
                                  REJECT_INVALID, "bad-cs-proofhash");
     }
@@ -3579,11 +3579,11 @@ bool CheckBlock(const CBlock& block, CValidationState& state, const Consensus::P
             return state.DoS(100, false, REJECT_INVALID, "bad-cb-multiple", false, "more than one coinbase");
 
     // Check coinbase timestamp
-    if (block.GetBlockTime() > FutureDrift(block.vtx[0].nTime))
-            return state.DoS(50, false, REJECT_INVALID, "bad-cb-time", false, "coinbase timestamp is too early");
+    //if (block.GetBlockTime() > FutureDrift(block.vtx[0].nTime))
+    //        return state.DoS(50, false, REJECT_INVALID, "bad-cb-time", false, "coinbase timestamp is too early");
 
     // Check coinstake timestamp
-    if (block.IsProofOfStake() && !CheckCoinStakeTimestamp(block.GetBlockTime(), block.vtx[1].nTime))
+    if (block.IsProofOfStake() && !CheckCoinStakeTimestamp(block.GetBlockTime(), block.nTime))
             return state.DoS(50, false, REJECT_INVALID, "bad-cs-time", false, "coinstake timestamp violation");
 
     if (block.IsProofOfStake()) {
@@ -3611,8 +3611,8 @@ bool CheckBlock(const CBlock& block, CValidationState& state, const Consensus::P
                                  strprintf("Transaction check failed (tx hash %s) %s", tx.GetHash().ToString(), state.GetDebugMessage()));
 
         // check transaction timestamp
-        if (block.GetBlockTime() < (int64_t)tx.nTime)
-           return state.DoS(100, false, REJECT_INVALID, "bad-tx-time", false, "block timestamp earlier than transaction timestamp");
+        //if (block.GetBlockTime() < (int64_t)tx.nTime)
+         //  return state.DoS(100, false, REJECT_INVALID, "bad-tx-time", false, "block timestamp earlier than transaction timestamp");
     }
 
     unsigned int nSigOps = 0;
@@ -3727,8 +3727,8 @@ bool CheckStake(CBlock* pblock, CWallet& wallet, const CChainParams& chainparams
 
     CValidationState state;
     // verify hash target and signature of coinstake tx
-    if (!CheckProofOfStake(mapBlockIndex[pblock->hashPrevBlock], pblock->vtx[1], pblock->nBits, state))
-        return error("CheckStake() : proof-of-stake checking failed");
+    //if (!CheckProofOfStake(mapBlockIndex[pblock->hashPrevBlock], pblock->vtx[1], pblock->nTime, pblock->nBits, state))
+    //    return error("CheckStake() : proof-of-stake checking failed");
 
     //// debug print
     LogPrintf("%s\n", pblock->ToString());
@@ -3794,8 +3794,8 @@ bool SignBlock(CBlock& block, CWallet& wallet, int64_t& nFees)
 
                 // we have to make sure that we have no future timestamps in
                 // our transactions set
-                for (vector<CTransaction>::iterator it = block.vtx.begin(); it != block.vtx.end();)
-                    if (it->nTime > block.nTime) { it = block.vtx.erase(it); } else { ++it; }
+                //for (vector<CTransaction>::iterator it = block.vtx.begin(); it != block.vtx.end();)
+                //    if (it->nTime > block.nTime) { it = block.vtx.erase(it); } else { ++it; }
 
                 block.vtx.insert(block.vtx.begin() + 1, txCoinStake);
 

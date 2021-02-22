@@ -88,10 +88,12 @@ CAmount GetProofOfWorkReward()
 
 int64_t GetMaxTransactionTime(CBlock* pblock)
     {
-        int64_t maxTransactionTime = 0;
-        for (std::vector<CTransaction>::const_iterator it(pblock->vtx.begin()); it != pblock->vtx.end(); ++it)
-                maxTransactionTime = std::max(maxTransactionTime, (int64_t)it->nTime);
-        return maxTransactionTime;
+        // Unfortunately our transactions are not compatible with this
+        return 0;//nTime;
+        //int64_t maxTransactionTime = 0;
+        //for (std::vector<CTransaction>::const_iterator it(pblock->vtx.begin()); it != pblock->vtx.end(); ++it)
+        //        maxTransactionTime = std::max(maxTransactionTime, (int64_t)it->nTime);
+        //return maxTransactionTime;
     }
 
 BlockAssembler::BlockAssembler(const CChainParams& _chainparams)
@@ -526,8 +528,8 @@ void BlockAssembler::addPriorityTxs(int64_t nBlockTime, bool fProofOfStake)
             continue;
         }
 
-        if (fProofOfStake && nBlockTime < (int64_t)iter->GetTx().nTime)
-            continue;
+        //if (fProofOfStake && nBlockTime < (int64_t)iter->GetTx().nTime)
+        //    continue;
 
         // If tx is dependent on other mempool txs which haven't yet been included
         // then put it in the waitSet

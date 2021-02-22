@@ -101,7 +101,7 @@ public:
         vout = tx.vout;
         nHeight = nHeightIn;
         nVersion = tx.nVersion;
-        nTime = tx.nTime;
+        //nTime = tx.nTime;
         ClearUnspendable();
     }
 
@@ -156,7 +156,6 @@ public:
         		a.fCoinStake == b.fCoinStake &&
                 a.nHeight == b.nHeight &&
                 a.nVersion == b.nVersion &&
-				a.nTime == b.nTime &&
                 a.vout == b.vout;
     }
     friend bool operator!=(const CCoins &a, const CCoins &b) {

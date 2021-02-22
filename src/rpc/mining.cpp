@@ -901,7 +901,7 @@ UniValue checkkernel(const UniValue& params, bool fHelp)
             throw JSONRPCError(RPC_INTERNAL_ERROR, "Couldn't create new block");
 
         CBlock *pblock = &pblocktemplate->block;
-        pblock->nTime = pblock->vtx[0].nTime = nTime;
+        // pblock->nTime = pblock->vtx[0].nTime = nTime;
 
         CDataStream ss(SER_DISK, PROTOCOL_VERSION);
         ss << *pblock;

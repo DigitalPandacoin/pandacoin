@@ -9,6 +9,8 @@
 #include "primitives/transaction.h"
 #include "serialize.h"
 #include "uint256.h"
+#include "utilstrencodings.h"
+#include "hash.h"
 
 /** Nodes collect new transactions into a block, hash them into a hash tree,
  * and scan through nonce values to make the block's hash satisfy proof-of-work
@@ -102,14 +104,18 @@ public:
     inline void SerializationOp(Stream& s, Operation ser_action, int nType, int nVersion) {
         READWRITE(*(CBlockHeader*)this);
         READWRITE(vtx);
-        READWRITE(vchBlockSig);
+        // BlockSig only in block version 3
+        // due to the transition from PoW to PoS
+        if(nVersion >= 3)
+            READWRITE(vchBlockSig);
     }
 
     void SetNull()
     {
         CBlockHeader::SetNull();
         vtx.clear();
-        vchBlockSig.clear();
+        if(nVersion >= 3)
+            vchBlockSig.clear();
         fChecked = false;
     }
 
