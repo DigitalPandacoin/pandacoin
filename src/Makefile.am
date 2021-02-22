@@ -110,6 +110,8 @@ BITCOIN_CORE_H = \
   dstencode.h \
   hash.h \
   cuckoocache.h \
+  dogecoin.cpp \
+  dogecoin.h \
   httprpc.h \
   httpserver.h \
   indirectmap.h \
