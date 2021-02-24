@@ -87,16 +87,17 @@ bool CheckStakeKernelHash(const CBlockIndex* pindexPrev, unsigned int nBits, con
     // Calculate hash
     CHashWriter ss(SER_GETHASH, 0);
     ss << nStakeModifier;
-    ss << txPrev->nTime << prevout.hash << prevout.n << nTimeTx;
+    // ss << txPrev->nTime << prevout.hash << prevout.n << nTimeTx;
 
     uint256 hashProofOfStake = ss.GetHash();
 
     if (fPrintProofOfStake)
     {
-        LogPrintf("CheckStakeKernelHash() : nStakeModifier=%s, txPrev.nTime=%u, txPrev.vout.hash=%s, txPrev.vout.n=%u, nTime=%u, hashProof=%s\n",
+        /*LogPrintf("CheckStakeKernelHash() : nStakeModifier=%s, txPrev.nTime=%u, txPrev.vout.hash=%s, txPrev.vout.n=%u, nTime=%u, hashProof=%s\n",
             nStakeModifier.GetHex().c_str(),
             txPrev->nTime, prevout.hash.ToString(), prevout.n, nTimeTx,
             hashProofOfStake.ToString());
+            */
     }
 
     // Now check if proof-of-stake hash meets target protocol
@@ -105,10 +106,11 @@ bool CheckStakeKernelHash(const CBlockIndex* pindexPrev, unsigned int nBits, con
 
     if (fDebug && !fPrintProofOfStake)
     {
-        LogPrintf("CheckStakeKernelHash() : nStakeModifier=%s, txPrev.nTime=%u, txPrev.vout.hash=%s, txPrev.vout.n=%u, nTime=%u, hashProof=%s\n",
+        /*LogPrintf("CheckStakeKernelHash() : nStakeModifier=%s, txPrev.nTime=%u, txPrev.vout.hash=%s, txPrev.vout.n=%u, nTime=%u, hashProof=%s\n",
             nStakeModifier.GetHex().c_str(),
             txPrev->nTime, prevout.hash.ToString(), prevout.n, nTimeTx,
             hashProofOfStake.ToString());
+            */
     }
 
     return true;

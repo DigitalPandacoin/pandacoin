@@ -93,7 +93,7 @@ public:
     int nVersion;
 
     //! time of the CTransaction
-    unsigned int nTime;
+    // unsigned int nTime;
 
     void FromTx(const CTransaction &tx, int nHeightIn) {
         fCoinBase = tx.IsCoinBase();
@@ -101,7 +101,7 @@ public:
         vout = tx.vout;
         nHeight = nHeightIn;
         nVersion = tx.nVersion;
-        //nTime = tx.nTime;
+        // nTime = tx.nTime;
         ClearUnspendable();
     }
 
@@ -116,11 +116,11 @@ public:
         std::vector<CTxOut>().swap(vout);
         nHeight = 0;
         nVersion = 0;
-        nTime = 0;
+        // nTime = 0;
     }
 
     //! empty constructor
-    CCoins() : fCoinBase(false), fCoinStake(false), vout(0), nHeight(0), nVersion(0), nTime(0) { }
+    CCoins() : fCoinBase(false), fCoinStake(false), vout(0), nHeight(0), nVersion(0) { }
 
     //!remove spent outputs at the end of vout
     void Cleanup() {
@@ -144,7 +144,7 @@ public:
         to.vout.swap(vout);
         std::swap(to.nHeight, nHeight);
         std::swap(to.nVersion, nVersion);
-        std::swap(to.nTime, nTime);
+        // std::swap(to.nTime, nTime);
     }
 
     //! equality test
@@ -193,7 +193,7 @@ public:
         // height
         nSize += ::GetSerializeSize(VARINT(nHeight), nType, nVersion);
         // time
-        nSize += ::GetSerializeSize(nTime, nType, nVersion);
+        // nSize += ::GetSerializeSize(nTime, nType, nVersion);
         return nSize;
     }
 
@@ -225,7 +225,7 @@ public:
         // coinbase height
         ::Serialize(s, VARINT(nHeight), nType, nVersion);
         // time
-        ::Serialize(s, nTime, nType, nVersion);
+        //::Serialize(s, nTime, nType, nVersion);
     }
 
     template<typename Stream>
@@ -261,7 +261,7 @@ public:
         // coinbase height
         ::Unserialize(s, VARINT(nHeight), nType, nVersion);
         // time
-        ::Unserialize(s, nTime, nType, nVersion);
+        // ::Unserialize(s, nTime, nType, nVersion);
         Cleanup();
     }
 

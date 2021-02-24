@@ -199,6 +199,7 @@ bool CBlockTreeDB::LoadBlockIndexGuts(boost::function<CBlockIndex*(const uint256
                 pindexNew->nStatus        = diskindex.nStatus;
                 pindexNew->nStakeModifier = diskindex.nStakeModifier;
                 pindexNew->nTx            = diskindex.nTx;
+                pindexNew->hashBlockPoW   = diskindex.hashBlockPoW;
 
                 // Litecoin: Disable PoW Sanity check while loading block index from disk.
                                 // We use the sha256 hash for the block index for performance reasons, which is recorded for later use.

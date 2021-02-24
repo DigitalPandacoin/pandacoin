@@ -1127,7 +1127,8 @@ public:
         // Serialize nVersion
         ::Serialize(s, txTo.nVersion, nType, nVersion);
         // Serialize nTime
-        ::Serialize(s, nType, nVersion);
+        // todo: check if / when this is needed
+        // ::Serialize(s, txTo.nTime, nType, nVersion);
         // Serialize vin
         unsigned int nInputs = fAnyoneCanPay ? 1 : txTo.vin.size();
         ::WriteCompactSize(s, nInputs);

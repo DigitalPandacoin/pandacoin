@@ -1986,7 +1986,7 @@ void UpdateCoins(const CTransaction& tx, CCoinsViewCache& inputs, CTxUndo &txund
                 undo.fCoinBase = coins->fCoinBase;
                 undo.fCoinStake = coins->fCoinStake;
                 undo.nVersion = coins->nVersion;
-                undo.nTime = coins->nTime;
+                // undo.nTime = coins->nTime;
             }
         }
     }
@@ -2230,7 +2230,7 @@ static bool ApplyTxInUndo(const CTxInUndo& undo, CCoinsViewCache& view, const CO
         coins->fCoinStake = undo.fCoinStake;
         coins->nHeight = undo.nHeight;
         coins->nVersion = undo.nVersion;
-        coins->nTime = undo.nTime;
+        //coins->nTime = undo.nTime;
     } else {
         if (coins->IsPruned())
             fClean = fClean && error("%s: undo data adding output to missing transaction", __func__);
@@ -3753,7 +3753,7 @@ bool CheckStake(CBlock* pblock, CWallet& wallet, const CChainParams& chainparams
 
     return true;
 }
-
+/*
 // novacoin: attempt to generate suitable proof-of-stake
 bool SignBlock(CBlock& block, CWallet& wallet, int64_t& nFees)
 {
@@ -3811,7 +3811,7 @@ bool SignBlock(CBlock& block, CWallet& wallet, int64_t& nFees)
 
     return false;
 }
-
+*/
 static bool AcceptBlockHeader(const CBlockHeader& block, CValidationState& state, const CChainParams& chainparams, CBlockIndex** ppindex=NULL, bool fProofOfStake=true)
 {
     AssertLockHeld(cs_main);
@@ -3935,6 +3935,7 @@ static bool AcceptBlock(const CBlock& block, CValidationState& state, const CCha
     return true;
 }
 
+/* this is unused?
 static bool IsSuperMajority(int minVersion, const CBlockIndex* pstart, unsigned nRequired, const Consensus::Params& consensusParams)
 {
     unsigned int nFound = 0;
@@ -3946,6 +3947,7 @@ static bool IsSuperMajority(int minVersion, const CBlockIndex* pstart, unsigned 
     }
     return (nFound >= nRequired);
 }
+*/
 
 bool static IsCanonicalBlockSignature(const CBlock* pblock, bool checkLowS)
 {
@@ -4586,6 +4588,7 @@ bool LoadExternalBlockFile(const CChainParams& chainparams, FILE* fileIn, CDiskB
                 blkdat.SetPos(nBlockPos);
                 CBlock block;
                 blkdat >> block;
+                std::cout << block.ToString() << std::endl;
                 nRewind = blkdat.GetPos();
 
                 // detect out of order blocks, and store them for later
@@ -6250,7 +6253,16 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
     else if (strCommand == NetMsgType::BLOCK && !fImporting && !fReindex) // Ignore blocks received while importing
     {
         CBlock block;
-        vRecv >> block;
+        // Due to the transition from PoW to PoS,
+        // PoW blocks are missing the s
+        try {
+            vRecv >> block;
+        }
+        catch(std::ios_base::failure& e) {
+            printf("Block didn't parse in v3 format, trying old format...\n");
+            block.nVersion = 1;
+            vRecv >> block;
+        }
 
         LogPrint("net", "received block %s peer=%d\n", block.GetHash().ToString(), pfrom->id);
 

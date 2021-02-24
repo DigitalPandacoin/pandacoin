@@ -993,6 +993,10 @@ bool AppInit2(Config& config, boost::thread_group& threadGroup, CScheduler& sche
     fAcceptDatacarrier = GetBoolArg("-datacarrier", DEFAULT_ACCEPT_DATACARRIER);
     nMaxDatacarrierBytes = GetArg("-datacarriersize", nMaxDatacarrierBytes);
 
+    // This is to indicate that the block was signed from a PoS wallet
+    const char* pszP2SH = "/PND2/";
+    COINBASE_FLAGS << std::vector<unsigned char>(pszP2SH, pszP2SH+strlen(pszP2SH));
+
     fBIP37 = GetArg("-bip37", false);
 
     // Option to startup with mocktime set (used for regression testing):

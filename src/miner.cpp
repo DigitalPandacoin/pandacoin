@@ -89,7 +89,9 @@ CAmount GetProofOfWorkReward()
 int64_t GetMaxTransactionTime(CBlock* pblock)
     {
         // Unfortunately our transactions are not compatible with this
-        return 0;//nTime;
+        // FIXME: THIS SHOULD RETURN nTime, not 0
+        // UNFORTUNATELY nTime IS NOT IN SCOPE
+        return 0;
         //int64_t maxTransactionTime = 0;
         //for (std::vector<CTransaction>::const_iterator it(pblock->vtx.begin()); it != pblock->vtx.end(); ++it)
         //        maxTransactionTime = std::max(maxTransactionTime, (int64_t)it->nTime);
@@ -159,7 +161,8 @@ CBlockTemplate* BlockAssembler::CreateNewBlock(const CScript& scriptPubKeyIn, in
 
     // Create coinbase transaction.
     CMutableTransaction coinbaseTx;
-    coinbaseTx.nTime = pblock->nTime;
+    // todo: maybe add this at pos
+    // coinbaseTx.nTime = pblock->nTime;
     coinbaseTx.vin.resize(1);
     coinbaseTx.vin[0].prevout.SetNull();
     coinbaseTx.vout.resize(1);
@@ -636,7 +639,7 @@ void ThreadStakeMiner(CWallet *pwallet, const CChainParams& chainparams)
 
             CBlock *pblock = &pblocktemplate->block;
             // Trying to sign a block
-            if (SignBlock(*pblock, *pwallet, nFees))
+            /*if (SignBlock(*pblock, *pwallet, nFees))
             {
                 // increase priority
                 SetThreadPriority(THREAD_PRIORITY_ABOVE_NORMAL);
@@ -645,7 +648,7 @@ void ThreadStakeMiner(CWallet *pwallet, const CChainParams& chainparams)
                 // return back to low priority
                 SetThreadPriority(THREAD_PRIORITY_LOWEST);
                 MilliSleep(500);
-            }
+            }*/
         }
         MilliSleep(nMinerSleep);
     }

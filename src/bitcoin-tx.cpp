@@ -200,6 +200,7 @@ static void MutateTxLocktime(CMutableTransaction& tx, const string& cmdVal)
     tx.nLockTime = (unsigned int) newLocktime;
 }
 
+/*
 static void MutateTxTime(CMutableTransaction& tx, const string& cmdVal)
 {
     int64_t newTime = atoi64(cmdVal);
@@ -208,6 +209,7 @@ static void MutateTxTime(CMutableTransaction& tx, const string& cmdVal)
 
     tx.nTime = (unsigned int) newTime;
 }
+*/
 
 static void MutateTxAddInput(CMutableTransaction& tx, const string& strInput)
 {
@@ -560,8 +562,8 @@ static void MutateTx(CMutableTransaction& tx, const string& command,
         MutateTxVersion(tx, commandVal);
     else if (command == "locktime")
         MutateTxLocktime(tx, commandVal);
-    else if (command == "time")
-        MutateTxTime(tx, commandVal);
+    //else if (command == "time")
+    //    MutateTxTime(tx, commandVal);
     else if (command == "delin")
         MutateTxDelInput(tx, commandVal);
     else if (command == "in")

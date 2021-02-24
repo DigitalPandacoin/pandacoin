@@ -96,8 +96,8 @@ public:
         */
 
         consensus.nProtocolV1RetargetingFixedTime = 1395631999;
-        consensus.nProtocolV2Time = 1407053625;
-        consensus.nProtocolV3Time = 1444028400;
+        consensus.nProtocolV2Time = 14070536250;
+        consensus.nProtocolV3Time = 14440284000;
         consensus.nLastPOWBlock = 136113;
         consensus.nStakeTimestampMask = 0xf; // 15
         consensus.nCoinbaseMaturity = 500;
@@ -120,7 +120,6 @@ public:
 
         genesis = CreateGenesisBlock(1392488611, 1541569, 0x1e0ffff0, 1, 88 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        std::cout << genesis.ToString() << std::endl;
         assert(consensus.hashGenesisBlock == uint256S("0x68fad98bd07315eef904fa3bf4344a38cb4f05549f659272bad7b4e88961d4c5"));
         assert(genesis.hashMerkleRoot == uint256S("0xfbc9541b2da3a32b93a2bc03feafb5b094abc7a080a37838127765df41dc65fa"));
 
@@ -147,10 +146,10 @@ public:
         checkpointData = (CCheckpointData) {
                     boost::assign::map_list_of
                     (0, uint256S("0x68fad98bd07315eef904fa3bf4344a38cb4f05549f659272bad7b4e88961d4c5")),  // hardfork
-                    1444028528, // * UNIX timestamp of last checkpoint block
-                    2774767,    // * total number of transactions between genesis and last checkpoint
+                    1392488611, // * UNIX timestamp of last checkpoint block
+                    1,    // * total number of transactions between genesis and last checkpoint
                                 //   (the tx=... number in the SetBestChain debug.log lines)
-                    3500.0      // * estimated number of transactions per day after checkpoint
+                    1.0      // * estimated number of transactions per day after checkpoint
         };
     }
 };
