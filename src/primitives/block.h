@@ -111,7 +111,10 @@ public:
     inline void SerializationOp(Stream& s, Operation ser_action) {
         READWRITEAS(CBlockHeader, *this);
         READWRITE(vtx);
-        READWRITE(vchBlockSig);
+        // BlockSig only in block version 3
+        // due to the transition from PoW to PoS
+        if(nVersion >= 3)
+            READWRITE(vchBlockSig);
     }
 
     void SetNull()
@@ -119,7 +122,8 @@ public:
         CBlockHeader::SetNull();
         vtx.clear();
         fChecked = false;
-        vchBlockSig.clear();
+        if(nVersion >= 3)
+            vchBlockSig.clear();
     }
 
     CBlockHeader GetBlockHeader() const
