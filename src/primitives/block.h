@@ -136,7 +136,7 @@ public:
     // peercoin: two types of block: proof-of-work or proof-of-stake
     bool IsProofOfStake() const
     {
-        return false;// (vtx.size() > 1 && vtx[1]->IsCoinStake());
+        return (vtx.size() > 1 && vtx[1]->IsCoinStake());
     }
 
     bool IsProofOfWork() const
@@ -144,19 +144,17 @@ public:
         return !IsProofOfStake();
     }
 
-    /*std::pair<COutPoint, unsigned int> GetProofOfStake() const
+    std::pair<COutPoint, unsigned int> GetProofOfStake() const
     {
-        //return IsProofOfStake() ? std::make_pair(vtx[1]->vin[0].prevout, vtx[1]->nTime) : std::make_pair(COutPoint(), (unsigned int)0);
-    }*/
+        return IsProofOfStake() ? std::make_pair(vtx[1]->vin[0].prevout, vtx[1]->nTime) : std::make_pair(COutPoint(), (unsigned int)0);
+    }
 
     // peercoin: get max transaction timestamp
     int64_t GetMaxTransactionTime() const
     {
         int64_t maxTransactionTime = 0;
-        /*
         for (const auto& tx : vtx)
             maxTransactionTime = std::max(maxTransactionTime, (int64_t)tx->nTime);
-            */
         return maxTransactionTime;
     }
 

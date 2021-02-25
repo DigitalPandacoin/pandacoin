@@ -180,8 +180,8 @@ bool Consensus::CheckTxInputs(const CTransaction& tx, TxValidationState& state, 
         }
 
         // peercoin: check transaction timestamp
-        //if (coin.nTime > tx.nTime)
-        //    return state.Invalid(TxValidationResult::TX_CONSENSUS, "bad-txns-spent-too-early", strprintf("%s : transaction timestamp earlier than input transaction", __func__));
+        if (coin.nTime > tx.nTime)
+            return state.Invalid(TxValidationResult::TX_CONSENSUS, "bad-txns-spent-too-early", strprintf("%s : transaction timestamp earlier than input transaction", __func__));
 
         // Check for negative or overflow input values
         nValueIn += coin.out.nValue;
@@ -198,8 +198,8 @@ bool Consensus::CheckTxInputs(const CTransaction& tx, TxValidationState& state, 
             return state.Invalid(TxValidationResult::TX_CONSENSUS, "unable to get coin age for coinstake");
         CAmount nStakeReward = tx.GetValueOut() - nValueIn;
         CAmount nCoinstakeCost = (GetMinFee(tx) < PERKB_TX_FEE) ? 0 : (GetMinFee(tx) - PERKB_TX_FEE);
-        //if (nMoneySupply && nStakeReward > GetProofOfStakeReward(nCoinAge, tx.nTime, nMoneySupply) - nCoinstakeCost)
-        //    return state.Invalid(TxValidationResult::TX_CONSENSUS, "bad-txns-coinstake-too-large");
+        if (nMoneySupply && nStakeReward > GetProofOfStakeReward(nCoinAge, tx.nTime, nMoneySupply) - nCoinstakeCost)
+            return state.Invalid(TxValidationResult::TX_CONSENSUS, "bad-txns-coinstake-too-large");
     }
     else
     {
@@ -224,7 +224,7 @@ bool Consensus::CheckTxInputs(const CTransaction& tx, TxValidationState& state, 
 CAmount GetMinFee(const CTransaction& tx)
 {
     size_t nBytes = ::GetSerializeSize(tx, SER_NETWORK, PROTOCOL_VERSION);
-    return 1000;//GetMinFee(nBytes, tx.nTime);
+    return GetMinFee(nBytes, tx.nTime);
 }
 
 CAmount GetMinFee(size_t nBytes, uint32_t nTime)

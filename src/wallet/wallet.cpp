@@ -1451,7 +1451,7 @@ int64_t CWalletTx::GetTxTime() const
 //    int64_t n = nTimeSmart;
 //    return n ? n : nTimeReceived;
     // peercoin: we still have the timestamp, so use it to avoid confusion
-    return 1;//tx->nTime;
+    return tx->nTime;
 }
 
 // Helper for producing a max-sized low-S low-R signature (eg 71 bytes)
@@ -2185,8 +2185,8 @@ void CWallet::AvailableCoins(interfaces::Chain::Lock& locked_chain, std::vector<
             continue;
         }
 
-        //if (nSpendTime > 0 && wtx.tx->nTime > nSpendTime)
-        //    continue;  // peercoin: timestamp must not exceed spend time
+        if (nSpendTime > 0 && wtx.tx->nTime > nSpendTime)
+            continue;  // peercoin: timestamp must not exceed spend time
 
         if (wtx.IsImmatureCoinBase())
             continue;
@@ -2809,7 +2809,6 @@ OutputType CWallet::TransactionChangeType(OutputType change_type, const std::vec
 bool CWallet::CreateTransaction(interfaces::Chain::Lock& locked_chain, const std::vector<CRecipient>& vecSend, CTransactionRef& tx, CAmount& nFeeRet,
                          int& nChangePosInOut, std::string& strFailReason, const CCoinControl& coin_control, bool sign)
 {
-    /*
     CAmount nValue = 0;
     const OutputType change_type = TransactionChangeType(coin_control.m_change_type ? *coin_control.m_change_type : m_default_change_type, vecSend);
     ReserveDestination reservedest(this, change_type);
@@ -3134,8 +3133,6 @@ bool CWallet::CreateTransaction(interfaces::Chain::Lock& locked_chain, const std
     reservedest.KeepDestination();
 
     LogPrintf("Fee Calculation: Fee:%d Bytes:%u Needed:%d\n", nFeeRet, nBytes, nFeeNeeded);
-    return true;
-     */
     return true;
 }
 
@@ -4360,7 +4357,6 @@ void CWallet::ConnectScriptPubKeyManNotifiers()
 typedef std::vector<unsigned char> valtype;
 bool CWallet::CreateCoinStake(const CWallet* pwallet, unsigned int nBits, int64_t nSearchInterval, CMutableTransaction& txNew)
 {
-    /*
     // The following split & combine thresholds are important to security
     // Should not be adjusted if you don't understand the consequences
     static unsigned int nStakeSplitAge = (60 * 60 * 24 * 90);
@@ -4587,7 +4583,5 @@ bool CWallet::CreateCoinStake(const CWallet* pwallet, unsigned int nBits, int64_
     }
 
     // Successfully generated coinstake
-    return true;
-     */
     return true;
 }

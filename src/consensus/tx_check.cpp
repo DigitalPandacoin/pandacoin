@@ -35,10 +35,9 @@ bool CheckTransaction(const CTransaction& tx, TxValidationState& state)
         if (!MoneyRange(nValueOut))
             return state.Invalid(TxValidationResult::TX_CONSENSUS, "bad-txns-txouttotal-toolarge");
         // peercoin: enforce minimum output amount
-        /*if ((!txout.IsEmpty()) && txout.nValue < MIN_TXOUT_AMOUNT &&
+        if ((!txout.IsEmpty()) && txout.nValue < MIN_TXOUT_AMOUNT &&
             !(IsZeroAllowed(tx.nTime) && (txout.nValue == 0)))
             return state.Invalid(TxValidationResult::TX_CONSENSUS, "bad-txns-txoutvalue-belowminimum");
-            */
     }
 
     // Check for duplicate inputs (see CVE-2018-17144)

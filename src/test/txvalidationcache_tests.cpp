@@ -222,6 +222,7 @@ BOOST_FIXTURE_TEST_CASE(checkinputs_test, TestChain100Setup)
     // enabled yet), even though there's no cache entry.
     CBlock block;
 
+    spend_tx.nTime = block.nTime;
     block = CreateAndProcessBlock({spend_tx}, p2pk_scriptPubKey);
     LOCK(cs_main);
     BOOST_CHECK(::ChainActive().Tip()->GetBlockHash() == block.GetHash());
