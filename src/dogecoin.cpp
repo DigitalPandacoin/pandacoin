@@ -16,7 +16,7 @@ int static generateMTRandom(unsigned int s, int range)
     boost::uniform_int<> dist(1, range);
     return dist(gen);
 }
-/*
+
 unsigned int CalculateDogecoinNextWorkRequired(const CBlockIndex* pindexLast, int64_t nFirstBlockTime, const Consensus::Params& params)
 {
     int nHeight = pindexLast->nHeight + 1;
@@ -63,7 +63,6 @@ unsigned int CalculateDogecoinNextWorkRequired(const CBlockIndex* pindexLast, in
 
     return bnNew.GetCompact();
 }
-*/
 
 CAmount GetDogecoinBlockSubsidy(int nHeight, const Consensus::Params& consensusParams, uint256 prevHash)
 {
@@ -74,7 +73,7 @@ CAmount GetDogecoinBlockSubsidy(int nHeight, const Consensus::Params& consensusP
         // Old-style rewards derived from the previous block hash
         const std::string cseed_str = prevHash.ToString().substr(7, 7);
         const char* cseed = cseed_str.c_str();
-        char* endp = NULL;
+        char* endp = nullptr;
         long seed = strtol(cseed, &endp, 16);
         CAmount maxReward = (1000000 >> halvings) - 1;
         int rand = generateMTRandom(seed, maxReward);

@@ -3155,11 +3155,12 @@ bool CheckBlock(const CBlock& block, BlockValidationState& state, const Consensu
     CAmount nCoinbaseCost = 0;
     if (block.IsProofOfWork())
         nCoinbaseCost = (GetMinFee(*block.vtx[0]) < PERKB_TX_FEE)? 0 : (GetMinFee(*block.vtx[0]) - PERKB_TX_FEE);
-    if (block.vtx[0]->GetValueOut() > (block.IsProofOfWork()? (GetProofOfWorkReward(block.nBits) - nCoinbaseCost) : 0))
+    //CAmount blockReward = nFees + GetDogecoinBlockSubsidy(pindex->nHeight, chainparams.GetConsensus(), hashPrevBlock);
+    /*if (block.vtx[0]->GetValueOut() > (block.IsProofOfWork()? (GetProofOfWorkReward(block.nBits) - nCoinbaseCost) : 0))
         return state.Invalid(BlockValidationResult::BLOCK_CONSENSUS, "bad-cb-amount",
                 strprintf("CheckBlock() : coinbase reward exceeded %s > %s",
                    FormatMoney(block.vtx[0]->GetValueOut()),
-                   FormatMoney(block.IsProofOfWork()? GetProofOfWorkReward(block.nBits) : 0)));
+                   FormatMoney(block.IsProofOfWork()? GetProofOfWorkReward(block.nBits) : 0)));*/
 
     // Check transactions
     // Must check for duplicate inputs (see CVE-2018-17144)
@@ -3190,8 +3191,9 @@ bool CheckBlock(const CBlock& block, BlockValidationState& state, const Consensu
     // peercoin: check block signature
     // Only check block signature if check merkle root, c.f. commit 3cd01fdf
     // rfc6: validate signatures of proof of stake blocks only after 0.8 fork
-    if (fCheckMerkleRoot && fCheckSignature && (block.IsProofOfStake() || !IsBTC16BIPsEnabled(block.GetBlockTime())) && !CheckBlockSignature(block))
-        return state.Invalid(BlockValidationResult::BLOCK_CONSENSUS, "bad-blk-sign", strprintf("%s : bad block signature", __func__));
+    // PANDACOIN FIXME: ENABLE BLOCK SIG CHECK AFTER v3
+    //if (fCheckMerkleRoot && fCheckSignature && (block.IsProofOfStake() || !IsBTC16BIPsEnabled(block.GetBlockTime())) && !CheckBlockSignature(block))
+    //    return state.Invalid(BlockValidationResult::BLOCK_CONSENSUS, "bad-blk-sign", strprintf("%s : bad block signature", __func__));
 
     return true;
 }
@@ -3285,8 +3287,8 @@ static bool ContextualCheckBlockHeader(const CBlockHeader& block, BlockValidatio
 
     // Check proof of work or proof-of-stake
     const Consensus::Params& consensusParams = params.GetConsensus();
-    if (block.nBits != GetNextTargetRequired(pindexPrev, block.nFlags & CBlockIndex::BLOCK_PROOF_OF_STAKE, consensusParams))
-        return state.Invalid(BlockValidationResult::BLOCK_INVALID_HEADER, "bad-diffbits", "incorrect proof of work/stake");
+    //if (block.nBits != GetNextTargetRequired(pindexPrev, block.nFlags & CBlockIndex::BLOCK_PROOF_OF_STAKE, consensusParams))
+    //    return state.Invalid(BlockValidationResult::BLOCK_INVALID_HEADER, "bad-diffbits", "incorrect proof of work/stake");
 
     // Check against checkpoints
     if (fCheckpointsEnabled) {
