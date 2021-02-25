@@ -81,6 +81,10 @@
 #include <zmq/zmqrpc.h>
 #endif
 
+#ifdef USE_SSE2
+#include <crypto/scrypt.h>
+#endif
+
 static const bool DEFAULT_PROXYRANDOMIZE = true;
 static const bool DEFAULT_REST_ENABLE = false;
 static const bool DEFAULT_STOPAFTERBLOCKIMPORT = false;

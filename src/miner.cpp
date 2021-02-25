@@ -13,6 +13,7 @@
 #include <consensus/merkle.h>
 #include <consensus/tx_verify.h>
 #include <consensus/validation.h>
+#include <dogecoin.h>
 #include <policy/policy.h>
 #include <pow.h>
 #include <primitives/transaction.h>
@@ -112,7 +113,7 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
 
     if (pwallet == nullptr) {
         pblock->nBits = GetNextTargetRequired(pindexPrev, false, chainparams.GetConsensus());
-        coinbaseTx.vout[0].nValue = GetProofOfWorkReward(pblock->nBits);
+        coinbaseTx.vout[0].nValue = nFees + GetDogecoinBlockSubsidy(nHeight, chainparams.GetConsensus(), pindexPrev->GetBlockHash());
         }
 
     // Add dummy coinbase tx as first transaction

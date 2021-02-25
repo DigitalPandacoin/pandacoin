@@ -238,6 +238,12 @@ AC_ARG_ENABLE([bip70],
   [enable_bip70=$enableval],
   [enable_bip70=no])
 
+AC_ARG_ENABLE([sse2],
+    [AS_HELP_STRING([--enable-sse2],
+    [enable SSE2 instructions in the scrypt library. (default is disabled)])],
+    [use_sse2=$enableval],
+    [use_sse2=no])
+
 if test x$enable_bip70 != xno; then
   AC_MSG_ERROR([BIP70 is no longer supported!])
 fi
