@@ -150,20 +150,22 @@ public:
         return !IsProofOfStake();
     }
 
-    /*std::pair<COutPoint, unsigned int> GetProofOfStake() const
+    std::pair<COutPoint, unsigned int> GetProofOfStake() const
     {
-        //return IsProofOfStake() ? std::make_pair(vtx[1]->vin[0].prevout, vtx[1]->nTime) : std::make_pair(COutPoint(), (unsigned int)0);
-    }*/
+        return IsProofOfStake() ? std::make_pair(vtx[1]->vin[0].prevout, nTime) : std::make_pair(COutPoint(), (unsigned int)0);
+    }
 
     // peercoin: get max transaction timestamp
     int64_t GetMaxTransactionTime() const
     {
-        int64_t maxTransactionTime = 0;
+        // Unfortunately our transactions are not compatible with this
+        return nTime;
         /*
+        int64_t maxTransactionTime = 0;
         for (const auto& tx : vtx)
             maxTransactionTime = std::max(maxTransactionTime, (int64_t)tx->nTime);
-            */
         return maxTransactionTime;
+        */
     }
 
     unsigned int GetStakeEntropyBit() const; // peercoin: entropy bit for stake modifier if chosen by modifier

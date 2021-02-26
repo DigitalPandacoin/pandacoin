@@ -102,6 +102,11 @@ unsigned int static KimotoGravityWell(const CBlockIndex* pindexLast, const Conse
 
 unsigned int GetNextTargetRequired(const CBlockIndex* pindexLast, bool fProofOfStake, const Consensus::Params& params)
 {
+    // PANDACOIN TODO clarify spacing adjustment altogether
+    if (pindexLast->nHeight+1 >= 6500) {
+        return KimotoGravityWell(pindexLast, params);
+    }
+
     if (pindexLast == nullptr)
         return UintToArith256(params.powLimit).GetCompact(); // genesis block
     //unsigned int nTargetLimit = GetTargetLimit(pindexLast->GetBlockTime(), params, fProofOfStake).GetCompact();

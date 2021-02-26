@@ -213,6 +213,7 @@ bool Consensus::CheckTxInputs(const CTransaction& tx, TxValidationState& state, 
         if (!MoneyRange(txfee_aux)) {
             return state.Invalid(TxValidationResult::TX_CONSENSUS, "bad-txns-fee-outofrange");
         }
+        // PANDACOIN TODO fix fees :^)
         // peercoin: enforce transaction fees for every block
         if (txfee_aux < GetMinFee(tx))
             return state.Invalid(TxValidationResult::TX_CONSENSUS, "bad-txns-fee-not-enough");

@@ -502,6 +502,10 @@ static UniValue getblocktemplate(const JSONRPCRequest& request)
     if (::ChainstateActive().IsInitialBlockDownload())
         throw JSONRPCError(RPC_CLIENT_IN_INITIAL_DOWNLOAD, PACKAGE_NAME " is in initial sync and waiting for blocks...");
 
+    // PANDACOIN TODO add this function
+    //if (chainActive.Tip()->nHeight > Params().GetConsensus().nLastPOWBlock)
+    //    throw JSONRPCError(RPC_MISC_ERROR, "No more PoW blocks");
+
     static unsigned int nTransactionsUpdatedLast;
     const CTxMemPool& mempool = EnsureMemPool();
 
