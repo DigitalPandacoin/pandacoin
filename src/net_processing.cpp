@@ -2743,7 +2743,7 @@ bool ProcessMessage(CNode* pfrom, const std::string& msg_type, CDataStream& vRec
 
         if (nPoSTemperature >= MAX_CONSECUTIVE_POS_HEADERS) {
             nPoSTemperature = (MAX_CONSECUTIVE_POS_HEADERS*3)/4;
-            if (Params().NetworkIDString() != "test") {
+            if (!::ChainstateActive().IsInitialBlockDownload() && Params().NetworkIDString() != "test") {
                 LOCK(cs_main);
                 Misbehaving(pfrom->GetId(), 100, "too many consecutive pos headers");
                 return error("too many consecutive pos headers");
@@ -3055,7 +3055,7 @@ bool ProcessMessage(CNode* pfrom, const std::string& msg_type, CDataStream& vRec
             nTmpPoSTemperature = std::max(nTmpPoSTemperature, 0);
             if (nTmpPoSTemperature >= MAX_CONSECUTIVE_POS_HEADERS) {
                 nPoSTemperature = (MAX_CONSECUTIVE_POS_HEADERS*3)/4;
-                if (Params().NetworkIDString() != "test") {
+                if (!::ChainstateActive().IsInitialBlockDownload() && Params().NetworkIDString() != "test") {
                     Misbehaving(pfrom->GetId(), 100, "too many consecutive pos headers");
                     return error("too many consecutive pos headers");
                 }
@@ -3094,7 +3094,7 @@ bool ProcessMessage(CNode* pfrom, const std::string& msg_type, CDataStream& vRec
                 int32_t& nPoSTemperature = mapPoSTemperature[pfrom->addr];
                 if (nPoSTemperature >= MAX_CONSECUTIVE_POS_HEADERS) {
                     nPoSTemperature = (MAX_CONSECUTIVE_POS_HEADERS*3)/4;
-                    if (Params().NetworkIDString() != "test") {
+                    if (!::ChainstateActive().IsInitialBlockDownload() && Params().NetworkIDString() != "test") {
                         Misbehaving(pfrom->GetId(), 100, "too many consecutive pos headers");
                         return error("too many consecutive pos headers");
                     }

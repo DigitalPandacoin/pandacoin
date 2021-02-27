@@ -90,6 +90,8 @@ static const size_t DEFAULT_MAXRECEIVEBUFFER = 5 * 1000;
 static const size_t DEFAULT_MAXSENDBUFFER    = 1 * 1000;
 
 /** peercoin: Number of consecutive PoS headers are allowed from a single peer. Used to prevent out of memory attack. */
+// PANDACOIN TODO: given that we are full pos, this is disabled on initial sync. the counter is still kept, but the actual
+// PANDACOIN TODO: punishment of a given node will not happen until after the fact. not sure if this works as expeted, so keep an eye out for that
 static const int32_t MAX_CONSECUTIVE_POS_HEADERS = 1000;
 
 // const unsigned int POW_HEADER_COOLING = 70;  - defined in protocol.cpp, so that it is visible to other files
