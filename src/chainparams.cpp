@@ -70,15 +70,16 @@ public:
         consensus.bnInitialHashTarget = uint256S("0000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffff"); // ~arith_uint256(0) >> 40;
 
         consensus.nTargetTimespan = 4 * 60 * 60;  // 4 hours
-        consensus.nStakeTargetSpacing = 60; // 1-minute block spacing
-        consensus.nTargetSpacingWorkMax = 12 * consensus.nStakeTargetSpacing; // 2-hour
+        consensus.nStakeTargetSpacing = 1 * 60; // 1-minute block spacing
+        consensus.nTargetSpacingWorkMax = 12 * consensus.nStakeTargetSpacing; // 12 minutes
         consensus.nPowTargetTimespan = consensus.nTargetTimespan;
         consensus.nPowTargetSpacing = consensus.nStakeTargetSpacing;
-        consensus.nStakeMinAge = 60 * 60 * 24 * 30; // minimum age for coin age
-        consensus.nStakeMaxAge = 60 * 60 * 24 * 90;
-        consensus.nModifierInterval = 6 * 60 * 60; // Modifier interval: time to elapse before new modifier is computed
+        consensus.nStakeMinAge = 8 * 60 * 60; // 8 hours
+        consensus.nStakeMaxAge = 30 * 24 * 60 * 60; // 30 days
+        consensus.nModifierInterval = 10 * 60; // Modifier interval: time to elapse before new modifier is computed
         // PANDACOIN TODO / REFACTOR: check where nCoinbaseMaturity is used and update accordingly
         consensus.nCoinbaseMaturity = 30;
+        // read; this is not used at the moment
         consensus.nCoinstakeMaturity = 500;
         consensus.nLastPOWBlock = 136113;
 
