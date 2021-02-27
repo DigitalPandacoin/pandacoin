@@ -102,53 +102,55 @@ unsigned int static KimotoGravityWell(const CBlockIndex* pindexLast, const Conse
 
 unsigned int GetNextTargetRequired(const CBlockIndex* pindexLast, bool fProofOfStake, const Consensus::Params& params)
 {
-    // PANDACOIN TODO clarify spacing adjustment altogether
+    assert(pindexLast != nullptr);
+
     if (pindexLast->nHeight+1 >= 6500) {
         return KimotoGravityWell(pindexLast, params);
     }
 
-    if (pindexLast == nullptr)
-        return UintToArith256(params.powLimit).GetCompact(); // genesis block
-    //unsigned int nTargetLimit = GetTargetLimit(pindexLast->GetBlockTime(), params, fProofOfStake).GetCompact();
+    unsigned int nProofOfWorkLimit = UintToArith256(params.powLimit).GetCompact();
 
-
-    const CBlockIndex* pindexPrev = GetLastBlockIndex(pindexLast, fProofOfStake);
-    if (pindexPrev->pprev == nullptr)
-        return UintToArith256(params.powLimit).GetCompact(); // first block
-    const CBlockIndex* pindexPrevPrev = GetLastBlockIndex(pindexPrev->pprev, fProofOfStake);
-    if (pindexPrevPrev->pprev == nullptr)
-        return UintToArith256(params.powLimit).GetCompact(); // second block
-
-    return CalculateNextTargetRequired(pindexPrev, pindexPrevPrev->GetBlockTime(), params, fProofOfStake);
-
-    int64_t nActualSpacing = pindexPrev->GetBlockTime() - pindexPrevPrev->GetBlockTime();
-
-    // peercoin: target change every block
-    // peercoin: retarget with exponential moving toward target spacing
-    CBigNum bnNew;
-    bnNew.SetCompact(pindexPrev->nBits);
-    if (Params().NetworkIDString() != CBaseChainParams::REGTEST) {
-        int64_t nTargetSpacing;
-
-        if (fProofOfStake) {
-            nTargetSpacing = params.nStakeTargetSpacing;
-        } else {
-            if (IsProtocolV09(pindexLast->nTime)) {
-                nTargetSpacing = params.nStakeTargetSpacing * 6;
-            } else {
-                nTargetSpacing = std::min(params.nTargetSpacingWorkMax, params.nStakeTargetSpacing * (1 + pindexLast->nHeight - pindexPrev->nHeight));
-            }
+    // Only change once per difficulty adjustment interval
+    if ((pindexLast->nHeight+1) % params.DifficultyAdjustmentInterval() != 0)
+    {
+        if (params.fPowAllowMinDifficultyBlocks)
+        {
+            // Special difficulty rule for testnet:
+            // If the new block's timestamp is more than 2* 10 minutes
+            // then allow mining of a min-difficulty block.
+            //if (pblock->GetBlockTime() > pindexLast->GetBlockTime() + params.nPowTargetSpacing*2)
+            //    return nProofOfWorkLimit;
+            //else
+            //{
+                // Return the last non-special-min-difficulty-rules-block
+                const CBlockIndex* pindex = pindexLast;
+                while (pindex->pprev && pindex->nHeight % params.DifficultyAdjustmentInterval() != 0 && pindex->nBits == nProofOfWorkLimit)
+                    pindex = pindex->pprev;
+                return pindex->nBits;
+            //}
         }
+        return pindexLast->nBits;
+    }
 
-        int64_t nInterval = params.nTargetTimespan / nTargetSpacing;
-        bnNew *= ((nInterval - 1) * nTargetSpacing + nActualSpacing + nActualSpacing);
-        bnNew /= ((nInterval + 1) * nTargetSpacing);
-        }
+    // Litecoin: This fixes an issue where a 51% attack can change difficulty at will.
+    // Go back the full period unless it's the first retarget after genesis. Code courtesy of Art Forz
+    int blockstogoback = params.DifficultyAdjustmentInterval()-1;
+    if ((pindexLast->nHeight+1) != params.DifficultyAdjustmentInterval())
+        blockstogoback = params.DifficultyAdjustmentInterval();
 
-    if (bnNew > CBigNum(params.powLimit))
-        bnNew = CBigNum(params.powLimit);
+    // Go back by what we want to be 14 days worth of blocks
+    const CBlockIndex* pindexFirst = pindexLast;
+    for (int i = 0; pindexFirst && i < blockstogoback; i++)
+        pindexFirst = pindexFirst->pprev;
 
-    return bnNew.GetCompact();
+    // Pandacoin: replaced with above version
+    // Go back by what we want to be 14 days worth of blocks
+    //int nHeightFirst = pindexLast->nHeight - (params.DifficultyAdjustmentInterval()-1);
+    //assert(nHeightFirst >= 0);
+    //const CBlockIndex* pindexFirst = pindexLast->GetAncestor(nHeightFirst);
+    //assert(pindexFirst);
+
+    return CalculateDogecoinNextWorkRequired(pindexLast, pindexFirst->GetBlockTime(), params);
 }
 
 unsigned int CalculateNextTargetRequired(const CBlockIndex* pindexLast, int64_t nFirstBlockTime, const Consensus::Params& params, bool fProofOfStake)

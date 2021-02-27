@@ -3041,8 +3041,8 @@ bool ProcessMessage(CNode* pfrom, const std::string& msg_type, CDataStream& vRec
         for (unsigned int n = 0; n < nCount; n++) {
             vRecv >> headers[n];
             ReadCompactSize(vRecv); // ignore tx count; assume it is 0.
-            // PANDACOIN FIXME: RE-ENABLE THIS FOR POS
-            // ReadCompactSize(vRecv); // needed for vchBlockSig.
+            if (headers[n].nVersion >= 3)
+                ReadCompactSize(vRecv); // needed for vchBlockSig.
 
             // peercoin: quick check to see if we should ban peers for PoS spam
             // note: at this point we don't know if PoW headers are valid - we just assume they are
@@ -3103,7 +3103,7 @@ bool ProcessMessage(CNode* pfrom, const std::string& msg_type, CDataStream& vRec
                 if (pblock2->IsProofOfStake() && !::ChainstateActive().IsInitialBlockDownload())
                     nPoSTemperature += 1;
 
-                if (!headerPrev->IsValid(BLOCK_VALID_TRANSACTIONS)) {
+                if (pblock2->nVersion >= 3 && !headerPrev->IsValid(BLOCK_VALID_TRANSACTIONS)) {
                     MarkBlockAsReceived(hash2);
                     return error("this block does not connect to any valid known blocks");
                 }

@@ -1719,9 +1719,8 @@ bool PeercoinContextualBlockChecks(const CBlock& block, BlockValidationState& st
     pindex->hashProofOfStake = hashProofOfStakeBackup;
   // compute nStakeModifierChecksum end
 
-    // PANDACOIN TODO: this is probably not possible on legacy. Enable it later on
-    //if (!CheckStakeModifierCheckpoints(pindex->nHeight, nStakeModifierChecksum))
-    //    return error("ConnectBlock() : Rejected by stake modifier checkpoint height=%d, modifier=0x%016llx", pindex->nHeight, nStakeModifier);
+    if (!CheckStakeModifierCheckpoints(pindex->nHeight, nStakeModifierChecksum))
+        return error("ConnectBlock() : Rejected by stake modifier checkpoint height=%d, modifier=0x%016llx", pindex->nHeight, nStakeModifier);
 
     if (fJustCheck)
         return true;
@@ -1754,7 +1753,7 @@ bool CChainState::ConnectBlock(const CBlock& block, BlockValidationState& state,
     assert(*pindex->phashBlock == block.GetHash());
     int64_t nTimeStart = GetTimeMicros();
 
-    if (pindex->nStakeModifier == 0 && pindex->nStakeModifierChecksum == 0 && !PeercoinContextualBlockChecks(block, state, pindex, fJustCheck))
+    if (pindex->nHeight > chainparams.GetConsensus().nLastPOWBlock && pindex->nStakeModifier == 0 && pindex->nStakeModifierChecksum == 0 && !PeercoinContextualBlockChecks(block, state, pindex, fJustCheck))
         return error("%s: failed PoS check %s", __func__, state.ToString());
 
     // Check it again in case a previous version let a bad block in
@@ -3290,8 +3289,8 @@ static bool ContextualCheckBlockHeader(const CBlockHeader& block, BlockValidatio
 
     // Check proof of work or proof-of-stake
     const Consensus::Params& consensusParams = params.GetConsensus();
-    if (block.nBits != GetNextTargetRequired(pindexPrev, block.nFlags & CBlockIndex::BLOCK_PROOF_OF_STAKE, consensusParams))
-        return state.Invalid(BlockValidationResult::BLOCK_INVALID_HEADER, "bad-diffbits", "incorrect proof of work/stake");
+    //if (block.nBits != GetNextTargetRequired(pindexPrev, block.nFlags & CBlockIndex::BLOCK_PROOF_OF_STAKE, consensusParams))
+    //    return state.Invalid(BlockValidationResult::BLOCK_INVALID_HEADER, "bad-diffbits", "incorrect proof of work/stake");
 
     // Check against checkpoints
     if (fCheckpointsEnabled) {
@@ -3612,8 +3611,19 @@ bool CChainState::AcceptBlock(const std::shared_ptr<const CBlock>& pblock, Block
     if (!accepted_header)
         return false;
 
+    int nHeight = pindex->nHeight;
+    int nVersion = pindex->nVersion;
+    int nLastPOWBlock = chainparams.GetConsensus().nLastPOWBlock;
+
+    // HARD FORK: switch to version 3 starting from PoS
+    if (nHeight > nLastPOWBlock && nVersion < 3)
+        return error("%s: reject version <3 block at height %d", __func__, nHeight);
+
+    if (nHeight <= nLastPOWBlock && nVersion > 2)
+        return error("%s: reject version >2 block at height %d", __func__, nHeight);
+
     // peercoin: we should only accept blocks that can be connected to a prev block with validated PoS
-    //PANDACOIN TODO FIX THIS
+    //PANDACOIN TODO only check after given height, check if double use of chainparams.GetConsensus() is inefficient
     if (fCheckPoS && pindex->pprev && !pindex->pprev->IsValid(BLOCK_VALID_TRANSACTIONS)) {
         return error("%s: this block does not connect to any valid known block", __func__);
     }
@@ -3629,7 +3639,7 @@ bool CChainState::AcceptBlock(const std::shared_ptr<const CBlock>& pblock, Block
     // blocks which are too close in height to the tip.  Apply this test
     // regardless of whether pruning is enabled; it should generally be safe to
     // not process unrequested blocks.
-    bool fTooFarAhead = (pindex->nHeight > int(m_chain.Height() + MIN_BLOCKS_TO_KEEP));
+    bool fTooFarAhead = (nHeight > int(m_chain.Height() + MIN_BLOCKS_TO_KEEP));
 
     // TODO: Decouple this function from the block download logic by removing fRequested
     // This requires some new chain data structure to efficiently look up if a
@@ -3660,12 +3670,9 @@ bool CChainState::AcceptBlock(const std::shared_ptr<const CBlock>& pblock, Block
         return error("%s: %s", __func__, state.ToString());
     }
 
-    // Get block height
-    int nHeight = pindex->nHeight;
-
     // Check for the last proof of work block
-    if (block.IsProofOfWork() && nHeight > chainparams.GetConsensus().nLastPOWBlock)
-        return state.Invalid(BlockValidationResult::BLOCK_INVALID_HEADER, "bad-pow-height", "reject proof-of-work at current height");
+    if (block.IsProofOfWork() && nHeight > nLastPOWBlock)
+        return error("%: reject proof-of-work at height %d", __func__, nHeight);
 
     // peercoin: check PoS
     if (fCheckPoS && !PeercoinContextualBlockChecks(block, state, pindex, false)) {

@@ -80,7 +80,7 @@ public:
         // PANDACOIN TODO / REFACTOR: check where nCoinbaseMaturity is used and update accordingly
         consensus.nCoinbaseMaturity = 30;
         consensus.nCoinstakeMaturity = 500;
-        consensus.nLastPOWBlock = 10000;
+        consensus.nLastPOWBlock = 136113;
 
         consensus.fPowAllowMinDifficultyBlocks = false;
         consensus.fPowNoRetargeting = false;

@@ -215,8 +215,8 @@ bool Consensus::CheckTxInputs(const CTransaction& tx, TxValidationState& state, 
         }
         // PANDACOIN TODO fix fees :^)
         // peercoin: enforce transaction fees for every block
-        if (txfee_aux < GetMinFee(tx))
-            return state.Invalid(TxValidationResult::TX_CONSENSUS, "bad-txns-fee-not-enough");
+        //if (txfee_aux < GetMinFee(tx))
+        //    return state.Invalid(TxValidationResult::TX_CONSENSUS, "bad-txns-fee-not-enough");
         txfee = txfee_aux;
     }
     return true;
