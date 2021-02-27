@@ -1686,7 +1686,7 @@ bool PeercoinContextualBlockChecks(const CBlock& block, BlockValidationState& st
 {
     uint256 hashProofOfStake = uint256();
     // peercoin: verify hash target and signature of coinstake tx
-    if (block.IsProofOfStake() && !CheckProofOfStake(state, pindex->pprev, block.vtx[1], block.nBits, hashProofOfStake)) {
+    if (block.IsProofOfStake() && !CheckProofOfStake(state, pindex->pprev, block.vtx[1], block.nTime, block.nBits, hashProofOfStake)) {
         LogPrintf("WARNING: %s: check proof-of-stake failed for block %s\n", __func__, block.GetHash().ToString());
         return false; // do not error here as we expect this during initial block download
     }
@@ -1753,7 +1753,7 @@ bool CChainState::ConnectBlock(const CBlock& block, BlockValidationState& state,
     assert(*pindex->phashBlock == block.GetHash());
     int64_t nTimeStart = GetTimeMicros();
 
-    if (pindex->nHeight > chainparams.GetConsensus().nLastPOWBlock && pindex->nStakeModifier == 0 && pindex->nStakeModifierChecksum == 0 && !PeercoinContextualBlockChecks(block, state, pindex, fJustCheck))
+    if (pindex->nStakeModifier == 0 && pindex->nStakeModifierChecksum == 0 && !PeercoinContextualBlockChecks(block, state, pindex, fJustCheck))
         return error("%s: failed PoS check %s", __func__, state.ToString());
 
     // Check it again in case a previous version let a bad block in
@@ -4922,6 +4922,7 @@ bool GetCoinAge(const CTransaction& tx, const CCoinsViewCache &view, uint64_t& n
             int64_t nValueIn = txPrev->vout[txin.prevout.n].nValue;
             int nEffectiveAge = 9090; // tx.nTime-txPrev->nTime;
 
+            // PANDACOIN TODO / CHECK re-enable whenever
             if (!isTrueCoinAge) //|| IsProtocolV09(tx.nTime))
                 nEffectiveAge = std::min(nEffectiveAge, 365 * 24 * 60 * 60);
 

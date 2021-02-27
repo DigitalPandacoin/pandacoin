@@ -88,6 +88,7 @@ CAmount CTransaction::GetValueOut() const
     CAmount nValueOut = 0;
     for (const auto& tx_out : vout) {
         if (!MoneyRange(tx_out.nValue) || !MoneyRange(nValueOut + tx_out.nValue))
+            // PANDACOIN FIXME this caused a crash at nHeight 225377
             throw std::runtime_error(std::string(__func__) + ": value out of range");
         nValueOut += tx_out.nValue;
     }
