@@ -1684,6 +1684,7 @@ static int64_t nBlocksTotal = 0;
 // These checks can only be done when all previous block have been added.
 bool PeercoinContextualBlockChecks(const CBlock& block, BlockValidationState& state, CBlockIndex* pindex, bool fJustCheck)
 {
+    const Consensus::Params& params = Params().GetConsensus();
     // PANDACOIN FIXME: possibly add this check
     //if (chainActive.Height() - nHeight >= consensusParams.nMaxReorganizationDepth)
     //  return state.DoS(1, error("%s: forked chain older than max reorganization depth (height %d)", __func__, nHeight));
@@ -1691,7 +1692,7 @@ bool PeercoinContextualBlockChecks(const CBlock& block, BlockValidationState& st
     uint256 hashProofOfStake = uint256();
     // peercoin: verify hash target and signature of coinstake tx
     // PANDACOIN FIXME: do not hardcode this
-    if (::ChainActive().Height() + 1 > 1316113 && pindex->nHeight > 1316113 && block.IsProofOfStake() && !CheckProofOfStake(state, pindex->pprev, block.vtx[1], block.nTime, block.nBits, hashProofOfStake)) {
+    if (::ChainActive().Height() > params.nLastPOWBlock && pindex->nHeight > params.nLastPOWBlock && block.IsProofOfStake() && !CheckProofOfStake(state, pindex->pprev, block.vtx[1], block.nTime, block.nBits, hashProofOfStake)) {
         LogPrintf("WARNING: %s: check proof-of-stake failed for block %s\n", __func__, block.GetHash().ToString());
         return false; // do not error here as we expect this during initial block download
     }
@@ -1702,7 +1703,7 @@ bool PeercoinContextualBlockChecks(const CBlock& block, BlockValidationState& st
     // peercoin: compute stake modifier
     uint64_t nStakeModifier = 0;
     bool fGeneratedStakeModifier = false;
-    if (!ComputeNextStakeModifier(pindex, nStakeModifier, fGeneratedStakeModifier))
+    if (::ChainActive().Height() > params.nLastPOWBlock && pindex->nHeight > params.nLastPOWBlock && !ComputeNextStakeModifier(pindex, nStakeModifier, fGeneratedStakeModifier))
         return error("ConnectBlock() : ComputeNextStakeModifier() failed");
 
   // compute nStakeModifierChecksum begin
@@ -1729,7 +1730,6 @@ bool PeercoinContextualBlockChecks(const CBlock& block, BlockValidationState& st
 
     if (fJustCheck)
         return true;
-
 
     // write everything to index
     if (block.IsProofOfStake())
@@ -3151,7 +3151,7 @@ bool CheckBlock(const CBlock& block, BlockValidationState& state, const Consensu
         return state.Invalid(BlockValidationResult::BLOCK_CONSENSUS, "bad-cb-notempty", "coinbase output not empty in PoS block");
 
     // Check coinbase timestamp
-    //if (block.GetBlockTime() > (int64_t)block.vtx[0]->nTime + (IsProtocolV09(block.GetBlockTime()) ? MAX_FUTURE_BLOCK_TIME : MAX_FUTURE_BLOCK_TIME_PREV9))
+    //if (block.GetBlockTime() > (int64_t)block.nTime + (IsProtocolV09(block.GetBlockTime()) ? MAX_FUTURE_BLOCK_TIME : MAX_FUTURE_BLOCK_TIME_PREV9))
     //    return state.Invalid(BlockValidationResult::BLOCK_CONSENSUS, "bad-cb-time", "coinbase timestamp is too early");
 
     // Check coinstake timestamp
@@ -3198,9 +3198,8 @@ bool CheckBlock(const CBlock& block, BlockValidationState& state, const Consensu
     // peercoin: check block signature
     // Only check block signature if check merkle root, c.f. commit 3cd01fdf
     // rfc6: validate signatures of proof of stake blocks only after 0.8 fork
-    // PANDACOIN FIXME: ENABLE BLOCK SIG CHECK AFTER v3
-    //if (fCheckMerkleRoot && fCheckSignature && (block.IsProofOfStake() || !IsBTC16BIPsEnabled(block.GetBlockTime())) && !CheckBlockSignature(block))
-    //    return state.Invalid(BlockValidationResult::BLOCK_CONSENSUS, "bad-blk-sign", strprintf("%s : bad block signature", __func__));
+    if ((block.nVersion >= 3) && fCheckMerkleRoot && fCheckSignature && (block.IsProofOfStake() || !IsBTC16BIPsEnabled(block.GetBlockTime())) && !CheckBlockSignature(block))
+        return state.Invalid(BlockValidationResult::BLOCK_CONSENSUS, "bad-blk-sign", strprintf("%s : bad block signature", __func__));
 
     return true;
 }
@@ -3294,8 +3293,9 @@ static bool ContextualCheckBlockHeader(const CBlockHeader& block, BlockValidatio
 
     // Check proof of work or proof-of-stake
     const Consensus::Params& consensusParams = params.GetConsensus();
-    // PANDACOIN CHECK/FIXME just check if this works as it needs to
-    if (::ChainActive().Tip()->nHeight > consensusParams.nLastPOWBlock && nHeight > consensusParams.nLastPOWBlock && block.nBits != GetNextTargetRequired(pindexPrev, block.nFlags & CBlockIndex::BLOCK_PROOF_OF_STAKE, consensusParams))
+    // PANDACOIN CHECK/FIXME just check if this works as it needs to*
+    // most notably i had to force set fProofOfStake to true. this does not seem right
+    if (::ChainActive().Height() > consensusParams.nLastPOWBlock && nHeight > consensusParams.nLastPOWBlock && block.nBits != GetNextTargetRequired(pindexPrev, true, consensusParams))
         return state.Invalid(BlockValidationResult::BLOCK_INVALID_HEADER, "bad-diffbits", "incorrect proof of work/stake");
 
     // Check against checkpoints

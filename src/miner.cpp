@@ -201,6 +201,7 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
     //PANDACOIN TODO: just check if this is feasable
     //if (pblock->IsProofOfStake())
     //    pblock->nTime      = pblock->vtx[1]->nTime; //same as coinstake timestamp
+    // PANDACOIN FIXME: possibly update this for miner fix, see https://github.com/pandacoin-official/pandacoin/commit/4e5fcd893ea4904b20ea726f10ffdaa3abd14201
     pblock->nTime          = std::max(pindexPrev->GetMedianTimePast()+1, pblock->GetMaxTransactionTime());
     pblock->nTime          = std::max(pblock->GetBlockTime(), pindexPrev->GetBlockTime() - (IsProtocolV09(pindexPrev->GetBlockTime()) ? MAX_FUTURE_BLOCK_TIME : MAX_FUTURE_BLOCK_TIME_PREV9));
     if (pblock->IsProofOfWork())

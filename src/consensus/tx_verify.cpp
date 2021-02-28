@@ -188,9 +188,9 @@ bool Consensus::CheckTxInputs(const CTransaction& tx, TxValidationState& state, 
         // Check for negative or overflow input values
         nValueIn += coin.out.nValue;
         // PANDACOIN TODO fix fees :^)
-        //if (!MoneyRange(coin.out.nValue) || !MoneyRange(nValueIn)) {
-        //    return state.Invalid(TxValidationResult::TX_CONSENSUS, "bad-txns-inputvalues-outofrange");
-        //}
+        if (!MoneyRange(coin.out.nValue) || !MoneyRange(nValueIn)) {
+            return state.Invalid(TxValidationResult::TX_CONSENSUS, "bad-txns-inputvalues-outofrange");
+        }
     }
 
     if (tx.IsCoinStake())
@@ -219,8 +219,8 @@ bool Consensus::CheckTxInputs(const CTransaction& tx, TxValidationState& state, 
         }
         // PANDACOIN TODO fix fees :^)
         // peercoin: enforce transaction fees for every block
-        //if (txfee_aux < GetMinFee(tx))
-        //    return state.Invalid(TxValidationResult::TX_CONSENSUS, "bad-txns-fee-not-enough");
+        if (txfee_aux < GetMinFee(tx))
+            return state.Invalid(TxValidationResult::TX_CONSENSUS, "bad-txns-fee-not-enough");
         txfee = txfee_aux;
     }
     return true;

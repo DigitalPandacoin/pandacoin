@@ -29,11 +29,11 @@ bool CheckTransaction(const CTransaction& tx, TxValidationState& state)
     {
         if (txout.nValue < 0)
             return state.Invalid(TxValidationResult::TX_CONSENSUS, "bad-txns-vout-negative");
-        //if (txout.nValue > MAX_MONEY)
-        //    return state.Invalid(TxValidationResult::TX_CONSENSUS, "bad-txns-vout-toolarge");
+        if (txout.nValue > MAX_MONEY)
+            return state.Invalid(TxValidationResult::TX_CONSENSUS, "bad-txns-vout-toolarge");
         nValueOut += txout.nValue;
-        //if (!MoneyRange(nValueOut))
-        //    return state.Invalid(TxValidationResult::TX_CONSENSUS, "bad-txns-txouttotal-toolarge");
+        if (!MoneyRange(nValueOut))
+            return state.Invalid(TxValidationResult::TX_CONSENSUS, "bad-txns-txouttotal-toolarge");
         // peercoin: enforce minimum output amount
         /*if ((!txout.IsEmpty()) && txout.nValue < MIN_TXOUT_AMOUNT &&
             !(IsZeroAllowed(tx.nTime) && (txout.nValue == 0)))
