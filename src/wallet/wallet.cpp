@@ -2809,7 +2809,6 @@ OutputType CWallet::TransactionChangeType(OutputType change_type, const std::vec
 bool CWallet::CreateTransaction(interfaces::Chain::Lock& locked_chain, const std::vector<CRecipient>& vecSend, CTransactionRef& tx, CAmount& nFeeRet,
                          int& nChangePosInOut, std::string& strFailReason, const CCoinControl& coin_control, bool sign)
 {
-    /*
     CAmount nValue = 0;
     const OutputType change_type = TransactionChangeType(coin_control.m_change_type ? *coin_control.m_change_type : m_default_change_type, vecSend);
     ReserveDestination reservedest(this, change_type);
@@ -2834,6 +2833,10 @@ bool CWallet::CreateTransaction(interfaces::Chain::Lock& locked_chain, const std
     }
 
     CMutableTransaction txNew;
+    // PANDACOIN FIXME / CHECK I am not yet in the clear if GetAdjustedTime() works at all
+    // from my understanding we just need a comparison to past transactions. Given that CMutableTransaction
+    // is called here, which would create a fresh timestamp, this should do "fine"
+    int nTxTime = GetAdjustedTime();
 
     txNew.nLockTime = GetLocktimeForNewTransaction(chain(), locked_chain);
 
@@ -2845,7 +2848,7 @@ bool CWallet::CreateTransaction(interfaces::Chain::Lock& locked_chain, const std
         LOCK(cs_wallet);
         {
             std::vector<COutput> vAvailableCoins;
-            AvailableCoins(*locked_chain, vAvailableCoins, true, &coin_control, txNew.nTime, 1, MAX_MONEY, MAX_MONEY, 0);
+            AvailableCoins(*locked_chain, vAvailableCoins, true, &coin_control, nTxTime, 1, MAX_MONEY, MAX_MONEY, 0);
             CoinSelectionParams coin_selection_params; // Parameters for coin selection, init with dummy
 
             // Create change script that will be used if we need change
@@ -2882,7 +2885,8 @@ bool CWallet::CreateTransaction(interfaces::Chain::Lock& locked_chain, const std
             CTxOut change_prototype_txout(0, scriptChange);
             coin_selection_params.change_output_size = GetSerializeSize(change_prototype_txout, SER_DISK);
 
-            bool fNewFees = IsProtocolV07(txNew.nTime);
+            // PANDACOIN FIXME / CHECK: txNew.nTime replaced with nTxTime (GetAdjustedTime())
+            bool fNewFees = IsProtocolV07(nTxTime);
             nFeeRet = (fNewFees ? MIN_TX_FEE : MIN_TX_FEE_PREV7);
             bool pick_new_inputs = true;
             CAmount nValueIn = 0;
@@ -3021,7 +3025,8 @@ bool CWallet::CreateTransaction(interfaces::Chain::Lock& locked_chain, const std
                     vin.scriptWitness.SetNull();
                 }
 
-                nFeeNeeded = GetMinFee(nBytes, txNew.nTime);
+                // PANDACOIN FIXME / CHECK: txNew.nTime replaced with nTxTime (GetAdjustedTime())
+                nFeeNeeded = GetMinFee(nBytes, nTxTime);
 
                 if (nFeeRet >= nFeeNeeded) {
                     // Reduce fee to only the needed amount if possible. This
@@ -3036,7 +3041,8 @@ bool CWallet::CreateTransaction(interfaces::Chain::Lock& locked_chain, const std
                     // change output. Only try this once.
                     if (nChangePosInOut == -1 && nSubtractFeeFromAmount == 0 && pick_new_inputs) {
                         unsigned int tx_size_with_change = nBytes + coin_selection_params.change_output_size + 2; // Add 2 as a buffer in case increasing # of outputs changes compact size
-                        CAmount fee_needed_with_change = GetMinFee(tx_size_with_change, txNew.nTime);
+                        // PANDACOIN FIXME / CHECK: txNew.nTime replaced with nTxTime (GetAdjustedTime())
+                        CAmount fee_needed_with_change = GetMinFee(tx_size_with_change, nTxTime);
                         CAmount minimum_value_for_change = MIN_TXOUT_AMOUNT;  //ppcTODO - is this correct?
                         if (nFeeRet >= fee_needed_with_change + minimum_value_for_change) {
                             pick_new_inputs = false;
@@ -3134,8 +3140,6 @@ bool CWallet::CreateTransaction(interfaces::Chain::Lock& locked_chain, const std
     reservedest.KeepDestination();
 
     LogPrintf("Fee Calculation: Fee:%d Bytes:%u Needed:%d\n", nFeeRet, nBytes, nFeeNeeded);
-    return true;
-     */
     return true;
 }
 
@@ -4358,9 +4362,8 @@ void CWallet::ConnectScriptPubKeyManNotifiers()
 
 // peercoin: create coin stake transaction
 typedef std::vector<unsigned char> valtype;
-bool CWallet::CreateCoinStake(const CWallet* pwallet, unsigned int nBits, int64_t nSearchInterval, CMutableTransaction& txNew)
+bool CWallet::CreateCoinStake(const CWallet* pwallet, unsigned int nBits, int64_t nSearchInterval, CMutableTransaction& txNew, unsigned int& nTxTime)
 {
-    /*
     // The following split & combine thresholds are important to security
     // Should not be adjusted if you don't understand the consequences
     static unsigned int nStakeSplitAge = (60 * 60 * 24 * 90);
@@ -4397,7 +4400,8 @@ bool CWallet::CreateCoinStake(const CWallet* pwallet, unsigned int nBits, int64_
     CoinSelectionParams coin_selection_params;
     coin_selection_params.use_bnb=false;
     bool bnb_used;
-    AvailableCoins(*locked_chain, vAvailableCoins, true, &temp, txNew.nTime, 1, MAX_MONEY, MAX_MONEY, 0);
+    // PANDACOIN FIXME / CHECK txNew.nTime replaced with nTxTime
+    AvailableCoins(*locked_chain, vAvailableCoins, true, &temp, nTxTime, 1, MAX_MONEY, MAX_MONEY, 0);
 
     if (!SelectCoins(vAvailableCoins, nBalance - nReserveBalance, setCoins, nValueIn, temp, coin_selection_params, bnb_used))
         return false;
@@ -4425,7 +4429,8 @@ bool CWallet::CreateCoinStake(const CWallet* pwallet, unsigned int nBits, int64_
         }
 
         static int nMaxStakeSearchInterval = 60;
-        if (header.GetBlockTime() + params.nStakeMinAge > txNew.nTime - nMaxStakeSearchInterval)
+        // PANDACOIN FIXME / CHECK txNew.nTime replaced with nTxTime
+        if (header.GetBlockTime() + params.nStakeMinAge > nTxTime - nMaxStakeSearchInterval)
             continue; // only count coins meeting min age requirement
 
         bool fKernelFound = false;
@@ -4435,7 +4440,8 @@ bool CWallet::CreateCoinStake(const CWallet* pwallet, unsigned int nBits, int64_
             // Search nSearchInterval seconds back up to nMaxStakeSearchInterval
             uint256 hashProofOfStake = uint256();
             COutPoint prevoutStake = pcoin.outpoint;
-            if (CheckStakeKernelHash(nBits, ::ChainActive().Tip(), header, postx.nTxOffset + CBlockHeader::NORMAL_SERIALIZE_SIZE, tx, prevoutStake, txNew.nTime - n, hashProofOfStake))
+            // PANDACOIN FIXME / CHECK txNew.nTime replaced with nTxTime
+            if (CheckStakeKernelHash(nBits, ::ChainActive().Tip(), header, postx.nTxOffset + CBlockHeader::NORMAL_SERIALIZE_SIZE, tx, prevoutStake, nTxTime - n, hashProofOfStake))
             {
                 // Found a kernel
                 if (gArgs.GetBoolArg("-debug", false) && gArgs.GetBoolArg("-printcoinstake", false))
@@ -4469,12 +4475,14 @@ bool CWallet::CreateCoinStake(const CWallet* pwallet, unsigned int nBits, int64_
                 else
                     scriptPubKeyOut = scriptPubKeyKernel;
 
-                txNew.nTime -= n;
+                // PANDACOIN FIXME / CHECK txNew.nTime replaced with nTxTime
+                nTxTime -= n;
                 txNew.vin.push_back(CTxIn(pcoin.outpoint.hash, pcoin.outpoint.n));
                 nCredit += pcoin.txout.nValue;
                 vwtxPrev.push_back(tx);
                 txNew.vout.push_back(CTxOut(0, scriptPubKeyOut));
-                if (header.GetBlockTime() + nStakeSplitAge > txNew.nTime)
+                // PANDACOIN FIXME / CHECK txNew.nTime replaced with nTxTime
+                if (header.GetBlockTime() + nStakeSplitAge > nTxTime)
                     txNew.vout.push_back(CTxOut(0, scriptPubKeyOut)); //split stake
                 if (gArgs.GetBoolArg("-debug", false) && gArgs.GetBoolArg("-printcoinstake", false))
                     LogPrintf("CreateCoinStake : added kernel type=%d\n", whichType);
@@ -4524,7 +4532,8 @@ bool CWallet::CreateCoinStake(const CWallet* pwallet, unsigned int nBits, int64_
             if (pcoin.txout.nValue > nCombineThreshold)
                 continue;
             // Do not add input that is still too young
-            if (tx->nTime + params.nStakeMaxAge > txNew.nTime)
+            // PANDACOIN FIXME / CHECK txNew.nTime replaced with nTxTime
+            if (nTxTime + params.nStakeMaxAge > nTxTime)
                 continue;
             txNew.vin.push_back(CTxIn(pcoin.outpoint.hash, pcoin.outpoint.n));
             nCredit += pcoin.txout.nValue;
@@ -4538,7 +4547,8 @@ bool CWallet::CreateCoinStake(const CWallet* pwallet, unsigned int nBits, int64_
         if (!GetCoinAge((const CTransaction)txNew, view, nCoinAge, true))
             return error("CreateCoinStake : failed to calculate coin age");
 
-        CAmount nReward = GetProofOfStakeReward(nCoinAge, txNew.nTime, ::ChainActive().Tip()->nMoneySupply);
+        // PANDACOIN FIXME / CHECK txNew.nTime replaced with nTxTime
+        CAmount nReward = GetProofOfStakeReward(nCoinAge, nTxTime, ::ChainActive().Tip()->nMoneySupply);
         // Refuse to create mint that has zero or negative reward
         if(nReward <= 0) {
           return false;
@@ -4547,7 +4557,8 @@ bool CWallet::CreateCoinStake(const CWallet* pwallet, unsigned int nBits, int64_
     }
 
     CAmount nMinFee = 0;
-    CAmount nMinFeeBase = (IsProtocolV07(txNew.nTime) ? MIN_TX_FEE : MIN_TX_FEE_PREV7);
+    // PANDACOIN FIXME / CHECK txNew.nTime replaced with nTxTime
+    CAmount nMinFeeBase = (IsProtocolV07(nTxTime) ? MIN_TX_FEE : MIN_TX_FEE_PREV7);
     while(true)
     {
         // Set output amount
@@ -4587,7 +4598,5 @@ bool CWallet::CreateCoinStake(const CWallet* pwallet, unsigned int nBits, int64_
     }
 
     // Successfully generated coinstake
-    return true;
-     */
     return true;
 }
