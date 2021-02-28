@@ -3,16 +3,12 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include <pow.h>
 #include <cmath>
 
 #include <arith_uint256.h>
 #include <chain.h>
 #include <dogecoin.h>
-#include <primitives/block.h>
 #include <uint256.h>
-#include <util/system.h>
-#include <iostream>
 
 #include <bignum.h>
 #include <chainparams.h>
@@ -70,7 +66,7 @@ unsigned int static KimotoGravityWell(const CBlockIndex* pindexLast, const Conse
         if (PastRateActualSeconds != 0 && PastRateTargetSeconds != 0) {
             PastRateAdjustmentRatio = double(PastRateTargetSeconds) / double(PastRateActualSeconds);
         }
-        EventHorizonDeviation = 1 + (0.7084 * pow((double(PastBlocksMass)/double(28.2)), -1.228));
+        EventHorizonDeviation = 1 + (0.7084 * std::pow((double(PastBlocksMass)/double(28.2)), -1.228));
         EventHorizonDeviationFast = EventHorizonDeviation;
         EventHorizonDeviationSlow = 1 / EventHorizonDeviation;
 
@@ -102,104 +98,80 @@ unsigned int static KimotoGravityWell(const CBlockIndex* pindexLast, const Conse
 
 unsigned int GetNextTargetRequired(const CBlockIndex* pindexLast, bool fProofOfStake, const Consensus::Params& params)
 {
-    assert(pindexLast != nullptr);
+    if (pindexLast == nullptr)
+        return UintToArith256(params.powLimit).GetCompact(); // genesis block
 
-    if (pindexLast->nHeight+1 >= 6500) {
-        return KimotoGravityWell(pindexLast, params);
-    }
+    int64_t nTargetSpacing;
 
-    unsigned int nProofOfWorkLimit = UintToArith256(params.powLimit).GetCompact();
-
-    // Only change once per difficulty adjustment interval
-    if ((pindexLast->nHeight+1) % params.DifficultyAdjustmentInterval() != 0)
-    {
-        if (params.fPowAllowMinDifficultyBlocks)
-        {
-            // Special difficulty rule for testnet:
-            // If the new block's timestamp is more than 2* 10 minutes
-            // then allow mining of a min-difficulty block.
-            //if (pblock->GetBlockTime() > pindexLast->GetBlockTime() + params.nPowTargetSpacing*2)
-            //    return nProofOfWorkLimit;
-            //else
-            //{
-                // Return the last non-special-min-difficulty-rules-block
-                const CBlockIndex* pindex = pindexLast;
-                while (pindex->pprev && pindex->nHeight % params.DifficultyAdjustmentInterval() != 0 && pindex->nBits == nProofOfWorkLimit)
-                    pindex = pindex->pprev;
-                return pindex->nBits;
-            //}
-        }
-        return pindexLast->nBits;
-    }
-
-    // Litecoin: This fixes an issue where a 51% attack can change difficulty at will.
-    // Go back the full period unless it's the first retarget after genesis. Code courtesy of Art Forz
-    int blockstogoback = params.DifficultyAdjustmentInterval()-1;
-    if ((pindexLast->nHeight+1) != params.DifficultyAdjustmentInterval())
-        blockstogoback = params.DifficultyAdjustmentInterval();
-
-    // Go back by what we want to be 14 days worth of blocks
-    const CBlockIndex* pindexFirst = pindexLast;
-    for (int i = 0; pindexFirst && i < blockstogoback; i++)
-        pindexFirst = pindexFirst->pprev;
-
-    // Pandacoin: replaced with above version
-    // Go back by what we want to be 14 days worth of blocks
-    //int nHeightFirst = pindexLast->nHeight - (params.DifficultyAdjustmentInterval()-1);
-    //assert(nHeightFirst >= 0);
-    //const CBlockIndex* pindexFirst = pindexLast->GetAncestor(nHeightFirst);
-    //assert(pindexFirst);
-
-    return CalculateDogecoinNextWorkRequired(pindexLast, pindexFirst->GetBlockTime(), params);
-}
-
-unsigned int CalculateNextTargetRequired(const CBlockIndex* pindexLast, int64_t nFirstBlockTime, const Consensus::Params& params, bool fProofOfStake)
-{
-    assert(pindexLast != nullptr);
-
-    if (pindexLast->nHeight+1 >= 6500) {
-        return KimotoGravityWell(pindexLast, params);
-    }
-
-    unsigned int nProofOfWorkLimit = UintToArith256(params.powLimit).GetCompact();
-
-    // Only change once per difficulty adjustment interval
-    /*if ((pindexLast->nHeight+1) % params.DifficultyAdjustmentInterval() != 0)
-    {
-        if (params.fPowAllowMinDifficultyBlocks)
-        {
-            // Special difficulty rule for testnet:
-            // If the new block's timestamp is more than 2* 10 minutes
-            // then allow mining of a min-difficulty block.
-            if (pblock->GetBlockTime() > pindexLast->GetBlockTime() + params.nPowTargetSpacing*2)
-                return nProofOfWorkLimit;
-            else
-            {
-                // Return the last non-special-min-difficulty-rules-block
-                const CBlockIndex* pindex = pindexLast;
-                while (pindex->pprev && pindex->nHeight % params.DifficultyAdjustmentInterval() != 0 && pindex->nBits == nProofOfWorkLimit)
-                    pindex = pindex->pprev;
-                return pindex->nBits;
+    if (fProofOfStake) {
+        nTargetSpacing = params.nStakeTargetSpacing;
+    } else {
+        if (IsProtocolV09(pindexLast->nTime)) {
+            nTargetSpacing = params.nStakeTargetSpacing * 6;
+        } else {
+            if (pindexLast->nHeight+1 >= 6500) {
+                return KimotoGravityWell(pindexLast, params);
             }
+
+            unsigned int nProofOfWorkLimit = UintToArith256(params.powLimit).GetCompact();
+
+            // Only change once per difficulty adjustment interval
+            if ((pindexLast->nHeight+1) % params.DifficultyAdjustmentInterval() != 0)
+            {
+                if (params.fPowAllowMinDifficultyBlocks)
+                {
+                    // PANDACOIN FIXME: update this
+                    // Special difficulty rule for testnet:
+                    // If the new block's timestamp is more than 2* 10 minutes
+                    // then allow mining of a min-difficulty block.
+                    //if (pblock->GetBlockTime() > pindexLast->GetBlockTime() + params.nPowTargetSpacing*2)
+                    //    return nProofOfWorkLimit;
+                    //else
+                    //{
+                    // Return the last non-special-min-difficulty-rules-block
+                    const CBlockIndex* pindex = pindexLast;
+                    while (pindex->pprev && pindex->nHeight % params.DifficultyAdjustmentInterval() != 0 && pindex->nBits == nProofOfWorkLimit)
+                        pindex = pindex->pprev;
+                    return pindex->nBits;
+                    //}
+                }
+                return pindexLast->nBits;
+            }
+
+            // Litecoin: This fixes an issue where a 51% attack can change difficulty at will.
+            // Go back the full period unless it's the first retarget after genesis. Code courtesy of Art Forz
+            int blockstogoback = params.DifficultyAdjustmentInterval()-1;
+            if ((pindexLast->nHeight+1) != params.DifficultyAdjustmentInterval())
+                blockstogoback = params.DifficultyAdjustmentInterval();
+
+            // Go back by what we want to be 14 days worth of blocks
+            const CBlockIndex* pindexFirst = pindexLast;
+            for (int i = 0; pindexFirst && i < blockstogoback; i++)
+                pindexFirst = pindexFirst->pprev;
+
+            return CalculateDogecoinNextWorkRequired(pindexLast, pindexFirst->GetBlockTime(), params);
+            // PANDACOIN FIXME / CHECK: peercoin default, could be used?
+            // nTargetSpacing = std::min(params.nTargetSpacingWorkMax, params.nStakeTargetSpacing * (1 + pindexLast->nHeight - pindexPrev->nHeight));
         }
-        return pindexLast->nBits;
-    }*/
+    }
 
-    // Go back by what we want to be 14 days worth of blocks
-    // Litecoin: This fixes an issue where a 51% attack can change difficulty at will.
-    // Go back the full period unless it's the first retarget after genesis. Code courtesy of Art Forz
-    int blockstogoback = params.DifficultyAdjustmentInterval()-1;
-    if ((pindexLast->nHeight+1) != params.DifficultyAdjustmentInterval())
-        blockstogoback = params.DifficultyAdjustmentInterval();
+    const CBlockIndex* pindexPrev = GetLastBlockIndex(pindexLast, fProofOfStake);
+    const CBlockIndex* pindexPrevPrev = GetLastBlockIndex(pindexPrev->pprev, fProofOfStake);
 
-    // Go back by what we want to be 14 days worth of blocks
-    const CBlockIndex* pindexFirst = pindexLast;
-    for (int i = 0; pindexFirst && i < blockstogoback; i++)
-        pindexFirst = pindexFirst->pprev;
+    int64_t nActualSpacing = pindexPrev->GetBlockTime() - pindexPrevPrev->GetBlockTime();
 
-    assert(pindexFirst);
+    // peercoin: target change every block
+    // peercoin: retarget with exponential moving toward target spacing
+    CBigNum bnNew;
+    bnNew.SetCompact(pindexPrev->nBits);
+    int64_t nInterval = params.nTargetTimespan / nTargetSpacing;
+    bnNew *= ((nInterval - 1) * nTargetSpacing + nActualSpacing + nActualSpacing);
+    bnNew /= ((nInterval + 1) * nTargetSpacing);
 
-    return CalculateDogecoinNextWorkRequired(pindexLast, pindexFirst->GetBlockTime(), params);
+    if (bnNew > CBigNum(params.powLimit))
+        bnNew = CBigNum(params.powLimit);
+
+    return bnNew.GetCompact();
 }
 
 bool CheckProofOfWork(uint256 hash, unsigned int nBits, const Consensus::Params& params)

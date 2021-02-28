@@ -3289,8 +3289,9 @@ static bool ContextualCheckBlockHeader(const CBlockHeader& block, BlockValidatio
 
     // Check proof of work or proof-of-stake
     const Consensus::Params& consensusParams = params.GetConsensus();
-    //if (block.nBits != GetNextTargetRequired(pindexPrev, block.nFlags & CBlockIndex::BLOCK_PROOF_OF_STAKE, consensusParams))
-    //    return state.Invalid(BlockValidationResult::BLOCK_INVALID_HEADER, "bad-diffbits", "incorrect proof of work/stake");
+    // PANDACOIN CHECK/FIXME just check if this works as it needs to
+    if (::ChainActive().Tip()->nHeight > consensusParams.nLastPOWBlock && nHeight > consensusParams.nLastPOWBlock && block.nBits != GetNextTargetRequired(pindexPrev, block.nFlags & CBlockIndex::BLOCK_PROOF_OF_STAKE, consensusParams))
+        return state.Invalid(BlockValidationResult::BLOCK_INVALID_HEADER, "bad-diffbits", "incorrect proof of work/stake");
 
     // Check against checkpoints
     if (fCheckpointsEnabled) {
@@ -3316,7 +3317,7 @@ static bool ContextualCheckBlockHeader(const CBlockHeader& block, BlockValidatio
         return state.Invalid(BlockValidationResult::BLOCK_INVALID_HEADER, "time-too-old", "block's timestamp is too early");
 
     // PANDACOIN TODO: add these checks:
-    /*+    // HARD FORK: switch to version 3 starting from PoS
+    /*    // HARD FORK: switch to version 3 starting from PoS
     if (nHeight > LAST_POW_BLOCK && nVersion < 3)
         return DoS(100, error("AcceptBlock() : reject version <3 block at height %d", nHeight));
     if (nHeight <= LAST_POW_BLOCK && nVersion > 2)
@@ -3623,7 +3624,7 @@ bool CChainState::AcceptBlock(const std::shared_ptr<const CBlock>& pblock, Block
         return error("%s: reject version >2 block at height %d", __func__, nHeight);
 
     // peercoin: we should only accept blocks that can be connected to a prev block with validated PoS
-    //PANDACOIN TODO only check after given height, check if double use of chainparams.GetConsensus() is inefficient
+    //PANDACOIN TODO validate transactions
     if (fCheckPoS && pindex->pprev && !pindex->pprev->IsValid(BLOCK_VALID_TRANSACTIONS)) {
         return error("%s: this block does not connect to any valid known block", __func__);
     }
