@@ -1684,9 +1684,14 @@ static int64_t nBlocksTotal = 0;
 // These checks can only be done when all previous block have been added.
 bool PeercoinContextualBlockChecks(const CBlock& block, BlockValidationState& state, CBlockIndex* pindex, bool fJustCheck)
 {
+    // PANDACOIN FIXME: possibly add this check
+    //if (chainActive.Height() - nHeight >= consensusParams.nMaxReorganizationDepth)
+    //  return state.DoS(1, error("%s: forked chain older than max reorganization depth (height %d)", __func__, nHeight));
+
     uint256 hashProofOfStake = uint256();
     // peercoin: verify hash target and signature of coinstake tx
-    if (block.IsProofOfStake() && !CheckProofOfStake(state, pindex->pprev, block.vtx[1], block.nTime, block.nBits, hashProofOfStake)) {
+    // PANDACOIN FIXME: do not hardcode this
+    if (::ChainActive().Height() + 1 > 1316113 && pindex->nHeight > 1316113 && block.IsProofOfStake() && !CheckProofOfStake(state, pindex->pprev, block.vtx[1], block.nTime, block.nBits, hashProofOfStake)) {
         LogPrintf("WARNING: %s: check proof-of-stake failed for block %s\n", __func__, block.GetHash().ToString());
         return false; // do not error here as we expect this during initial block download
     }

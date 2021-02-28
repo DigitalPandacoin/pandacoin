@@ -2185,6 +2185,7 @@ void CWallet::AvailableCoins(interfaces::Chain::Lock& locked_chain, std::vector<
             continue;
         }
 
+        // PANDACOIN FIXME / CHECK
         //if (nSpendTime > 0 && wtx.tx->nTime > nSpendTime)
         //    continue;  // peercoin: timestamp must not exceed spend time
 
