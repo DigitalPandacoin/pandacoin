@@ -159,10 +159,8 @@ int64_t GetTransactionSigOpCost(const CTransaction& tx, const CCoinsViewCache& i
     return nSigOps;
 }
 
-bool Consensus::CheckTxInputs(const CTransaction& tx, TxValidationState& state, const CCoinsViewCache& inputs, int nSpendHeight, CAmount& txfee, const Consensus::Params& params, uint64_t nMoneySupply)
+bool Consensus::CheckTxInputs(const CTransaction& tx, unsigned int& nTxTime, TxValidationState& state, const CCoinsViewCache& inputs, int nSpendHeight, CAmount& txfee, const Consensus::Params& params, uint64_t nMoneySupply)
 {
-    // PANDACOIN FIXME dont actually do this
-    return true;
     // are the actual inputs available?
     if (!inputs.HaveInputs(tx)) {
         return state.Invalid(TxValidationResult::TX_MISSING_INPUTS, "bad-txns-inputs-missingorspent",
@@ -182,8 +180,8 @@ bool Consensus::CheckTxInputs(const CTransaction& tx, TxValidationState& state, 
         }
 
         // peercoin: check transaction timestamp
-        //if (coin.nTime > tx.nTime)
-        //    return state.Invalid(TxValidationResult::TX_CONSENSUS, "bad-txns-spent-too-early", strprintf("%s : transaction timestamp earlier than input transaction", __func__));
+        if (coin.nTime > nTxTime)
+            return state.Invalid(TxValidationResult::TX_CONSENSUS, "bad-txns-spent-too-early", strprintf("%s : transaction timestamp earlier than input transaction", __func__));
 
         // Check for negative or overflow input values
         nValueIn += coin.out.nValue;
@@ -200,10 +198,10 @@ bool Consensus::CheckTxInputs(const CTransaction& tx, TxValidationState& state, 
         if (!GetCoinAge(tx, inputs, nCoinAge))
             return state.Invalid(TxValidationResult::TX_CONSENSUS, "unable to get coin age for coinstake");
         // PANDACOIN TODO fix fees :^)
-        //CAmount nStakeReward = tx.GetValueOut() - nValueIn;
-        //CAmount nCoinstakeCost = (GetMinFee(tx) < PERKB_TX_FEE) ? 0 : (GetMinFee(tx) - PERKB_TX_FEE);
-        //if (nMoneySupply && nStakeReward > GetProofOfStakeReward(nCoinAge, tx.nTime, nMoneySupply) - nCoinstakeCost)
-        //    return state.Invalid(TxValidationResult::TX_CONSENSUS, "bad-txns-coinstake-too-large");
+        CAmount nStakeReward = tx.GetValueOut() - nValueIn;
+        CAmount nCoinstakeCost = (GetMinFee(tx) < PERKB_TX_FEE) ? 0 : (GetMinFee(tx) - PERKB_TX_FEE);
+        if (nMoneySupply && nStakeReward > GetProofOfStakeReward(nCoinAge, nTxTime, nMoneySupply) - nCoinstakeCost)
+            return state.Invalid(TxValidationResult::TX_CONSENSUS, "bad-txns-coinstake-too-large");
     }
     else
     {
