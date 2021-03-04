@@ -131,7 +131,7 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
         CMutableTransaction txCoinStake;
         // PANDACOIN FIXME / CHECK replaced txCoinStake.nTime with pblock->nTime
         int64_t nSearchTime = pblock->nTime; // search to current time
-        unsigned int nTxTime = pblock->nTime;
+        uint32_t nTxTime = pblock->nTime;
         if (nSearchTime > nLastCoinStakeSearchTime)
         {
             if (pwallet->CreateCoinStake(pwallet, pblock->nBits, nSearchTime-nLastCoinStakeSearchTime, txCoinStake, nTxTime))

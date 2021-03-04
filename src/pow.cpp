@@ -109,7 +109,7 @@ unsigned int GetNextTargetRequired(const CBlockIndex* pindexLast, bool fProofOfS
         if (IsProtocolV09(pindexLast->nTime)) {
             nTargetSpacing = params.nStakeTargetSpacing * 6;
         } else {
-            if (pindexLast->nHeight+1 >= 6500) {
+            if ((pindexLast->nHeight+1) >= 6500) {
                 return KimotoGravityWell(pindexLast, params);
             }
 

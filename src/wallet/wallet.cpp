@@ -1448,10 +1448,7 @@ bool CWallet::SetWalletFlags(uint64_t overwriteFlags, bool memonly)
 
 int64_t CWalletTx::GetTxTime() const
 {
-//    int64_t n = nTimeSmart;
-//    return n ? n : nTimeReceived;
-    // peercoin: we still have the timestamp, so use it to avoid confusion
-    return 1;//tx->nTime;
+    return nTimeSmart;
 }
 
 // Helper for producing a max-sized low-S low-R signature (eg 71 bytes)
@@ -2837,7 +2834,7 @@ bool CWallet::CreateTransaction(interfaces::Chain::Lock& locked_chain, const std
     // PANDACOIN FIXME / CHECK I am not yet in the clear if GetAdjustedTime() works at all
     // from my understanding we just need a comparison to past transactions. Given that CMutableTransaction
     // is called here, which would create a fresh timestamp, this should do "fine"
-    int nTxTime = GetAdjustedTime();
+    int nTxTime = GetTime();
 
     txNew.nLockTime = GetLocktimeForNewTransaction(chain(), locked_chain);
 
@@ -4363,7 +4360,7 @@ void CWallet::ConnectScriptPubKeyManNotifiers()
 
 // peercoin: create coin stake transaction
 typedef std::vector<unsigned char> valtype;
-bool CWallet::CreateCoinStake(const CWallet* pwallet, unsigned int nBits, int64_t nSearchInterval, CMutableTransaction& txNew, unsigned int& nTxTime)
+bool CWallet::CreateCoinStake(const CWallet* pwallet, unsigned int nBits, int64_t nSearchInterval, CMutableTransaction& txNew, uint32_t nTxTime)
 {
     // The following split & combine thresholds are important to security
     // Should not be adjusted if you don't understand the consequences
@@ -4545,7 +4542,7 @@ bool CWallet::CreateCoinStake(const CWallet* pwallet, unsigned int nBits, int64_
     {
         uint64_t nCoinAge;
         CCoinsViewCache view(&::ChainstateActive().CoinsTip());
-        if (!GetCoinAge((const CTransaction)txNew, view, nCoinAge, true))
+        if (!GetCoinAge((const CTransaction)txNew, view, nTxTime, nCoinAge, true))
             return error("CreateCoinStake : failed to calculate coin age");
 
         // PANDACOIN FIXME / CHECK txNew.nTime replaced with nTxTime
@@ -4585,9 +4582,9 @@ bool CWallet::CreateCoinStake(const CWallet* pwallet, unsigned int nBits, int64_
             return error("CreateCoinStake : exceeded coinstake size limit");
 
         // Check enough fee is paid
-        if (nMinFee < GetMinFee(CTransaction(txNew)) - nMinFeeBase)
+        if (nMinFee < GetMinFee(CTransaction(txNew), nTxTime) - nMinFeeBase)
         {
-            nMinFee = GetMinFee(CTransaction(txNew)) - nMinFeeBase;
+            nMinFee = GetMinFee(CTransaction(txNew), nTxTime) - nMinFeeBase;
             continue; // try signing again
         }
         else

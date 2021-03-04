@@ -18,7 +18,9 @@ static const CAmount CENT = 1000000;
 static const CAmount MIN_TX_FEE_PREV7 = CENT;
 static const CAmount MIN_TX_FEE = CENT / 10;
 static const CAmount PERKB_TX_FEE = CENT;
-static const CAmount MIN_TXOUT_AMOUNT = CENT;
+// PANDACOIN FIXME: currently we allow transactions of 0, at least at generation, see block 41435
+// PANDACOIN FIXME: bump this up somewhere in the future
+static const CAmount MIN_TXOUT_AMOUNT = 0;
 static const CAmount MAX_MINT_PROOF_OF_WORK = 9999 * COIN;
 static const std::string CURRENCY_UNIT = "BTC";
 

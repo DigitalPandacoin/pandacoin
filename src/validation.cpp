@@ -496,8 +496,6 @@ bool MemPoolAccept::PreChecks(ATMPArgs& args, Workspace& ws)
 {
     const CTransactionRef& ptx = ws.m_ptx;
     const CTransaction& tx = *ws.m_ptx;
-    // PANDACOIN TODO/CHECK: is this working?
-    unsigned int nTxTime = GetAdjustedTime();
     const uint256& hash = ws.m_hash;
 
     // Copy/alias what we need out of args
@@ -511,7 +509,7 @@ bool MemPoolAccept::PreChecks(ATMPArgs& args, Workspace& ws)
     std::unique_ptr<CTxMemPoolEntry>& entry = ws.m_entry;
     CAmount& nModifiedFees = ws.m_modified_fees;
 
-    if (!CheckTransaction(tx, state))
+    if (!CheckTransaction(tx, state, GetTime()))
         return false; // state filled in by CheckTransaction
     // Time (prevent mempool memory exhaustion attack)
     // moved from CheckTransaction() to here, because it makes no sense to make GetAdjustedTime() a part of the consensus rules - user can set his clock to whatever he wishes.
@@ -598,11 +596,11 @@ bool MemPoolAccept::PreChecks(ATMPArgs& args, Workspace& ws)
         return state.Invalid(TxValidationResult::TX_PREMATURE_SPEND, "non-BIP68-final");
 
     CAmount nFees = 0;
-    if (!Consensus::CheckTxInputs(tx, nTxTime, state, m_view, GetSpendHeight(m_view), nFees, Params().GetConsensus())) {
+    if (!Consensus::CheckTxInputs(tx, GetTime(), state, m_view, GetSpendHeight(m_view), nFees, Params().GetConsensus())) {
         return error("%s: Consensus::CheckTxInputs: %s, %s", __func__, tx.GetHash().ToString(), state.ToString());
     }
 
-    if (nFees < GetMinFee(tx))
+    if (nFees < GetMinFee(tx, GetTime()))
         return state.Invalid(TxValidationResult::TX_CONSENSUS, "fee is below minimum");
 
     // Check for non-standard pay-to-script-hash in inputs
@@ -1686,6 +1684,9 @@ static int64_t nBlocksTotal = 0;
 // These checks can only be done when all previous block have been added.
 bool PeercoinContextualBlockChecks(const CBlock& block, BlockValidationState& state, CBlockIndex* pindex, bool fJustCheck)
 {
+    uint32_t nTime;
+    nTime = block.GetBlockTime();
+
     const Consensus::Params& params = Params().GetConsensus();
     // PANDACOIN FIXME: possibly add this check
     //if (chainActive.Height() - nHeight >= consensusParams.nMaxReorganizationDepth)
@@ -1694,7 +1695,7 @@ bool PeercoinContextualBlockChecks(const CBlock& block, BlockValidationState& st
     uint256 hashProofOfStake = uint256();
     // peercoin: verify hash target and signature of coinstake tx
     // PANDACOIN FIXME: do not hardcode this
-    if (::ChainActive().Height() > params.nLastPOWBlock && pindex->nHeight > params.nLastPOWBlock && block.IsProofOfStake() && !CheckProofOfStake(state, pindex->pprev, block.vtx[1], block.nTime, block.nBits, hashProofOfStake)) {
+    if (::ChainActive().Height() > params.nLastPOWBlock && pindex->nHeight > params.nLastPOWBlock && block.IsProofOfStake() && !CheckProofOfStake(state, pindex->pprev, block.vtx[1], nTime, block.nBits, hashProofOfStake)) {
         LogPrintf("WARNING: %s: check proof-of-stake failed for block %s\n", __func__, block.GetHash().ToString());
         return false; // do not error here as we expect this during initial block download
     }
@@ -1737,7 +1738,7 @@ bool PeercoinContextualBlockChecks(const CBlock& block, BlockValidationState& st
     if (block.IsProofOfStake())
     {
         pindex->prevoutStake = block.vtx[1]->vin[0].prevout;
-        pindex->nStakeTime = block.nTime;
+        pindex->nStakeTime = nTime;
         pindex->hashProofOfStake = hashProofOfStake;
     }
     if (!pindex->SetStakeEntropyBit(nEntropyBit))
@@ -1952,8 +1953,6 @@ bool CChainState::ConnectBlock(const CBlock& block, BlockValidationState& state,
     for (unsigned int i = 0; i < block.vtx.size(); i++)
     {
         const CTransaction &tx = *(block.vtx[i]);
-        // PANDACOIN TODO/CHECK: is this working?
-        unsigned int nTxTime = GetAdjustedTime();
 
         nInputs += tx.vin.size();
 
@@ -1963,7 +1962,7 @@ bool CChainState::ConnectBlock(const CBlock& block, BlockValidationState& state,
         {
             CAmount txfee = 0;
             TxValidationState tx_state;
-            if (!Consensus::CheckTxInputs(tx, nTxTime, tx_state, view, pindex->nHeight, txfee, chainparams.GetConsensus(), (pindex->pprev? pindex->pprev->nMoneySupply : 0))) {
+            if (!Consensus::CheckTxInputs(tx, block.GetBlockTime(), tx_state, view, pindex->nHeight, txfee, chainparams.GetConsensus(), (pindex->pprev? pindex->pprev->nMoneySupply : 0))) {
                 // Any transaction validation failure in ConnectBlock is a block consensus failure
                 state.Invalid(BlockValidationResult::BLOCK_CONSENSUS,
                             tx_state.GetRejectReason(), tx_state.GetDebugMessage());
@@ -3119,8 +3118,12 @@ bool CheckBlock(const CBlock& block, BlockValidationState& state, const Consensu
     if (fCheckMerkleRoot) {
         bool mutated;
         uint256 hashMerkleRoot2 = BlockMerkleRoot(block, &mutated);
-        if (block.hashMerkleRoot != hashMerkleRoot2)
+        // PANDACOIN FIXME: causes an issue:
+        // 2021-03-03T06:00:10Z ERROR: ProcessNewBlock: AcceptBlock FAILED (bad-txnmrklroot, hashMerkleRoot mismatch)
+        if (block.hashMerkleRoot != hashMerkleRoot2) {
+            std::cout << "block.hashMerkleRoot = " << block.hashMerkleRoot.ToString() << " hashMerkleRoot2 = " << hashMerkleRoot2.ToString() << "\n";
             return state.Invalid(BlockValidationResult::BLOCK_MUTATED, "bad-txnmrklroot", "hashMerkleRoot mismatch");
+        }
 
         // Check for merkle tree malleability (CVE-2012-2459): repeating sequences
         // of transactions in a block without affecting the merkle root of a block,
@@ -3156,17 +3159,17 @@ bool CheckBlock(const CBlock& block, BlockValidationState& state, const Consensu
         return state.Invalid(BlockValidationResult::BLOCK_CONSENSUS, "bad-cb-notempty", "coinbase output not empty in PoS block");
 
     // Check coinbase timestamp
-    //if (block.GetBlockTime() > (int64_t)block.nTime + (IsProtocolV09(block.GetBlockTime()) ? MAX_FUTURE_BLOCK_TIME : MAX_FUTURE_BLOCK_TIME_PREV9))
-    //    return state.Invalid(BlockValidationResult::BLOCK_CONSENSUS, "bad-cb-time", "coinbase timestamp is too early");
+    if (block.GetBlockTime() > (int64_t)block.nTime + (IsProtocolV09(block.GetBlockTime()) ? MAX_FUTURE_BLOCK_TIME : MAX_FUTURE_BLOCK_TIME_PREV9))
+        return state.Invalid(BlockValidationResult::BLOCK_CONSENSUS, "bad-cb-time", "coinbase timestamp is too early");
 
     // Check coinstake timestamp
-    //if (block.IsProofOfStake() && !CheckCoinStakeTimestamp(block.GetBlockTime(), (int64_t)block.vtx[1]->nTime))
-    //    return state.Invalid(BlockValidationResult::BLOCK_CONSENSUS, "bad-cs-time", "coinstake timestamp violation");
+    if (block.IsProofOfStake() && !CheckCoinStakeTimestamp(block.GetBlockTime(), (int64_t)block.nTime))
+        return state.Invalid(BlockValidationResult::BLOCK_CONSENSUS, "bad-cs-time", "coinstake timestamp violation");
 
     // Check coinbase reward
     CAmount nCoinbaseCost = 0;
     if (block.IsProofOfWork())
-        nCoinbaseCost = (GetMinFee(*block.vtx[0]) < PERKB_TX_FEE)? 0 : (GetMinFee(*block.vtx[0]) - PERKB_TX_FEE);
+        nCoinbaseCost = (GetMinFee(*block.vtx[0], block.GetBlockTime()) < PERKB_TX_FEE)? 0 : (GetMinFee(*block.vtx[0], block.GetBlockTime()) - PERKB_TX_FEE);
     //CAmount blockReward = nFees + GetDogecoinBlockSubsidy(pindex->nHeight, chainparams.GetConsensus(), hashPrevBlock);
     /*if (block.vtx[0]->GetValueOut() > (block.IsProofOfWork()? (GetProofOfWorkReward(block.nBits) - nCoinbaseCost) : 0))
         return state.Invalid(BlockValidationResult::BLOCK_CONSENSUS, "bad-cb-amount",
@@ -3178,7 +3181,7 @@ bool CheckBlock(const CBlock& block, BlockValidationState& state, const Consensu
     // Must check for duplicate inputs (see CVE-2018-17144)
     for (const auto& tx : block.vtx) {
         TxValidationState tx_state;
-        if (!CheckTransaction(*tx, tx_state)) {
+        if (!CheckTransaction(*tx, tx_state, block.GetBlockTime())) {
             // CheckBlock() does context-free validation checks. The only
             // possible failures are consensus failures.
             assert(tx_state.GetResult() == TxValidationResult::TX_CONSENSUS);
@@ -3302,6 +3305,30 @@ static bool ContextualCheckBlockHeader(const CBlockHeader& block, BlockValidatio
     // most notably i had to force set fProofOfStake to true. this does not seem right
     if (::ChainActive().Height() > consensusParams.nLastPOWBlock && nHeight > consensusParams.nLastPOWBlock && block.nBits != GetNextTargetRequired(pindexPrev, true, consensusParams))
         return state.Invalid(BlockValidationResult::BLOCK_INVALID_HEADER, "bad-diffbits", "incorrect proof of work/stake");
+
+    /*if (::ChainActive().Height() > consensusParams.nLastPOWBlock && nHeight > consensusParams.nLastPOWBlock) {
+        if (block.nBits != GetNextTargetRequired(pindexPrev, hasPoSStarted, consensusParams))
+            return state.Invalid(BlockValidationResult::BLOCK_INVALID_HEADER, "bad-diffbits", "incorrect proof of work/stake");
+    } else {
+        if (block.nBits != GetNextTargetRequired(pindexPrev, false, consensusParams))
+            return state.Invalid(BlockValidationResult::BLOCK_INVALID_HEADER, "bad-diffbits", "incorrect proof of work");
+    }*/
+    /* PANDACOIN TODO: possibly add those checks:
+    // Preliminary check of pos timestamp
+    if (nHeight > consensusParams.nLastPOWBlock && !CheckStakeBlockTimestamp(block.GetBlockTime()))
+        return state.DoS(50, error("%s: incorrect pos block timestamp", __func__),
+                             REJECT_INVALID, "bad-pos-time");
+
+    // Check timestamp
+    if (block.GetBlockTime() > FutureDrift(GetAdjustedTime()))
+        return state.DoS(50, error("%s: block timestamp too far in the future", __func__),
+                             REJECT_INVALID, "time-too-new");
+
+    // Check timestamp against prev
+    if (block.GetBlockTime() <= pindexPrev->GetPastTimeLimit())
+        return state.Invalid(error("%s: block's timestamp is too early", __func__),
+                             REJECT_INVALID, "time-too-old");
+    */
 
     // Check against checkpoints
     if (fCheckpointsEnabled) {
@@ -3633,6 +3660,10 @@ bool CChainState::AcceptBlock(const std::shared_ptr<const CBlock>& pblock, Block
     if (nHeight <= nLastPOWBlock && nVersion > 2)
         return error("%s: reject version >2 block at height %d", __func__, nHeight);
 
+    // Check for the last proof of work block
+    if (block.IsProofOfWork() && nHeight > nLastPOWBlock)
+        return error("%: reject proof-of-work at height %d", __func__, nHeight);
+
     // peercoin: we should only accept blocks that can be connected to a prev block with validated PoS
     //PANDACOIN TODO validate transactions
     if (fCheckPoS && pindex->pprev && !pindex->pprev->IsValid(BLOCK_VALID_TRANSACTIONS)) {
@@ -3680,10 +3711,6 @@ bool CChainState::AcceptBlock(const std::shared_ptr<const CBlock>& pblock, Block
         }
         return error("%s: %s", __func__, state.ToString());
     }
-
-    // Check for the last proof of work block
-    if (block.IsProofOfWork() && nHeight > nLastPOWBlock)
-        return error("%: reject proof-of-work at height %d", __func__, nHeight);
 
     // peercoin: check PoS
     if (fCheckPoS && !PeercoinContextualBlockChecks(block, state, pindex, false)) {
@@ -4887,7 +4914,7 @@ static CMainCleanup instance_of_cmaincleanup;
 // guaranteed to be in main chain by sync-checkpoint. This rule is
 // introduced to help nodes establish a consistent view of the coin
 // age (trust score) of competing branches.
-bool GetCoinAge(const CTransaction& tx, const CCoinsViewCache &view, uint64_t& nCoinAge, bool isTrueCoinAge)
+bool GetCoinAge(const CTransaction& tx, const CCoinsViewCache &view, uint32_t nTime, uint64_t& nCoinAge, bool isTrueCoinAge)
 {
     arith_uint256 bnCentSecond = 0;  // coin age in the unit of cent-seconds
     nCoinAge = 0;
@@ -4907,8 +4934,8 @@ bool GetCoinAge(const CTransaction& tx, const CCoinsViewCache &view, uint64_t& n
 
         if (isTrueCoinAge && !view.GetCoin(prevout, coin))
             continue;  // previous transaction not in main chain
-        //if (tx.nTime < coin.nTime)
-        //    return false;  // Transaction timestamp violation
+        if (nTime < coin.nTime)
+            return false;  // Transaction timestamp violation
 
         CDiskTxPos postx;
         CTransactionRef txPrev;

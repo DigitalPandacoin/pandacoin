@@ -129,6 +129,13 @@ static bool GetLastStakeModifier(const CBlockIndex* pindex, uint64_t& nStakeModi
         return error("GetLastStakeModifier: null pindex");
     while (pindex && pindex->pprev && !pindex->GeneratedStakeModifier())
         pindex = pindex->pprev;
+    // PANDACOIN FIXME / CHECK: Crash caused at after pow block:
+    // PANDACOIN FIXME / CHECK: I'm guessing this is implicit? Probably replaced with lastblockpow
+    // 2021-03-03T04:49:30Z ERROR: GetLastStakeModifier: no generation at genesis block
+    // 2021-03-03T04:49:30Z ERROR: ComputeNextStakeModifier: unable to get last modifier
+    // 2021-03-03T04:49:30Z ERROR: ConnectBlock() : ComputeNextStakeModifier() failed
+    // 2021-03-03T04:49:30Z ERROR: ConnectBlock: failed PoS check Valid
+    // 2021-03-03T04:49:30Z ERROR: ConnectTip: ConnectBlock bc78b8ded3f55f37480c401c2ac4cf8e8aeaa5a4c2280ca41b45717e78ee62a9 failed, Valid
     if (!pindex->GeneratedStakeModifier())
         return error("GetLastStakeModifier: no generation at genesis block");
     nStakeModifier = pindex->nStakeModifier;
@@ -471,6 +478,9 @@ bool CheckStakeKernelHash(unsigned int nBits, CBlockIndex* pindexPrev, const CBl
     const Consensus::Params& params = Params().GetConsensus();
 
     unsigned int nTimeBlockFrom = blockFrom.GetBlockTime();
+
+    if (nTimeTx < nTimeBlockFrom)  // Transaction timestamp violation
+        return error("CheckStakeKernelHash() : nTime violation");
     if (nTimeBlockFrom + params.nStakeMinAge > nTimeTx) // Min age requirement
         return error("CheckStakeKernelHash() : min age violation");
 
@@ -540,7 +550,7 @@ bool CheckStakeKernelHash(unsigned int nBits, CBlockIndex* pindexPrev, const CBl
 }
 
 // Check kernel hash target and coinstake signature
-bool CheckProofOfStake(BlockValidationState &state, CBlockIndex* pindexPrev, const CTransactionRef& tx, int nTime, unsigned int nBits, uint256& hashProofOfStake)
+bool CheckProofOfStake(BlockValidationState& state, CBlockIndex* pindexPrev, const CTransactionRef& tx, uint32_t nTime, unsigned int nBits, uint256& hashProofOfStake)
 {
     if (!tx->IsCoinStake())
         return error("CheckProofOfStake() : called on non-coinstake %s", tx->GetHash().ToString());

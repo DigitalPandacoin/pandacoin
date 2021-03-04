@@ -2745,6 +2745,7 @@ bool ProcessMessage(CNode* pfrom, const std::string& msg_type, CDataStream& vRec
             nPoSTemperature = (MAX_CONSECUTIVE_POS_HEADERS*3)/4;
             if (!::ChainstateActive().IsInitialBlockDownload() && Params().NetworkIDString() != "test") {
                 LOCK(cs_main);
+                // PANDACOIN FIXME: this will cause issues after syncing
                 Misbehaving(pfrom->GetId(), 100, "too many consecutive pos headers");
                 return error("too many consecutive pos headers");
             }

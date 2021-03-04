@@ -12,7 +12,7 @@ bool IsZeroAllowed(const unsigned int nTimeTx)
     return (nTimeTx >= 1447700000 ); // very crude approximation to prevent linking with kernel.cpp
 }
 
-bool CheckTransaction(const CTransaction& tx, TxValidationState& state)
+bool CheckTransaction(const CTransaction& tx, TxValidationState& state, uint32_t nTime)
 {
     // Basic checks that don't depend on any context
     if (tx.vin.empty())
@@ -35,10 +35,9 @@ bool CheckTransaction(const CTransaction& tx, TxValidationState& state)
         if (!MoneyRange(nValueOut))
             return state.Invalid(TxValidationResult::TX_CONSENSUS, "bad-txns-txouttotal-toolarge");
         // peercoin: enforce minimum output amount
-        /*if ((!txout.IsEmpty()) && txout.nValue < MIN_TXOUT_AMOUNT &&
-            !(IsZeroAllowed(tx.nTime) && (txout.nValue == 0)))
+        if ((!txout.IsEmpty()) && txout.nValue < MIN_TXOUT_AMOUNT &&
+            !(IsZeroAllowed(nTime) && (txout.nValue == 0)))
             return state.Invalid(TxValidationResult::TX_CONSENSUS, "bad-txns-txoutvalue-belowminimum");
-            */
     }
 
     // Check for duplicate inputs (see CVE-2018-17144)
