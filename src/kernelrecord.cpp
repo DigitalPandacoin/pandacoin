@@ -26,8 +26,10 @@ bool KernelRecord::showTransaction(bool isCoinbase, int depth)
  */
 vector<KernelRecord> KernelRecord::decomposeOutput(interfaces::Wallet& wallet, const interfaces::WalletTx &wtx)
 {
+    // PANDCOIN FIXME: enable this
+    /*
     vector<KernelRecord> parts;
-    int64_t nTime = wtx.tx->nTime;
+    int64_t nTime = wtx.nTime;
     uint256 hash = wtx.tx->GetHash();
     std::map<std::string, std::string> mapValue = wtx.value_map;
 
@@ -59,6 +61,7 @@ vector<KernelRecord> KernelRecord::decomposeOutput(interfaces::Wallet& wallet, c
     }
 
     return parts;
+     */
 }
 
 std::string KernelRecord::getTxID()

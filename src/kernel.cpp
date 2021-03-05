@@ -22,8 +22,8 @@ using namespace std;
 // PANDACOIN TODO do more with kernel.cpp
 
 // Protocol switch time of v0.3 kernel protocol
-unsigned int nProtocolV03SwitchTime     = 1363800000;
-unsigned int nProtocolV03TestSwitchTime = 1359781000;
+unsigned int nProtocolV03SwitchTime     = 3363800000;
+unsigned int nProtocolV03TestSwitchTime = 3359781000;
 // Protocol switch time of v0.4 kernel protocol
 unsigned int nProtocolV04SwitchTime     = 3399300000;
 unsigned int nProtocolV04TestSwitchTime = 3395700000;
@@ -593,7 +593,7 @@ bool CheckProofOfStake(BlockValidationState& state, CBlockIndex* pindexPrev, con
             return state.Invalid(BlockValidationResult::BLOCK_CONSENSUS, "invalid-pos-script", strprintf("%s: VerifyScript failed on coinstake %s", __func__, tx->GetHash().ToString()));
     }
 
-    // PANDACOIN FIXME/CHECK (apparently this was commented?):                                                                                                                     replaced tx->nTime with block.nTime. check if this does what we want it to
+    // PANDACOIN FIXME/CHECK (apparently this was commented?):                                                                                    replaced tx->nTime with block.nTime. check if this does what we want it to
     if (!CheckStakeKernelHash(nBits, pindexPrev, header, postx.nTxOffset + CBlockHeader::NORMAL_SERIALIZE_SIZE, txPrev, txin.prevout, nTime, hashProofOfStake, gArgs.GetBoolArg("-debug", false)))
         return state.Invalid(BlockValidationResult::BLOCK_CONSENSUS, "check-kernel-failed", strprintf("CheckProofOfStake() : INFO: check kernel failed on coinstake %s, hashProof=%s", tx->GetHash().ToString(), hashProofOfStake.ToString())); // may occur during initial download or if behind on block chain sync
 

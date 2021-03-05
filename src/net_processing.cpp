@@ -3076,7 +3076,18 @@ bool ProcessMessage(CNode* pfrom, const std::string& msg_type, CDataStream& vRec
         }
 
         std::shared_ptr<CBlock> pblock2 = std::make_shared<CBlock>();
-        vRecv >> *pblock2;
+        // Due to the transition from PoW to PoS,
+        // PoW blocks are missing the s
+        try
+        {
+            vRecv >> *pblock2;
+        }
+        catch(std::ios_base::failure& e)
+        {
+            printf("Block didn't parse in v3 format, trying old format...\n");
+            pblock2->nVersion = 1;
+            vRecv >> *pblock2;
+        }
         int64_t nTimeNow = GetSystemTimeInSeconds();
 
         LogPrint(BCLog::NET, "received block %s peer=%d\n", pblock2->GetHash().ToString(), pfrom->GetId());
@@ -3104,7 +3115,7 @@ bool ProcessMessage(CNode* pfrom, const std::string& msg_type, CDataStream& vRec
                 if (pblock2->IsProofOfStake() && !::ChainstateActive().IsInitialBlockDownload())
                     nPoSTemperature += 1;
 
-                if (pblock2->nVersion >= 3 && !headerPrev->IsValid(BLOCK_VALID_TRANSACTIONS)) {
+                if (!headerPrev->IsValid(BLOCK_VALID_TRANSACTIONS)) {
                     MarkBlockAsReceived(hash2);
                     return error("this block does not connect to any valid known blocks");
                 }

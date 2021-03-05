@@ -9,6 +9,7 @@
 #include <primitives/transaction.h>
 #include <serialize.h>
 #include <uint256.h>
+#include <iostream>
 
 /** Nodes collect new transactions into a block, hash them into a hash tree,
  * and scan through nonce values to make the block's hash satisfy proof-of-work
@@ -113,7 +114,7 @@ public:
         READWRITE(vtx);
         // BlockSig only in block version 3
         // due to the transition from PoW to PoS
-        if(nVersion >= 3)
+        if (nVersion >= 3)
             READWRITE(vchBlockSig);
     }
 
@@ -122,7 +123,7 @@ public:
         CBlockHeader::SetNull();
         vtx.clear();
         fChecked = false;
-        if(nVersion >= 3)
+        if (nVersion >= 3)
             vchBlockSig.clear();
     }
 

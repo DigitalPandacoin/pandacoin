@@ -1687,6 +1687,7 @@ bool PeercoinContextualBlockChecks(const CBlock& block, BlockValidationState& st
     uint32_t nTime;
     nTime = block.GetBlockTime();
 
+    // PANDACOIN FIXME: unused atm
     const Consensus::Params& params = Params().GetConsensus();
     // PANDACOIN FIXME: possibly add this check
     //if (chainActive.Height() - nHeight >= consensusParams.nMaxReorganizationDepth)
@@ -1694,8 +1695,10 @@ bool PeercoinContextualBlockChecks(const CBlock& block, BlockValidationState& st
 
     uint256 hashProofOfStake = uint256();
     // peercoin: verify hash target and signature of coinstake tx
-    // PANDACOIN FIXME: do not hardcode this
-    if (::ChainActive().Height() > params.nLastPOWBlock && pindex->nHeight > params.nLastPOWBlock && block.IsProofOfStake() && !CheckProofOfStake(state, pindex->pprev, block.vtx[1], nTime, block.nBits, hashProofOfStake)) {
+    std::cout << "ca height " << ::ChainActive().Height() << "\n";
+    std::cout << "pindex " << pindex->nHeight << "\n";
+    std::cout << "is it pos? " << pindex->ToString() << "\n";
+    if (block.IsProofOfStake() && !CheckProofOfStake(state, pindex->pprev, block.vtx[1], nTime, block.nBits, hashProofOfStake)) {
         LogPrintf("WARNING: %s: check proof-of-stake failed for block %s\n", __func__, block.GetHash().ToString());
         return false; // do not error here as we expect this during initial block download
     }
@@ -1706,7 +1709,7 @@ bool PeercoinContextualBlockChecks(const CBlock& block, BlockValidationState& st
     // peercoin: compute stake modifier
     uint64_t nStakeModifier = 0;
     bool fGeneratedStakeModifier = false;
-    if (::ChainActive().Height() > params.nLastPOWBlock && pindex->nHeight > params.nLastPOWBlock && !ComputeNextStakeModifier(pindex, nStakeModifier, fGeneratedStakeModifier))
+    if (!ComputeNextStakeModifier(pindex, nStakeModifier, fGeneratedStakeModifier))
         return error("ConnectBlock() : ComputeNextStakeModifier() failed");
 
   // compute nStakeModifierChecksum begin
@@ -3301,7 +3304,7 @@ static bool ContextualCheckBlockHeader(const CBlockHeader& block, BlockValidatio
 
     // Check proof of work or proof-of-stake
     const Consensus::Params& consensusParams = params.GetConsensus();
-    // PANDACOIN CHECK/FIXME just check if this works as it needs to*
+    // PANDACOIN CHECK/FIXME just check if this works as it needs to
     // most notably i had to force set fProofOfStake to true. this does not seem right
     if (::ChainActive().Height() > consensusParams.nLastPOWBlock && nHeight > consensusParams.nLastPOWBlock && block.nBits != GetNextTargetRequired(pindexPrev, true, consensusParams))
         return state.Invalid(BlockValidationResult::BLOCK_INVALID_HEADER, "bad-diffbits", "incorrect proof of work/stake");
