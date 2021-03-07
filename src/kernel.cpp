@@ -43,15 +43,15 @@ const unsigned int nProtocolV09SwitchTime     = 1591617600; // Mon  8 Jun 12:00:
 const unsigned int nProtocolV09TestSwitchTime = 1581940800; // Mon 17 Feb 12:00:00 UTC 2020
 
 // Hard checkpoints of stake modifiers to ensure they are deterministic
+// PANDACOIN TODO: update this
 static std::map<int, unsigned int> mapStakeModifierCheckpoints =
     boost::assign::map_list_of
-    // PANDACOIN TODO: update this
     ( 99999, 0x000000000 )
     ;
 
+// PANDACOIN TODO: update this
 static std::map<int, unsigned int> mapStakeModifierTestnetCheckpoints =
     boost::assign::map_list_of
-    // PANDACOIN TODO: update this
     ( 0, 0x0e00670bu )
     ( 19080, 0x3711dc3au )
     ( 30583, 0xb480fadeu )
@@ -88,7 +88,8 @@ bool IsProtocolV05(unsigned int nTimeTx)
 // Test against previous block index! (always available)
 bool IsProtocolV06(const CBlockIndex* pindexPrev)
 {
-  if (pindexPrev->nTime < (Params().NetworkIDString() != CBaseChainParams::MAIN ? nProtocolV06TestSwitchTime : nProtocolV06SwitchTime))
+  // pandacoin: added null check because our genesis block needs to be spendable
+  if (pindexPrev != nullptr && pindexPrev->nTime < (Params().NetworkIDString() != CBaseChainParams::MAIN ? nProtocolV06TestSwitchTime : nProtocolV06SwitchTime))
     return false;
 
   // if 900 of the last 1,000 blocks are version 2 or greater (90/100 if testnet):
