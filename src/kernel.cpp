@@ -88,8 +88,9 @@ bool IsProtocolV05(unsigned int nTimeTx)
 // Test against previous block index! (always available)
 bool IsProtocolV06(const CBlockIndex* pindexPrev)
 {
-  // pandacoin: added null check because our genesis block needs to be spendable
-  if (pindexPrev != nullptr && pindexPrev->nTime < (Params().NetworkIDString() != CBaseChainParams::MAIN ? nProtocolV06TestSwitchTime : nProtocolV06SwitchTime))
+  if (pindexPrev == nullptr)
+    return false;
+  if (pindexPrev->nTime < (Params().NetworkIDString() != CBaseChainParams::MAIN ? nProtocolV06TestSwitchTime : nProtocolV06SwitchTime))
     return false;
 
   // if 900 of the last 1,000 blocks are version 2 or greater (90/100 if testnet):
