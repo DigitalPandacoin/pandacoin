@@ -3176,7 +3176,7 @@ bool CheckBlock(const CBlock& block, BlockValidationState& state, const Consensu
         nCoinbaseCost = (GetMinFee(*block.vtx[0]) < PERKB_TX_FEE)? 0 : (GetMinFee(*block.vtx[0]) - PERKB_TX_FEE);
 
     // pandacoin: we need a spendable genesis block
-    if (block.vtx[0]->GetValueOut() > (block.IsProofOfWork()? (GetProofOfWorkReward(block.nBits) - nCoinbaseCost) : 0) && block.GetHash() != consensusParams.hashGenesisBlock)
+    if (block.GetHash() != consensusParams.hashGenesisBlock && block.vtx[0]->GetValueOut() > (block.IsProofOfWork()? (GetProofOfWorkReward(block.nBits) - nCoinbaseCost) : 0))
         return state.Invalid(BlockValidationResult::BLOCK_CONSENSUS, "bad-cb-amount",
                 strprintf("CheckBlock() : coinbase reward exceeded %s > %s",
                    FormatMoney(block.vtx[0]->GetValueOut()),
