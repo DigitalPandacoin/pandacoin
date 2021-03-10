@@ -926,11 +926,8 @@ bool ReadBlockFromDisk(CBlock& block, const FlatFilePos& pos, const Consensus::P
     }
 
     // Check the header
-    // PANDACOIN TODO: check has been added to allow low diff genesis, try generating it instead
-    if (block.GetHash() != consensusParams.hashGenesisBlock) {
-        if (block.IsProofOfWork() && !CheckProofOfWork(block.GetHash(), block.nBits, consensusParams))
-            return error("ReadBlockFromDisk: Errors in block header at %s", pos.ToString());
-    }
+    if (block.IsProofOfWork() && !CheckProofOfWork(block.GetHash(), block.nBits, consensusParams))
+        return error("ReadBlockFromDisk: Errors in block header at %s", pos.ToString());
     return true;
 }
 
@@ -3097,9 +3094,6 @@ static bool FindUndoPos(BlockValidationState &state, int nFile, FlatFilePos &pos
 
 static bool CheckBlockHeader(const CBlockHeader& block, BlockValidationState& state, const Consensus::Params& consensusParams, bool fCheckPOW = true)
 {
-    // PANDACOIN TODO: check has been added to allow low diff genesis, try generating it instead
-    if (block.GetHash() == consensusParams.hashGenesisBlock)
-        fCheckPOW = false;
     // Check proof of work matches claimed amount
     if (fCheckPOW && !CheckProofOfWork(block.GetHash(), block.nBits, consensusParams))
         return state.Invalid(BlockValidationResult::BLOCK_INVALID_HEADER, "high-hash", "proof of work failed");
@@ -3117,8 +3111,8 @@ bool CheckBlock(const CBlock& block, BlockValidationState& state, const Consensu
     // Check that the header is valid (particularly PoW).  This is mostly
     // redundant with the call in AcceptBlockHeader.
     // PANDACOIN TODO: check has been added to allow low diff genesis, try generating it instead
-    if (block.GetHash() == consensusParams.hashGenesisBlock)
-        fCheckPOW = false;
+    //if (block.GetHash() == consensusParams.hashGenesisBlock)
+    //    fCheckPOW = false;
     if (!CheckBlockHeader(block, state, consensusParams, fCheckPOW && !block.IsProofOfStake()))
         return false;
 
