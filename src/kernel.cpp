@@ -52,18 +52,7 @@ static std::map<int, unsigned int> mapStakeModifierCheckpoints =
 // PANDACOIN TODO: update this
 static std::map<int, unsigned int> mapStakeModifierTestnetCheckpoints =
     boost::assign::map_list_of
-    ( 0, 0x0e00670bu )
-    ( 19080, 0x3711dc3au )
-    ( 30583, 0xb480fadeu )
-    ( 99999, 0x9a62eaecu )
-    (219999, 0xeafe96c3u )
-    (336000, 0x8330dc09u )
-    (372751, 0xafb94e2fu )
-    (382019, 0x7f5cf5ebu )
-    (408500, 0x68cadee2u )
-    (412691, 0x93138e67u )
-    (441667, 0x3303fc25u )
-    (444932, 0x4b8bf2e3u )
+    ( 0, 0xfd11f4e7 )
     ;
 
 // Whether the given coinstake is subject to new v0.3 protocol
