@@ -79,7 +79,7 @@ public:
             bool inMempool;
             walletModel->wallet().getWalletTxDetails(wtx.tx->GetHash(), status, orderForm, inMempool, numBlocks);
 
-            if(KernelRecord::showTransaction(wtx.is_coinbase, status.depth_in_main_chain))
+            if(KernelRecord::showTransaction(wtx.is_coinbase, status.depth_in_main_chain, wtx.tx->HasWitness()))
                 for(const KernelRecord& kr : txList) {
                     if(!kr.spent) {
                         cachedWallet.append(kr);
@@ -119,7 +119,7 @@ public:
                 bool inMempool;
                 walletModel->wallet().getWalletTxDetails(wtx.tx->GetHash(), status, orderForm, inMempool, numBlocks);
 
-                showTransaction = KernelRecord::showTransaction(wtx.is_coinbase, status.depth_in_main_chain);
+                showTransaction = KernelRecord::showTransaction(wtx.is_coinbase, status.depth_in_main_chain, wtx.tx->HasWitness());
             }
 
             if(status == CT_UPDATED)

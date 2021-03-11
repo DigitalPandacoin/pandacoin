@@ -1625,6 +1625,7 @@ static unsigned int GetBlockScriptFlags(const CBlockIndex* pindex, const Consens
     AssertLockHeld(cs_main);
 
     unsigned int flags = SCRIPT_VERIFY_NONE;
+    return flags;
 
     // BIP16 didn't become active until Apr 1 2012 (on mainnet, and
     // retroactively applied to testnet)
@@ -3213,6 +3214,7 @@ bool CheckBlock(const CBlock& block, BlockValidationState& state, const Consensu
 
 bool IsWitnessEnabled(const CBlockIndex* pindexPrev, const Consensus::Params& params)
 {
+    return false;
     return pindexPrev ? IsBTC16BIPsEnabled(pindexPrev->nTime) : false; // pindexPrev == null on genesis block
 }
 
@@ -3401,7 +3403,7 @@ static bool ContextualCheckBlock(const CBlock& block, BlockValidationState& stat
             if (memcmp(hashWitness.begin(), &block.vtx[0]->vout[commitpos].scriptPubKey[6], 32)) {
                 return state.Invalid(BlockValidationResult::BLOCK_MUTATED, "bad-witness-merkle-match", strprintf("%s : witness merkle commitment mismatch", __func__));
             }
-            fHaveWitness = true;
+            fHaveWitness = false;
         }
     }
 

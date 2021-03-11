@@ -299,7 +299,7 @@ public:
         consensus.nStakeMinAge = 60 * 60 * 24; // test net min age is 1 day
         consensus.nStakeMaxAge = 60 * 60 * 24 * 90;
         consensus.nModifierInterval = 60 * 20; // Modifier interval: time to elapse before new modifier is computed
-        consensus.nCoinbaseMaturity = 3;
+        consensus.nCoinbaseMaturity = 60;
 
         consensus.fPowAllowMinDifficultyBlocks = true;
         consensus.fPowNoRetargeting = true;
@@ -322,11 +322,11 @@ public:
         m_assumed_blockchain_size = 0;
         m_assumed_chain_state_size = 0;
 
-        genesis = CreateGenesisBlock(1615392510, 1615392510, 0, 0x1d00ffff, 3, 34212990247.93299 * COIN);
+        genesis = CreateGenesisBlock(1615405884, 1615405884, 2033419875, 0x1d00ffff, 3, 34213656998.8627 * COIN);
 
         consensus.hashGenesisBlock = genesis.GetHash();
-        // assert(consensus.hashGenesisBlock == uint256S("0x00000001f757bb737f6596503e17cd17b0658ce630cc727c0cca81aec47c9f06"));
-        // assert(genesis.hashMerkleRoot == uint256S("0x3c2d8f85fab4d17aac558cc648a1a58acff0de6deb890c29985690052c5993c2"));
+        assert(consensus.hashGenesisBlock == uint256S("0x00000000b10442d84a88b1ce00dd43fe06de95cccd2ab6dc8dba6c0a2ef8354a"));
+        assert(genesis.hashMerkleRoot == uint256S("0x793456b78b27dcff4915c5acb005001c15365e831407cb43bf9db02405839ca3"));
 
         vFixedSeeds.clear(); //!< Regtest mode doesn't have any fixed seeds.
         vSeeds.clear();      //!< Regtest mode doesn't have any DNS seeds.
@@ -335,7 +335,7 @@ public:
         m_is_mockable_chain = true;
         checkpointData = {
             {
-                {99999, uint256S("0x00000001f757bb737f6596503e17cd17b0658ce630cc727c0cca81aec47c9f06")},
+                {0, uint256S("0x00000000b10442d84a88b1ce00dd43fe06de95cccd2ab6dc8dba6c0a2ef8354a")},
             }
         };
 

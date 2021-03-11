@@ -77,7 +77,6 @@ bool IsProtocolV05(unsigned int nTimeTx)
 // Test against previous block index! (always available)
 bool IsProtocolV06(const CBlockIndex* pindexPrev)
 {
-  if (pindexPrev == nullptr)
     return false;
   if (pindexPrev->nTime < (Params().NetworkIDString() != CBaseChainParams::MAIN ? nProtocolV06TestSwitchTime : nProtocolV06SwitchTime))
     return false;

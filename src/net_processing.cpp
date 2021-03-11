@@ -2062,7 +2062,7 @@ bool ProcessMessage(CNode* pfrom, const std::string& msg_type, CDataStream& vRec
         if((nServices & NODE_WITNESS))
         {
             LOCK(cs_main);
-            State(pfrom->GetId())->fHaveWitness = true;
+            State(pfrom->GetId())->fHaveWitness = false;
         }
 
         // Potentially mark this peer as a preferred download peer.

@@ -8,7 +8,7 @@
 #include <math.h>
 using namespace std;
 
-bool KernelRecord::showTransaction(bool isCoinbase, int depth)
+bool KernelRecord::showTransaction(bool isCoinbase, int depth, bool hasWitness)
 {
     if (isCoinbase) {
         if (depth < 2)
@@ -17,6 +17,9 @@ bool KernelRecord::showTransaction(bool isCoinbase, int depth)
         if (depth == 0)
             return false;
     }
+
+    if (hasWitness)
+        return false;
 
     return true;
 }
@@ -37,7 +40,7 @@ vector<KernelRecord> KernelRecord::decomposeOutput(interfaces::Wallet& wallet, c
     bool inMempool;
     wallet.getWalletTxDetails(hash, status, orderForm, inMempool, numBlocks);
 
-    if (showTransaction(wtx.is_coinbase, status.depth_in_main_chain)) {
+    if (showTransaction(wtx.is_coinbase, status.depth_in_main_chain, wtx.tx->HasWitness())) {
         for (size_t nOut = 0; nOut < wtx.tx->vout.size(); nOut++) {
             CTxOut txOut = wtx.tx->vout[nOut];
             if (wallet.txoutIsMine(txOut)) {

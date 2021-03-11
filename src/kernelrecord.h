@@ -31,7 +31,7 @@ public:
     {
     }
 
-    static bool showTransaction(bool isCoinbase, int depth);
+    static bool showTransaction(bool isCoinbase, int depth, bool hasWitness);
     static std::vector<KernelRecord> decomposeOutput(interfaces::Wallet &wallet, const interfaces::WalletTx &wtx);
 
 
