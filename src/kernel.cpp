@@ -44,50 +44,35 @@ const unsigned int nProtocolV09TestSwitchTime = 1581940800; // Mon 17 Feb 12:00:
 // Hard checkpoints of stake modifiers to ensure they are deterministic
 static std::map<int, unsigned int> mapStakeModifierCheckpoints =
     boost::assign::map_list_of
-    ( 0, 0x0e00670bu )
-    ( 19080, 0xad4e4d29u )
-    ( 30583, 0xdc7bf136u )
-    ( 99999, 0xf555cfd2u )
-    (219999, 0x91b7444du )
-    (336000, 0x6c3c8048u )
-    (371850, 0x9b850bdfu )
-    (407813, 0x46fe50b5u )
-    (443561, 0x114a6e38u )
-    (455470, 0x9b7af181u )
-    (479189, 0xe04fb8e0u )
+    ( 999, 0x0e00670bu )
     ;
 
 static std::map<int, unsigned int> mapStakeModifierTestnetCheckpoints =
     boost::assign::map_list_of
-    ( 0, 0x0e00670bu )
-    ( 19080, 0x3711dc3au )
-    ( 30583, 0xb480fadeu )
-    ( 99999, 0x9a62eaecu )
-    (219999, 0xeafe96c3u )
-    (336000, 0x8330dc09u )
-    (372751, 0xafb94e2fu )
-    (382019, 0x7f5cf5ebu )
-    (408500, 0x68cadee2u )
-    (412691, 0x93138e67u )
-    (441667, 0x3303fc25u )
-    (444932, 0x4b8bf2e3u )
+    ( 0, 0xfd11f4e7 )
     ;
 
 // Whether the given coinstake is subject to new v0.3 protocol
 bool IsProtocolV03(unsigned int nTimeCoinStake)
 {
+    // pandacoin: we can simply enable this outright
+    return true;
     return (nTimeCoinStake >= (Params().NetworkIDString() != CBaseChainParams::MAIN ? nProtocolV03TestSwitchTime : nProtocolV03SwitchTime));
 }
 
 // Whether the given block is subject to new v0.4 protocol
 bool IsProtocolV04(unsigned int nTimeBlock)
 {
+    // pandacoin: we can simply enable this outright
+    return true;
     return (nTimeBlock >= (Params().NetworkIDString() != CBaseChainParams::MAIN ? nProtocolV04TestSwitchTime : nProtocolV04SwitchTime));
 }
 
 // Whether the given transaction is subject to new v0.5 protocol
 bool IsProtocolV05(unsigned int nTimeTx)
 {
+    // pandacoin: we can simply enable this outright
+    return true;
     return (nTimeTx >= (Params().NetworkIDString() != CBaseChainParams::MAIN ? nProtocolV05TestSwitchTime : nProtocolV05SwitchTime));
 }
 
@@ -95,6 +80,8 @@ bool IsProtocolV05(unsigned int nTimeTx)
 // Test against previous block index! (always available)
 bool IsProtocolV06(const CBlockIndex* pindexPrev)
 {
+    // pandacoin: we can simply enable this outright
+    return true;
   if (pindexPrev->nTime < (Params().NetworkIDString() != CBaseChainParams::MAIN ? nProtocolV06TestSwitchTime : nProtocolV06SwitchTime))
     return false;
 
@@ -112,12 +99,16 @@ bool IsProtocolV06(const CBlockIndex* pindexPrev)
 // Whether a given transaction is subject to new v0.7 protocol
 bool IsProtocolV07(unsigned int nTimeTx)
 {
+    // pandacoin: we can simply enable this outright
+    return true;
     bool fTestNet = Params().NetworkIDString() != CBaseChainParams::MAIN;
     return (nTimeTx >= (fTestNet? nProtocolV07TestSwitchTime : nProtocolV07SwitchTime));
 }
 
 bool IsBTC16BIPsEnabled(uint32_t nTimeTx)
 {
+    // pandacoin: we can simply enable this outright
+    return true;
     bool fTestNet = Params().NetworkIDString() != CBaseChainParams::MAIN;
     return (nTimeTx >= (fTestNet? nBTC16BIPsTestSwitchTime : nBTC16BIPsSwitchTime));
 }
@@ -125,6 +116,8 @@ bool IsBTC16BIPsEnabled(uint32_t nTimeTx)
 // Whether a given timestamp is subject to new v0.9 protocol
 bool IsProtocolV09(unsigned int nTime)
 {
+    // pandacoin: we can simply enable this outright
+    return true;
   return (nTime >= (Params().NetworkIDString() != CBaseChainParams::MAIN ? nProtocolV09TestSwitchTime : nProtocolV09SwitchTime));
 }
 
@@ -667,4 +660,3 @@ unsigned int GetStakeEntropyBit(const CBlock& block)
     }
     return nEntropyBit;
 }
-

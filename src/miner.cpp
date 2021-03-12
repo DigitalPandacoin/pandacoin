@@ -125,7 +125,7 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
     if (pwallet == nullptr) {
         pblock->nBits = GetNextTargetRequired(pindexPrev, false, chainparams.GetConsensus());
         coinbaseTx.vout[0].nValue = GetProofOfWorkReward(pblock->nBits);
-        }
+    }
 
     // Add dummy coinbase tx as first transaction
     pblock->vtx.emplace_back();
