@@ -24,6 +24,7 @@
 #include <wallet/wallet.h>
 #include <wallet/walletdb.h>
 #include <wallet/walletutil.h>
+#include <kernel.h>
 
 #include <init.h>  // For StartShutdown
 
@@ -3223,6 +3224,10 @@ UniValue fundrawtransaction(const JSONRPCRequest& request)
 
 UniValue generate(const JSONRPCRequest& request)
 {
+    if (!IsRewardsEnabled(GetTime())) {
+        throw JSONRPCError(RPC_INVALID_REQUEST, "Mining not enabled until switch date (Mon 17 May 11:00:00 UTC 2021)");
+    }
+
     CWallet * const pwallet = GetWalletForJSONRPCRequest(request);
 
     if (!EnsureWalletIsAvailable(pwallet, request.fHelp)) {

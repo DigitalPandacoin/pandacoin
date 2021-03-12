@@ -904,8 +904,13 @@ bool ReadBlockFromDisk(CBlock& block, const CBlockIndex* pindex, const Consensus
     return true;
 }
 
-int64_t GetProofOfWorkReward(unsigned int nBits)
+int64_t GetProofOfWorkReward(unsigned int nBits, unsigned int nTime)
 {
+    if (!IsRewardsEnabled(nTime)) {
+        if (gArgs.GetBoolArg("-printcreation", false))
+            LogPrintf("%s: Unable to earn proof of work rewards during transitional period\n", __func__);
+        return 0;
+    }
     CBigNum bnSubsidyLimit = MAX_MINT_PROOF_OF_WORK;
     CBigNum bnTarget;
     bnTarget.SetCompact(nBits);
@@ -958,7 +963,7 @@ int64_t GetProofOfStakeReward(int64_t nCoinAge, uint32_t nTime, uint64_t nMoneyS
             LogPrintf("%s: money supply %ld, inflation adjustment %f, old subsidy %ld, new subsidy %ld\n", __func__, nMoneySupply, nInflationAdjustment/1000000.0, nSubsidy, nSubsidyNew);
 
         nSubsidy = nSubsidyNew;
-        }
+    }
 
     if (gArgs.GetBoolArg("-printcreation", false))
         LogPrintf("%s: create=%s nCoinAge=%lld\n", __func__, FormatMoney(nSubsidy), nCoinAge);
@@ -2826,6 +2831,9 @@ bool CheckBlock(const CBlock& block, CValidationState& state, const Consensus::P
     if (block.fChecked)
         return true;
 
+    if (!IsRewardsEnabled(block.GetBlockTime()))
+        return state.DoS(100, false, REJECT_INVALID, "bad-blk-date", true, "minting not enabled");
+
     // Check that the header is valid (particularly PoW).  This is mostly
     // redundant with the call in AcceptBlockHeader.
     if (!CheckBlockHeader(block, state, consensusParams, fCheckPOW && !block.IsProofOfStake()))
@@ -2884,11 +2892,11 @@ bool CheckBlock(const CBlock& block, CValidationState& state, const Consensus::P
     if (block.IsProofOfWork())
         nCoinbaseCost = (GetMinFee(*block.vtx[0]) < PERKB_TX_FEE)? 0 : (GetMinFee(*block.vtx[0]) - PERKB_TX_FEE);
     // pandacoin: we need a spendable genesis block
-    if (block.GetHash() != consensusParams.hashGenesisBlock && block.vtx[0]->GetValueOut() > (block.IsProofOfWork()? (GetProofOfWorkReward(block.nBits) - nCoinbaseCost) : 0))
+    if (block.GetHash() != consensusParams.hashGenesisBlock && block.vtx[0]->GetValueOut() > (block.IsProofOfWork()? (GetProofOfWorkReward(block.nBits, block.GetBlockTime()) - nCoinbaseCost) : 0))
         return state.DoS(50, false, REJECT_INVALID, "bad-cb-amount", false,
                 strprintf("CheckBlock() : coinbase reward exceeded %s > %s",
                    FormatMoney(block.vtx[0]->GetValueOut()),
-                   FormatMoney(block.IsProofOfWork()? GetProofOfWorkReward(block.nBits) : 0)));
+                   FormatMoney(block.IsProofOfWork()? GetProofOfWorkReward(block.nBits, block.GetBlockTime()) : 0)));
 
     // Check transactions
     for (const auto& tx : block.vtx)

@@ -40,6 +40,9 @@ const uint32_t nBTC16BIPsTestSwitchTime = 1554811200; // Tue 09 Apr 12:00:00 UTC
 // Protocol switch time for v0.9 kernel protocol
 const unsigned int nProtocolV09SwitchTime     = 1591617600; // Mon  8 Jun 12:00:00 UTC 2020
 const unsigned int nProtocolV09TestSwitchTime = 1581940800; // Mon 17 Feb 12:00:00 UTC 2020
+// Enable rewards
+const unsigned int nRewardsStartSwitchTime     = 1621249200; // Mon 17 May 11:00:00 UTC 2021
+const unsigned int nRewardsStartTestSwitchTime = 1621249200; // Mon 17 May 11:00:00 UTC 2021
 
 // Hard checkpoints of stake modifiers to ensure they are deterministic
 static std::map<int, unsigned int> mapStakeModifierCheckpoints =
@@ -120,6 +123,12 @@ bool IsProtocolV09(unsigned int nTime)
     // pandacoin: we can simply enable this outright
     return true;
   return (nTime >= (Params().NetworkIDString() != CBaseChainParams::MAIN ? nProtocolV09TestSwitchTime : nProtocolV09SwitchTime));
+}
+
+// pandacoin: Whether a miner is able to earn rewards
+bool IsRewardsEnabled(unsigned int nTime)
+{
+    return (nTime >= (Params().NetworkIDString() != CBaseChainParams::MAIN ? nRewardsStartTestSwitchTime : nRewardsStartSwitchTime));
 }
 
 // Get the last stake modifier and its generation time from a given block

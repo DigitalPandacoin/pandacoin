@@ -85,6 +85,10 @@ UniValue GetNetworkHashPS(int lookup, int height) {
 
 UniValue getnetworkhashps(const JSONRPCRequest& request)
 {
+    if (!IsRewardsEnabled(GetTime())) {
+        throw JSONRPCError(RPC_INVALID_REQUEST, "Mining not enabled until switch date (Mon 17 May 11:00:00 UTC 2021)");
+    }
+
     if (request.fHelp || request.params.size() > 2)
         throw std::runtime_error(
             "getnetworkhashps ( nblocks height )\n"
@@ -190,6 +194,10 @@ UniValue generateBlocks(std::shared_ptr<CReserveScript> coinbaseScript, int nGen
 
 UniValue generatetoaddress(const JSONRPCRequest& request)
 {
+    if (!IsRewardsEnabled(GetTime())) {
+        throw JSONRPCError(RPC_INVALID_REQUEST, "Mining not enabled until switch date (Mon 17 May 11:00:00 UTC 2021)");
+    }
+
     if (request.fHelp || request.params.size() < 2 || request.params.size() > 3)
         throw std::runtime_error(
             "generatetoaddress nblocks address (maxtries)\n"
@@ -229,6 +237,10 @@ UniValue generatetoaddress(const JSONRPCRequest& request)
 
 UniValue getmininginfo(const JSONRPCRequest& request)
 {
+    if (!IsRewardsEnabled(GetTime())) {
+        throw JSONRPCError(RPC_INVALID_REQUEST, "Mining not enabled until switch date (Mon 17 May 11:00:00 UTC 2021)");
+    }
+
     if (request.fHelp || request.params.size() != 0)
         throw std::runtime_error(
             "getmininginfo\n"
@@ -650,6 +662,10 @@ protected:
 
 UniValue submitblock(const JSONRPCRequest& request)
 {
+    if (!IsRewardsEnabled(GetTime())) {
+        throw JSONRPCError(RPC_INVALID_REQUEST, "Mining not enabled until switch date (Mon 17 May 11:00:00 UTC 2021)");
+    }
+
     CWallet * const pwallet = GetWalletForJSONRPCRequest(request);
     if (!EnsureWalletIsAvailable(pwallet, request.fHelp)) {
         return NullUniValue;
