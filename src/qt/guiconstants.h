@@ -50,10 +50,10 @@ static const int MAX_URI_LENGTH = 255;
 /* Number of frames in spinner animation */
 #define SPINNER_FRAMES 36
 
-#define QAPP_ORG_NAME "Peercoin"
+#define QAPP_ORG_NAME "Pandacoin"
 #define QAPP_ORG_DOMAIN "peercoin.net"
-#define QAPP_APP_NAME_DEFAULT "Peercoin-Qt"
-#define QAPP_APP_NAME_TESTNET "Peercoin-Qt-testnet"
+#define QAPP_APP_NAME_DEFAULT "Pandacoin-Qt"
+#define QAPP_APP_NAME_TESTNET "Pandacoin-Qt-testnet"
 
 /* Colors for minting tab for each coin age group */
 #define COLOR_MINT_YOUNG QColor(255, 224, 226)

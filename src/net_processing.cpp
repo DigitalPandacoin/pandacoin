@@ -35,7 +35,7 @@
 #include <checkpointsync.h>
 
 #if defined(NDEBUG)
-# error "Peercoin cannot be compiled without assertions."
+# error "Pandacoin cannot be compiled without assertions."
 #endif
 
 std::atomic<int64_t> nTimeBestReceived(0); // Used only to inform the wallet of when we last received a block

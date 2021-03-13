@@ -1,6 +1,6 @@
 [Protocol]
-exec=peercoin-qt '%u'
-protocol=peercoin
+exec=pandacoin-qt '%u'
+protocol=pandacoin
 input=none
 output=none
 helper=true

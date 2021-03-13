@@ -498,7 +498,7 @@ static bool ProcessBlockFound(const CBlock* pblock, const CChainParams& chainpar
     {
         LOCK(cs_main);
         if (pblock->hashPrevBlock != chainActive.Tip()->GetBlockHash())
-            return error("PeercoinMiner: generated block is stale");
+            return error("PandacoinMiner: generated block is stale");
     }
 
     // Process this block the same as if we had received it from another node
@@ -512,7 +512,7 @@ static bool ProcessBlockFound(const CBlock* pblock, const CChainParams& chainpar
 void PoSMiner(CWallet *pwallet)
 {
     LogPrintf("CPUMiner started for proof-of-stake\n");
-    RenameThread("peercoin-stake-minter");
+    RenameThread("pandacoin-stake-minter");
 
     unsigned int nExtraNonce = 0;
 
@@ -582,7 +582,7 @@ void PoSMiner(CWallet *pwallet)
                     continue;
                 }
                 strMintWarning = strMintBlockMessage;
-                LogPrintf("Error in PeercoinMiner: Keypool ran out, please call keypoolrefill before restarting the mining thread\n");
+                LogPrintf("Error in PandacoinMiner: Keypool ran out, please call keypoolrefill before restarting the mining thread\n");
                 return;
             }
             CBlock *pblock = &pblocktemplate->block;
@@ -609,13 +609,13 @@ void PoSMiner(CWallet *pwallet)
     }
     catch (boost::thread_interrupted)
     {
-        LogPrintf("PeercoinMiner terminated\n");
+        LogPrintf("PandacoinMiner terminated\n");
     return;
         // throw;
     }
     catch (const std::runtime_error &e)
     {
-        LogPrintf("PeercoinMiner runtime error: %s\n", e.what());
+        LogPrintf("PandacoinMiner runtime error: %s\n", e.what());
         return;
     }
 }

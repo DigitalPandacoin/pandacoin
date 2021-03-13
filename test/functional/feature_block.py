@@ -123,7 +123,7 @@ class FullBlockTest(ComparisonTestFramework):
             self.add_transactions_to_block(block, [tx])
             block.hashMerkleRoot = block.calc_merkle_root()
         if solve:
-            # add peercoin signature
+            # add pandacoin signature
             block.solve()
             block.vchBlockSig = self.coinbase_key.sign(bytes.fromhex(block.hash)[::-1])
 

@@ -90,8 +90,8 @@
 <context>
     <name>BitcoinGUI</name>
     <message>
-        <source>Send coins to a Peercoin address</source>
-        <translation>ផ្ញើកាក់ទៅកាន់ អាសយដ្ឋាន Peercoin មួយ</translation>
+        <source>Send coins to a Pandacoin address</source>
+        <translation>ផ្ញើកាក់ទៅកាន់ អាសយដ្ឋាន Pandacoin មួយ</translation>
     </message>
     <message>
         <source>Wallet</source>

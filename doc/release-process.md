@@ -38,7 +38,7 @@ Check out the source code in the following directory hierarchy.
     git clone https://github.com/devrandom/gitian-builder.git
     git clone https://github.com/bitcoin/bitcoin.git
 
-### Peercoin maintainers/release engineers, suggestion for writing release notes
+### Pandacoin maintainers/release engineers, suggestion for writing release notes
 
 Write release notes. git shortlog helps a lot, for example:
 
@@ -296,14 +296,14 @@ bitcoin.org (see below for bitcoin.org update instructions).
 
   - bitcoincore.org blog post
 
-  - Update title of #peercoin on Freenode IRC
+  - Update title of #pandacoin on Freenode IRC
 
-  - Optionally twitter, reddit /r/Peercoin, ... but this will usually sort out itself
+  - Optionally twitter, reddit /r/Pandacoin, ... but this will usually sort out itself
 
   - Notify BlueMatt so that he can start building [the PPAs](https://launchpad.net/~bitcoin/+archive/ubuntu/bitcoin)
 
   - Archive release notes for the new version to `doc/release-notes/` (branch `master` and branch of the release)
 
-  - Create a [new GitHub release](https://github.com/peercoin/peercoin/releases/new) with a link to the archived release notes.
+  - Create a [new GitHub release](https://gitlab.com/amDOGE/pandacoin/releases/new) with a link to the archived release notes.
 
   - Celebrate

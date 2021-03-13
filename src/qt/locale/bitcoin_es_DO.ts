@@ -142,8 +142,8 @@
         <translation>Reindexando bloques en disco...</translation>
     </message>
     <message>
-        <source>Send coins to a Peercoin address</source>
-        <translation>Enviar monedas a una dirección Peercoin</translation>
+        <source>Send coins to a Pandacoin address</source>
+        <translation>Enviar monedas a una dirección Pandacoin</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -166,8 +166,8 @@
         <translation>&amp;Verificar mensaje...</translation>
     </message>
     <message>
-        <source>Peercoin</source>
-        <translation>Peercoin</translation>
+        <source>Pandacoin</source>
+        <translation>Pandacoin</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -194,12 +194,12 @@
         <translation>Cifrar las claves privadas de su monedero</translation>
     </message>
     <message>
-        <source>Sign messages with your Peercoin addresses to prove you own them</source>
-        <translation>Firmar mensajes con sus direcciones Peercoin para demostrar la propiedad</translation>
+        <source>Sign messages with your Pandacoin addresses to prove you own them</source>
+        <translation>Firmar mensajes con sus direcciones Pandacoin para demostrar la propiedad</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified Peercoin addresses</source>
-        <translation>Verificar mensajes comprobando que están firmados con direcciones Peercoin concretas</translation>
+        <source>Verify messages to ensure they were signed with specified Pandacoin addresses</source>
+        <translation>Verificar mensajes comprobando que están firmados con direcciones Pandacoin concretas</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -218,8 +218,8 @@
         <translation>Barra de pestañas</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and peercoin: URIs)</source>
-        <translation>Solicitar pagos (genera codigo QR y URL's de Peercoin)</translation>
+        <source>Request payments (generates QR codes and pandacoin: URIs)</source>
+        <translation>Solicitar pagos (genera codigo QR y URL's de Pandacoin)</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -230,8 +230,8 @@
         <translation>Muestra la lista de direcciones de recepción y etiquetas</translation>
     </message>
     <message>
-        <source>Open a peercoin: URI or payment request</source>
-        <translation>Abrir un peercoin: URI o petición de pago</translation>
+        <source>Open a pandacoin: URI or payment request</source>
+        <translation>Abrir un pandacoin: URI o petición de pago</translation>
     </message>
     <message>
         <source>&amp;Command-line options</source>
@@ -421,8 +421,8 @@
         <translation>Utilice un directorio de datos personalizado:</translation>
     </message>
     <message>
-        <source>Peercoin</source>
-        <translation>Peercoin</translation>
+        <source>Pandacoin</source>
+        <translation>Pandacoin</translation>
     </message>
     <message>
         <source>Error</source>
@@ -498,8 +498,8 @@
         <translation>Experto</translation>
     </message>
     <message>
-        <source>Automatically open the Peercoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Abrir automáticamente el puerto del cliente Peercoin en el router. Esta opción solo funciona si el router admite UPnP y está activado.</translation>
+        <source>Automatically open the Pandacoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Abrir automáticamente el puerto del cliente Pandacoin en el router. Esta opción solo funciona si el router admite UPnP y está activado.</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
@@ -597,8 +597,8 @@
         <translation>Desde</translation>
     </message>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Peercoin network after a connection is established, but this process has not completed yet.</source>
-        <translation>La información mostrada puede estar desactualizada. Su monedero se sincroniza automáticamente con la red Peercoin después de que se haya establecido una conexión, pero este proceso aún no se ha completado.</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Pandacoin network after a connection is established, but this process has not completed yet.</source>
+        <translation>La información mostrada puede estar desactualizada. Su monedero se sincroniza automáticamente con la red Pandacoin después de que se haya establecido una conexión, pero este proceso aún no se ha completado.</translation>
     </message>
     <message>
         <source>Your current spendable balance</source>
@@ -1011,8 +1011,8 @@
         <translation>Copiar la firma actual al portapapeles del sistema</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this Peercoin address</source>
-        <translation>Firmar el mensaje para demostrar que se posee esta dirección Peercoin</translation>
+        <source>Sign the message to prove you own this Pandacoin address</source>
+        <translation>Firmar el mensaje para demostrar que se posee esta dirección Pandacoin</translation>
     </message>
     <message>
         <source>Sign &amp;Message</source>
@@ -1031,8 +1031,8 @@
         <translation>&amp;Verificar mensaje</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified Peercoin address</source>
-        <translation>Verificar el mensaje para comprobar que fue firmado con la dirección Peercoin indicada</translation>
+        <source>Verify the message to ensure it was signed with the specified Pandacoin address</source>
+        <translation>Verificar el mensaje para comprobar que fue firmado con la dirección Pandacoin indicada</translation>
     </message>
     <message>
         <source>Verify &amp;Message</source>
@@ -1115,8 +1115,8 @@
 </translation>
     </message>
     <message>
-        <source>Peercoin Core</source>
-        <translation>Núcleo de Peercoin</translation>
+        <source>Pandacoin Core</source>
+        <translation>Núcleo de Pandacoin</translation>
     </message>
     <message>
         <source>Bind to given address and always listen on it. Use [host]:port notation for IPv6</source>

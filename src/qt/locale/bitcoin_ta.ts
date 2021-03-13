@@ -90,8 +90,8 @@
         <translation>&amp;செய்தியை சரிசெய்...</translation>
     </message>
     <message>
-        <source>Peercoin</source>
-        <translation>Peercoin</translation>
+        <source>Pandacoin</source>
+        <translation>Pandacoin</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -225,8 +225,8 @@
         <translation>நல்வரவு</translation>
     </message>
     <message>
-        <source>Peercoin</source>
-        <translation>Peercoin</translation>
+        <source>Pandacoin</source>
+        <translation>Pandacoin</translation>
     </message>
     <message>
         <source>Error</source>
@@ -708,8 +708,8 @@
 <context>
     <name>bitcoin-core</name>
     <message>
-        <source>Peercoin Core</source>
-        <translation>Peercoin மையம்</translation>
+        <source>Pandacoin Core</source>
+        <translation>Pandacoin மையம்</translation>
     </message>
     <message>
         <source>(default: %u)</source>

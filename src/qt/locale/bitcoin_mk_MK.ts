@@ -138,7 +138,7 @@
         <translation>Повторно индексирање на блокови од дискот...</translation>
     </message>
     <message>
-        <source>Send coins to a Peercoin address</source>
+        <source>Send coins to a Pandacoin address</source>
         <translation>Испрати пиркойни на Пиркойн адреса</translation>
     </message>
     <message>
@@ -146,7 +146,7 @@
         <translation>&amp;Потврди порака...</translation>
     </message>
     <message>
-        <source>Peercoin</source>
+        <source>Pandacoin</source>
         <translation>Пиркойн</translation>
     </message>
     <message>
@@ -299,7 +299,7 @@
 <context>
     <name>Intro</name>
     <message>
-        <source>Peercoin</source>
+        <source>Pandacoin</source>
         <translation>Пиркойн</translation>
     </message>
     <message>
@@ -590,7 +590,7 @@
         <translation>Опции:</translation>
     </message>
     <message>
-        <source>Peercoin Core</source>
+        <source>Pandacoin Core</source>
         <translation>Пиркойн Core</translation>
     </message>
     <message>

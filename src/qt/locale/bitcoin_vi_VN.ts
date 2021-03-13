@@ -62,12 +62,12 @@
         <translation>Địa chỉ nhận</translation>
     </message>
     <message>
-        <source>These are your Peercoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Đây là các địa chỉ Peercoin để gửi bạn gửi tiền. Trước khi gửi bạn nên kiểm tra lại số tiền bạn muốn gửi và địa chỉ peercoin của người nhận.</translation>
+        <source>These are your Pandacoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Đây là các địa chỉ Pandacoin để gửi bạn gửi tiền. Trước khi gửi bạn nên kiểm tra lại số tiền bạn muốn gửi và địa chỉ pandacoin của người nhận.</translation>
     </message>
     <message>
-        <source>These are your Peercoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Đây là các địa chỉ Peercoin để bạn nhận tiền. Với mỗi giao dịch, bạn nên dùng một địa chỉ Peercoin mới để nhận tiền.</translation>
+        <source>These are your Pandacoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>Đây là các địa chỉ Pandacoin để bạn nhận tiền. Với mỗi giao dịch, bạn nên dùng một địa chỉ Pandacoin mới để nhận tiền.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -331,8 +331,8 @@ Ví của bạn chưa được mã hóa.</translation>
         <translation>Đánh chỉ số (indexing) lại các khối (blocks) trên ổ đĩa ...</translation>
     </message>
     <message>
-        <source>Send coins to a Peercoin address</source>
-        <translation>Gửi coins đến tài khoản Peercoin</translation>
+        <source>Send coins to a Pandacoin address</source>
+        <translation>Gửi coins đến tài khoản Pandacoin</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -355,8 +355,8 @@ Ví của bạn chưa được mã hóa.</translation>
         <translation>&amp;Tin nhắn xác thực</translation>
     </message>
     <message>
-        <source>Peercoin</source>
-        <translation>Peercoin</translation>
+        <source>Pandacoin</source>
+        <translation>Pandacoin</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -383,12 +383,12 @@ Ví của bạn chưa được mã hóa.</translation>
         <translation>Mã hoá các khoá bí mật trong Ví của bạn.</translation>
     </message>
     <message>
-        <source>Sign messages with your Peercoin addresses to prove you own them</source>
-        <translation>Dùng địa chỉ Peercoin của bạn ký các tin nhắn để xác minh những nội dung tin nhắn đó là của bạn.</translation>
+        <source>Sign messages with your Pandacoin addresses to prove you own them</source>
+        <translation>Dùng địa chỉ Pandacoin của bạn ký các tin nhắn để xác minh những nội dung tin nhắn đó là của bạn.</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified Peercoin addresses</source>
-        <translation>Kiểm tra các tin nhắn để chắc chắn rằng chúng được ký bằng các địa chỉ Peercoin xác định.</translation>
+        <source>Verify messages to ensure they were signed with specified Pandacoin addresses</source>
+        <translation>Kiểm tra các tin nhắn để chắc chắn rằng chúng được ký bằng các địa chỉ Pandacoin xác định.</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -407,8 +407,8 @@ Ví của bạn chưa được mã hóa.</translation>
         <translation>Thanh công cụ (toolbar)</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and peercoin: URIs)</source>
-        <translation>Yêu cầu thanh toán(tạo mã QR và địa chỉ Peercoin: URLs)</translation>
+        <source>Request payments (generates QR codes and pandacoin: URIs)</source>
+        <translation>Yêu cầu thanh toán(tạo mã QR và địa chỉ Pandacoin: URLs)</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -419,16 +419,16 @@ Ví của bạn chưa được mã hóa.</translation>
         <translation>Hiện thỉ danh sách các địa chỉ và nhãn đã dùng để nhận.</translation>
     </message>
     <message>
-        <source>Open a peercoin: URI or payment request</source>
-        <translation>Mở peercoin:URL hoặc yêu cầu thanh toán</translation>
+        <source>Open a pandacoin: URI or payment request</source>
+        <translation>Mở pandacoin:URL hoặc yêu cầu thanh toán</translation>
     </message>
     <message>
         <source>&amp;Command-line options</source>
         <translation>7Tùy chọn dòng lệnh</translation>
     </message>
     <message numerus="yes">
-        <source>%n active connection(s) to Peercoin network</source>
-        <translation><numerusform>%n liên kết hoạt động với mạng lưới Peercoin</numerusform></translation>
+        <source>%n active connection(s) to Pandacoin network</source>
+        <translation><numerusform>%n liên kết hoạt động với mạng lưới Pandacoin</numerusform></translation>
     </message>
     <message>
         <source>Indexing blocks on disk...</source>
@@ -471,8 +471,8 @@ Ví của bạn chưa được mã hóa.</translation>
         <translation>Đã cập nhật</translation>
     </message>
     <message>
-        <source>Show the %1 help message to get a list with possible Peercoin command-line options</source>
-        <translation>Hiển thị tin nhắn trợ giúp %1 để có được danh sách với các tùy chọn dòng lệnh Peercoin.</translation>
+        <source>Show the %1 help message to get a list with possible Pandacoin command-line options</source>
+        <translation>Hiển thị tin nhắn trợ giúp %1 để có được danh sách với các tùy chọn dòng lệnh Pandacoin.</translation>
     </message>
     <message>
         <source>Connecting to peers...</source>
@@ -652,8 +652,8 @@ Ví của bạn chưa được mã hóa.</translation>
         <translation>Sử dụng vị trí dữ liệu mặc định</translation>
     </message>
     <message>
-        <source>Peercoin</source>
-        <translation>Peercoin</translation>
+        <source>Pandacoin</source>
+        <translation>Pandacoin</translation>
     </message>
     <message>
         <source>Error</source>
@@ -705,8 +705,8 @@ Ví của bạn chưa được mã hóa.</translation>
         <translation>Ví</translation>
     </message>
     <message>
-        <source>Connect to the Peercoin network through a SOCKS5 proxy.</source>
-        <translation>Kết nối đến máy chủ Peercoin thông qua SOCKS5 proxy.</translation>
+        <source>Connect to the Pandacoin network through a SOCKS5 proxy.</source>
+        <translation>Kết nối đến máy chủ Pandacoin thông qua SOCKS5 proxy.</translation>
     </message>
     <message>
         <source>Proxy &amp;IP:</source>
@@ -1223,8 +1223,8 @@ Ví của bạn chưa được mã hóa.</translation>
         <translation>Lựa chọn:</translation>
     </message>
     <message>
-        <source>Peercoin Core</source>
-        <translation>Peercoin Core</translation>
+        <source>Pandacoin Core</source>
+        <translation>Pandacoin Core</translation>
     </message>
     <message>
         <source>(default: %u)</source>

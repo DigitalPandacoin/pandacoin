@@ -42,12 +42,12 @@
         <translation>Recebendo informações</translation>
     </message>
     <message>
-        <source>These are your Peercoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Estas são suas informações para o envio de pagamentos por Peercoins. Sempre cheque a quantia enviada e as informações do destinatário, antes de enviar os Peercoins.</translation>
+        <source>These are your Pandacoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Estas são suas informações para o envio de pagamentos por Pandacoins. Sempre cheque a quantia enviada e as informações do destinatário, antes de enviar os Pandacoins.</translation>
     </message>
     <message>
-        <source>These are your Peercoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Estas são suas informações para o recebimento de pagamentos por Peercoins. É recomendado que seja feito o uso de um novo conjunto de informações para cada transação.</translation>
+        <source>These are your Pandacoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>Estas são suas informações para o recebimento de pagamentos por Pandacoins. É recomendado que seja feito o uso de um novo conjunto de informações para cada transação.</translation>
     </message>
     <message>
         <source>Export Address List</source>

@@ -1,0 +1,11 @@
+usr/local/bin/pandacoin-qt usr/bin
+share/pixmaps/pandacoin16.png usr/share/pixmaps
+share/pixmaps/pandacoin32.png usr/share/pixmaps
+share/pixmaps/pandacoin128.png usr/share/pixmaps
+share/pixmaps/pandacoin256.png usr/share/pixmaps
+share/pixmaps/pandacoin-testnet32.png usr/share/pixmaps
+share/pixmaps/pandacoin-testnet128.png usr/share/pixmaps
+share/pixmaps/pandacoin-testnet256.png usr/share/pixmaps
+debian/pandacoin-qt.desktop usr/share/applications
+debian/pandacoin-testnet-qt.desktop usr/share/applications
+debian/pandacoin-qt.protocol usr/share/kde4/services/

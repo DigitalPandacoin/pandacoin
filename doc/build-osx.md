@@ -40,17 +40,17 @@ from the root of the repository.
 
 **Note**: You only need Berkeley DB if the wallet is enabled (see the section *Disable-Wallet mode* below).
 
-Build Peercoin Core
+Build Pandacoin Core
 ------------------------
 
-1. Clone the peercoin source code and cd into `peercoin`
+1. Clone the pandacoin source code and cd into `pandacoin`
 
-        git clone https://github.com/peercoin/peercoin.git
-        cd peercoin
+        git clone https://gitlab.com/amDOGE/pandacoin.git
+        cd pandacoin
 
-2.  Build peercoin-core:
+2.  Build pandacoin-core:
 
-    Configure and build the headless peercoin binaries as well as the GUI (if Qt is found).
+    Configure and build the headless pandacoin binaries as well as the GUI (if Qt is found).
 
     You can disable the GUI build by passing `--without-gui` to configure.
 
@@ -69,37 +69,37 @@ Build Peercoin Core
 Running
 -------
 
-Peercoin Core is now available at `./src/peercoind`
+Pandacoin Core is now available at `./src/pandacoind`
 
 Before running, it's recommended you create an RPC configuration file.
 
-    echo -e "rpcuser=peercoinrpc\nrpcpassword=$(xxd -l 16 -p /dev/urandom)" > "/Users/${USER}/Library/Application Support/Peercoin/peercoin.conf"
+    echo -e "rpcuser=pandacoinrpc\nrpcpassword=$(xxd -l 16 -p /dev/urandom)" > "/Users/${USER}/Library/Application Support/Pandacoin/pandacoin.conf"
 
-    chmod 600 "/Users/${USER}/Library/Application Support/Peercoin/peercoin.conf"
+    chmod 600 "/Users/${USER}/Library/Application Support/Pandacoin/pandacoin.conf"
 
-The first time you run peercoind, it will start downloading the blockchain. This process could take several hours.
+The first time you run pandacoind, it will start downloading the blockchain. This process could take several hours.
 
 You can monitor the download process by looking at the debug.log file:
 
-    tail -f $HOME/Library/Application\ Support/Peercoin/debug.log
+    tail -f $HOME/Library/Application\ Support/Pandacoin/debug.log
 
 Other commands:
 -------
 
-    ./src/peercoind -daemon # Starts the peercoin daemon.
-    ./src/peercoin-cli --help # Outputs a list of command-line options.
-    ./src/peercoin-cli help # Outputs a list of RPC commands when the daemon is running.
+    ./src/pandacoind -daemon # Starts the pandacoin daemon.
+    ./src/pandacoin-cli --help # Outputs a list of command-line options.
+    ./src/pandacoin-cli help # Outputs a list of RPC commands when the daemon is running.
 
 Using Qt Creator as IDE
 ------------------------
-You can use Qt Creator as an IDE, for peercoin development.
+You can use Qt Creator as an IDE, for pandacoin development.
 Download and install the community edition of [Qt Creator](https://www.qt.io/download/).
 Uncheck everything except Qt Creator during the installation process.
 
 1. Make sure you installed everything through Homebrew mentioned above
 2. Do a proper ./configure --enable-debug
 3. In Qt Creator do "New Project" -> Import Project -> Import Existing Project
-4. Enter "peercoin-qt" as project name, enter src/qt as location
+4. Enter "pandacoin-qt" as project name, enter src/qt as location
 5. Leave the file selection as it is
 6. Confirm the "summary page"
 7. In the "Projects" tab select "Manage Kits..."

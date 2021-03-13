@@ -2,11 +2,11 @@
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-TESTS += test/test_peercoin
-bin_PROGRAMS += test/test_peercoin
-noinst_PROGRAMS += test/test_peercoin_fuzzy
+TESTS += test/test_pandacoin
+bin_PROGRAMS += test/test_pandacoin
+noinst_PROGRAMS += test/test_pandacoin_fuzzy
 TEST_SRCDIR = test
-TEST_BINARY=test/test_peercoin$(EXEEXT)
+TEST_BINARY=test/test_pandacoin$(EXEEXT)
 
 JSON_TEST_FILES = \
   test/data/script_tests.json \
@@ -21,7 +21,7 @@ RAW_TEST_FILES =
 
 GENERATED_TEST_FILES = $(JSON_TEST_FILES:.json=.json.h) $(RAW_TEST_FILES:.raw=.raw.h)
 
-# test_peercoin binary #
+# test_pandacoin binary #
 BITCOIN_TESTS =\
   test/arith_uint256_tests.cpp \
   test/scriptnum10.h \
@@ -95,31 +95,31 @@ BITCOIN_TESTS += \
   wallet/test/crypto_tests.cpp
 endif
 
-test_test_peercoin_SOURCES = $(BITCOIN_TESTS) $(JSON_TEST_FILES) $(RAW_TEST_FILES)
-test_test_peercoin_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(TESTDEFS) $(EVENT_CFLAGS)
-test_test_peercoin_LDADD =
+test_test_pandacoin_SOURCES = $(BITCOIN_TESTS) $(JSON_TEST_FILES) $(RAW_TEST_FILES)
+test_test_pandacoin_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(TESTDEFS) $(EVENT_CFLAGS)
+test_test_pandacoin_LDADD =
 if ENABLE_WALLET
-test_test_peercoin_LDADD += $(LIBBITCOIN_WALLET)
+test_test_pandacoin_LDADD += $(LIBBITCOIN_WALLET)
 endif
-test_test_peercoin_LDADD += $(LIBBITCOIN_SERVER) $(LIBBITCOIN_CLI) $(LIBBITCOIN_COMMON) $(LIBBITCOIN_UTIL) $(LIBBITCOIN_CONSENSUS) $(LIBBITCOIN_CRYPTO) $(LIBUNIVALUE) \
+test_test_pandacoin_LDADD += $(LIBBITCOIN_SERVER) $(LIBBITCOIN_CLI) $(LIBBITCOIN_COMMON) $(LIBBITCOIN_UTIL) $(LIBBITCOIN_CONSENSUS) $(LIBBITCOIN_CRYPTO) $(LIBUNIVALUE) \
   $(LIBLEVELDB) $(LIBLEVELDB_SSE42) $(LIBMEMENV) $(BOOST_LIBS) $(BOOST_UNIT_TEST_FRAMEWORK_LIB) $(LIBSECP256K1) $(EVENT_LIBS) $(EVENT_PTHREADS_LIBS)
-test_test_peercoin_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+test_test_pandacoin_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 
-test_test_peercoin_LDADD += $(LIBBITCOIN_CONSENSUS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS)
-test_test_peercoin_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS) -static
+test_test_pandacoin_LDADD += $(LIBBITCOIN_CONSENSUS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS)
+test_test_pandacoin_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS) -static
 
 if ENABLE_ZMQ
-test_test_peercoin_LDADD += $(ZMQ_LIBS)
+test_test_pandacoin_LDADD += $(ZMQ_LIBS)
 endif
 #
 
-# test_peercoin_fuzzy binary #
-test_test_peercoin_fuzzy_SOURCES = test/test_bitcoin_fuzzy.cpp
-test_test_peercoin_fuzzy_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-test_test_peercoin_fuzzy_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-test_test_peercoin_fuzzy_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+# test_pandacoin_fuzzy binary #
+test_test_pandacoin_fuzzy_SOURCES = test/test_bitcoin_fuzzy.cpp
+test_test_pandacoin_fuzzy_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+test_test_pandacoin_fuzzy_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+test_test_pandacoin_fuzzy_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
-test_test_peercoin_fuzzy_LDADD = \
+test_test_pandacoin_fuzzy_LDADD = \
   $(LIBUNIVALUE) \
   $(LIBBITCOIN_COMMON) \
   $(LIBBITCOIN_UTIL) \
@@ -128,15 +128,15 @@ test_test_peercoin_fuzzy_LDADD = \
   $(LIBBITCOIN_CRYPTO) \
   $(LIBSECP256K1)
 
-test_test_peercoin_fuzzy_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS) $(LIBBITCOIN_CLI) $(LIBLEVELDB) $(LIBLEVELDB_SSE42) $(LIBMEMENV) $(EVENT_LIBS) $(EVENT_PTHREADS_LIBS) \
+test_test_pandacoin_fuzzy_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS) $(LIBBITCOIN_CLI) $(LIBLEVELDB) $(LIBLEVELDB_SSE42) $(LIBMEMENV) $(EVENT_LIBS) $(EVENT_PTHREADS_LIBS) \
   $(BDB_LIBS)
 
 #
 if ENABLE_WALLET
-test_test_peercoin_fuzzy_LDADD += $(LIBBITCOIN_WALLET)
+test_test_pandacoin_fuzzy_LDADD += $(LIBBITCOIN_WALLET)
 endif
 
-nodist_test_test_peercoin_SOURCES = $(GENERATED_TEST_FILES)
+nodist_test_test_pandacoin_SOURCES = $(GENERATED_TEST_FILES)
 
 $(BITCOIN_TESTS): $(GENERATED_TEST_FILES)
 
@@ -150,7 +150,7 @@ bitcoin_test_check: $(TEST_BINARY) FORCE
 	$(MAKE) check-TESTS TESTS=$^
 
 bitcoin_test_clean : FORCE
-	rm -f $(CLEAN_BITCOIN_TEST) $(test_test_peercoin_OBJECTS) $(TEST_BINARY)
+	rm -f $(CLEAN_BITCOIN_TEST) $(test_test_pandacoin_OBJECTS) $(TEST_BINARY)
 
 check-local:
 	@echo "Running test/util/bitcoin-util-test.py..."

@@ -11,34 +11,34 @@
   </array>
 
   <key>CFBundleIconFile</key>
-  <string>peercoin.icns</string>
+  <string>pandacoin.icns</string>
 
   <key>CFBundlePackageType</key>
   <string>APPL</string>
 
   <key>CFBundleGetInfoString</key>
-  <string>@PEERCOIN_VERSION_MAJOR@.@PEERCOIN_VERSION_MINOR@.@PEERCOIN_VERSION_REVISION@, Copyright © 2011-@COPYRIGHT_YEAR@ @COPYRIGHT_HOLDERS_FINAL@</string>
+  <string>@PANDACOIN_VERSION_MAJOR@.@PANDACOIN_VERSION_MINOR@.@PANDACOIN_VERSION_REVISION@, Copyright © 2011-@COPYRIGHT_YEAR@ @COPYRIGHT_HOLDERS_FINAL@</string>
 
   <key>CFBundleShortVersionString</key>
-  <string>@PEERCOIN_VERSION_MAJOR@.@PEERCOIN_VERSION_MINOR@.@PEERCOIN_VERSION_REVISION@</string>
+  <string>@PANDACOIN_VERSION_MAJOR@.@PANDACOIN_VERSION_MINOR@.@PANDACOIN_VERSION_REVISION@</string>
 
   <key>CFBundleVersion</key>
-  <string>@PEERCOIN_VERSION_MAJOR@.@PEERCOIN_VERSION_MINOR@.@PEERCOIN_VERSION_REVISION@</string>
+  <string>@PANDACOIN_VERSION_MAJOR@.@PANDACOIN_VERSION_MINOR@.@PANDACOIN_VERSION_REVISION@</string>
 
   <key>CFBundleSignature</key>
   <string>????</string>
 
   <key>CFBundleExecutable</key>
-  <string>Peercoin-Qt</string>
+  <string>Pandacoin-Qt</string>
   
   <key>CFBundleName</key>
-  <string>Peercoin-Qt</string>
+  <string>Pandacoin-Qt</string>
 
   <key>LSHasLocalizedDisplayName</key>
   <true/>
 
   <key>CFBundleIdentifier</key>
-  <string>org.peercoin.Peercoin-Qt</string>
+  <string>org.pandacoin.Pandacoin-Qt</string>
 
   <key>CFBundleURLTypes</key>
   <array>
@@ -46,10 +46,10 @@
       <key>CFBundleTypeRole</key>
       <string>Editor</string>
       <key>CFBundleURLName</key>
-      <string>org.peercoin.PeercoinPayment</string>
+      <string>org.pandacoin.PandacoinPayment</string>
       <key>CFBundleURLSchemes</key>
       <array>
-        <string>peercoin</string>
+        <string>pandacoin</string>
       </array>
     </dict>
   </array>
@@ -58,9 +58,9 @@
   <array>
     <dict>
       <key>UTTypeIdentifier</key>
-      <string>org.peercoin.paymentrequest</string>
+      <string>org.pandacoin.paymentrequest</string>
       <key>UTTypeDescription</key>
-      <string>Peercoin payment request</string>
+      <string>Pandacoin payment request</string>
       <key>UTTypeConformsTo</key>
       <array>
         <string>public.data</string>
@@ -68,10 +68,10 @@
       <key>UTTypeTagSpecification</key>
       <dict>
         <key>public.mime-type</key>
-        <string>application/x-peercoin-payment-request</string>
+        <string>application/x-pandacoin-payment-request</string>
         <key>public.filename-extension</key>
         <array>
-          <string>peercoinpaymentrequest</string>
+          <string>pandacoinpaymentrequest</string>
         </array>
       </dict>
     </dict>
@@ -84,7 +84,7 @@
       <string>Editor</string>
       <key>LSItemContentTypes</key>
       <array>
-        <string>org.peercoin.paymentrequest</string>
+        <string>org.pandacoin.paymentrequest</string>
       </array>
       <key>LSHandlerRank</key>
       <string>Owner</string>

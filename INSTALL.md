@@ -2,4 +2,4 @@ Building Bitcoin
 ================
 
 See doc/build-*.md for instructions on building the various
-elements of the Peercoin Core reference implementation of Peercoin.
+elements of the Pandacoin Core reference implementation of Pandacoin.

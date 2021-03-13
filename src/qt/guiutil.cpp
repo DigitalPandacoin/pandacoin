@@ -127,7 +127,7 @@ void setupAddressWidget(QValidatedLineEdit *widget, QWidget *parent)
 #if QT_VERSION >= 0x040700
     // We don't want translators to use own addresses in translations
     // and this is the only place, where this address is supplied.
-    widget->setPlaceholderText(QObject::tr("Enter a Peercoin address (e.g. %1)").arg(
+    widget->setPlaceholderText(QObject::tr("Enter a Pandacoin address (e.g. %1)").arg(
         QString::fromStdString(DummyAddress(Params()))));
 #endif
     widget->setValidator(new BitcoinAddressEntryValidator(parent));
@@ -146,7 +146,7 @@ void setupAmountWidget(QLineEdit *widget, QWidget *parent)
 bool parseBitcoinURI(const QUrl &uri, SendCoinsRecipient *out)
 {
     // return if URI is not valid or is no bitcoin: URI
-    if(!uri.isValid() || (uri.scheme() != QString("peercoin") && uri.scheme() != QString("ppcoin")))
+    if(!uri.isValid() || (uri.scheme() != QString("pandacoin") && uri.scheme() != QString("pndcoin")))
         return false;
 
     SendCoinsRecipient rv;
@@ -210,13 +210,13 @@ bool parseBitcoinURI(QString uri, SendCoinsRecipient *out)
     //
     //    Cannot handle this later, because bitcoin:// will cause Qt to see the part after // as host,
     //    which will lower-case it (and thus invalidate the address).
-    if(uri.startsWith("peercoin://", Qt::CaseInsensitive))
+    if(uri.startsWith("pandacoin://", Qt::CaseInsensitive))
     {
-        uri.replace(0, 11, "peercoin:");
+        uri.replace(0, 11, "pandacoin:");
     }
-    if(uri.startsWith("ppcoin://", Qt::CaseInsensitive))
+    if(uri.startsWith("pndcoin://", Qt::CaseInsensitive))
     {
-        uri.replace(0, 9, "ppcoin:");
+        uri.replace(0, 9, "pndcoin:");
     }
     QUrl uriInstance(uri);
     return parseBitcoinURI(uriInstance, out);
@@ -224,7 +224,7 @@ bool parseBitcoinURI(QString uri, SendCoinsRecipient *out)
 
 QString formatBitcoinURI(const SendCoinsRecipient &info)
 {
-    QString ret = QString("peercoin:%1").arg(info.address);
+    QString ret = QString("pandacoin:%1").arg(info.address);
     int paramCount = 0;
 
     if (info.amount)
@@ -611,10 +611,10 @@ fs::path static StartupShortcutPath()
 {
     std::string chain = ChainNameFromCommandLine();
     if (chain == CBaseChainParams::MAIN)
-        return GetSpecialFolderPath(CSIDL_STARTUP) / "Peercoin.lnk";
+        return GetSpecialFolderPath(CSIDL_STARTUP) / "Pandacoin.lnk";
     if (chain == CBaseChainParams::TESTNET) // Remove this special case when CBaseChainParams::TESTNET = "testnet4"
-        return GetSpecialFolderPath(CSIDL_STARTUP) / "Peercoin (testnet).lnk";
-    return GetSpecialFolderPath(CSIDL_STARTUP) / strprintf("Peercoin (%s).lnk", chain);
+        return GetSpecialFolderPath(CSIDL_STARTUP) / "Pandacoin (testnet).lnk";
+    return GetSpecialFolderPath(CSIDL_STARTUP) / strprintf("Pandacoin (%s).lnk", chain);
 }
 
 bool GetStartOnSystemStartup()
@@ -709,8 +709,8 @@ fs::path static GetAutostartFilePath()
 {
     std::string chain = ChainNameFromCommandLine();
     if (chain == CBaseChainParams::MAIN)
-        return GetAutostartDir() / "peercoin.desktop";
-    return GetAutostartDir() / strprintf("peercoin-%s.lnk", chain);
+        return GetAutostartDir() / "pandacoin.desktop";
+    return GetAutostartDir() / strprintf("pandacoin-%s.lnk", chain);
 }
 
 bool GetStartOnSystemStartup()
@@ -754,9 +754,9 @@ bool SetStartOnSystemStartup(bool fAutoStart)
         optionFile << "[Desktop Entry]\n";
         optionFile << "Type=Application\n";
         if (chain == CBaseChainParams::MAIN)
-            optionFile << "Name=Peercoin\n";
+            optionFile << "Name=Pandacoin\n";
         else
-            optionFile << strprintf("Name=Peercoin (%s)\n", chain);
+            optionFile << strprintf("Name=Pandacoin (%s)\n", chain);
         optionFile << "Exec=" << pszExePath << strprintf(" -min -testnet=%d -regtest=%d\n", gArgs.GetBoolArg("-testnet", false), gArgs.GetBoolArg("-regtest", false));
         optionFile << "Terminal=false\n";
         optionFile << "Hidden=false\n";

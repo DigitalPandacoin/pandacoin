@@ -1,8 +1,8 @@
 // Copyright (c) 2012-2020 The Peercoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
-#ifndef PEERCOIN_QT_MINTINGTABLEMODEL_H
-#define PEERCOIN_QT_MINTINGTABLEMODEL_H
+#ifndef PANDACOIN_QT_MINTINGTABLEMODEL_H
+#define PANDACOIN_QT_MINTINGTABLEMODEL_H
 
 #include <QAbstractTableModel>
 #include <QStringList>
@@ -69,4 +69,4 @@ public Q_SLOTS:
     friend class MintingTablePriv;
 };
 
-#endif // PEERCOIN_QT_MINTINGTABLEMODEL_H
+#endif // PANDACOIN_QT_MINTINGTABLEMODEL_H

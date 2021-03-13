@@ -1,8 +1,8 @@
 // Copyright (c) 2012-2020 The Peercoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
-#ifndef PEERCOIN_CHECKPOINTSYNC_H
-#define PEERCOIN_CHECKPOINTSYNC_H
+#ifndef PANDACOIN_CHECKPOINTSYNC_H
+#define PANDACOIN_CHECKPOINTSYNC_H
 
 #define CHECKPOINT_MAX_SPAN (60 * 60 * 4) // max 4 hours before latest block
 
@@ -126,4 +126,4 @@ public:
     bool ProcessSyncCheckpoint(CNode* pfrom);
 };
 
-#endif // PEERCOIN_CHECKPOINTSYNC_H
+#endif // PANDACOIN_CHECKPOINTSYNC_H

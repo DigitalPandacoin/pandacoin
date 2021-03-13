@@ -14,7 +14,7 @@
 #error Client version information missing: version is not defined by bitcoin-config.h or in any other way
 #endif
 
-#if !defined(PEERCOIN_VERSION_MAJOR) || !defined(PEERCOIN_VERSION_MINOR) || !defined(PEERCOIN_VERSION_REVISION) || !defined(PEERCOIN_VERSION_BUILD)
+#if !defined(PANDACOIN_VERSION_MAJOR) || !defined(PANDACOIN_VERSION_MINOR) || !defined(PANDACOIN_VERSION_REVISION) || !defined(PANDACOIN_VERSION_BUILD)
 #error Client version information missing: version is not defined by bitcoin-config.h or in any other way
 #endif
 
@@ -46,11 +46,11 @@ static const int CLIENT_VERSION =
                          +       1 * CLIENT_VERSION_BUILD;
 
 // note: peercoin version is used for display purpose AND to accept alerts
-static const int PEERCOIN_VERSION =
-                           1000000 * PEERCOIN_VERSION_MAJOR
-                         +   10000 * PEERCOIN_VERSION_MINOR
-                         +     100 * PEERCOIN_VERSION_REVISION
-                         +       1 * PEERCOIN_VERSION_BUILD;
+static const int PANDACOIN_VERSION =
+                           1000000 * PANDACOIN_VERSION_MAJOR
+                         +   10000 * PANDACOIN_VERSION_MINOR
+                         +     100 * PANDACOIN_VERSION_REVISION
+                         +       1 * PANDACOIN_VERSION_BUILD;
 
 extern const std::string CLIENT_NAME;
 extern const std::string CLIENT_BUILD;

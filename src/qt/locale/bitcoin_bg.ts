@@ -62,11 +62,11 @@
         <translation>Получаване на адреси</translation>
     </message>
     <message>
-        <source>These are your Peercoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <source>These are your Pandacoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
         <translation>Това са адресите на получателите на плащания. Винаги проверявайте размера на сумата и адреса на получателя, преди да изпратите монети.</translation>
     </message>
     <message>
-        <source>These are your Peercoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <source>These are your Pandacoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
         <translation>Това са Вашите Пиркойн адреси,благодарение на които ще получавате плащания.Препоръчително е да използвате нови адреси за получаване на всяка транзакция.</translation>
     </message>
     <message>
@@ -330,7 +330,7 @@
         <translation>Повторно индексиране на блоковете на диска...</translation>
     </message>
     <message>
-        <source>Send coins to a Peercoin address</source>
+        <source>Send coins to a Pandacoin address</source>
         <translation>Изпращане към Пиркойн адрес</translation>
     </message>
     <message>
@@ -354,7 +354,7 @@
         <translation>&amp;Проверка на съобщение...</translation>
     </message>
     <message>
-        <source>Peercoin</source>
+        <source>Pandacoin</source>
         <translation>Пиркойн</translation>
     </message>
     <message>
@@ -382,11 +382,11 @@
         <translation>Шифроване на личните ключове,които принадлежат на портфейла Ви.</translation>
     </message>
     <message>
-        <source>Sign messages with your Peercoin addresses to prove you own them</source>
+        <source>Sign messages with your Pandacoin addresses to prove you own them</source>
         <translation>Пишете съобщения със своя Пиркойн адрес за да докажете,че е ваш.</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified Peercoin addresses</source>
+        <source>Verify messages to ensure they were signed with specified Pandacoin addresses</source>
         <translation>Потвърждаване на съобщения  за да се знае,че са написани с дадените Пиркойн адреси.</translation>
     </message>
     <message>
@@ -406,7 +406,7 @@
         <translation>Раздели</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and peercoin: URIs)</source>
+        <source>Request payments (generates QR codes and pandacoin: URIs)</source>
         <translation>Изискване на плащания(генерира QR кодове и пиркойн: URIs)</translation>
     </message>
     <message>
@@ -418,7 +418,7 @@
         <translation>Покажи списък с използваните адреси и имена.</translation>
     </message>
     <message>
-        <source>Open a peercoin: URI or payment request</source>
+        <source>Open a pandacoin: URI or payment request</source>
         <translation>Отворете пиркойн: URI  или заявка за плащане</translation>
     </message>
     <message>
@@ -462,7 +462,7 @@
         <translation>Синхронизиран</translation>
     </message>
     <message>
-        <source>Show the %1 help message to get a list with possible Peercoin command-line options</source>
+        <source>Show the %1 help message to get a list with possible Pandacoin command-line options</source>
         <translation>Покажи %1 помощно съобщение за да получиш лист с възможни Пиркойн команди</translation>
     </message>
     <message>
@@ -524,7 +524,7 @@
         <translation>Портфейлът е &lt;b&gt;криптиран&lt;/b&gt; и &lt;b&gt;заключен&lt;/b&gt;</translation>
     </message>
     <message>
-        <source>A fatal error occurred. Peercoin can no longer continue safely and will quit.</source>
+        <source>A fatal error occurred. Pandacoin can no longer continue safely and will quit.</source>
         <translation>Възникна фатална грешка. Пиркойн не може да продължи безопасно и ще се изключи.</translation>
     </message>
 </context>
@@ -710,7 +710,7 @@
         <translation>Редактиране на адрес за изпращане</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid Peercoin address.</source>
+        <source>The entered address "%1" is not a valid Pandacoin address.</source>
         <translation>"%1" не е валиден Пиркойн адрес.</translation>
     </message>
     <message>
@@ -827,7 +827,7 @@
         <translation>Използване на директория ръчно</translation>
     </message>
     <message>
-        <source>Peercoin</source>
+        <source>Pandacoin</source>
         <translation>Пиркойн</translation>
     </message>
     <message>
@@ -932,15 +932,15 @@
         <translation>&amp;Похарчете непотвърденото ресто</translation>
     </message>
     <message>
-        <source>Automatically open the Peercoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Автоматично отваряне на входящия Peercoin порт. Работи само с рутери поддържащи UPnP.</translation>
+        <source>Automatically open the Pandacoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Автоматично отваряне на входящия Pandacoin порт. Работи само с рутери поддържащи UPnP.</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
         <translation>Отваряне на входящия порт чрез &amp;UPnP</translation>
     </message>
     <message>
-        <source>Connect to the Peercoin network through a SOCKS5 proxy.</source>
+        <source>Connect to the Pandacoin network through a SOCKS5 proxy.</source>
         <translation>Свързване с Пиркойн мрежата чрез SOCKS5  прокси.</translation>
     </message>
     <message>
@@ -1039,7 +1039,7 @@
         <translation>Формуляр</translation>
     </message>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Peercoin network after a connection is established, but this process has not completed yet.</source>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Pandacoin network after a connection is established, but this process has not completed yet.</source>
         <translation>Текущата информация на екрана може да не е актуална. Вашият портфейл ще се синхронизира автоматично с мрежата на Пиркойн, щом поне една връзката с нея се установи; този процес все още не е приключил.</translation>
     </message>
     <message>
@@ -1094,7 +1094,7 @@
         <translation>Възникна грешка по време назаявката за плащане</translation>
     </message>
     <message>
-        <source>Cannot start peercoin: click-to-pay handler</source>
+        <source>Cannot start pandacoin: click-to-pay handler</source>
         <translation>Пиркойн не можe да се стартира: click-to-pay handler</translation>
     </message>
     <message>
@@ -1176,7 +1176,7 @@
         <translation>Сума</translation>
     </message>
     <message>
-        <source>Enter a Peercoin address (e.g. %1)</source>
+        <source>Enter a Pandacoin address (e.g. %1)</source>
         <translation>Въведете Пиркойн адрес (например: %1)</translation>
     </message>
     <message>
@@ -1713,7 +1713,7 @@
         <translation>Заявката за плащане е изтекла.</translation>
     </message>
     <message>
-        <source>Warning: Invalid Peercoin address</source>
+        <source>Warning: Invalid Pandacoin address</source>
         <translation>Внимание: Невалиден Пиркойн адрес</translation>
     </message>
     <message>
@@ -1833,7 +1833,7 @@
         <translation>Копиране на текущия подпис</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this Peercoin address</source>
+        <source>Sign the message to prove you own this Pandacoin address</source>
         <translation>Подпишете съобщение като доказателство, че притежавате определен адрес</translation>
     </message>
     <message>
@@ -1849,7 +1849,7 @@
         <translation>&amp;Провери</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified Peercoin address</source>
+        <source>Verify the message to ensure it was signed with the specified Pandacoin address</source>
         <translation>Проверете съобщение, за да сте сигурни че е подписано с определен Пиркойн адрес</translation>
     </message>
     <message>
@@ -2366,7 +2366,7 @@
         <translation>Въведете Ваш публичен адрес</translation>
     </message>
     <message>
-        <source>Peercoin Core</source>
+        <source>Pandacoin Core</source>
         <translation>Пиркойн ядро</translation>
     </message>
     <message>

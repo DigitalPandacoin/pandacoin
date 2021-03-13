@@ -70,7 +70,7 @@ matrix:
       #    - cd $TRAVIS_BUILD_DIR
       #  install: true
       #  script:
-      #    - travis_wait 60 ./scripts/windows-crosscompile/compile-peercoin.sh
+      #    - travis_wait 60 ./scripts/windows-crosscompile/compile-pandacoin.sh
       #osx     
       #- os: osx
       #  osx_image: xcode9.2
@@ -78,4 +78,3 @@ matrix:
       #    - ./scripts/dependencies-osx.sh
       #  script:
       #    - ./scripts/install-osx.sh
-

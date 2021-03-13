@@ -11,13 +11,13 @@ bin
 *.exe
 src/*.exe
 src/*/*.exe
-src/peercoin
-src/peercoind
-src/peercoin-cli
-src/peercoin-tx
-src/test/test_peercoin
-src/test/test_peercoin_fuzzy
-src/qt/test/test_peercoin-qt
+src/pandacoin
+src/pandacoind
+src/pandacoin-cli
+src/pandacoin-tx
+src/test/test_pandacoin
+src/test/test_pandacoin_fuzzy
+src/qt/test/test_pandacoin-qt
 
 # autoreconf
 Makefile.in
@@ -72,8 +72,8 @@ src/qt/bitcoin-qt.includes
 *.o
 *.o-*
 *.patch
-.ppcoin
-.peercoin
+.pndcoin
+.pandacoin
 *.a
 *.pb.cc
 *.pb.h
@@ -92,16 +92,16 @@ src/qt/bitcoin-qt.includes
 # Compilation and Qt preprocessor part
 *.qm
 Makefile
-ppcoin-qt
-peercoin-qt
-PPCoin-Qt.app
-Peercoin-Qt.app
+pndcoin-qt
+pandacoin-qt
+Pndcoin-Qt.app
+Pandacoin-Qt.app
 background.tiff*
 
 # Unit-tests
 Makefile.test
-ppcoin-qt_test
-peercoin-qt_test
+pndcoin-qt_test
+pandacoin-qt_test
 
 # Resources cpp
 qrc_*.cpp

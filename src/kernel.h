@@ -1,8 +1,8 @@
 // Copyright (c) 2012-2020 The Peercoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
-#ifndef PEERCOIN_KERNEL_H
-#define PEERCOIN_KERNEL_H
+#ifndef PANDACOIN_KERNEL_H
+#define PANDACOIN_KERNEL_H
 
 #include <primitives/transaction.h> // CTransaction(Ref)
 
@@ -63,4 +63,4 @@ bool IsSuperMajority(int minVersion, const CBlockIndex* pstart, unsigned int nRe
 // peercoin: entropy bit for stake modifier if chosen by modifier
 unsigned int GetStakeEntropyBit(const CBlock& block);
 
-#endif // PEERCOIN_KERNEL_H
+#endif // PANDACOIN_KERNEL_H

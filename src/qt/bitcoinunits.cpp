@@ -40,9 +40,9 @@ QString BitcoinUnits::longName(int unit)
 {
     switch(unit)
     {
-    case BTC: return QString("PPC");
-    case mBTC: return QString("mPPC");
-    case uBTC: return QString::fromUtf8("μPPC");
+    case BTC: return QString("PND");
+    case mBTC: return QString("mPND");
+    case uBTC: return QString::fromUtf8("μPND");
     default: return QString("???");
     }
 }
@@ -60,9 +60,9 @@ QString BitcoinUnits::description(int unit)
 {
     switch(unit)
     {
-    case BTC: return QString("Peercoins");
-    case mBTC: return QString("Milli-Peercoins (1 / 1" THIN_SP_UTF8 "000)");
-    case uBTC: return QString("Micro-Peercoins (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+    case BTC: return QString("Pandacoins");
+    case mBTC: return QString("Milli-Pandacoins (1 / 1" THIN_SP_UTF8 "000)");
+    case uBTC: return QString("Micro-Pandacoins (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
     default: return QString("???");
     }
 }

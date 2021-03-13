@@ -1,11 +1,11 @@
 Upstream-Name: Peercoin
 Upstream-Contact: Stichting Peercoin Foundation <foundation@peercoin.net>
-Source: https://github.com/peercoin/peercoin
+Source: https://gitlab.com/amDOGE/pandacoin
 
 Files: *
 Copyright: 2011-2020 Peercoin Developers
 License: Expat
-Comment: The Peercoin Developers encompasses the current developers listed on https://github.com/peercoin/peercoin,
+Comment: The Peercoin Developers encompasses the current developers listed on https://gitlab.com/amDOGE/pandacoin,
          as well as the numerous contributors to the project.
 
 Files: debian/*

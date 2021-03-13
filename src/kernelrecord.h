@@ -1,8 +1,8 @@
 // Copyright (c) 2012-2020 The Peercoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
-#ifndef PEERCOIN_KERNELRECORD_H
-#define PEERCOIN_KERNELRECORD_H
+#ifndef PANDACOIN_KERNELRECORD_H
+#define PANDACOIN_KERNELRECORD_H
 
 #include <uint256.h>
 
@@ -52,4 +52,4 @@ protected:
     double prevProbability;
 };
 
-#endif // PEERCOIN_KERNELRECORD_H
+#endif // PANDACOIN_KERNELRECORD_H

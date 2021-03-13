@@ -70,7 +70,7 @@
         <translation>Құпия сөзді өзгерту</translation>
     </message>
     <message>
-        <source>Peercoin</source>
+        <source>Pandacoin</source>
         <translation>Пиркойн</translation>
     </message>
     <message>
@@ -169,7 +169,7 @@
 <context>
     <name>Intro</name>
     <message>
-        <source>Peercoin</source>
+        <source>Pandacoin</source>
         <translation>Пиркойн</translation>
     </message>
     <message>

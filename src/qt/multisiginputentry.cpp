@@ -125,10 +125,10 @@ void MultisigInputEntry::on_transactionId_textChanged(const QString &transaction
         if(ExtractDestination(script, addr))
         {
             QString addressStr(EncodeDestination(addr).c_str());
-            ui->transactionOutput->addItem(idStr + QString(" - ") + addressStr + QString(" - ") + amountStr + QString(" PPC"));
+            ui->transactionOutput->addItem(idStr + QString(" - ") + addressStr + QString(" - ") + amountStr + QString(" PND"));
         }
         else
-            ui->transactionOutput->addItem(idStr + QString(" - ") + amountStr + QString(" PPC"));
+            ui->transactionOutput->addItem(idStr + QString(" - ") + amountStr + QString(" PND"));
     }
 }
 

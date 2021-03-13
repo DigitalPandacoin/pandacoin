@@ -1,4 +1,4 @@
-Peercoin version 0.8.x is now available from:
+Pandacoin version 0.8.x is now available from:
 
   <https://bitcoincore.org/bin/bitcoin-core-0.16.x/>
 
@@ -40,10 +40,10 @@ wallets that were created with older versions are not affected by this.
 Compatibility
 ==============
 
-Peercoin is extensively tested on multiple operating systems using
+Pandacoin is extensively tested on multiple operating systems using
 the Linux kernel, macOS 10.8+, and Windows Vista and later. Windows XP is not supported.
 
-Peercoin should also work on most other Unix-like systems but is not
+Pandacoin should also work on most other Unix-like systems but is not
 frequently tested on them.
 
 Notable changes

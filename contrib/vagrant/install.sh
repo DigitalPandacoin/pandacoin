@@ -5,9 +5,8 @@ sudo timedatectl set-ntp no
 sudo apt-get -y -qq install ntp
 sudo ntpq -p
 
-./scripts/peercoinconf.sh
+./scripts/pandacoinconf.sh
 
 ./scripts/dependencies-ubuntu.sh
 
 ./scripts/install-ubuntu.sh
-
