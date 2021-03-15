@@ -77,8 +77,6 @@ SplashScreen::SplashScreen(Qt::WindowFlags f, const NetworkStyle *networkStyle) 
 
     QRect rectAvatar(QPoint(0,105), QSize(1007/2,385/2));
 
-    pixPaint.drawPixmap(rectAvatar, QPixmap(":/images/strider"));
-
     // check font size and drawing with
     pixPaint.setFont(QFont(font, 33*fontFactor));
     QFontMetrics fm = pixPaint.fontMetrics();
