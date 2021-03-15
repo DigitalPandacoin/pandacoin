@@ -1,5 +1,5 @@
 ---
-name: "pandacoin-win-0.16"
+name: "pandacoin-win-0.9.0"
 enable_cache: true
 suites:
 - "trusty"
