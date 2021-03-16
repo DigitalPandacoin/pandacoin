@@ -17,7 +17,7 @@ variables:
     paths:
       - gitian-cache
       - gitian-inputs
-    key: ${CI_JOB_NAME}
+    key: ${CI_JOB_NAME}-breaker3
   variables:
     USE_DOCKER: 1
     DEBIAN_FRONTEND: noninteractive
@@ -33,7 +33,7 @@ variables:
     - mv gitian-inputs ${GITIAN_DIR}/inputs || true
     - pushd ${GITIAN_DIR}
     - sed -i "/^RUN echo 'Acquire::http/d" bin/make-base-vm
-    - bin/make-base-vm --suite trusty --arch amd64 --docker
+    - bin/make-base-vm --suite xenial --arch amd64 --docker
     - mkdir -p inputs
     - wget -N -P inputs https://bitcoincore.org/cfields/osslsigncode-Backports-to-1.7.1.patch
     - wget -N -P inputs http://downloads.sourceforge.net/project/osslsigncode/osslsigncode/osslsigncode-1.7.1.tar.gz
