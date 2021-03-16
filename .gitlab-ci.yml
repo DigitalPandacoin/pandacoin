@@ -1,6 +1,5 @@
 stages:
   - build
-  - collect
 
 variables:
   GITIAN_DIR: ${CI_PROJECT_DIR}/gitian-builder
