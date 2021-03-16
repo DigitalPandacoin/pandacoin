@@ -1,6 +1,6 @@
 <!-- This issue tracker is only for technical issues related to reference implementation of the Pandacoin.
 
-General Pandacoin questions and/or support requests are best directed to the Pandacoin Forum: https://talk.peercoin.net/.
+General Pandacoin questions and/or support requests are best directed to the Pandacoin Telegram: https://t.me/DigitalPandacoin/.
 
 <!-- Describe the issue -->
 <!--- What behavior did you expect? -->
