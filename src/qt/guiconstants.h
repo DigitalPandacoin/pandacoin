@@ -51,7 +51,7 @@ static const int MAX_URI_LENGTH = 255;
 #define SPINNER_FRAMES 36
 
 #define QAPP_ORG_NAME "Pandacoin"
-#define QAPP_ORG_DOMAIN "peercoin.net"
+#define QAPP_ORG_DOMAIN "pandacoin.tech"
 #define QAPP_APP_NAME_DEFAULT "Pandacoin-Qt"
 #define QAPP_APP_NAME_TESTNET "Pandacoin-Qt-testnet"
 

@@ -117,7 +117,6 @@ private:
     QAction *openAction;
     QAction *showHelpMessageAction;
     QAction *openChatroomAction;
-    QAction *openForumAction;
 
     QSystemTrayIcon *trayIcon;
     QMenu *trayIconMenu;
@@ -233,7 +232,6 @@ private Q_SLOTS:
 
     // Open chatroom / forum URL in the system's browser.
     void openChatroom();
-    void openForum();
 
 #ifndef Q_OS_MAC
     /** Handle tray icon clicked */
