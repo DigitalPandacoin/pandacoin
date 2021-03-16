@@ -406,10 +406,7 @@ void BitcoinGUI::createActions()
     showHelpMessageAction->setStatusTip(tr("Show the %1 help message to get a list with possible Pandacoin command-line options").arg(tr(PACKAGE_NAME)));
 
     openChatroomAction = new QAction(QIcon(":/icons/pandacoin"), tr("&Chatroom"), this);
-    openChatroomAction->setStatusTip(tr("Open the Pandacoin Discord in a web browser."));
-
-    openForumAction = new QAction(QIcon(":/icons/pandacoin"), tr("&Forum"), this);
-    openForumAction->setStatusTip(tr("Open https://talk.peercoin.net in a web browser."));
+    openChatroomAction->setStatusTip(tr("Open the Pandacoin Telegram in a web browser."));
 
     connect(quitAction, SIGNAL(triggered()), qApp, SLOT(quit()));
     connect(aboutAction, SIGNAL(triggered()), this, SLOT(aboutClicked()));
@@ -422,7 +419,6 @@ void BitcoinGUI::createActions()
     connect(quitAction, SIGNAL(triggered()), rpcConsole, SLOT(hide()));
 
     connect(openChatroomAction, SIGNAL(triggered()), this, SLOT(openChatroom()));
-    connect(openForumAction, SIGNAL(triggered()), this, SLOT(openForum()));
 
 #ifdef ENABLE_WALLET
     if(walletFrame)
@@ -484,7 +480,6 @@ void BitcoinGUI::createMenuBar()
     {
         help->addAction(openRPCConsoleAction);
         help->addAction(openChatroomAction);
-        help->addAction(openForumAction);
     }
     help->addAction(showHelpMessageAction);
     help->addSeparator();
@@ -774,11 +769,7 @@ void BitcoinGUI::gotoVerifyMessageTab(QString addr)
 }
 
 void BitcoinGUI::openChatroom() {
-    QDesktopServices::openUrl(QUrl("https://discord.gg/XPxfwtG"));
-}
-
-void BitcoinGUI::openForum() {
-    QDesktopServices::openUrl(QUrl("https://talk.peercoin.net"));
+    QDesktopServices::openUrl(QUrl("https://t.me/DigitalPandacoin"));
 }
 
 #endif // ENABLE_WALLET
