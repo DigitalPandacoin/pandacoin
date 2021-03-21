@@ -18,8 +18,8 @@ variables:
   before_script:
     - echo $CI_JOB_TOKEN | docker login -u gitlab-ci-token --password-stdin $CI_REGISTRY
   after_script:
-    - docker push $IMAGE:$CI_COMMIT_REF_SLUG
-    - if [ "$CI_COMMIT_REF_NAME" == "$CI_DEFAULT_BRANCH" ]; then docker push $IMAGE:latest; fi;
+    - docker push -q $IMAGE:$CI_COMMIT_REF_SLUG
+    - if [ "$CI_COMMIT_REF_NAME" == "$CI_DEFAULT_BRANCH" ]; then docker -q push $IMAGE:latest; fi;
 
 build gitian builder:
   extends: .build docker job
@@ -74,12 +74,12 @@ trusty base image:
     - mv gitian-cache ${GITIAN_DIR}/cache || true
     - cd ${GITIAN_DIR}
     - echo $CI_JOB_TOKEN | docker login -u gitlab-ci-token --password-stdin $CI_REGISTRY
-    - docker pull $IMAGE
+    - docker pull -q $IMAGE
     - docker tag $IMAGE base-trusty-amd64
   script:
     - make -j$(nproc) -C ${CI_PROJECT_DIR}/depends download SOURCES_PATH=${GITIAN_DIR}/cache/common
     - sed -i "s/^\ \ HOSTS=.*/\ \ HOSTS=\"${TARGET_ARCH}\"/g" ${CI_PROJECT_DIR}/contrib/gitian-descriptors/gitian-${TARGET_OS}.yml
-    - ./bin/gbuild -j $(nproc) -m 12000 --commit pandacoin=${CI_COMMIT_SHA} --url pandacoin=https://gitlab-ci-token:${CI_JOB_TOKEN}@${CI_SERVER_HOST}/${CI_PROJECT_PATH}.git ${CI_PROJECT_DIR}/contrib/gitian-descriptors/gitian-${TARGET_OS}.yml
+    - ./bin/gbuild -j $(nproc) -m 12000 --commit pandacoin=${CI_COMMIT_SHA} --url pandacoin=${CI_PROJECT_DIR} ${CI_PROJECT_DIR}/contrib/gitian-descriptors/gitian-${TARGET_OS}.yml
   after_script:
     - mv ${GITIAN_DIR}/cache ${CI_PROJECT_DIR}/gitian-cache
     - cp -r ${GITIAN_DIR}/build/out/* ${CI_PROJECT_DIR}/
