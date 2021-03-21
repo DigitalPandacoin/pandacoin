@@ -1,12 +1,61 @@
 stages:
+  - base
   - build
 
 variables:
-  GITIAN_DIR: ${CI_PROJECT_DIR}/gitian-builder
+  GITIAN_DIR: /opt/gitian-builder
+
+.build docker job:
+  stage: base
+  image: docker:stable
+  variables:
+    DOCKER_BUILDKIT: 1
+    GIT_STRATEGY: none
+  services:
+    - docker:stable-dind
+  tags:
+    - docker
+  before_script:
+    - echo $CI_JOB_TOKEN | docker login -u gitlab-ci-token --password-stdin $CI_REGISTRY
+  after_script:
+    - docker push $IMAGE:$CI_COMMIT_REF_SLUG
+    - if [ "$CI_COMMIT_REF_NAME" == "$CI_DEFAULT_BRANCH" ]; then docker push $IMAGE:latest; fi;
+
+build gitian builder:
+  extends: .build docker job
+  variables:
+    IMAGE: $CI_REGISTRY_IMAGE/gitian/builder
+  script:
+    - |
+      docker build --cache-from $IMAGE:$CI_COMMIT_REF_SLUG --tag $IMAGE:$CI_COMMIT_REF_SLUG --tag $IMAGE:latest --build-arg BUILDKIT_INLINE_CACHE=1 -<<EOF
+        FROM docker:stable-dind
+        RUN apk add curl make ruby wget git sed
+        RUN git clone https://github.com/devrandom/gitian-builder.git ${GITIAN_DIR}
+        RUN mkdir ${GITIAN_DIR}/inputs ${GITIAN_DIR}/var
+        RUN wget -N -P ${GITIAN_DIR}/inputs https://bitcoincore.org/cfields/osslsigncode-Backports-to-1.7.1.patch
+        RUN wget -N -P ${GITIAN_DIR}/inputs http://downloads.sourceforge.net/project/osslsigncode/osslsigncode/osslsigncode-1.7.1.tar.gz
+        RUN wget -N -P ${GITIAN_DIR}/inputs https://github.com/phracker/MacOSX-SDKs/releases/download/10.15/MacOSX10.10.sdk.tar.xz
+      EOF
+
+trusty base image:
+  extends: .build docker job
+  variables:
+    IMAGE: $CI_REGISTRY_IMAGE/gitian/base-trusty-amd64
+  script:
+    - |
+      docker build --cache-from $IMAGE:$CI_COMMIT_REF_SLUG --tag $IMAGE:$CI_COMMIT_REF_SLUG --tag $IMAGE:latest --build-arg BUILDKIT_INLINE_CACHE=1 -<<EOF
+        FROM ubuntu:trusty
+        ENV DEBIAN_FRONTEND=noninteractive
+        RUN apt-get update && apt-get --no-install-recommends -y install pciutils build-essential git subversion language-pack-en wget lsb-release
+        RUN useradd -ms /bin/bash -U ubuntu
+        USER ubuntu:ubuntu
+        WORKDIR /home/ubuntu
+        CMD ["sleep", "infinity"]
+      EOF
 
 .build job:
   stage: build
-  image: ubuntu:focal
+  image: $CI_REGISTRY_IMAGE/gitian/builder:$CI_COMMIT_REF_SLUG
   services:
     - docker:stable-dind
   tags:
@@ -15,58 +64,42 @@ variables:
     # PANDACOIN TODO bind major versions to cache, eg. CI_JOB_NAME + v0.9.0
     paths:
       - gitian-cache
-      - gitian-inputs
-    key: ${CI_JOB_NAME}
+    key: gitian-cache-${TARGET_ARCH}
   variables:
+    DOCKER_BUILDKIT: 1
     USE_DOCKER: 1
     DEBIAN_FRONTEND: noninteractive
+    IMAGE: $CI_REGISTRY_IMAGE/gitian/base-trusty-amd64
   before_script:
-    - apt-get update
-    - apt-get install -y apt-transport-https ca-certificates curl gnupg lsb-release
-    - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
-    - echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
-    - apt-get update
-    - apt-get install -y docker-ce-cli make ruby wget git-core
-    - git clone https://github.com/devrandom/gitian-builder.git gitian-builder
     - mv gitian-cache ${GITIAN_DIR}/cache || true
-    - mv gitian-inputs ${GITIAN_DIR}/inputs || true
-    - pushd ${GITIAN_DIR}
-    - sed -i "/^RUN echo 'Acquire::http/d" bin/make-base-vm
-    - bin/make-base-vm --suite trusty --arch amd64 --docker
-    - mkdir -p inputs
-    - wget -N -P inputs https://bitcoincore.org/cfields/osslsigncode-Backports-to-1.7.1.patch
-    - wget -N -P inputs http://downloads.sourceforge.net/project/osslsigncode/osslsigncode/osslsigncode-1.7.1.tar.gz
-    - if [ "${CI_JOB_NAME}" == "build osx" ]; then wget -N -P inputs https://github.com/phracker/MacOSX-SDKs/releases/download/10.15/MacOSX10.10.sdk.tar.xz; fi
+    - cd ${GITIAN_DIR}
+    - echo $CI_JOB_TOKEN | docker login -u gitlab-ci-token --password-stdin $CI_REGISTRY
+    - docker pull $IMAGE
+    - docker tag $IMAGE base-trusty-amd64
   script:
-    - make -j$(nproc) -C ${CI_PROJECT_DIR}/depends download SOURCES_PATH=$PWD/cache/common
-    - ./bin/gbuild -j $(nproc) -m 6000 --commit pandacoin=${CI_COMMIT_SHA} --url pandacoin=https://gitlab-ci-token:${CI_JOB_TOKEN}@${CI_SERVER_HOST}/${CI_PROJECT_PATH}.git ${CI_PROJECT_DIR}/contrib/gitian-descriptors/${GITIAN_TARGET}
+    - make -j$(nproc) -C ${CI_PROJECT_DIR}/depends download SOURCES_PATH=${GITIAN_DIR}/cache/common
+    - sed -i "s/^\ \ HOSTS=.*/\ \ HOSTS=\"${TARGET_ARCH}\"/g" ${CI_PROJECT_DIR}/contrib/gitian-descriptors/gitian-${TARGET_OS}.yml
+    - ./bin/gbuild -j $(nproc) -m 12000 --commit pandacoin=${CI_COMMIT_SHA} --url pandacoin=https://gitlab-ci-token:${CI_JOB_TOKEN}@${CI_SERVER_HOST}/${CI_PROJECT_PATH}.git ${CI_PROJECT_DIR}/contrib/gitian-descriptors/gitian-${TARGET_OS}.yml
+  after_script:
     - mv ${GITIAN_DIR}/cache ${CI_PROJECT_DIR}/gitian-cache
-    - rm -rf ${GITIAN_DIR}/inputs/pandacoin
-    - cp -r ${GITIAN_DIR}/inputs ${CI_PROJECT_DIR}/gitian-inputs
-    - cp -r ${GITIAN_DIR}/build/out ${CI_PROJECT_DIR}/pandacoin-${CI_COMMIT_REF_SLUG}
+    - cp -r ${GITIAN_DIR}/build/out/* ${CI_PROJECT_DIR}/
   artifacts:
     name: "pandacoin-${CI_COMMIT_REF_NAME}-${CI_JOB_NAME}"
     paths:
-      - ${CI_PROJECT_DIR}/pandacoin-${CI_COMMIT_REF_SLUG}
+      - ${CI_PROJECT_DIR}/*.tar.gz
+      - ${CI_PROJECT_DIR}/*.exe
+      - ${CI_PROJECT_DIR}/*.dmg
+      - ${CI_PROJECT_DIR}/*-res.yml
+      - ${CI_PROJECT_DIR}/src/*.tar.gz
     expire_in: 1 day
 
-build linux:
+build:
   extends: .build job
-  tags:
-    - linux
-  variables:
-    GITIAN_TARGET: gitian-linux.yml
-
-build win:
-  extends: .build job
-  tags:
-    - win
-  variables:
-    GITIAN_TARGET: gitian-win.yml
-
-build osx:
-  extends: .build job
-  tags:
-    - osx
-  variables:
-    GITIAN_TARGET: gitian-osx.yml
+  parallel:
+    matrix:
+      - TARGET_OS: linux
+        TARGET_ARCH: [i686-pc-linux-gnu, x86_64-linux-gnu, arm-linux-gnueabihf, aarch64-linux-gnu]
+      - TARGET_OS: win
+        TARGET_ARCH: [i686-w64-mingw32, x86_64-w64-mingw32]
+      - TARGET_OS: osx
+        TARGET_ARCH: [x86_64-apple-darwin11]
