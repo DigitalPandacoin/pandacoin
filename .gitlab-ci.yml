@@ -129,7 +129,7 @@ full manual:
     expire_in: never
 
 full:
-  extends: build full manual
+  extends: full manual
   when: on_success
   only:
     - tags
