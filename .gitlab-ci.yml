@@ -33,7 +33,6 @@ build gitian builder:
         RUN git clone https://github.com/devrandom/gitian-builder.git ${GITIAN_DIR}
         RUN mkdir ${GITIAN_DIR}/inputs ${GITIAN_DIR}/var
         RUN wget -N -P ${GITIAN_DIR}/inputs https://github.com/phracker/MacOSX-SDKs/releases/download/10.15/MacOSX10.10.sdk.tar.xz
-        RUN echo "608a89db8b4be150a945871230b5ba5d4767a8500bc5fe76ddf10f5cec5ef513 inputs/MacOSX10.10.sdk.tar.xz" | sha256sum -c
       EOF
 
 trusty base image:
