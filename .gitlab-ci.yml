@@ -33,8 +33,11 @@ build gitian builder:
         RUN git clone https://github.com/devrandom/gitian-builder.git ${GITIAN_DIR}
         RUN mkdir ${GITIAN_DIR}/inputs ${GITIAN_DIR}/var
         RUN wget -N -P ${GITIAN_DIR}/inputs https://bitcoincore.org/cfields/osslsigncode-Backports-to-1.7.1.patch
+        RUN echo "a8c4e9cafba922f89de0df1f2152e7be286aba73f78505169bc351a7938dd911 inputs/osslsigncode-Backports-to-1.7.1.patch" | sha256sum -c
         RUN wget -N -P ${GITIAN_DIR}/inputs http://downloads.sourceforge.net/project/osslsigncode/osslsigncode/osslsigncode-1.7.1.tar.gz
+        RUN echo "9a57bba2266d830a0b62d9afb8ec246ebfce3be5847a40aee553b0df1462d8d2 inputs/osslsigncode-1.7.1.tar.gz" | sha256sum -c
         RUN wget -N -P ${GITIAN_DIR}/inputs https://github.com/phracker/MacOSX-SDKs/releases/download/10.15/MacOSX10.10.sdk.tar.xz
+        RUN echo "608a89db8b4be150a945871230b5ba5d4767a8500bc5fe76ddf10f5cec5ef513 inputs/MacOSX10.10.sdk.tar.xz" | sha256sum -c
       EOF
 
 trusty base image:
@@ -52,6 +55,15 @@ trusty base image:
         WORKDIR /home/ubuntu
         CMD ["sleep", "infinity"]
       EOF
+
+warm extra worker:
+  # in total we want three workers alive at the build stage
+  # this should be removed in case we ever have three+ jobs in base stage
+  stage: base
+  tags:
+    - docker
+  script:
+    - echo "Warmup complete."
 
 .build job:
   stage: build
@@ -79,7 +91,7 @@ trusty base image:
   script:
     - make -j$(nproc) -C ${CI_PROJECT_DIR}/depends download SOURCES_PATH=${GITIAN_DIR}/cache/common
     - sed -i "s/^\ \ HOSTS=.*/\ \ HOSTS=\"${TARGET_ARCH}\"/g" ${CI_PROJECT_DIR}/contrib/gitian-descriptors/gitian-${TARGET_OS}.yml
-    - ./bin/gbuild -j $(nproc) -m 12000 --commit pandacoin=${CI_COMMIT_SHA} --url pandacoin=${CI_PROJECT_DIR} ${CI_PROJECT_DIR}/contrib/gitian-descriptors/gitian-${TARGET_OS}.yml
+    - ./bin/gbuild -j $(nproc) -m 30000 --commit pandacoin=${CI_COMMIT_SHA} --url pandacoin=${CI_PROJECT_DIR} ${CI_PROJECT_DIR}/contrib/gitian-descriptors/gitian-${TARGET_OS}.yml
   after_script:
     - mv ${GITIAN_DIR}/cache ${CI_PROJECT_DIR}/gitian-cache
     - cp -r ${GITIAN_DIR}/build/out/* ${CI_PROJECT_DIR}/
@@ -89,17 +101,40 @@ trusty base image:
       - ${CI_PROJECT_DIR}/*.tar.gz
       - ${CI_PROJECT_DIR}/*.exe
       - ${CI_PROJECT_DIR}/*.dmg
-      - ${CI_PROJECT_DIR}/*-res.yml
-      - ${CI_PROJECT_DIR}/src/*.tar.gz
-    expire_in: 1 day
 
-build:
+build intermediary:
   extends: .build job
+  except:
+    - tags
+  # todo: check if this does what we need it to
+  interruptible: true
   parallel:
     matrix:
+      - TARGET_OS: win
+        TARGET_ARCH: x86_64-w64-mingw32
+      - TARGET_OS: osx
+        TARGET_ARCH: x86_64-apple-darwin11
       - TARGET_OS: linux
-        TARGET_ARCH: [i686-pc-linux-gnu, x86_64-linux-gnu, arm-linux-gnueabihf, aarch64-linux-gnu]
+        TARGET_ARCH: x86_64-linux-gnu
+  artifacts:
+    expire_in: 1 week
+
+build full manual:
+  extends: .build job
+  when: manual
+  parallel:
+    matrix:
       - TARGET_OS: win
         TARGET_ARCH: [i686-w64-mingw32, x86_64-w64-mingw32]
       - TARGET_OS: osx
         TARGET_ARCH: [x86_64-apple-darwin11]
+      - TARGET_OS: linux
+        TARGET_ARCH: [i686-pc-linux-gnu, x86_64-linux-gnu, arm-linux-gnueabihf, aarch64-linux-gnu]
+  artifacts:
+    expire_in: never
+
+build full:
+  extends: build full manual
+  when: on_success
+  only:
+    - tags
