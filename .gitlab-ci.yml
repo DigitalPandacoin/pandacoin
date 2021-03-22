@@ -97,7 +97,7 @@ warm extra worker:
       - ${CI_PROJECT_DIR}/*.exe
       - ${CI_PROJECT_DIR}/*.dmg
 
-build intermediary:
+intermediary:
   extends: .build job
   except:
     - tags
@@ -114,7 +114,7 @@ build intermediary:
   artifacts:
     expire_in: 1 week
 
-build full manual:
+full manual:
   extends: .build job
   when: manual
   parallel:
@@ -128,7 +128,7 @@ build full manual:
   artifacts:
     expire_in: never
 
-build full:
+full:
   extends: build full manual
   when: on_success
   only:
