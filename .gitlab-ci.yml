@@ -19,7 +19,7 @@ variables:
     - echo $CI_JOB_TOKEN | docker login -u gitlab-ci-token --password-stdin $CI_REGISTRY
   after_script:
     - docker push -q $IMAGE:$CI_COMMIT_REF_SLUG
-    - if [ "$CI_COMMIT_REF_NAME" == "$CI_DEFAULT_BRANCH" ]; then docker -q push $IMAGE:latest; fi;
+    - if [ "$CI_COMMIT_REF_NAME" == "$CI_DEFAULT_BRANCH" ]; then docker push -q $IMAGE:latest; fi;
 
 build gitian builder:
   extends: .build docker job
