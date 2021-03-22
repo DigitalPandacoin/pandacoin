@@ -96,6 +96,7 @@ warm extra worker:
       - ${CI_PROJECT_DIR}/*.tar.gz
       - ${CI_PROJECT_DIR}/*.exe
       - ${CI_PROJECT_DIR}/*.dmg
+    expire_in: 1 week
 
 intermediary:
   extends: .build job
@@ -114,9 +115,21 @@ intermediary:
   artifacts:
     expire_in: 1 week
 
-full manual:
+manual:
+  extends: intermediary
+  except:
+    - tags
+  parallel:
+    matrix:
+      - TARGET_OS: win
+        TARGET_ARCH: i686-w64-mingw32
+      - TARGET_OS: linux
+        TARGET_ARCH: [i686-pc-linux-gnu, arm-linux-gnueabihf, aarch64-linux-gnu]
+
+full:
   extends: .build job
-  when: manual
+  only:
+    - tags
   parallel:
     matrix:
       - TARGET_OS: win
@@ -127,9 +140,3 @@ full manual:
         TARGET_ARCH: [i686-pc-linux-gnu, x86_64-linux-gnu, arm-linux-gnueabihf, aarch64-linux-gnu]
   artifacts:
     expire_in: never
-
-full:
-  extends: full manual
-  when: on_success
-  only:
-    - tags
