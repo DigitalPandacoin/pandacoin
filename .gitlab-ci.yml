@@ -119,6 +119,7 @@ manual:
   extends: intermediary
   except:
     - tags
+  when: manual
   parallel:
     matrix:
       - TARGET_OS: win
