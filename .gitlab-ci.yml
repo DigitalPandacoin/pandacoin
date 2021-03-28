@@ -76,6 +76,7 @@ warm extra worker:
       - gitian-cache
     key: gitian-cache-${TARGET_ARCH}
   variables:
+    GIT_DEPTH: 0
     DOCKER_BUILDKIT: 1
     USE_DOCKER: 1
     DEBIAN_FRONTEND: noninteractive

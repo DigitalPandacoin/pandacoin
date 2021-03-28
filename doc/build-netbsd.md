@@ -25,7 +25,7 @@ python27
 
 Download the source code:
 ```
-git clone https://gitlab.com/amDOGE/pandacoin
+git clone https://gitlab.com/pandacoin/pandacoin
 ```
 
 See [dependencies.md](dependencies.md) for a complete overview.

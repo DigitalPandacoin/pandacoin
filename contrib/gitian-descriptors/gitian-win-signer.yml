@@ -8,7 +8,7 @@ packages:
 - "libssl-dev"
 - "autoconf"
 remotes:
-- "url": "https://gitlab.com/amDOGE/pandacoin-detached-sigs.git"
+- "url": "https://gitlab.com/pandacoin/pandacoin-detached-sigs.git"
   "dir": "signature"
 files:
 - "osslsigncode-1.7.1.tar.gz"

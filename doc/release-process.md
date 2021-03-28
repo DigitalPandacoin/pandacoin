@@ -304,6 +304,6 @@ bitcoin.org (see below for bitcoin.org update instructions).
 
   - Archive release notes for the new version to `doc/release-notes/` (branch `master` and branch of the release)
 
-  - Create a [new GitHub release](https://gitlab.com/amDOGE/pandacoin/releases/new) with a link to the archived release notes.
+  - Create a [new GitHub release](https://gitlab.com/pandacoin/pandacoin/releases/new) with a link to the archived release notes.
 
   - Celebrate

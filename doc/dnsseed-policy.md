@@ -51,4 +51,4 @@ situations but should be discussed in public in advance.
 
 See also
 ----------
-- [pandacoin-seeder](https://gitlab.com/amDOGE/pandacoin-seeder) is a reference implementation of a DNS seed.
+- [pandacoin-seeder](https://gitlab.com/pandacoin/pandacoin-seeder) is a reference implementation of a DNS seed.

@@ -28,7 +28,7 @@ packages:
 - "ca-certificates"
 - "python"
 remotes:
-- "url": "https://gitlab.com/amDOGE/pandacoin.git"
+- "url": "https://gitlab.com/pandacoin/pandacoin.git"
   "dir": "pandacoin"
 files: []
 script: |

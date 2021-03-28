@@ -7,7 +7,7 @@ architectures:
 packages:
 - "faketime"
 remotes:
-- "url": "https://gitlab.com/amDOGE/pandacoin-detached-sigs.git"
+- "url": "https://gitlab.com/pandacoin/pandacoin-detached-sigs.git"
   "dir": "signature"
 files:
 - "pandacoin-osx-unsigned.tar.gz"

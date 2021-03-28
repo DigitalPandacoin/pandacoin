@@ -28,7 +28,7 @@ packages:
 - "python-setuptools"
 - "fonts-tuffy"
 remotes:
-- "url": "https://gitlab.com/amDOGE/pandacoin.git"
+- "url": "https://gitlab.com/pandacoin/pandacoin.git"
   "dir": "pandacoin"
 files:
 - "MacOSX10.10.sdk.tar.xz"

@@ -45,7 +45,7 @@ Build Pandacoin Core
 
 1. Clone the pandacoin source code and cd into `pandacoin`
 
-        git clone https://gitlab.com/amDOGE/pandacoin.git
+        git clone https://gitlab.com/pandacoin/pandacoin.git
         cd pandacoin
 
 2.  Build pandacoin-core:
