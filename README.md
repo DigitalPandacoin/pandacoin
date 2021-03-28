@@ -7,7 +7,7 @@ Pandacoin Official Development Repo
 
 ### Pandacoin Resources
 * Client and Source:
-[Client Binaries](https://gitlab.com/pandacoin/pandacoin/releases),
+[Client Binaries](https://gitlab.com/pandacoin/pandacoin/-/releases),
 [Source Code](https://gitlab.com/pandacoin/pandacoin)
 * Help: 
 [Telegram](https://t.me/DigitalPandacoin)
