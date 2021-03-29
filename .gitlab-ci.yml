@@ -98,6 +98,7 @@ warm extra worker:
     name: "pandacoin-${CI_COMMIT_REF_NAME}-${CI_JOB_NAME}"
     paths:
       - ${CI_PROJECT_DIR}/*.tar.gz
+      - ${CI_PROJECT_DIR}/*.zip
       - ${CI_PROJECT_DIR}/*.exe
       - ${CI_PROJECT_DIR}/*.dmg
     expire_in: 1 week
