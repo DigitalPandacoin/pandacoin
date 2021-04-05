@@ -1054,6 +1054,34 @@ bool AppInitMain()
 {
     const CChainParams& chainparams = Params();
     // ********************************************************* Step 4a: application initialization
+    if (!fs::exists(GetDataDir() / "wallets/wallet.dat") && fs::exists(GetDataDir() / "wallet.dat")) {
+        if (gArgs.IsArgSet("-datadir")) {
+            return InitError("Legacy / Pandabank datadir found. Refusing to boot, since the option -datadir was explicitly set. "
+                             "Please move your files somewhere else before continuing.\n");
+        }
+        if (gArgs.IsArgSet("-walletdir")) {
+            return InitError("Legacy / Pandabank datadir found. Refusing to boot, since the option -walletdir was explicitly set. "
+                             "Please move your files somewhere else before continuing.\n");
+        }
+        // pandacoin: backup legacy data dir and create a new one
+        fs::path dataDir = GetDataDir();
+        fs::path datadirBak = strprintf("%s.%d.bak", dataDir.string(), GetTime());
+        uiInterface.InitMessage(_("Backing up legacy datadir..."));
+        LogPrintf("Attempting to back up legacy datadir from %s to %s\n", dataDir.string(), datadirBak.string());
+        ReleaseDirectoryLocks();
+        try {
+            fs::rename(dataDir, datadirBak);
+        } catch (std::exception &e) {
+            return InitError(strprintf("Unable to move Legacy / Pandabank datadir from %s to %s. Please move your files manually.\n", dataDir.string(), datadirBak.string()));
+        }
+        ClearDatadirCache();
+        // AppInitLockDataDirectory should re-create the data dir
+        if (!AppInitLockDataDirectory()) {
+            return false;
+        }
+        fs::copy_file(datadirBak / "wallet.dat", GetDataDir() / "wallets/wallet.dat");
+        gArgs.ForceSetArg("-salvagewallet", "1");
+    }
 #ifndef WIN32
     CreatePidFile(GetPidFile(), getpid());
 #endif
