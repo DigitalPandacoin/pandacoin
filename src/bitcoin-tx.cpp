@@ -77,6 +77,7 @@ static int AppInitRawTx(int argc, char* argv[])
         strUsage += HelpMessageOpt("in=TXID:VOUT(:SEQUENCE_NUMBER)", _("Add input to TX"));
         strUsage += HelpMessageOpt("locktime=N", _("Set TX lock time to N"));
         strUsage += HelpMessageOpt("nversion=N", _("Set TX version to N"));
+        strUsage += HelpMessageOpt("ntime=N", _("Set TX time to N"));
         strUsage += HelpMessageOpt("replaceable(=N)", _("disabled, left for rpc backward compatibility"));
         strUsage += HelpMessageOpt("outaddr=VALUE:ADDRESS", _("Add address-based output to TX"));
         strUsage += HelpMessageOpt("outpubkey=VALUE:PUBKEY[:FLAGS]", _("Add pay-to-pubkey output to TX") + ". " +
@@ -192,6 +193,15 @@ static void MutateTxVersion(CMutableTransaction& tx, const std::string& cmdVal)
         throw std::runtime_error("Invalid TX version requested");
 
     tx.nVersion = (int) newVersion;
+}
+
+static void MutateTxTime(CMutableTransaction& tx, const std::string& cmdVal)
+{
+    int64_t newTime = atoi64(cmdVal);
+    if (newTime < 0LL || newTime > 0xffffffffLL)
+        throw std::runtime_error("Invalid TX time requested");
+
+    tx.nTime = (unsigned int) newTime;
 }
 
 static void MutateTxLocktime(CMutableTransaction& tx, const std::string& cmdVal)
@@ -667,6 +677,8 @@ static void MutateTx(CMutableTransaction& tx, const std::string& command,
 
     if (command == "nversion")
         MutateTxVersion(tx, commandVal);
+    else if (command == "ntime")
+        MutateTxTime(tx, commandVal);
     else if (command == "locktime")
         MutateTxLocktime(tx, commandVal);
 
@@ -771,6 +783,8 @@ static int CommandLineRawTx(int argc, char* argv[])
         }
 
         CMutableTransaction tx;
+        // peercoin: set default time to current time
+        tx.nTime = GetTime();
         int startArg;
 
         if (!fCreateBlank) {
