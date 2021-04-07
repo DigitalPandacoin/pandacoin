@@ -42,13 +42,13 @@ const unsigned int nProtocolV09SwitchTime     = 1591617600; // Mon  8 Jun 12:00:
 const unsigned int nProtocolV09TestSwitchTime = 1581940800; // Mon 17 Feb 12:00:00 UTC 2020
 // PANDACOIN FIXME update this
 // Enable PoW rewards
-const unsigned int nPoWRewardsStartSwitchTime     = 1617278400; // Thur  1 Apr 12:00:00 UTC 2020
-const unsigned int nPoWRewardsStartTestSwitchTime = 1617278400; // Thur  1 Apr 12:00:00 UTC 2020
+const unsigned int nPoWRewardsStartSwitchTime     = 1619870400; // Thur  1 May 12:00:00 UTC 2021
+const unsigned int nPoWRewardsStartTestSwitchTime = 1618401600; // Thur  14 Apr 12:00:00 UTC 2021
 
 // Hard checkpoints of stake modifiers to ensure they are deterministic
 static std::map<int, unsigned int> mapStakeModifierCheckpoints =
     boost::assign::map_list_of
-    ( 999, 0x0e00670bu )
+    ( 0, 0x0e00670b )
     ;
 
 static std::map<int, unsigned int> mapStakeModifierTestnetCheckpoints =
