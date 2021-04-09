@@ -6,6 +6,8 @@ stages:
 
 variables:
   GITIAN_DIR: /opt/gitian-builder
+  # fixme: this uses a static version number
+  PACKAGE_REGISTRY_URL: "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/pandacoin/0.9.0"
 
 .build docker job:
   stage: base
