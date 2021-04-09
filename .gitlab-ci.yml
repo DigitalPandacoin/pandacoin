@@ -1,6 +1,8 @@
 stages:
   - base
   - build
+  - upload
+  - release
 
 variables:
   GITIAN_DIR: /opt/gitian-builder
@@ -144,5 +146,25 @@ full:
         TARGET_ARCH: [x86_64-apple-darwin11]
       - TARGET_OS: linux
         TARGET_ARCH: [i686-pc-linux-gnu, x86_64-linux-gnu, arm-linux-gnueabihf, aarch64-linux-gnu]
-  artifacts:
-    expire_in: never
+
+upload:
+  stage: upload
+  image: curlimages/curl:latest
+  only:
+    - tags
+  variables:
+    GIT_STRATEGY: none
+  script:
+    - |
+      for i in *; do curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file ${i} ${PACKAGE_REGISTRY_URL}/${i}; done
+
+release:
+  stage: release
+  image: registry.gitlab.com/gitlab-org/release-cli:latest
+  only:
+    - tags
+  variables:
+    GIT_STRATEGY: none
+  script:
+    - |
+      eval 'release-cli create --name "Release $CI_COMMIT_TAG" --tag-name $CI_COMMIT_TAG $(for i in *; do echo  --assets-link "{\"name\":\"${i}\",\"url\":\"${PACKAGE_REGISTRY_URL}/${i}\"}"; done)'
