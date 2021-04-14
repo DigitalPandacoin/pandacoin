@@ -9,18 +9,15 @@ variables:
   # fixme: this uses a static version number
   PACKAGE_REGISTRY_URL: "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/pandacoin/0.9.0"
 
-workflow:
-  rules:
-    - if: '$BLOCKCOUNT'
-      when: never
-    - when: always
-
 .build docker job:
   stage: base
   image: docker:stable
   variables:
     DOCKER_BUILDKIT: 1
     GIT_STRATEGY: none
+  rules:
+    - if: '$CI_PIPELINE_SOURCE === "trigger"'
+      when: never
   services:
     - docker:stable-dind
   tags:
@@ -69,6 +66,9 @@ warm extra worker:
   tags:
     - docker
     - cpx51
+  rules:
+    - if: '$CI_PIPELINE_SOURCE === "trigger"'
+      when: never
   script:
     - echo "Warmup complete."
 
@@ -80,6 +80,9 @@ warm extra worker:
   tags:
     - docker
     - cpx51
+  rules:
+    - if: '$CI_PIPELINE_SOURCE === "trigger"'
+      when: never
   cache:
     # PANDACOIN TODO bind major versions to cache, eg. CI_JOB_NAME + v0.9.0
     paths:
@@ -159,7 +162,8 @@ full:
   stage: upload
   image: python:slim-buster
   rules:
-    - if: '$BLOCKCOUNT'
+    - if: '$BLOCKCOUNT_MAIN'
+    - if: '$BLOCKCOUNT_TEST'
   variables:
     GIT_DEPTH: 1
   script:
@@ -219,16 +223,21 @@ bootstrap.dat:
       #  NETMAGIC: 8faefceb
       #  PORT: 22444
       #  GENESIS_BLOCK:
+      #  BLOCKCOUNT: $BLOCKCOUNT_MAIN
       - NET: test
         ARGS: -testnet
         NETDIR: /testnet3
         NETMAGIC: edebf0a8
         PORT: 33444
         GENESIS_BLOCK: 00000000e721ffd6d205ee59284685c918d155a3aba7fdc00af404f0d167f7a4
+        BLOCKCOUNT: $BLOCKCOUNT_TEST
 
 upload:
   stage: upload
   image: curlimages/curl:latest
+  rules:
+    - if: '$CI_PIPELINE_SOURCE === "trigger"'
+      when: never
   only:
     - tags
   variables:
@@ -244,6 +253,9 @@ release:
   needs: [upload]
   only:
     - tags
+  rules:
+    - if: '$CI_PIPELINE_SOURCE === "trigger"'
+      when: never
   variables:
     GIT_STRATEGY: none
   script:
