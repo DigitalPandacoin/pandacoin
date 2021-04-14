@@ -13,6 +13,7 @@ workflow:
   rules:
     - if: '$BLOCKCOUNT'
       when: never
+    - when: always
 
 .build docker job:
   stage: base
@@ -159,8 +160,6 @@ full:
   image: python:slim-buster
   rules:
     - if: '$BLOCKCOUNT'
-  needs: ["intermediary: [linux, x86_64-linux-gnu]"]
-  dependencies: ["intermediary: [linux, x86_64-linux-gnu]"]
   variables:
     GIT_DEPTH: 1
   script:
