@@ -180,7 +180,7 @@ full:
     - apt-get install -y curl
     # todo update this
     - |
-      curl --location --globoff "JOB-TOKEN: $CI_JOB_TOKEN" "https://gitlab.com/api/v4/projects/$CI_PROJECT_ID/packages/generic/pandacoin/0.9.0/pandacoin-0.9.0-x86_64-linux-gnu.tar.gz" -o pandacoin-0.9.0-x86_64-linux-gnu.tar.gz
+      curl --location --globoff --header "JOB-TOKEN: $CI_JOB_TOKEN" "https://gitlab.com/api/v4/projects/$CI_PROJECT_ID/packages/generic/pandacoin/0.9.0/pandacoin-0.9.0-x86_64-linux-gnu.tar.gz" -o pandacoin-0.9.0-x86_64-linux-gnu.tar.gz
   script:
     - mkdir -p pandacoin
     - tar xzf pandacoin-*-x86_64-linux-gnu.tar.gz -C pandacoin --strip-components=1
