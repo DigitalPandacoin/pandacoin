@@ -149,6 +149,76 @@ full:
       - TARGET_OS: linux
         TARGET_ARCH: [i686-pc-linux-gnu, x86_64-linux-gnu, arm-linux-gnueabihf, aarch64-linux-gnu]
 
+.generate bootstrap.dat job:
+  stage: upload
+  image: python:slim-buster
+  rules:
+    - if: '$BLOCKCOUNT'
+  needs: ["intermediary: [linux, x86_64-linux-gnu]"]
+  dependencies: ["intermediary: [linux, x86_64-linux-gnu]"]
+  variables:
+    GIT_DEPTH: 1
+  script:
+    - mkdir -p pandacoin
+    - tar xzf pandacoin-*-x86_64-linux-gnu.tar.gz -C pandacoin --strip-components=1
+    - export PATH=$PWD/pandacoin/bin:$PATH
+    - mkdir $HOME/.pandacoin
+    - |
+      cat > $HOME/.pandacoin/pandacoin.conf <<EOF
+      rpcuser=rpc
+      rpcpassword=rpc
+      daemon=1
+      EOF
+    - eval 'pandacoind ${ARGS}' &
+    - |
+      while [ ! -f $HOME/.pandacoin${NETDIR}/debug.log ]; do sleep .1; done
+    - |
+      while ! grep -q "UpdateTip" $HOME/.pandacoin${NETDIR}/debug.log; do sleep .1; done
+    - |
+      while [ "$(eval 'pandacoin-cli ${ARGS} getblockcount')" -lt "$BLOCKCOUNT" ]; do sleep 5; done
+    - |
+      cat > linearize.cfg <<EOF
+      rpcuser = rpc
+      rpcpassword = rpc
+      datadir = $HOME/.pandacoin${NETDIR}
+      host = 127.0.0.1
+      port = $PORT
+      max_height = $BLOCKCOUNT
+      netmagic = $NETMAGIC
+      genesis = $GENESIS_BLOCK
+      input = $HOME/.pandacoin${NETDIR}/blocks
+      output_file = $PWD/bootstrap.dat
+      hashlist = hashlist.txt
+      out_of_order_cache_sz = 100000000
+      rev_hash_bytes = False
+      file_timestamp = 0
+      split_timestamp = 0
+      debug_output = False
+      EOF
+    - python3 contrib/linearize/linearize-hashes.py linearize.cfg > hashlist.txt
+    - python3 contrib/linearize/linearize-data.py linearize.cfg
+  artifacts:
+    name: "pandacoin-bootstrap-${NET}net-$BLOCKCOUNT-blocks"
+    paths:
+      - hashlist.txt
+      - bootstrap.dat
+    expire_in: 1 day
+
+bootstrap.dat:
+  extends: .generate bootstrap.dat job
+  parallel:
+    matrix:
+      #- NET: main
+      #  NETMAGIC: 8faefceb
+      #  PORT: 22444
+      #  GENESIS_BLOCK:
+      - NET: test
+        ARGS: -testnet
+        NETDIR: /testnet3
+        NETMAGIC: edebf0a8
+        PORT: 33444
+        GENESIS_BLOCK: 00000000e721ffd6d205ee59284685c918d155a3aba7fdc00af404f0d167f7a4
+
 upload:
   stage: upload
   image: curlimages/curl:latest
@@ -163,6 +233,8 @@ upload:
 release:
   stage: release
   image: registry.gitlab.com/gitlab-org/release-cli:latest
+  # currently only upload is needed here. bootstrap or other artifacts might get added later
+  needs: [upload]
   only:
     - tags
   variables:
