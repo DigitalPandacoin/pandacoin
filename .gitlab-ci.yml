@@ -170,14 +170,18 @@ full:
   stage: upload
   image: python:slim-buster
   rules:
+    # todo this will not work
     - if: '$BLOCKCOUNT_MAIN'
     - if: '$BLOCKCOUNT_TEST'
   variables:
     GIT_DEPTH: 1
-  script:
+  before_script:
+    - apt-get update
+    - apt-get install -y curl
     # todo update this
     - |
       curl --location --globoff "JOB-TOKEN: $CI_JOB_TOKEN" "https://gitlab.com/api/v4/projects/$CI_PROJECT_ID/packages/generic/pandacoin/0.9.0/pandacoin-0.9.0-x86_64-linux-gnu.tar.gz" -o pandacoin-0.9.0-x86_64-linux-gnu.tar.gz
+  script:
     - mkdir -p pandacoin
     - tar xzf pandacoin-*-x86_64-linux-gnu.tar.gz -C pandacoin --strip-components=1
     - export PATH=$PWD/pandacoin/bin:$PATH
