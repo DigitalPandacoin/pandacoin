@@ -40,15 +40,11 @@ const uint32_t nBTC16BIPsTestSwitchTime = 1554811200; // Tue 09 Apr 12:00:00 UTC
 // Protocol switch time for v0.9 kernel protocol
 const unsigned int nProtocolV09SwitchTime     = 1591617600; // Mon  8 Jun 12:00:00 UTC 2020
 const unsigned int nProtocolV09TestSwitchTime = 1581940800; // Mon 17 Feb 12:00:00 UTC 2020
-// PANDACOIN FIXME update this
-// Enable PoW rewards
-const unsigned int nPoWRewardsStartSwitchTime     = 1619870400; // Thur  1 May 12:00:00 UTC 2021
-const unsigned int nPoWRewardsStartTestSwitchTime = 1618401600; // Thur  14 Apr 12:00:00 UTC 2021
 
 // Hard checkpoints of stake modifiers to ensure they are deterministic
 static std::map<int, unsigned int> mapStakeModifierCheckpoints =
     boost::assign::map_list_of
-    ( 999, 0x0e00670b )
+    ( 999, 0x0e00670bu )
     ;
 
 static std::map<int, unsigned int> mapStakeModifierTestnetCheckpoints =
@@ -123,12 +119,6 @@ bool IsProtocolV09(unsigned int nTime)
     // pandacoin: we can simply enable this outright
     return true;
   return (nTime >= (Params().NetworkIDString() != CBaseChainParams::MAIN ? nProtocolV09TestSwitchTime : nProtocolV09SwitchTime));
-}
-
-// pandacoin: Whether a miner is able to earn rewards
-bool IsPoWRewardsEnabled(unsigned int nTime)
-{
-    return (nTime >= (Params().NetworkIDString() != CBaseChainParams::MAIN ? nPoWRewardsStartTestSwitchTime : nPoWRewardsStartSwitchTime));
 }
 
 // Get the last stake modifier and its generation time from a given block
