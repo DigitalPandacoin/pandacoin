@@ -9,6 +9,12 @@ variables:
   # fixme: this uses a static version number
   PACKAGE_REGISTRY_URL: "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/pandacoin/0.9.0"
 
+workflow:
+  rules:
+    - if: $CI_MERGE_REQUEST_ID
+      when: never
+    - when: always
+
 .build docker job:
   stage: base
   image: docker:stable
