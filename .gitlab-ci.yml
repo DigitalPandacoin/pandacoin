@@ -9,6 +9,11 @@ variables:
   # fixme: this uses a static version number
   PACKAGE_REGISTRY_URL: "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/pandacoin/0.9.0"
 
+workflow:
+  rules:
+    - if: '$BLOCKCOUNT'
+      when: never
+
 .build docker job:
   stage: base
   image: docker:stable
@@ -159,6 +164,9 @@ full:
   variables:
     GIT_DEPTH: 1
   script:
+    # todo update this
+    - |
+      curl --location --globoff "JOB-TOKEN: $CI_JOB_TOKEN" "https://gitlab.com/api/v4/projects/$CI_PROJECT_ID/packages/generic/pandacoin/0.9.0/pandacoin-0.9.0-x86_64-linux-gnu.tar.gz" -o pandacoin-0.9.0-x86_64-linux-gnu.tar.gz
     - mkdir -p pandacoin
     - tar xzf pandacoin-*-x86_64-linux-gnu.tar.gz -C pandacoin --strip-components=1
     - export PATH=$PWD/pandacoin/bin:$PATH
