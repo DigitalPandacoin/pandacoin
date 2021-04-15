@@ -1355,12 +1355,14 @@ int ApplyTxInUndo(Coin&& undo, CCoinsViewCache& view, const COutPoint& out)
         // information only in undo records for the last spend of a transactions'
         // outputs. This implies that it must be present for some other output of the same tx.
         const Coin& alternate = AccessByTxid(view, out.hash);
-        if (!alternate.IsSpent() || alternate.nHeight == 0) {
+        if (!alternate.IsSpent()) {
             undo.nHeight = alternate.nHeight;
             undo.fCoinBase = alternate.fCoinBase;
             undo.fCoinStake = alternate.fCoinStake; // peercoin
             undo.nTime = alternate.nTime;           // peercoin
-        } else {
+        // pandacoin genesis block (0) is spendable
+        // there *should* be no need to re-assign
+        } else if (alternate.nHeight > 0) {
             return DISCONNECT_FAILED; // adding output for transaction without known metadata
         }
     }
