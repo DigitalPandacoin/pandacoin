@@ -247,6 +247,7 @@ bootstrap.dat:
 upload:
   stage: upload
   image: curlimages/curl:latest
+  dependencies: [full]
   rules:
     - if: '$CI_PIPELINE_SOURCE == "trigger"'
       when: never
@@ -260,8 +261,8 @@ upload:
 release:
   stage: release
   image: registry.gitlab.com/gitlab-org/release-cli:latest
-  # currently only upload is needed here. bootstrap or other artifacts might get added later
   needs: [upload]
+  dependencies: [full]
   rules:
     - if: '$CI_PIPELINE_SOURCE == "trigger"'
       when: never
