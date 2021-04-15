@@ -35,8 +35,6 @@ bool IsProtocolV07(unsigned int nTimeTx);
 bool IsBTC16BIPsEnabled(uint32_t nTimeTx);
 // Whether a given timestamp is subject to new v0.9 protocol
 bool IsProtocolV09(unsigned int nTimeTx);
-// pandacoin: Whether a miner is able to earn rewards
-bool IsPoWRewardsEnabled(unsigned int nTime);
 
 // Compute the hash modifier for proof-of-stake
 bool ComputeNextStakeModifier(const CBlockIndex* pindexCurrent, uint64_t& nStakeModifier, bool& fGeneratedStakeModifier);

@@ -882,8 +882,11 @@ bool ReadBlockFromDisk(CBlock& block, const CDiskBlockPos& pos, const Consensus:
     }
 
     // Check the header
-    if (block.IsProofOfWork() && !CheckProofOfWork(block.GetHash(), block.nBits, consensusParams))
-        return error("ReadBlockFromDisk: Errors in block header at %s", pos.ToString());
+    if (block.GetHash() != consensusParams.hashGenesisBlock)
+    {
+        if (block.IsProofOfWork() && !CheckProofOfWork(block.GetHash(), block.nBits, consensusParams))
+            return error("ReadBlockFromDisk: Errors in block header at %s", pos.ToString());
+    }
 
     return true;
 }
@@ -904,13 +907,8 @@ bool ReadBlockFromDisk(CBlock& block, const CBlockIndex* pindex, const Consensus
     return true;
 }
 
-int64_t GetProofOfWorkReward(unsigned int nBits, unsigned int nTime)
+int64_t GetProofOfWorkReward(unsigned int nBits)
 {
-    if (!IsPoWRewardsEnabled(nTime)) {
-        if (gArgs.GetBoolArg("-printcreation", false))
-            LogPrintf("%s: Unable to earn proof of work rewards during transitional period\n", __func__);
-        return 0;
-    }
     CBigNum bnSubsidyLimit = MAX_MINT_PROOF_OF_WORK;
     CBigNum bnTarget;
     bnTarget.SetCompact(nBits);
@@ -963,7 +961,7 @@ int64_t GetProofOfStakeReward(int64_t nCoinAge, uint32_t nTime, uint64_t nMoneyS
             LogPrintf("%s: money supply %ld, inflation adjustment %f, old subsidy %ld, new subsidy %ld\n", __func__, nMoneySupply, nInflationAdjustment/1000000.0, nSubsidy, nSubsidyNew);
 
         nSubsidy = nSubsidyNew;
-    }
+        }
 
     if (gArgs.GetBoolArg("-printcreation", false))
         LogPrintf("%s: create=%s nCoinAge=%lld\n", __func__, FormatMoney(nSubsidy), nCoinAge);
@@ -2831,7 +2829,7 @@ bool CheckBlock(const CBlock& block, CValidationState& state, const Consensus::P
 
     // Check that the header is valid (particularly PoW).  This is mostly
     // redundant with the call in AcceptBlockHeader.
-    if (!CheckBlockHeader(block, state, consensusParams, fCheckPOW && !block.IsProofOfStake()))
+    if (!CheckBlockHeader(block, state, consensusParams, !block.IsProofOfStake() && block.GetHash() != consensusParams.hashGenesisBlock))
         return false;
 
     // Check the merkle root.
@@ -2887,11 +2885,11 @@ bool CheckBlock(const CBlock& block, CValidationState& state, const Consensus::P
     if (block.IsProofOfWork())
         nCoinbaseCost = (GetMinFee(*block.vtx[0]) < PERKB_TX_FEE)? 0 : (GetMinFee(*block.vtx[0]) - PERKB_TX_FEE);
     // pandacoin: we need a spendable genesis block
-    if (block.GetHash() != consensusParams.hashGenesisBlock && block.vtx[0]->GetValueOut() > (block.IsProofOfWork()? (GetProofOfWorkReward(block.nBits, block.GetBlockTime()) - nCoinbaseCost) : 0))
+    if (block.GetHash() != consensusParams.hashGenesisBlock && block.vtx[0]->GetValueOut() > (block.IsProofOfWork()? (GetProofOfWorkReward(block.nBits) - nCoinbaseCost) : 0))
         return state.DoS(50, false, REJECT_INVALID, "bad-cb-amount", false,
                 strprintf("CheckBlock() : coinbase reward exceeded %s > %s",
                    FormatMoney(block.vtx[0]->GetValueOut()),
-                   FormatMoney(block.IsProofOfWork()? GetProofOfWorkReward(block.nBits, block.GetBlockTime()) : 0)));
+                   FormatMoney(block.IsProofOfWork()? GetProofOfWorkReward(block.nBits) : 0)));
 
     // Check transactions
     for (const auto& tx : block.vtx)
@@ -3313,13 +3311,16 @@ bool CChainState::AcceptBlock(const std::shared_ptr<const CBlock>& pblock, CVali
     }
     if (fNewBlock) *fNewBlock = true;
 
-    if (!CheckBlock(block, state, chainparams.GetConsensus()) ||
-        !ContextualCheckBlock(block, state, pindex->pprev)) {
-        if (state.IsInvalid() && !state.CorruptionPossible()) {
-            pindex->nStatus |= BLOCK_FAILED_VALID;
-            setDirtyBlockIndex.insert(pindex);
+    if (block.GetHash() != chainparams.GetConsensus().hashGenesisBlock)
+    {
+        if (!CheckBlock(block, state, chainparams.GetConsensus()) ||
+            !ContextualCheckBlock(block, state, pindex->pprev)) {
+            if (state.IsInvalid() && !state.CorruptionPossible()) {
+                pindex->nStatus |= BLOCK_FAILED_VALID;
+                setDirtyBlockIndex.insert(pindex);
+            }
+            return error("%s: %s", __func__, FormatStateMessage(state));
         }
-        return error("%s: %s", __func__, FormatStateMessage(state));
     }
 
     // peercoin: check PoS
