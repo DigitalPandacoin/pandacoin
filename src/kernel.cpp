@@ -49,7 +49,7 @@ static std::map<int, unsigned int> mapStakeModifierCheckpoints =
 
 static std::map<int, unsigned int> mapStakeModifierTestnetCheckpoints =
     boost::assign::map_list_of
-    ( 0, 0xfd11f4e7 )
+    ( 0, 0x0e00670b )
     ;
 
 // Whether the given coinstake is subject to new v0.3 protocol
