@@ -261,7 +261,9 @@ upload:
 release:
   stage: release
   image: registry.gitlab.com/gitlab-org/release-cli:latest
-  needs: [upload]
+  needs:
+    - full
+    - upload
   dependencies: [full]
   rules:
     - if: '$CI_PIPELINE_SOURCE == "trigger"'
