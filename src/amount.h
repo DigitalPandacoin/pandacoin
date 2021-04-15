@@ -15,10 +15,10 @@ typedef int64_t CAmount;
 static const CAmount COIN = 1000000;
 static const CAmount CENT = 10000;
 
-static const CAmount MIN_TX_FEE_PREV7 = CENT;
-static const CAmount MIN_TX_FEE = CENT;
-static const CAmount PERKB_TX_FEE = CENT * 10;
-static const CAmount MIN_TXOUT_AMOUNT = CENT * 10;
+static const CAmount MIN_TX_FEE_PREV7 = COIN;
+static const CAmount MIN_TX_FEE = COIN;
+static const CAmount PERKB_TX_FEE = COIN * 10;
+static const CAmount MIN_TXOUT_AMOUNT = COIN;
 static const CAmount MAX_MINT_PROOF_OF_WORK = 999 * COIN;
 static const std::string CURRENCY_UNIT = "PND";
 
