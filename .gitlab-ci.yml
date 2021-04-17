@@ -208,7 +208,7 @@ full:
       port = $PORT
       max_height = $BLOCKCOUNT
       netmagic = $NETMAGIC
-      genesis = $GENESIS_BLOCK
+      genesis = $GENESIS
       input = $HOME/.pandacoin${NETDIR}/blocks
       output_file = $PWD/bootstrap.dat
       hashlist = hashlist.txt
@@ -241,7 +241,7 @@ bootstrap.dat:
         NETDIR: /testnet3
         NETMAGIC: edebf0a8
         PORT: 33444
-        GENESIS_BLOCK: 00000000e721ffd6d205ee59284685c918d155a3aba7fdc00af404f0d167f7a4
+        GENESIS: 000000000ba77e8a7d9d1edd0265ec446e81ac5f12e46eb42f66b05dc22e4bee
         BLOCKCOUNT: $BLOCKCOUNT_TEST
 
 upload:
