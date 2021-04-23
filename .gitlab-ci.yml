@@ -210,13 +210,14 @@ full docker pandacoind:
     GIT_DEPTH: 1
     DEBIAN_FRONTEND: noninteractive
   script:
-    - eval 'pandacoind -daemon=1 -server=1 ${ARGS}' &
+    - export RPC="-rpcuser=rpc -rpcpassword=rpc"
+    - eval 'pandacoind -server=1 -daemon=1 ${RPC} ${ARGS}' &
     - |
       while [ ! -f $HOME/.pandacoin${NETDIR}/debug.log ]; do sleep .1; done
     - |
       while ! grep -q "UpdateTip" $HOME/.pandacoin${NETDIR}/debug.log; do sleep .1; done
     - |
-      while [ "$(eval 'pandacoin-cli ${ARGS} getblockcount')" -lt "$BLOCKCOUNT" ]; do sleep 5; done
+      while [ "$(eval 'pandacoin-cli ${RPC} ${ARGS} getblockcount')" -lt "$BLOCKCOUNT" ]; do sleep 5; done
     - |
       cat > linearize.cfg <<EOF
       rpcuser = rpc
