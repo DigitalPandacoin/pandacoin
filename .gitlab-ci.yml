@@ -180,7 +180,7 @@ full:
     - rm pandacoin/bin/pandacoin-qt
     - |
       docker build --tag $IMAGE --tag $IMAGE:$CI_COMMIT_SHA --build-arg BUILDKIT_INLINE_CACHE=1 -f- .<<EOF
-        FROM ubuntu:trusty
+        FROM ubuntu:focal
         COPY pandacoin /usr/local
       EOF
     - docker push $IMAGE:$CI_COMMIT_SHA
@@ -209,7 +209,11 @@ full docker pandacoind:
   variables:
     GIT_DEPTH: 1
     DEBIAN_FRONTEND: noninteractive
+  before_script:
+    - apt-get -qq update
+    - apt-get install -yqq python3 rhash
   script:
+    - export BOOTSTRAP_DAT="bootstrap-${NET}net-$BLOCKCOUNT-blocks.dat"
     - export RPC="-rpcuser=rpc -rpcpassword=rpc"
     - eval 'pandacoind -server=1 -daemon=1 ${RPC} ${ARGS}' &
     - |
@@ -229,7 +233,7 @@ full docker pandacoind:
       netmagic = $NETMAGIC
       genesis = $GENESIS
       input = $HOME/.pandacoin${NETDIR}/blocks
-      output_file = $PWD/bootstrap.dat
+      output_file = $PWD/$BOOTSTRAP_DAT
       hashlist = hashlist.txt
       out_of_order_cache_sz = 100000000
       rev_hash_bytes = False
@@ -239,11 +243,17 @@ full docker pandacoind:
       EOF
     - python3 contrib/linearize/linearize-hashes.py linearize.cfg > hashlist.txt
     - python3 contrib/linearize/linearize-data.py linearize.cfg
+    - echo $BLOCKCOUNT > blockcount.txt
+    - rhash --torrent --magnet --btih --bt-announce udp://tracker.opentrackr.org:1337/announce --bt-announce udp://tracker.openbittorrent.com:6969/announce --bt-announce udp://exodus.desync.com:6969/announce $BOOTSTRAP_DAT | tr -d '\n' > magnet.txt
+    - echo "&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A6969%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce" | tr -d '\n' >> magnet.txt
+    - ln -s $BOOTSTRAP_DAT bootstrap.dat
   artifacts:
-    name: "pandacoin-bootstrap-${NET}net-$BLOCKCOUNT-blocks"
+    name: pandacoin-bootstrap-${NET}net-$BLOCKCOUNT-blocks
     paths:
       - hashlist.txt
-      - bootstrap.dat
+      - magnet.txt
+      - bootstrap*.dat
+      - bootstrap*.dat.torrent
     expire_in: 1 day
 
 bootstrap.dat:
