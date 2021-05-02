@@ -2819,7 +2819,12 @@ bool CWallet::CreateTransaction(const std::vector<CRecipient>& vecSend, CWalletT
                     setCoins.clear();
                     if (!SelectCoins(vAvailableCoins, nValueToSelect, setCoins, nValueIn, &coin_control))
                     {
-                        strFailReason = _("Insufficient funds");
+                        bool fRejectLongChains = gArgs.GetBoolArg("-walletrejectlongchains", DEFAULT_WALLET_REJECT_LONG_CHAINS);
+                        if (fRejectLongChains) {
+                            strFailReason = _("Insufficient funds, or end of mempool chain might have been reached. Please wait until the next block has been mined.");
+                        } else {
+                            strFailReason = _("Insufficient funds");
+                        }
                         return false;
                     }
                 }
