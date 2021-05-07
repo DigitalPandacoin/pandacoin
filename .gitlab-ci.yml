@@ -248,7 +248,7 @@ full docker pandacoind:
     - echo "&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A6969%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce" | tr -d '\n' >> magnet.txt
     - ln -s $BOOTSTRAP_DAT bootstrap.dat
     - pandacoin-cli ${RPC} ${ARGS} getchaintxstats $BLOCKCOUNT | tee chaintxstats.json
-    - pandacoin-cli ${RPC} ${ARGS} getblock $(pandacoin-cli ${RPC} ${ARGS} getblockhash $BLOCKCOUNT) | tee block.json
+    - pandacoin-cli ${RPC} ${ARGS} getblock $(pandacoin-cli ${RPC} ${ARGS} getblockhash $BLOCKCOUNT) 2 | tee block.json
   artifacts:
     name: pandacoin-bootstrap-${NET}net-$BLOCKCOUNT-blocks
     paths:
