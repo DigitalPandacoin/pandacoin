@@ -131,7 +131,7 @@ public:
         base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x88, 0xAD, 0xE4};
 
         // human readable prefix to bench32 address
-        bech32_hrp = "pc";
+        bech32_hrp = "pn";
 
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_main, pnSeed6_main + ARRAYLEN(pnSeed6_main));
 
@@ -215,7 +215,7 @@ public:
         base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x35, 0x83, 0x94};
 
         // human readable prefix to bench32 address
-        bech32_hrp = "tpc";
+        bech32_hrp = "tpn";
 
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_test, pnSeed6_test + ARRAYLEN(pnSeed6_test));
 
@@ -228,15 +228,16 @@ public:
         checkpointData = {
             {
                 {     0, uint256S("0x000000000ba77e8a7d9d1edd0265ec446e81ac5f12e46eb42f66b05dc22e4bee")},
+                {  5000, uint256S("0xfc3081849868e1b414a43e6a8138b4b848d358ed256d3a6dac6f0ec71305ac5b")}
             }
         };
 
         chainTxData = ChainTxData{
-            // Data as of block 000000003f7d1f4b55d529fdcf3983c3c8a969ab0900dee41bed0bdaf1c3a9d7 (height 444932)
-            0, // * UNIX timestamp of last known number of transactions
-            0,     // * total number of transactions between genesis and that timestamp
+            // Data as of block a3fd4a0a40b96ce78700dc14745536ec31efc63eebd54a99fa49d156402db88c (height 5539)
+            1620386538, // * UNIX timestamp of last known number of transactions
+            10593,     // * total number of transactions between genesis and that timestamp
                         //   (the tx=... number in the SetBestChain debug.log lines)
-            0 // * estimated number of transactions per second after that timestamp
+            0.007378724414224746 // * estimated number of transactions per second after that timestamp
                         // 868816/(1588604853-1346029522) = 0.003581633
         };
     }
