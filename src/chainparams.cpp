@@ -185,10 +185,10 @@ public:
         consensus.nMinerConfirmationWindow = 2016; // nPowTargetTimespan / nPowTargetSpacing
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x00");
+        consensus.nMinimumChainWork = uint256S("0x00000000000000000000000000000000000000000000000000001cfc18835973");
 
         // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("0x00");
+        consensus.defaultAssumeValid = uint256S("0x84c0f09e45812272c60c5704b7003abfed342964063e5b0dd51f89d8f7c3259c");
 
         pchMessageStart[0] = 0xdd;
         pchMessageStart[1] = 0xbf;
@@ -234,10 +234,10 @@ public:
 
         chainTxData = ChainTxData{
             // Data as of block a3fd4a0a40b96ce78700dc14745536ec31efc63eebd54a99fa49d156402db88c (height 5539)
-            1620386538, // * UNIX timestamp of last known number of transactions
-            10593,     // * total number of transactions between genesis and that timestamp
+            1620440682, // * UNIX timestamp of last known number of transactions
+            10946,     // * total number of transactions between genesis and that timestamp
                         //   (the tx=... number in the SetBestChain debug.log lines)
-            0.007378724414224746 // * estimated number of transactions per second after that timestamp
+            0.007324616420024983 // * estimated number of transactions per second after that timestamp
                         // 868816/(1588604853-1346029522) = 0.003581633
         };
     }
