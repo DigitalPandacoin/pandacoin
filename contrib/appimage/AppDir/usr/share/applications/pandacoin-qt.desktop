@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Pandacoin
+Comment=Desktop wallet for Pandacoin Cryptocurrency
+Comment[de]=Offizieller Client für die Kryptowährung Pandacoin
+Exec=pandacoin-qt %u
+Terminal=false
+Type=Application
+Icon=pandacoin128
+MimeType=x-scheme-handler/pandacoin;
+Categories=Office;Finance;
+StartupWMClass=Pandacoin-qt
