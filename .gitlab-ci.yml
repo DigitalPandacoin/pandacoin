@@ -239,7 +239,7 @@ int. AppImage:
   dependencies: ["intermediary: [linux, x86_64-linux-gnu]"]
 
 full AppImage:
-  extends: .docker pandacoind job
+  extends: .AppImage job
   variables:
     TARGET_ARCH: x86_64-linux-gnu
   rules:
@@ -326,7 +326,7 @@ bootstrap.dat:
 upload:
   stage: upload
   image: curlimages/curl:latest
-  dependencies: [full]
+  dependencies: [full, full AppImage]
   rules:
     - if: $CI_PIPELINE_SOURCE == "trigger"
       when: never
