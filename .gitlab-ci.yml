@@ -216,11 +216,9 @@ full docker pandacoind:
     - apt-get install -qqy git wget
     - pip3 install --upgrade git+https://www.opencode.net/azubieta/appimagecraft.git
   script:
-    - mkdir pandacoin
-    - tar xzf pandacoin-*-$TARGET_ARCH.tar.gz -C pandacoin --strip-components=1
-    - rm pandacoin/bin/pandacoin{-cli,-tx,d}
     - cp -r contrib/appimage/{AppDir,AppImageBuilder.yml} .
-    - cp -r pandacoin AppDir
+    - tar xzf pandacoin-*-$TARGET_ARCH.tar.gz -C AppDir --strip-components=1
+    - rm pandacoin/bin/pandacoin{-cli,-tx,d}
     - appimage-builder --skip-tests
   artifacts:
     paths:
