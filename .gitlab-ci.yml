@@ -230,7 +230,7 @@ int. AppImage x86_64:
   variables:
     TARGET_ARCH: x86_64-linux-gnu
     APT_ARCH: amd64
-    APPIMAGE_ARCH: x86_64
+    BUILD_ARCH: x86_64
   rules:
     - if: $CI_PIPELINE_SOURCE == "trigger"
       when: never
@@ -245,7 +245,7 @@ full AppImage x86_64:
   variables:
     TARGET_ARCH: x86_64-linux-gnu
     APT_ARCH: amd64
-    APPIMAGE_ARCH: x86_64
+    BUILD_ARCH: x86_64
   rules:
     - if: $CI_COMMIT_TAG
   needs: ["full: [linux, x86_64-linux-gnu]"]
@@ -256,13 +256,13 @@ manual AppImage i686:
   variables:
     TARGET_ARCH: i686-linux-gnu
     APT_ARCH: i386
-    APPIMAGE_ARCH: i686
+    BUILD_ARCH: i686
   rules:
     - if: $CI_PIPELINE_SOURCE == "trigger"
       when: never
     - if: $CI_COMMIT_TAG
       when: never
-    - when: manual
+    - when: on_success
   needs: ["manual: [linux, i686-pc-linux-gnu]"]
   dependencies: ["manual: [linux, i686-pc-linux-gnu]"]
 
@@ -271,7 +271,7 @@ full AppImage i686:
   variables:
     TARGET_ARCH: x86_64-linux-gnu
     APT_ARCH: i386
-    APPIMAGE_ARCH: x86_64
+    BUILD_ARCH: x86_64
   rules:
     - if: $CI_COMMIT_TAG
   needs: ["full: [linux, i686-pc-linux-gnu]"]
