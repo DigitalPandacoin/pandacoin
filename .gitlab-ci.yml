@@ -254,7 +254,7 @@ full AppImage x86_64:
 manual AppImage i686:
   extends: .AppImage job
   variables:
-    TARGET_ARCH: i686-linux-gnu
+    TARGET_ARCH: i686-pc-linux-gnu
     APT_ARCH: i386
     BUILD_ARCH: i686
   rules:
@@ -269,7 +269,7 @@ manual AppImage i686:
 full AppImage i686:
   extends: .AppImage job
   variables:
-    TARGET_ARCH: x86_64-linux-gnu
+    TARGET_ARCH: i686-pc-linux-gnu
     APT_ARCH: i386
     BUILD_ARCH: x86_64
   rules:
