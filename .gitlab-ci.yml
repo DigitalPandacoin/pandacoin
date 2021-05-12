@@ -218,7 +218,7 @@ full docker pandacoind:
   script:
     - cp -r contrib/appimage/{AppDir,AppImageBuilder.yml} .
     - tar xzf pandacoin-*-$TARGET_ARCH.tar.gz -C AppDir --strip-components=1
-    - rm pandacoin/bin/pandacoin{-cli,-tx,d}
+    - rm AppDir/bin/pandacoin{-cli,-tx,d}
     - appimage-builder --skip-tests
   artifacts:
     paths:
