@@ -176,7 +176,7 @@ full:
     IMAGE: $CI_REGISTRY_IMAGE/pandacoind
   script:
     - mkdir -p pandacoin
-    - tar xzf pandacoin-*.tar.gz -C pandacoin --strip-components=1
+    - tar xzf pandacoin-*-$TARGET_ARCH.tar.gz -C pandacoin --strip-components=1
     - rm pandacoin/bin/pandacoin-qt
     - |
       docker build --tag $IMAGE --tag $IMAGE:$CI_COMMIT_SHA --build-arg BUILDKIT_INLINE_CACHE=1 -f- .<<EOF
@@ -187,6 +187,8 @@ full:
 
 int. docker pandacoind:
   extends: .docker pandacoind job
+  variables:
+    TARGET_ARCH: x86_64-linux-gnu
   rules:
     - if: $CI_PIPELINE_SOURCE == "trigger"
       when: never
@@ -198,6 +200,8 @@ int. docker pandacoind:
 
 full docker pandacoind:
   extends: .docker pandacoind job
+  variables:
+    TARGET_ARCH: x86_64-linux-gnu
   rules:
     - if: $CI_COMMIT_TAG
   needs: ["full: [linux, x86_64-linux-gnu]"]
@@ -213,7 +217,7 @@ full docker pandacoind:
     - pip3 install --upgrade git+https://www.opencode.net/azubieta/appimagecraft.git
   script:
     - mkdir pandacoin
-    - tar xzf pandacoin-*.tar.gz -C pandacoin --strip-components=1
+    - tar xzf pandacoin-*-$TARGET_ARCH.tar.gz -C pandacoin --strip-components=1
     - rm pandacoin/bin/pandacoin{-cli,-tx,d}
     - cp -r contrib/appimage/{AppDir,AppImageBuilder.yml} .
     - cp -r pandacoin AppDir
@@ -225,6 +229,8 @@ full docker pandacoind:
 
 int. AppImage:
   extends: .AppImage job
+  variables:
+    TARGET_ARCH: x86_64-linux-gnu
   rules:
     - if: $CI_PIPELINE_SOURCE == "trigger"
       when: never
@@ -236,6 +242,8 @@ int. AppImage:
 
 full AppImage:
   extends: .docker pandacoind job
+  variables:
+    TARGET_ARCH: x86_64-linux-gnu
   rules:
     - if: $CI_COMMIT_TAG
   needs: ["full: [linux, x86_64-linux-gnu]"]
