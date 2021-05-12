@@ -1,6 +1,7 @@
 stages:
   - base
   - build
+  - package
   - upload
   - release
 
@@ -169,7 +170,7 @@ full:
 
 .docker pandacoind job:
   extends: .build docker job
-  stage: upload
+  stage: package
   tags: []
   variables:
     IMAGE: $CI_REGISTRY_IMAGE/pandacoind
@@ -208,7 +209,7 @@ full docker pandacoind:
 
 .AppImage job:
   image: appimagecrafters/appimage-builder:latest
-  stage: upload
+  stage: package
   tags: []
   before_script:
     - apt-get -qq update
@@ -247,7 +248,7 @@ full AppImage:
   dependencies: ["full: [linux, x86_64-linux-gnu]"]
 
 .generate bootstrap.dat job:
-  stage: upload
+  stage: package
   image: $CI_REGISTRY_IMAGE/pandacoind:$CI_COMMIT_SHA
   variables:
     GIT_DEPTH: 1
