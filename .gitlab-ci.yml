@@ -225,10 +225,12 @@ full docker pandacoind:
       - '*.AppImage*'
     expire_in: 1 week
 
-int. AppImage:
+int. AppImage x86_64:
   extends: .AppImage job
   variables:
     TARGET_ARCH: x86_64-linux-gnu
+    APT_ARCH: amd64
+    APPIMAGE_ARCH: x86_64
   rules:
     - if: $CI_PIPELINE_SOURCE == "trigger"
       when: never
@@ -238,14 +240,42 @@ int. AppImage:
   needs: ["intermediary: [linux, x86_64-linux-gnu]"]
   dependencies: ["intermediary: [linux, x86_64-linux-gnu]"]
 
-full AppImage:
+full AppImage x86_64:
   extends: .AppImage job
   variables:
     TARGET_ARCH: x86_64-linux-gnu
+    APT_ARCH: amd64
+    APPIMAGE_ARCH: x86_64
   rules:
     - if: $CI_COMMIT_TAG
   needs: ["full: [linux, x86_64-linux-gnu]"]
   dependencies: ["full: [linux, x86_64-linux-gnu]"]
+
+manual AppImage i686:
+  extends: .AppImage job
+  variables:
+    TARGET_ARCH: i686-linux-gnu
+    APT_ARCH: i386
+    APPIMAGE_ARCH: i686
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "trigger"
+      when: never
+    - if: $CI_COMMIT_TAG
+      when: never
+    - when: manual
+  needs: ["manual: [linux, i686-pc-linux-gnu]"]
+  dependencies: ["manual: [linux, i686-pc-linux-gnu]"]
+
+full AppImage i686:
+  extends: .AppImage job
+  variables:
+    TARGET_ARCH: x86_64-linux-gnu
+    APT_ARCH: i386
+    APPIMAGE_ARCH: x86_64
+  rules:
+    - if: $CI_COMMIT_TAG
+  needs: ["full: [linux, i686-pc-linux-gnu]"]
+  dependencies: ["full: [linux, i686-pc-linux-gnu]"]
 
 .generate bootstrap.dat job:
   stage: package
@@ -328,7 +358,8 @@ upload:
   image: curlimages/curl:latest
   dependencies:
     - full
-    - full AppImage
+    - full AppImage x86_64
+    - full AppImage i686
   rules:
     - if: $CI_PIPELINE_SOURCE == "trigger"
       when: never
@@ -344,11 +375,13 @@ release:
   image: registry.gitlab.com/gitlab-org/release-cli:latest
   needs:
     - full
-    - full AppImage
+    - full AppImage x86_64
+    - full AppImage i686
     - upload
   dependencies:
     - full
-    - full AppImage
+    - full AppImage x86_64
+    - full AppImage i686
   rules:
     - if: $CI_PIPELINE_SOURCE == "trigger"
       when: never

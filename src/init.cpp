@@ -785,9 +785,9 @@ ServiceFlags nLocalServices = ServiceFlags(NODE_NETWORK | NODE_NETWORK_LIMITED);
 bool AppInitBasicSetup()
 {
     // PANDACOIN TODO REMOVE THIS AFTER TESTING
-    if (!gArgs.IsArgSet("-testnet")) {
+    /*if (!gArgs.IsArgSet("-testnet")) {
         return InitError("This build can only run with -testnet enabled. Good bye.");
-    }
+    }*/
     // ********************************************************* Step 1: setup
 #ifdef _MSC_VER
     // Turn off Microsoft heap dump noise
