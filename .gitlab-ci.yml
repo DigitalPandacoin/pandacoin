@@ -271,7 +271,7 @@ full AppImage i686:
   variables:
     TARGET_ARCH: i686-pc-linux-gnu
     APT_ARCH: i386
-    BUILD_ARCH: x86_64
+    BUILD_ARCH: i686
   rules:
     - if: $CI_COMMIT_TAG
   needs: ["full: [linux, i686-pc-linux-gnu]"]
