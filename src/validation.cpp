@@ -906,7 +906,7 @@ bool ReadBlockFromDisk(CBlock& block, const CBlockIndex* pindex, const Consensus
 
 int64_t GetProofOfWorkReward(unsigned int nBits, unsigned int nTime)
 {
-    if (!IsPoWRewardsEnabled(nTime)) {
+    if (!IsRewardsEnabled(nTime)) {
         if (gArgs.GetBoolArg("-printcreation", false))
             LogPrintf("%s: Unable to earn proof of work rewards during transitional period\n", __func__);
         return 0;
@@ -1365,7 +1365,9 @@ int ApplyTxInUndo(Coin&& undo, CCoinsViewCache& view, const COutPoint& out)
             undo.fCoinBase = alternate.fCoinBase;
             undo.fCoinStake = alternate.fCoinStake; // peercoin
             undo.nTime = alternate.nTime;           // peercoin
-        } else {
+        // pandacoin genesis block (0) is spendable
+        // there *should* be no need to re-assign
+        } else if (alternate.nHeight > 0) {
             return DISCONNECT_FAILED; // adding output for transaction without known metadata
         }
     }
@@ -2828,6 +2830,9 @@ bool CheckBlock(const CBlock& block, CValidationState& state, const Consensus::P
 
     if (block.fChecked)
         return true;
+
+    if (!IsRewardsEnabled(block.GetBlockTime()))
+        return state.DoS(100, false, REJECT_INVALID, "bad-blk-date", true, "minting not enabled");
 
     // Check that the header is valid (particularly PoW).  This is mostly
     // redundant with the call in AcceptBlockHeader.

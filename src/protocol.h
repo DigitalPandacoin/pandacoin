@@ -311,7 +311,8 @@ enum ServiceFlags : uint64_t {
  */
 static ServiceFlags GetDesirableServiceFlags(ServiceFlags services) {
     //ppcTODO - reenable NODE_WITNESS flag in future releases once majority of clients support this
-    return ServiceFlags(NODE_NETWORK); // | NODE_WITNESS);
+    //pandacoin - we start with every node supporting witness by default
+    return ServiceFlags(NODE_NETWORK | NODE_WITNESS);
 }
 
 /**

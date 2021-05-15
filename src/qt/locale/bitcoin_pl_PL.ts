@@ -633,7 +633,7 @@
         <translation>Ponieważ to Twoje pierwsze użycie programu, możesz wybrać gdzie %1 będzie przechowywać swoje dane.</translation>
     </message>
     <message>
-        <source>When you click OK, %1 will begin to download and process the full %4 block chain (%2GB) starting with the earliest transactions in %3 when %4 initially launched.</source>
+        <source>When you click OK, %1 will begin to download and process the full %4 block chain (%2GB) starting with the earliest transactions in %3 when %4 initially re-launched.</source>
         <translation>Kiedy klikniesz OK, %1 zacznie proces ściągania i przetwarzania pełnego łańcuchu bloków (%2GB) zaczynając od najwcześniejszych transakcji w %3 kiedy %4 wstępnie się uruchomi.</translation>
     </message>
     <message>

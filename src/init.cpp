@@ -1054,7 +1054,7 @@ bool AppInitMain()
 {
     const CChainParams& chainparams = Params();
     // ********************************************************* Step 4a: application initialization
-    if (!fs::exists(GetDataDir() / "wallets/wallet.dat") && fs::exists(GetDataDir() / "wallet.dat")) {
+    if (fs::exists(GetDataDir() / "txleveldb") && fs::exists(GetDataDir() / "blk0001.dat") && !fs::exists(GetDataDir() / "chainstate") && !fs::exists(GetDataDir() / "wallets/wallet.dat") && fs::exists(GetDataDir() / "wallet.dat")) {
         if (gArgs.IsArgSet("-datadir")) {
             return InitError("Legacy / Pandabank datadir found. Refusing to boot, since the option -datadir was explicitly set. "
                              "Please move your files somewhere else before continuing.\n");

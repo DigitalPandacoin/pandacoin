@@ -47,7 +47,9 @@ static const CAmount MIN_FINAL_CHANGE = MIN_CHANGE/2;
 //! Default for -spendzeroconfchange
 static const bool DEFAULT_SPEND_ZEROCONF_CHANGE = true;
 //! Default for -walletrejectlongchains
-static const bool DEFAULT_WALLET_REJECT_LONG_CHAINS = false;
+//! pandacoin: there is a bug present which nulls out wallet balance when exceeding end of the mempool's chain limit
+//! pandacoin: i'm setting this to true until said bug has been resolved properly
+static const bool DEFAULT_WALLET_REJECT_LONG_CHAINS = true;
 //! -txconfirmtarget default
 static const unsigned int DEFAULT_TX_CONFIRM_TARGET = 6;
 static const bool DEFAULT_WALLETBROADCAST = true;

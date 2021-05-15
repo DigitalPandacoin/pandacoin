@@ -542,7 +542,7 @@ void SendCoinsDialog::processSendCoinsReturn(const WalletModel::SendCoinsReturn 
         msgParams.first = tr("The recipient address is not valid. Please recheck.");
         break;
     case WalletModel::InvalidAmount:
-        msgParams.first = tr("The amount to pay must be at least one cent (0.01).");
+        msgParams.first = tr("The amount to pay must be at least 1 coin.");
         break;
     case WalletModel::AmountExceedsBalance:
         msgParams.first = tr("The amount exceeds your balance.");

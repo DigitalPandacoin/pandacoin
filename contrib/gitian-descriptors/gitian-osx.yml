@@ -1,5 +1,5 @@
 ---
-name: "pandacoin-osx-0.9.0"
+name: "pandacoin-osx-4.9.0"
 enable_cache: true
 suites:
 - "trusty"

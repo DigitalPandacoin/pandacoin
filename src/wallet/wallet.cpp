@@ -878,7 +878,7 @@ void CWallet::WalletUpdateSpent(const CTransactionRef &tx)
                     LogPrintf("WalletUpdateSpent: bad wtx %s\n", wtx.GetHash().ToString().c_str());
                 else if (IsMine(wtx.tx->vout[txin.prevout.n]))
                 {
-                    LogPrintf("WalletUpdateSpent found spent coin %sppc %s\n", FormatMoney(wtx.GetCredit(ISMINE_SPENDABLE)).c_str(), wtx.GetHash().ToString().c_str());
+                    LogPrintf("WalletUpdateSpent found spent coin %spnd %s\n", FormatMoney(wtx.GetCredit(ISMINE_SPENDABLE)).c_str(), wtx.GetHash().ToString().c_str());
                     wtx.BindWallet(this);
                     NotifyTransactionChanged(this, txin.prevout.hash, CT_UPDATED);
                 }
@@ -2581,6 +2581,13 @@ bool CWallet::SelectCoins(const std::vector<COutput>& vAvailableCoins, const CAm
 
     size_t nMaxChainLength = std::min(gArgs.GetArg("-limitancestorcount", DEFAULT_ANCESTOR_LIMIT), gArgs.GetArg("-limitdescendantcount", DEFAULT_DESCENDANT_LIMIT));
     bool fRejectLongChains = gArgs.GetBoolArg("-walletrejectlongchains", DEFAULT_WALLET_REJECT_LONG_CHAINS);
+    if (fRejectLongChains) {
+        // If walletrejectlongchains is set to true, the max chain length is set to
+        // min((limitancestorcount - 1), (limitdescendantcount - 1)) so the user
+        // has one final chance to add the transaction to the mempool by
+        // running with -walletrejectlongchains=false
+        nMaxChainLength = std::max((size_t)1, nMaxChainLength) - 1;
+    }
 
     bool res = nTargetValue <= nValueFromPresetInputs ||
         SelectCoinsMinConf(nTargetValue - nValueFromPresetInputs, 1, 6, 0, vCoins, setCoinsRet, nValueRet) ||
@@ -2819,7 +2826,12 @@ bool CWallet::CreateTransaction(const std::vector<CRecipient>& vecSend, CWalletT
                     setCoins.clear();
                     if (!SelectCoins(vAvailableCoins, nValueToSelect, setCoins, nValueIn, &coin_control))
                     {
-                        strFailReason = _("Insufficient funds");
+                        bool fRejectLongChains = gArgs.GetBoolArg("-walletrejectlongchains", DEFAULT_WALLET_REJECT_LONG_CHAINS);
+                        if (fRejectLongChains) {
+                            strFailReason = _("Insufficient funds, or end of mempool chain might have been reached. Please wait until the next block has been mined.");
+                        } else {
+                            strFailReason = _("Insufficient funds");
+                        }
                         return false;
                     }
                 }
@@ -2996,13 +3008,15 @@ bool CWallet::CreateTransaction(const std::vector<CRecipient>& vecSend, CWalletT
     }
 
     if (gArgs.GetBoolArg("-walletrejectlongchains", DEFAULT_WALLET_REJECT_LONG_CHAINS)) {
-        // Lastly, ensure this tx will pass the mempool's chain limits
+        // Lastly, ensure this tx will pass the mempool's chain limits. We reject transactions that are in
+        // a chain up to (limitancestorcount - 1) and (limitdescendantcount - 1) long so the user has one
+        // final chance to add the transaction to the mempool by running with -walletrejectlongchains=false
         LockPoints lp;
         CTxMemPoolEntry entry(wtxNew.tx, 0, 0, 0, false, 0, lp);
         CTxMemPool::setEntries setAncestors;
-        size_t nLimitAncestors = gArgs.GetArg("-limitancestorcount", DEFAULT_ANCESTOR_LIMIT);
+        size_t nLimitAncestors = gArgs.GetArg("-limitancestorcount", DEFAULT_ANCESTOR_LIMIT) - 1;
         size_t nLimitAncestorSize = gArgs.GetArg("-limitancestorsize", DEFAULT_ANCESTOR_SIZE_LIMIT)*1000;
-        size_t nLimitDescendants = gArgs.GetArg("-limitdescendantcount", DEFAULT_DESCENDANT_LIMIT);
+        size_t nLimitDescendants = gArgs.GetArg("-limitdescendantcount", DEFAULT_DESCENDANT_LIMIT) - 1;
         size_t nLimitDescendantSize = gArgs.GetArg("-limitdescendantsize", DEFAULT_DESCENDANT_SIZE_LIMIT)*1000;
         std::string errString;
         if (!mempool.CalculateMemPoolAncestors(entry, setAncestors, nLimitAncestors, nLimitAncestorSize, nLimitDescendants, nLimitDescendantSize, errString)) {
@@ -4115,7 +4129,7 @@ int CMerkleTx::GetDepthInMainChain(const CBlockIndex* &pindexRet) const
 
 int CMerkleTx::GetBlocksToMaturity() const
 {
-    if (!(IsCoinBase() || IsCoinStake()))
+    if (!(IsCoinBase() || IsCoinStake()) || hashBlock == Params().GetConsensus().hashGenesisBlock)
         return 0;
     return std::max(0, (Params().GetConsensus().nCoinbaseMaturity+1) - GetDepthInMainChain());
 }
