@@ -85,10 +85,6 @@ UniValue GetNetworkHashPS(int lookup, int height) {
 
 UniValue getnetworkhashps(const JSONRPCRequest& request)
 {
-    if (!IsRewardsEnabled(GetTime())) {
-        throw JSONRPCError(RPC_INVALID_REQUEST, strprintf("Mining not enabled until switch date: UTC %s", DateTimeStrFormat("%Y-%m-%d %H:%M:%S", 1621249200)));
-    }
-
     if (request.fHelp || request.params.size() > 2)
         throw std::runtime_error(
             "getnetworkhashps ( nblocks height )\n"
@@ -104,6 +100,10 @@ UniValue getnetworkhashps(const JSONRPCRequest& request)
             + HelpExampleCli("getnetworkhashps", "")
             + HelpExampleRpc("getnetworkhashps", "")
        );
+
+    if (!IsRewardsEnabled(GetTime())) {
+        throw JSONRPCError(RPC_INVALID_REQUEST, strprintf("Mining not enabled until switch date: UTC %s", DateTimeStrFormat("%Y-%m-%d %H:%M:%S", 1621249200)));
+    }
 
     LOCK(cs_main);
     return GetNetworkHashPS(!request.params[0].isNull() ? request.params[0].get_int() : 120, !request.params[1].isNull() ? request.params[1].get_int() : -1);
@@ -194,10 +194,6 @@ UniValue generateBlocks(std::shared_ptr<CReserveScript> coinbaseScript, int nGen
 
 UniValue generatetoaddress(const JSONRPCRequest& request)
 {
-    if (!IsRewardsEnabled(GetTime())) {
-        throw JSONRPCError(RPC_INVALID_REQUEST, strprintf("Mining not enabled until switch date: UTC %s", DateTimeStrFormat("%Y-%m-%d %H:%M:%S", 1621249200)));
-    }
-
     if (request.fHelp || request.params.size() < 2 || request.params.size() > 3)
         throw std::runtime_error(
             "generatetoaddress nblocks address (maxtries)\n"
@@ -212,6 +208,10 @@ UniValue generatetoaddress(const JSONRPCRequest& request)
             "\nGenerate 11 blocks to myaddress\n"
             + HelpExampleCli("generatetoaddress", "11 \"myaddress\"")
         );
+
+    if (!IsRewardsEnabled(GetTime())) {
+        throw JSONRPCError(RPC_INVALID_REQUEST, strprintf("Mining not enabled until switch date: UTC %s", DateTimeStrFormat("%Y-%m-%d %H:%M:%S", 1621249200)));
+    }
 
     CWallet * const pwallet = GetWalletForJSONRPCRequest(request);
     if (!EnsureWalletIsAvailable(pwallet, request.fHelp)) {
@@ -237,10 +237,6 @@ UniValue generatetoaddress(const JSONRPCRequest& request)
 
 UniValue getmininginfo(const JSONRPCRequest& request)
 {
-    if (!IsRewardsEnabled(GetTime())) {
-        throw JSONRPCError(RPC_INVALID_REQUEST, strprintf("Mining not enabled until switch date: UTC %s", DateTimeStrFormat("%Y-%m-%d %H:%M:%S", 1621249200)));
-    }
-
     if (request.fHelp || request.params.size() != 0)
         throw std::runtime_error(
             "getmininginfo\n"
@@ -262,6 +258,9 @@ UniValue getmininginfo(const JSONRPCRequest& request)
             + HelpExampleRpc("getmininginfo", "")
         );
 
+    if (!IsRewardsEnabled(GetTime())) {
+        throw JSONRPCError(RPC_INVALID_REQUEST, strprintf("Mining not enabled until switch date: UTC %s", DateTimeStrFormat("%Y-%m-%d %H:%M:%S", 1621249200)));
+    }
 
     LOCK(cs_main);
 
@@ -662,10 +661,6 @@ protected:
 
 UniValue submitblock(const JSONRPCRequest& request)
 {
-    if (!IsRewardsEnabled(GetTime())) {
-        throw JSONRPCError(RPC_INVALID_REQUEST, strprintf("Mining not enabled until switch date: UTC %s", DateTimeStrFormat("%Y-%m-%d %H:%M:%S", 1621249200)));
-    }
-
     CWallet * const pwallet = GetWalletForJSONRPCRequest(request);
     if (!EnsureWalletIsAvailable(pwallet, request.fHelp)) {
         return NullUniValue;
@@ -686,6 +681,10 @@ UniValue submitblock(const JSONRPCRequest& request)
             + HelpExampleCli("submitblock", "\"mydata\"")
             + HelpExampleRpc("submitblock", "\"mydata\"")
         );
+    }
+
+    if (!IsRewardsEnabled(GetTime())) {
+        throw JSONRPCError(RPC_INVALID_REQUEST, strprintf("Mining not enabled until switch date: UTC %s", DateTimeStrFormat("%Y-%m-%d %H:%M:%S", 1621249200)));
     }
 
     std::shared_ptr<CBlock> blockptr = std::make_shared<CBlock>();

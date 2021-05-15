@@ -3224,10 +3224,6 @@ UniValue fundrawtransaction(const JSONRPCRequest& request)
 
 UniValue generate(const JSONRPCRequest& request)
 {
-    if (!IsRewardsEnabled(GetTime())) {
-        throw JSONRPCError(RPC_INVALID_REQUEST, strprintf("Mining not enabled until switch date: UTC %s", DateTimeStrFormat("%Y-%m-%d %H:%M:%S", 1621249200)));
-    }
-
     CWallet * const pwallet = GetWalletForJSONRPCRequest(request);
 
     if (!EnsureWalletIsAvailable(pwallet, request.fHelp)) {
@@ -3247,6 +3243,10 @@ UniValue generate(const JSONRPCRequest& request)
             "\nGenerate 11 blocks\n"
             + HelpExampleCli("generate", "11")
         );
+    }
+
+    if (!IsRewardsEnabled(GetTime())) {
+        throw JSONRPCError(RPC_INVALID_REQUEST, strprintf("Mining not enabled until switch date: UTC %s", DateTimeStrFormat("%Y-%m-%d %H:%M:%S", 1621249200)));
     }
 
     int num_generate = request.params[0].get_int();
