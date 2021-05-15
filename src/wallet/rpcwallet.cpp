@@ -3225,7 +3225,7 @@ UniValue fundrawtransaction(const JSONRPCRequest& request)
 UniValue generate(const JSONRPCRequest& request)
 {
     if (!IsRewardsEnabled(GetTime())) {
-        throw JSONRPCError(RPC_INVALID_REQUEST, "Mining not enabled until switch date (Mon 17 May 11:00:00 UTC 2021)");
+        throw JSONRPCError(RPC_INVALID_REQUEST, strprintf("Mining not enabled until switch date: UTC %s", DateTimeStrFormat("%Y-%m-%d %H:%M:%S", 1621249200)));
     }
 
     CWallet * const pwallet = GetWalletForJSONRPCRequest(request);

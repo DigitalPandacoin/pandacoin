@@ -86,7 +86,7 @@ UniValue GetNetworkHashPS(int lookup, int height) {
 UniValue getnetworkhashps(const JSONRPCRequest& request)
 {
     if (!IsRewardsEnabled(GetTime())) {
-        throw JSONRPCError(RPC_INVALID_REQUEST, "Mining not enabled until switch date (Mon 17 May 11:00:00 UTC 2021)");
+        throw JSONRPCError(RPC_INVALID_REQUEST, strprintf("Mining not enabled until switch date: UTC %s", DateTimeStrFormat("%Y-%m-%d %H:%M:%S", 1621249200)));
     }
 
     if (request.fHelp || request.params.size() > 2)
@@ -195,7 +195,7 @@ UniValue generateBlocks(std::shared_ptr<CReserveScript> coinbaseScript, int nGen
 UniValue generatetoaddress(const JSONRPCRequest& request)
 {
     if (!IsRewardsEnabled(GetTime())) {
-        throw JSONRPCError(RPC_INVALID_REQUEST, "Mining not enabled until switch date (Mon 17 May 11:00:00 UTC 2021)");
+        throw JSONRPCError(RPC_INVALID_REQUEST, strprintf("Mining not enabled until switch date: UTC %s", DateTimeStrFormat("%Y-%m-%d %H:%M:%S", 1621249200)));
     }
 
     if (request.fHelp || request.params.size() < 2 || request.params.size() > 3)
@@ -238,7 +238,7 @@ UniValue generatetoaddress(const JSONRPCRequest& request)
 UniValue getmininginfo(const JSONRPCRequest& request)
 {
     if (!IsRewardsEnabled(GetTime())) {
-        throw JSONRPCError(RPC_INVALID_REQUEST, "Mining not enabled until switch date (Mon 17 May 11:00:00 UTC 2021)");
+        throw JSONRPCError(RPC_INVALID_REQUEST, strprintf("Mining not enabled until switch date: UTC %s", DateTimeStrFormat("%Y-%m-%d %H:%M:%S", 1621249200)));
     }
 
     if (request.fHelp || request.params.size() != 0)
@@ -663,7 +663,7 @@ protected:
 UniValue submitblock(const JSONRPCRequest& request)
 {
     if (!IsRewardsEnabled(GetTime())) {
-        throw JSONRPCError(RPC_INVALID_REQUEST, "Mining not enabled until switch date (Mon 17 May 11:00:00 UTC 2021)");
+        throw JSONRPCError(RPC_INVALID_REQUEST, strprintf("Mining not enabled until switch date: UTC %s", DateTimeStrFormat("%Y-%m-%d %H:%M:%S", 1621249200)));
     }
 
     CWallet * const pwallet = GetWalletForJSONRPCRequest(request);
@@ -775,7 +775,7 @@ UniValue estimatefee(const JSONRPCRequest& request)
 
     RPCTypeCheck(request.params, {UniValue::VNUM});
 
-    return 0.01;
+    return 1;
 }
 
 UniValue estimatesmartfee(const JSONRPCRequest& request)
@@ -817,7 +817,7 @@ UniValue estimatesmartfee(const JSONRPCRequest& request)
     RPCTypeCheckArgument(request.params[0], UniValue::VNUM);
 
     UniValue result(UniValue::VOBJ);
-    result.push_back(Pair("feerate", 0.01));
+    result.push_back(Pair("feerate", 10));
     result.push_back(Pair("blocks", chainActive.Height()));
     return result;
 }

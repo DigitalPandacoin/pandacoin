@@ -1,5 +1,5 @@
 ---
-name: "pandacoin-linux-0.9.0"
+name: "pandacoin-linux-4.9.0"
 enable_cache: true
 suites:
 - "trusty"
