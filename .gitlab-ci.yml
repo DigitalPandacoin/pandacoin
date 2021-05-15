@@ -283,6 +283,7 @@ full AppImage i686:
   variables:
     GIT_DEPTH: 1
     DEBIAN_FRONTEND: noninteractive
+  allow_failure: true
   before_script:
     - apt-get -qq update
     - apt-get install -yqq python3 rhash
@@ -340,17 +341,17 @@ bootstrap.dat:
     - if: $BLOCKCOUNT_MAIN || $BLOCKCOUNT_TEST
   parallel:
     matrix:
-      #- NET: main
-      #  NETMAGIC: 8faefceb
-      #  PORT: 22444
-      #  GENESIS_BLOCK:
-      #  BLOCKCOUNT: $BLOCKCOUNT_MAIN
+      - NET: main
+        NETMAGIC: 8faefceb
+        PORT: 22444
+        GENESIS: 000000003fa90365cae3b93740a5a08810a42dd122f87383afd45655a0101224
+        BLOCKCOUNT: $BLOCKCOUNT_MAIN
       - NET: test
         ARGS: -testnet
         NETDIR: /testnet3
-        NETMAGIC: ddbf9fef
+        NETMAGIC: b5ca9dba
         PORT: 33444
-        GENESIS: 000000000ba77e8a7d9d1edd0265ec446e81ac5f12e46eb42f66b05dc22e4bee
+        GENESIS: 000000003fa90365cae3b93740a5a08810a42dd122f87383afd45655a0101224
         BLOCKCOUNT: $BLOCKCOUNT_TEST
 
 upload:
