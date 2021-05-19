@@ -342,14 +342,14 @@ bootstrap.dat:
   parallel:
     matrix:
       - NET: main
-        NETMAGIC: 8faefceb
+        NETMAGIC: b5ca9dba
         PORT: 22444
         GENESIS: 000000003fa90365cae3b93740a5a08810a42dd122f87383afd45655a0101224
         BLOCKCOUNT: $BLOCKCOUNT_MAIN
       - NET: test
         ARGS: -testnet
         NETDIR: /testnet3
-        NETMAGIC: b5ca9dba
+        NETMAGIC: adafc9d6
         PORT: 33444
         GENESIS: 000000003fa90365cae3b93740a5a08810a42dd122f87383afd45655a0101224
         BLOCKCOUNT: $BLOCKCOUNT_TEST
