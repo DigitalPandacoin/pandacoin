@@ -324,7 +324,7 @@ full AppImage i686:
     - ln -s $BOOTSTRAP_DAT bootstrap.dat
     - pandacoin-cli ${RPC} ${ARGS} getchaintxstats | tee chaintxstats.json
     - pandacoin-cli ${RPC} ${ARGS} getblock $(pandacoin-cli ${RPC} ${ARGS} getblockhash $BLOCKCOUNT) 2 | tee block.json
-    - pandacoin-cli stop
+    - pandacoin-cli ${RPC} ${ARGS} stop
     - cp $HOME/.pandacoin${NETDIR}/debug.log .
   artifacts:
     name: pandacoin-bootstrap-${NET}net-$BLOCKCOUNT-blocks
