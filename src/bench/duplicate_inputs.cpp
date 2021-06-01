@@ -25,6 +25,8 @@ static void DuplicateInputs(benchmark::State& state)
     LOCK(cs_main);
     CBlockIndex* pindexPrev = ::ChainActive().Tip();
     assert(pindexPrev != nullptr);
+    const CBlockIndex* blockindex;
+    blockindex = GetLastBlockIndex(pindexPrev, false);
     block.nBits = GetNextTargetRequired(pindexPrev, block.IsProofOfStake(), chainparams.GetConsensus());
     block.nNonce = 0;
     auto nHeight = pindexPrev->nHeight + 1;
@@ -34,7 +36,7 @@ static void DuplicateInputs(benchmark::State& state)
     coinbaseTx.vin[0].prevout.SetNull();
     coinbaseTx.vout.resize(1);
     coinbaseTx.vout[0].scriptPubKey = SCRIPT_PUB;
-    coinbaseTx.vout[0].nValue = GetProofOfWorkReward(GetLastBlockIndex(::ChainActive().Tip(), false)->nBits);
+    coinbaseTx.vout[0].nValue = GetProofOfWorkReward(blockindex->nBits, blockindex->nTime);
     coinbaseTx.vin[0].scriptSig = CScript() << nHeight << OP_0;
 
 
