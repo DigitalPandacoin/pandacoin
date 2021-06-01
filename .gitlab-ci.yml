@@ -288,7 +288,7 @@ full AppImage i686:
     - apt-get -qq update
     - apt-get install -yqq python3 rhash
   script:
-    - export BOOTSTRAP_DAT="bootstrap-${NET}net-$BLOCKCOUNT-blocks.dat"
+    - export BOOTSTRAP_DAT="pandacoin-bootstrap-${NET}net-$BLOCKCOUNT-blocks.dat"
     - export RPC="-rpcuser=rpc -rpcpassword=rpc"
     - eval 'pandacoind -server=1 -daemon=1 ${RPC} ${ARGS}' &
     - |
@@ -324,15 +324,19 @@ full AppImage i686:
     - ln -s $BOOTSTRAP_DAT bootstrap.dat
     - pandacoin-cli ${RPC} ${ARGS} getchaintxstats | tee chaintxstats.json
     - pandacoin-cli ${RPC} ${ARGS} getblock $(pandacoin-cli ${RPC} ${ARGS} getblockhash $BLOCKCOUNT) 2 | tee block.json
+    - pandacoin-cli stop
+    - cp $HOME/.pandacoin${NETDIR}/debug.log .
   artifacts:
     name: pandacoin-bootstrap-${NET}net-$BLOCKCOUNT-blocks
     paths:
       - block.json
+      - blockcount.txt
       - chaintxstats.json
+      - debug.log
       - hashlist.txt
       - magnet.txt
-      - bootstrap*.dat
-      - bootstrap*.dat.torrent
+      - pandacoin-bootstrap*.dat
+      - pandacoin-bootstrap*.dat.torrent
     expire_in: 1 week
 
 bootstrap.dat:
