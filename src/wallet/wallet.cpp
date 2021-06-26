@@ -4264,7 +4264,7 @@ bool CWallet::CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, int
     // Should not be adjusted if you don't understand the consequences
     static unsigned int nStakeSplitAge = (60 * 60 * 24 * 90);
     const CBlockIndex* lastBlockIndex = GetLastBlockIndex(chainActive.Tip(), false);
-    int64_t nCombineThreshold = GetProofOfWorkReward(lastBlockIndex->nBits, lastBlockIndex->GetBlockTime()) / 3;
+    int64_t nCombineThreshold = chainActive.Tip()->nMoneySupply / 325000;
 
     CBigNum bnTargetPerCoinDay;
     bnTargetPerCoinDay.SetCompact(nBits);
