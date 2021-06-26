@@ -769,7 +769,7 @@ void BitcoinGUI::gotoVerifyMessageTab(QString addr)
 }
 
 void BitcoinGUI::openChatroom() {
-    QDesktopServices::openUrl(QUrl("https://t.me/DigitalPandacoin"));
+    QDesktopServices::openUrl(QUrl("https://t.me/pandacoin"));
 }
 
 #endif // ENABLE_WALLET
