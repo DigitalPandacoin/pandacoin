@@ -17,9 +17,6 @@ bool KernelRecord::showTransaction(const CWalletTx &wtx)
         if (wtx.GetDepthInMainChain() == 0)
             return false;
 
-    if (wtx.tx->HasWitness())
-        return false;
-
     return true;
 }
 
