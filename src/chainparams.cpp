@@ -92,10 +92,10 @@ public:
         consensus.nMinerConfirmationWindow = 2016; // nPowTargetTimespan / nPowTargetSpacing
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x0000000000000000000000000000000000000000000000000000273d79f731f3");
+        consensus.nMinimumChainWork = uint256S("0x0000000000000000000000000000000000000000000000000000677b5f6bb1ff");
 
         // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("0x4b820820321b14805148ecc085e12231ac2c69630174c79e2a0558be6ddb24b6");
+        consensus.defaultAssumeValid = uint256S("0x9fb62c4eb3e0a61eb368a5edd3e22634dbc5ad6cd11cac0a8fed034b083ba37f");
 
         /**
          * The message start string is designed to be unlikely to occur in normal data.
@@ -106,8 +106,7 @@ public:
         pchMessageStart[1] = 0xca;
         pchMessageStart[2] = 0x9d;
         pchMessageStart[3] = 0xba;
-        // PANDACOIN TODO: this is legacy but should still be updated
-        vAlertPubKey = ParseHex("04201f0f85178950503c20d5a947883dff81e727533f1f1da104755fa25275cf68c442b8ad50da3152c10a74ea621da614d3d2048ba25a14f39bfc40c41223543a");
+        vAlertPubKey = ParseHex("041ad89ff3b34612a56b04a843538f7ce6ac01f1b514fcea924b71b082187fb2a4953f0278b28bae5ab0c6fa3451e239bb303ba0140e53d73a97bbc65a55696719");
         nDefaultPort = 22445;
         nPruneAfterHeight = 100000;
         // block 4217950
@@ -142,15 +141,16 @@ public:
         checkpointData = {
             {
                 {     0,    uint256S("0x000000003fa90365cae3b93740a5a08810a42dd122f87383afd45655a0101224")},
-                {     2215, uint256S("0x1e596dbb7417c84e75428781eab0035ef30cefaea48079eaccd6974e949eb5d2") }
+                {     2215, uint256S("0x1e596dbb7417c84e75428781eab0035ef30cefaea48079eaccd6974e949eb5d2")},
+                {     7000, uint256S("0x9fb62c4eb3e0a61eb368a5edd3e22634dbc5ad6cd11cac0a8fed034b083ba37f")}
             }
         };
 
         chainTxData = ChainTxData{
-            1624657932, // * UNIX timestamp of last known number of transactions
-            3817,    // * total number of transactions between genesis and that timestamp
+            1629487224, // * UNIX timestamp of last known number of transactions
+            14070,    // * total number of transactions between genesis and that timestamp
                         //   (the tx=... number in the SetBestChain debug.log lines)
-            0.00112739638239961 // * estimated number of transactions per second after that timestamp
+            0.00265074711481541 // * estimated number of transactions per second after that timestamp
                         // 1743720/(1580808868-1345400356) = 0.007407208
         };
     }
@@ -193,7 +193,7 @@ public:
         pchMessageStart[1] = 0xaf;
         pchMessageStart[2] = 0xc9;
         pchMessageStart[3] = 0xd6;
-        vAlertPubKey = ParseHex("04383862439513e940f6fcbf62d365c162a5256920c2c25b0b4266fdee4a443d71cfe224dbccff6fdb2ea57a37eb0cbec5637ebea06f63c70ca093672fbdc27643");
+        vAlertPubKey = ParseHex("0401b81a47ef1c6999530f3242c13520a214c100b7a0f4b67292a78f87feda84522d429d686e9a8f9a544a6f93e083ff823ead75b2f67f1c3e6a92c4f1176d0c80");
         nDefaultPort = 33445;
         nPruneAfterHeight = 1000;
         genesis = CreateGenesisBlock(1621011262, 1621021021, 389690407, 0x1d00ffff, 3, (34342707157 + 20000000) * COIN);
@@ -279,7 +279,7 @@ public:
         pchMessageStart[1] = 0x99;
         pchMessageStart[2] = 0xa0;
         pchMessageStart[3] = 0xfe;
-        vAlertPubKey = ParseHex("04383862439513e940f6fcbf62d365c162a5256920c2c25b0b4266fdee4a443d71cfe224dbccff6fdb2ea57a37eb0cbec5637ebea06f63c70ca093672fbdc27643");
+        vAlertPubKey = ParseHex("04d5fa086d27af54e936a108e5b945af1a3cc3cdf281daa91cd7cabc213feb9e5f88de9c7ce50fc4b26e90f71b2da2ad4f25fed934ab027b3d9653ebf8bf929271");
         nDefaultPort = 44445;
         nPruneAfterHeight = 1000;
 
