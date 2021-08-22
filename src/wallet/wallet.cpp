@@ -4371,7 +4371,14 @@ bool CWallet::CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, int
                 vwtxPrev.push_back(tx);
                 txNew.vout.push_back(CTxOut(0, scriptPubKeyOut));
                 if (header.GetBlockTime() + nStakeSplitAge > txNew.nTime)
+                {
                     txNew.vout.push_back(CTxOut(0, scriptPubKeyOut)); //split stake
+                    while(((long)txNew.vout.size() - 1 < nBalance / (nCombineThreshold * 3)) && ::GetSerializeSize(txNew, SER_NETWORK, PROTOCOL_VERSION) < 1000000/5.5)
+                    {
+                        txNew.vout.push_back(CTxOut(0, scriptPubKeyOut));
+                    }
+                }
+
                 if (gArgs.GetBoolArg("-debug", false) && gArgs.GetBoolArg("-printcoinstake", false))
                     LogPrintf("CreateCoinStake : added kernel type=%d\n", whichType);
                 fKernelFound = true;
@@ -4428,13 +4435,14 @@ bool CWallet::CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, int
         }
     }
     // Calculate coin age reward
+    CAmount nReward = 0;
     {
         uint64_t nCoinAge;
         CCoinsViewCache view(pcoinsTip.get());
         if (!GetCoinAge(txNew, view, nCoinAge))
             return error("CreateCoinStake : failed to calculate coin age");
 
-        CAmount nReward = GetProofOfStakeReward(nCoinAge, txNew.nTime, chainActive.Tip()->nMoneySupply);
+        nReward = GetProofOfStakeReward(nCoinAge, txNew.nTime, chainActive.Tip()->nMoneySupply);
         // Refuse to create mint that has zero or negative reward
         if(nReward <= 0) {
           return false;
@@ -4446,14 +4454,28 @@ bool CWallet::CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, int
     CAmount nMinFeeBase = (IsProtocolV07(txNew.nTime) ? MIN_TX_FEE : MIN_TX_FEE_PREV7);
     while(true)
     {
+
+        CAmount total = 0;
         // Set output amount
         if (txNew.vout.size() == 3)
         {
-            txNew.vout[1].nValue = ((nCredit - nMinFee) / 2 / nMinFeeBase) * nMinFeeBase;
-            txNew.vout[2].nValue = nCredit - nMinFee - txNew.vout[1].nValue;
+            total = txNew.vout[1].nValue = ((nCredit - nMinFee) / 2 / nMinFeeBase) * nMinFeeBase;
+            total += txNew.vout[2].nValue = nCredit - nMinFee - txNew.vout[1].nValue;
+        }
+        else if (txNew.vout.size() > 3)
+        {
+            long vOutSize = (long)txNew.vout.size() - 1;
+            total = txNew.vout[1].nValue = ((nCredit - nMinFee) / vOutSize / nMinFeeBase) * nMinFeeBase;
+            total += txNew.vout[2].nValue = nCredit - nMinFee - (txNew.vout[1].nValue * (vOutSize - 1));
+            for (int i = 3; i < vOutSize; i++)
+            {
+                total += txNew.vout[i].nValue = txNew.vout[2].nValue;
+            }
+            // add the rest to match full reward
+            total += txNew.vout[vOutSize].nValue = nCredit - nMinFee - total;
         }
         else
-            txNew.vout[1].nValue = nCredit - nMinFee;
+            total = txNew.vout[1].nValue = nCredit - nMinFee;
 
         // Sign
         int nIn = 0;
@@ -4467,6 +4489,9 @@ bool CWallet::CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, int
         unsigned int nBytes = ::GetSerializeSize(txNew, SER_NETWORK, PROTOCOL_VERSION);
         if (nBytes >= 1000000/5)
             return error("CreateCoinStake : exceeded coinstake size limit");
+
+        if (total <= (nCredit - nReward))
+            return error("CreateCoinStake : output lower than input");
 
         // Check enough fee is paid
         if (nMinFee < GetMinFee(txNew) - nMinFeeBase)
