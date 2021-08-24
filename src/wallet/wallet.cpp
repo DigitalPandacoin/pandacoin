@@ -4373,9 +4373,14 @@ bool CWallet::CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, int
                 if (header.GetBlockTime() + nStakeSplitAge > txNew.nTime)
                 {
                     txNew.vout.push_back(CTxOut(0, scriptPubKeyOut)); //split stake
-                    while(((long)txNew.vout.size() - 1 < nBalance / (nCombineThreshold * 3)) && ::GetSerializeSize(txNew, SER_NETWORK, PROTOCOL_VERSION) < 1000000/5.5)
+                    int64_t splitTrigger = floor(nCredit / (nCombineThreshold * 3));
+                    if (splitTrigger > 0)
                     {
                         txNew.vout.push_back(CTxOut(0, scriptPubKeyOut));
+                        while((txNew.vout.size() < splitTrigger) && ::GetSerializeSize(txNew, SER_NETWORK, PROTOCOL_VERSION) < 1000000/5.5)
+                        {
+                            txNew.vout.push_back(CTxOut(0, scriptPubKeyOut));
+                        }
                     }
                 }
 
@@ -4454,6 +4459,7 @@ bool CWallet::CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, int
     CAmount nMinFeeBase = (IsProtocolV07(txNew.nTime) ? MIN_TX_FEE : MIN_TX_FEE_PREV7);
     while(true)
     {
+        int vOutSize = (int)txNew.vout.size() - 1;
 
         CAmount total = 0;
         // Set output amount
@@ -4464,18 +4470,30 @@ bool CWallet::CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, int
         }
         else if (txNew.vout.size() > 3)
         {
-            long vOutSize = (long)txNew.vout.size() - 1;
             total = txNew.vout[1].nValue = ((nCredit - nMinFee) / vOutSize / nMinFeeBase) * nMinFeeBase;
             total += txNew.vout[2].nValue = nCredit - nMinFee - (txNew.vout[1].nValue * (vOutSize - 1));
             for (int i = 3; i < vOutSize; i++)
             {
-                total += txNew.vout[i].nValue = txNew.vout[2].nValue;
+                if ((total + (txNew.vout[2].nValue)) > nCredit) // todo this can be broken in some situations
+                    break;
+                else
+                    total += txNew.vout[i].nValue = txNew.vout[2].nValue;
             }
             // add the rest to match full reward
-            total += txNew.vout[vOutSize].nValue = nCredit - nMinFee - total;
+            CAmount leftOver = nCredit - nMinFee - total;
+            if (leftOver > 0)
+                total += txNew.vout[txNew.vout.size() - 1].nValue = leftOver;
         }
         else
             total = txNew.vout[1].nValue = nCredit - nMinFee;
+
+        // just to make sure, since my implementation is kinda wonky at the moment
+        // im very uncertain about splitting everything equally without ending up with a remainder
+        for (int i = 1; i < txNew.vout.size(); i++)
+        {
+            if (txNew.vout[i].nValue <= 0) // this can trigger during a resync / rescan. client needs to restart in case that happens
+                return error("CreateCoinStake : something somewhere broke. not retrying");
+        }
 
         // Sign
         int nIn = 0;
@@ -4490,7 +4508,7 @@ bool CWallet::CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, int
         if (nBytes >= 1000000/5)
             return error("CreateCoinStake : exceeded coinstake size limit");
 
-        if (total <= (nCredit - nReward))
+        if (total <= (nCredit - nReward) || total > nCredit)
             return error("CreateCoinStake : output lower than input");
 
         // Check enough fee is paid
