@@ -96,6 +96,7 @@ warm extra worker:
     USE_DOCKER: 1
     DEBIAN_FRONTEND: noninteractive
     IMAGE: $CI_REGISTRY_IMAGE/gitian/base-trusty-amd64:$CI_COMMIT_REF_SLUG
+    BUILD_SUFFIX: test
   before_script:
     - mv gitian-cache ${GITIAN_DIR}/cache || true
     - cd ${GITIAN_DIR}
