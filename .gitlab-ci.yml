@@ -96,7 +96,6 @@ warm extra worker:
     USE_DOCKER: 1
     DEBIAN_FRONTEND: noninteractive
     IMAGE: $CI_REGISTRY_IMAGE/gitian/base-trusty-amd64:$CI_COMMIT_REF_SLUG
-    BUILD_SUFFIX: test
   before_script:
     - mv gitian-cache ${GITIAN_DIR}/cache || true
     - cd ${GITIAN_DIR}
@@ -106,6 +105,7 @@ warm extra worker:
   script:
     - make -j$(nproc) -C ${CI_PROJECT_DIR}/depends download SOURCES_PATH=${GITIAN_DIR}/cache/common
     - sed -i "s/^\ \ HOSTS=.*/\ \ HOSTS=\"${TARGET_ARCH}\"/g" ${CI_PROJECT_DIR}/contrib/gitian-descriptors/gitian-${TARGET_OS}.yml
+    - if [ -z "$CI_COMMIT_TAG" ]; then sed -i "s/^DESC=.*/DESC=\"${CI_COMMIT_TAG}\"/g" ${CI_PROJECT_DIR}/share/genbuild.sh; fi;
     - ./bin/gbuild -j $(nproc) -m 30000 --commit pandacoin=${CI_COMMIT_TAG:-$CI_COMMIT_SHA} --url pandacoin=${CI_PROJECT_DIR} ${CI_PROJECT_DIR}/contrib/gitian-descriptors/gitian-${TARGET_OS}.yml
   after_script:
     - mv ${GITIAN_DIR}/cache ${CI_PROJECT_DIR}/gitian-cache
