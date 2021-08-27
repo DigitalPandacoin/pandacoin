@@ -98,18 +98,29 @@ warm extra worker:
     DEBIAN_FRONTEND: noninteractive
     IMAGE: $CI_REGISTRY_IMAGE/gitian/base-trusty-amd64:$CI_COMMIT_REF_SLUG
   before_script:
+    - |
+      if [ "$CI_COMMIT_TAG" ]; then
+        sed -i 's|\(CLIENT_VERSION_IS_RELEASE,\ \)false|\1true|' configure.ac
+        git config --global user.name "continuous-integration"
+        git config --global user.email "ci@pandcoin.tech"
+        git add configure.ac
+        git commit --amend -m "CV set to true"
+        git tag -f $CI_COMMIT_TAG
+      fi
     - mv gitian-cache ${GITIAN_DIR}/cache || true
     - cd ${GITIAN_DIR}
     - echo $CI_JOB_TOKEN | docker login -u gitlab-ci-token --password-stdin $CI_REGISTRY
     - docker pull -q $IMAGE
-    - docker tag $IMAGE base-trusty-amd64
+    - |
+      docker build --tag base-trusty-amd64 --build-arg BUILDKIT_INLINE_CACHE=1 -<<EOF
+        FROM $IMAGE
+        ENV CI_COMMIT_TAG ${CI_COMMIT_TAG:-false}
+      EOF
   script:
     - make -j$(nproc) -C ${CI_PROJECT_DIR}/depends download SOURCES_PATH=${GITIAN_DIR}/cache/common
     - sed -i "s/^\ \ \(HOSTS=\"\).*/\ \ \1${TARGET_ARCH}\"/g" ${CI_PROJECT_DIR}/contrib/gitian-descriptors/gitian-${TARGET_OS}.yml
-    - if [ "$CI_COMMIT_TAG" ]; then echo "${CI_COMMIT_TAG}" > ${GITIAN_DIR}/cache/common/CI_COMMIT_TAG; fi;
     - ./bin/gbuild -j $(nproc) -m 30000 --commit pandacoin=${CI_COMMIT_TAG:-$CI_COMMIT_SHA} --url pandacoin=${CI_PROJECT_DIR} ${CI_PROJECT_DIR}/contrib/gitian-descriptors/gitian-${TARGET_OS}.yml
   after_script:
-    - rm -f ${GITIAN_DIR}/cache/common/CI_COMMIT_TAG
     - mv ${GITIAN_DIR}/cache ${CI_PROJECT_DIR}/gitian-cache
     - cp -r ${GITIAN_DIR}/build/out/* ${CI_PROJECT_DIR}/
   artifacts:
