@@ -105,10 +105,10 @@ warm extra worker:
   script:
     - make -j$(nproc) -C ${CI_PROJECT_DIR}/depends download SOURCES_PATH=${GITIAN_DIR}/cache/common
     - sed -i "s/^\ \ HOSTS=.*/\ \ HOSTS=\"${TARGET_ARCH}\"/g" ${CI_PROJECT_DIR}/contrib/gitian-descriptors/gitian-${TARGET_OS}.yml
-    - if [ -z $CI_COMMIT_TAG ]; then echo "${CI_COMMIT_TAG}" > ${GITIAN_DIR}/cache/common/CI_COMMIT_TAG; fi;
+    - if [ -v CI_COMMIT_TAG ]; then echo "${CI_COMMIT_TAG}" > ${GITIAN_DIR}/cache/common/CI_COMMIT_TAG; fi;
     - ./bin/gbuild -j $(nproc) -m 30000 --commit pandacoin=${CI_COMMIT_TAG:-$CI_COMMIT_SHA} --url pandacoin=${CI_PROJECT_DIR} ${CI_PROJECT_DIR}/contrib/gitian-descriptors/gitian-${TARGET_OS}.yml
   after_script:
-    - rm ${GITIAN_DIR}/cache/common/CI_COMMIT_TAG
+    - rm -f ${GITIAN_DIR}/cache/common/CI_COMMIT_TAG
     - mv ${GITIAN_DIR}/cache ${CI_PROJECT_DIR}/gitian-cache
     - cp -r ${GITIAN_DIR}/build/out/* ${CI_PROJECT_DIR}/
   artifacts:
