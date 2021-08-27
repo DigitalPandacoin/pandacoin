@@ -165,9 +165,15 @@ script: |
     mkdir src/obj
     cp ../src/obj/build.h src/obj/
 
-    CONFIG_SITE=${BASEPREFIX}/${i}/share/config.site ./configure --prefix=/ --disable-ccache --disable-maintainer-mode --disable-dependency-tracking ${CONFIGFLAGS} CFLAGS="${HOST_CFLAGS}" CXXFLAGS="${HOST_CXXFLAGS}" LDFLAGS="${HOST_LDFLAGS}"
+    export CCACHE_BASEDIR="$PWD"
+    export CCACHE_DIR="$BASE_CACHE/ccache"
+    export CCACHE_COMPILERCHECK=content
+    ccache --zero-stats || true
+    ccache --show-stats || true
+    CONFIG_SITE=${BASEPREFIX}/${i}/share/config.site ./configure --prefix=/ --disable-maintainer-mode --disable-dependency-tracking ${CONFIGFLAGS} CFLAGS="${HOST_CFLAGS}" CXXFLAGS="${HOST_CXXFLAGS}" LDFLAGS="${HOST_LDFLAGS}"
     make ${MAKEOPTS}
     make ${MAKEOPTS} -C src check-security
+    ccache --show-stats
 
     #TODO: This is a quick hack that disables symbol checking for arm.
     #      Instead, we should investigate why these are popping up.

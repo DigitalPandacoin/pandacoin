@@ -135,9 +135,15 @@ script: |
     mkdir src/obj
     cp ../src/obj/build.h src/obj/
 
-    CONFIG_SITE=${BASEPREFIX}/${i}/share/config.site ./configure --prefix=/ --disable-ccache --disable-maintainer-mode --disable-dependency-tracking ${CONFIGFLAGS}
+    export CCACHE_BASEDIR="$PWD"
+    export CCACHE_DIR="$BASE_CACHE/ccache"
+    export CCACHE_COMPILERCHECK=content
+    ccache --zero-stats || true
+    ccache --show-stats || true
+    CONFIG_SITE=${BASEPREFIX}/${i}/share/config.site ./configure --prefix=/ --disable-maintainer-mode --disable-dependency-tracking ${CONFIGFLAGS}
     make ${MAKEOPTS}
     make install-strip DESTDIR=${INSTALLPATH}
+    ccache --show-stats
 
     make osx_volname
     make deploydir
