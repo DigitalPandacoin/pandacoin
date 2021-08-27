@@ -2,6 +2,7 @@ stages:
   - base
   - build
   - package
+  - sign
   - upload
   - release
 
@@ -360,9 +361,9 @@ bootstrap.dat:
         GENESIS: 000000003fa90365cae3b93740a5a08810a42dd122f87383afd45655a0101224
         BLOCKCOUNT: $BLOCKCOUNT_TEST
 
-upload:
-  stage: upload
-  image: curlimages/curl:latest
+sign:
+  stage: sign
+  image: alpine:latest
   dependencies:
     - full
     - full AppImage x86_64
@@ -373,7 +374,34 @@ upload:
     - if: $CI_COMMIT_TAG
   variables:
     GIT_STRATEGY: none
+  before_script:
+    - apk add gnupg
   script:
+    - rm *-debug*
+    - sha256sum * > SHA256SUMS
+    - cat $GPG_PRIVATE_KEY | gpg --batch --import
+    - gpg --digest-algo sha256 --clearsign SHA256SUMS
+  artifacts:
+    paths:
+      - SHA256SUMS.asc
+    expire_in: 1 week
+
+upload:
+  stage: upload
+  image: curlimages/curl:latest
+  dependencies:
+    - full
+    - full AppImage x86_64
+    - full AppImage i686
+    - sign
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "trigger"
+      when: never
+    - if: $CI_COMMIT_TAG
+  variables:
+    GIT_STRATEGY: none
+  script:
+    - rm *-debug*
     - |
       for i in *; do curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file ${i} ${PACKAGE_REGISTRY_URL}/${i}; done
 
@@ -385,10 +413,12 @@ release:
     - full AppImage x86_64
     - full AppImage i686
     - upload
+    - sign
   dependencies:
     - full
     - full AppImage x86_64
     - full AppImage i686
+    - sign
   rules:
     - if: $CI_PIPELINE_SOURCE == "trigger"
       when: never
@@ -396,5 +426,6 @@ release:
   variables:
     GIT_STRATEGY: none
   script:
+    - rm *-debug*
     - |
       eval 'release-cli create --name "Release $CI_COMMIT_TAG" --tag-name $CI_COMMIT_TAG $(for i in *; do echo  --assets-link "{\"name\":\"${i}\",\"url\":\"${PACKAGE_REGISTRY_URL}/${i}\"}"; done)'
