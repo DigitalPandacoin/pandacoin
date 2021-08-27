@@ -134,8 +134,6 @@ script: |
   if [ -f $SOURCES_PATH/CI_COMMIT_TAG ]; then
     sed -i 's/\(CLIENT_VERSION_IS_RELEASE,\ \)false/\1true/' configure.ac
     sed -i "s/^\(DESC=\"\).*/\1$(cat $SOURCES_PATH/CI_COMMIT_TAG)\"/g" share/genbuild.sh
-  else
-    sed -i "s/\(PANDACOIN_VERSION_BUILD,\)\ [0-9]\+/\1 $(cat $SOURCES_PATH/PANDACOIN_VERSION_BUILD)/" configure.ac
   fi
   # Workaround for tarball not building with the bare tag version (prep)
   make -C src obj/build.h
