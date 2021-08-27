@@ -114,7 +114,7 @@ script: |
   find pandacoin-* | sort | tar --no-recursion --mode='u+rw,go+r-w,a+X' --owner=0 --group=0 -c -T - | gzip -9n > ../$SOURCEDIST
   popd
 
-  if [ -z "$CI_COMMIT_TAG" ]; then sed -i "s/^DESC=.*/DESC=\"${CI_COMMIT_TAG}\"/g" ${CI_PROJECT_DIR}/share/genbuild.sh; fi;
+  if [ -f $HOME/CI_COMMIT_TAG ]; then sed -i "s/^DESC=.*/DESC=\"$(cat $HOME/CI_COMMIT_TAG)\"/g" share/genbuild.sh; fi;
   # Workaround for tarball not building with the bare tag version (prep)
   make -C src obj/build.h
 
