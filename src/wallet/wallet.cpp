@@ -4370,8 +4370,8 @@ bool CWallet::CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, int
                 nCredit += pcoin.txout.nValue;
                 vwtxPrev.push_back(tx);
                 txNew.vout.push_back(CTxOut(0, scriptPubKeyOut));
-                if (header.GetBlockTime() + nStakeSplitAge > txNew.nTime)
-                {
+                //if (header.GetBlockTime() + nStakeSplitAge > txNew.nTime)
+                //{
                     txNew.vout.push_back(CTxOut(0, scriptPubKeyOut)); //split stake
                     int64_t splitTrigger = floor(nCredit / (nCombineThreshold * 3));
                     if (splitTrigger > 0)
@@ -4382,7 +4382,7 @@ bool CWallet::CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, int
                             txNew.vout.push_back(CTxOut(0, scriptPubKeyOut));
                         }
                     }
-                }
+                //}
 
                 if (gArgs.GetBoolArg("-debug", false) && gArgs.GetBoolArg("-printcoinstake", false))
                     LogPrintf("CreateCoinStake : added kernel type=%d\n", whichType);
