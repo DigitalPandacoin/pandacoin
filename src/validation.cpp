@@ -994,8 +994,13 @@ bool ReadRawBlockFromDisk(std::vector<uint8_t>& block, const CBlockIndex* pindex
     return ReadRawBlockFromDisk(block, block_pos, message_start);
 }
 
-int64_t GetProofOfWorkReward(unsigned int nBits)
+int64_t GetProofOfWorkReward(unsigned int nBits, unsigned int nTime)
 {
+    if (!IsRewardsEnabled(nTime)) {
+        if (gArgs.GetBoolArg("-printcreation", false))
+            LogPrintf("%s: Unable to earn proof of work rewards during transitional period\n", __func__);
+        return 0;
+    }
     CBigNum bnSubsidyLimit = MAX_MINT_PROOF_OF_WORK;
     CBigNum bnTarget;
     bnTarget.SetCompact(nBits);
@@ -1498,7 +1503,10 @@ int ApplyTxInUndo(Coin&& undo, CCoinsViewCache& view, const COutPoint& out)
             undo.fCoinBase = alternate.fCoinBase;
             undo.fCoinStake = alternate.fCoinStake; // peercoin
             undo.nTime = alternate.nTime;           // peercoin
-        } else {
+        // pandacoin genesis block (0) is spendable
+        // there *should* be no need to re-assign
+        // PANDACOIN todo: possibly remove this
+        } else if (alternate.nHeight > 0) {
             return DISCONNECT_FAILED; // adding output for transaction without known metadata
         }
     }
@@ -1768,7 +1776,8 @@ bool CChainState::ConnectBlock(const CBlock& block, BlockValidationState& state,
     // is enforced in ContextualCheckBlockHeader(); we wouldn't want to
     // re-enforce that rule here (at least until we make it impossible for
     // GetAdjustedTime() to go backward).
-    if (!CheckBlock(block, state, chainparams.GetConsensus(), !fJustCheck, !fJustCheck)) {
+    if (block.GetHash() != chainparams.GetConsensus().hashGenesisBlock &&
+        !CheckBlock(block, state, chainparams.GetConsensus(), !fJustCheck, !fJustCheck)) {
         if (state.GetResult() == BlockValidationResult::BLOCK_MUTATED) {
             // We don't write down blocks to disk if they may have been
             // corrupted, so this should be impossible unless we're having hardware
@@ -1789,7 +1798,8 @@ bool CChainState::ConnectBlock(const CBlock& block, BlockValidationState& state,
     if (block.GetHash() == chainparams.GetConsensus().hashGenesisBlock) {
         if (!fJustCheck)
             view.SetBestBlock(pindex->GetBlockHash());
-        return true;
+        // pandacoin: we need a spendable genesis block
+        // return true;
     }
 
     bool fScriptChecks = true;
@@ -1896,10 +1906,13 @@ bool CChainState::ConnectBlock(const CBlock& block, BlockValidationState& state,
     // post BIP34 before approximately height 486,000,000 and presumably will
     // be reset before it reaches block 1,983,702 and starts doing unnecessary
     // BIP30 checking again.
-    assert(pindex->pprev);
-    CBlockIndex *pindexBIP34height = pindex->pprev->GetAncestor(chainparams.GetConsensus().BIP34Height);
-    //Only continue to enforce if we're below BIP34 activation height or the block hash at that height doesn't correspond.
-    fEnforceBIP30 = fEnforceBIP30 && (!pindexBIP34height || !(pindexBIP34height->GetBlockHash() == chainparams.GetConsensus().BIP34Hash));
+    // pandacoin: we need a spendable genesis block
+    if (block.GetHash() != chainparams.GetConsensus().hashGenesisBlock) {
+        assert(pindex->pprev);
+        CBlockIndex *pindexBIP34height = pindex->pprev->GetAncestor(chainparams.GetConsensus().BIP34Height);
+        //Only continue to enforce if we're below BIP34 activation height or the block hash at that height doesn't correspond.
+        fEnforceBIP30 = fEnforceBIP30 && (!pindexBIP34height || !(pindexBIP34height->GetBlockHash() == chainparams.GetConsensus().BIP34Hash));
+    }
 
     // TODO: Remove BIP30 checking from block height 1,983,702 on, once we have a
     // consensus change that ensures coinbases at those heights can not
@@ -2037,8 +2050,11 @@ bool CChainState::ConnectBlock(const CBlock& block, BlockValidationState& state,
     if (gArgs.GetBoolArg("-printcreation", false))
         LogPrintf("%s: destroy=%s nFees=%lld\n", __func__, FormatMoney(nFees), nFees);
 
-    if (!WriteUndoDataForBlock(blockundo, state, pindex, chainparams))
-        return false;
+    // pandacoin: we need a spendable genesis block
+    if (block.GetHash() != chainparams.GetConsensus().hashGenesisBlock) {
+        if (!WriteUndoDataForBlock(blockundo, state, pindex, chainparams))
+            return false;
+    }
 
     if (!pindex->IsValid(BLOCK_VALID_SCRIPTS)) {
         pindex->RaiseValidity(BLOCK_VALID_SCRIPTS);
@@ -3088,6 +3104,9 @@ bool CheckBlock(const CBlock& block, BlockValidationState& state, const Consensu
     if (block.fChecked)
         return true;
 
+    if (!IsRewardsEnabled(block.GetBlockTime()))
+        return state.Invalid(BlockValidationResult::BLOCK_CONSENSUS, "bad-blk-date", "minting not enabled");
+
     // Check that the header is valid (particularly PoW).  This is mostly
     // redundant with the call in AcceptBlockHeader.
     if (!CheckBlockHeader(block, state, consensusParams, fCheckPOW && !block.IsProofOfStake()))
@@ -3145,11 +3164,12 @@ bool CheckBlock(const CBlock& block, BlockValidationState& state, const Consensu
     CAmount nCoinbaseCost = 0;
     if (block.IsProofOfWork())
         nCoinbaseCost = (GetMinFee(*block.vtx[0]) < PERKB_TX_FEE)? 0 : (GetMinFee(*block.vtx[0]) - PERKB_TX_FEE);
-    if (block.vtx[0]->GetValueOut() > (block.IsProofOfWork()? (GetProofOfWorkReward(block.nBits) - nCoinbaseCost) : 0))
+    // pandacoin: we need a spendable genesis block
+    if (block.GetHash() != consensusParams.hashGenesisBlock && block.vtx[0]->GetValueOut() > (block.IsProofOfWork()? (GetProofOfWorkReward(block.nBits, block.GetBlockTime()) - nCoinbaseCost) : 0))
         return state.Invalid(BlockValidationResult::BLOCK_CONSENSUS, "bad-cb-amount",
                 strprintf("CheckBlock() : coinbase reward exceeded %s > %s",
                    FormatMoney(block.vtx[0]->GetValueOut()),
-                   FormatMoney(block.IsProofOfWork()? GetProofOfWorkReward(block.nBits) : 0)));
+                   FormatMoney(block.IsProofOfWork()? GetProofOfWorkReward(block.nBits, block.GetBlockTime()) : 0)));
     // Check transactions
     // Must check for duplicate inputs (see CVE-2018-17144)
     for (const auto& tx : block.vtx) {

@@ -867,7 +867,7 @@ static UniValue estimatesmartfee(const JSONRPCRequest& request)
     RPCTypeCheckArgument(request.params[0], UniValue::VNUM);
 
     UniValue result(UniValue::VOBJ);
-    result.pushKV("feerate", 0.01);
+    result.pushKV("feerate", 10);
     result.pushKV("blocks", ::ChainActive().Height());
     return result;
 }
