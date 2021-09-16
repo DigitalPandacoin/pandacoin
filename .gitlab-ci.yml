@@ -1,0 +1,451 @@
+stages:
+  - base
+  - build
+  - package
+  - sign
+  - upload
+  - release
+
+variables:
+  GITIAN_DIR: /opt/gitian-builder
+  PACKAGE_REGISTRY_BASE_URL: "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/pandacoin"
+  PACKAGE_REGISTRY_URL: "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/pandacoin/pandacoin-${CI_COMMIT_TAG}"
+
+workflow:
+  rules:
+    - if: $CI_MERGE_REQUEST_ID
+      when: never
+    - when: always
+
+.build docker job:
+  stage: base
+  image: docker:stable
+  variables:
+    DOCKER_BUILDKIT: 1
+    GIT_STRATEGY: none
+  rules:
+    - if: $CI_PIPELINE_SOURCE != "trigger"
+  services:
+    - docker:stable-dind
+  tags:
+    - docker
+    - cpx51
+  before_script:
+    - echo $CI_JOB_TOKEN | docker login -u gitlab-ci-token --password-stdin $CI_REGISTRY
+  after_script:
+    - docker tag $IMAGE $IMAGE:$CI_COMMIT_REF_SLUG
+    - docker push $IMAGE:$CI_COMMIT_REF_SLUG
+    - if [ "$CI_COMMIT_REF_NAME" == "$CI_DEFAULT_BRANCH" ]; then docker push $IMAGE; fi;
+
+build gitian builder:
+  extends: .build docker job
+  variables:
+    IMAGE: $CI_REGISTRY_IMAGE/gitian/builder
+  script:
+    - |
+      docker build --tag $IMAGE --cache-from $IMAGE:$CI_COMMIT_REF_SLUG --build-arg BUILDKIT_INLINE_CACHE=1 -<<EOF
+        FROM docker:stable-dind
+        RUN apk add curl make ruby wget git sed
+        RUN git clone https://github.com/devrandom/gitian-builder.git ${GITIAN_DIR}
+        RUN mkdir ${GITIAN_DIR}/inputs ${GITIAN_DIR}/var
+        RUN wget -N -P ${GITIAN_DIR}/inputs https://github.com/phracker/MacOSX-SDKs/releases/download/10.15/MacOSX10.10.sdk.tar.xz
+      EOF
+
+trusty base image:
+  extends: .build docker job
+  variables:
+    IMAGE: $CI_REGISTRY_IMAGE/gitian/base-trusty-amd64
+  script:
+    - |
+      docker build --tag $IMAGE --cache-from $IMAGE:$CI_COMMIT_REF_SLUG --build-arg BUILDKIT_INLINE_CACHE=1 -<<EOF
+        FROM ubuntu:trusty
+        ENV DEBIAN_FRONTEND=noninteractive
+        RUN apt-get update && apt-get --no-install-recommends -y install pciutils build-essential git subversion language-pack-en wget lsb-release
+        RUN useradd -ms /bin/bash -U ubuntu
+        USER ubuntu:ubuntu
+        WORKDIR /home/ubuntu
+        CMD ["sleep", "infinity"]
+      EOF
+
+warm extra worker:
+  # in total we want three workers alive at the build stage
+  # this should be removed in case we ever have three+ jobs in base stage
+  stage: base
+  tags:
+    - docker
+    - cpx51
+  rules:
+    - if: $CI_PIPELINE_SOURCE != "trigger"
+  script:
+    - echo "Warmup complete."
+
+.build job:
+  stage: build
+  image: $CI_REGISTRY_IMAGE/gitian/builder:$CI_COMMIT_REF_SLUG
+  services:
+    - docker:stable-dind
+  tags:
+    - docker
+    - cpx51
+  cache:
+    # PANDACOIN TODO bind major versions to cache, eg. CI_JOB_NAME + v0.9.0
+    paths:
+      - gitian-cache
+    key: gitian-cache-${TARGET_ARCH}
+  variables:
+    GIT_DEPTH: 0
+    DOCKER_BUILDKIT: 1
+    USE_DOCKER: 1
+    DEBIAN_FRONTEND: noninteractive
+    IMAGE: $CI_REGISTRY_IMAGE/gitian/base-trusty-amd64:$CI_COMMIT_REF_SLUG
+  before_script:
+    - |
+      if [ "$CI_COMMIT_TAG" ]; then
+        sed -i 's|\(CLIENT_VERSION_IS_RELEASE,\ \)false|\1true|' configure.ac
+        git config --global user.name "continuous-integration"
+        git config --global user.email "ci@pandcoin.tech"
+        git add configure.ac
+        git commit --amend -m "CV set to true"
+        git tag -f $CI_COMMIT_TAG
+      fi
+    - mv gitian-cache ${GITIAN_DIR}/cache || true
+    - cd ${GITIAN_DIR}
+    - echo $CI_JOB_TOKEN | docker login -u gitlab-ci-token --password-stdin $CI_REGISTRY
+    - docker pull -q $IMAGE
+    - |
+      docker build --tag base-trusty-amd64 --build-arg BUILDKIT_INLINE_CACHE=1 -<<EOF
+        FROM $IMAGE
+        ENV CI_COMMIT_TAG ${CI_COMMIT_TAG:-false}
+      EOF
+  script:
+    - make -j$(nproc) -C ${CI_PROJECT_DIR}/depends download SOURCES_PATH=${GITIAN_DIR}/cache/common
+    - sed -i "s/^\ \ \(HOSTS=\"\).*/\ \ \1${TARGET_ARCH}\"/g" ${CI_PROJECT_DIR}/contrib/gitian-descriptors/gitian-${TARGET_OS}.yml
+    - ./bin/gbuild -j $(nproc) -m 30000 --commit pandacoin=${CI_COMMIT_TAG:-$CI_COMMIT_SHA} --url pandacoin=${CI_PROJECT_DIR} ${CI_PROJECT_DIR}/contrib/gitian-descriptors/gitian-${TARGET_OS}.yml
+  after_script:
+    - mv ${GITIAN_DIR}/cache ${CI_PROJECT_DIR}/gitian-cache
+    - cp -r ${GITIAN_DIR}/build/out/* ${CI_PROJECT_DIR}/
+  artifacts:
+    name: "pandacoin-${CI_COMMIT_REF_NAME}-${CI_JOB_NAME}"
+    paths:
+      - ${CI_PROJECT_DIR}/*.tar.gz
+      - ${CI_PROJECT_DIR}/*.zip
+      - ${CI_PROJECT_DIR}/*.exe
+      - ${CI_PROJECT_DIR}/*.dmg
+    expire_in: 1 week
+
+intermediary:
+  extends: .build job
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "trigger"
+      when: never
+    - if: $CI_COMMIT_TAG
+      when: never
+    - when: always
+  # todo: check if this does what we need it to
+  interruptible: true
+  parallel:
+    matrix:
+      - TARGET_OS: win
+        TARGET_ARCH: x86_64-w64-mingw32
+      - TARGET_OS: osx
+        TARGET_ARCH: x86_64-apple-darwin11
+      - TARGET_OS: linux
+        TARGET_ARCH: x86_64-linux-gnu
+  artifacts:
+    expire_in: 1 week
+
+manual:
+  extends: intermediary
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "trigger"
+      when: never
+    - if: $CI_COMMIT_TAG
+      when: never
+    - when: manual
+  allow_failure: true
+  parallel:
+    matrix:
+      - TARGET_OS: win
+        TARGET_ARCH: i686-w64-mingw32
+      - TARGET_OS: linux
+        TARGET_ARCH: [i686-pc-linux-gnu, arm-linux-gnueabihf, aarch64-linux-gnu]
+
+full:
+  extends: .build job
+  rules:
+    - if: $CI_COMMIT_TAG
+  parallel:
+    matrix:
+      - TARGET_OS: win
+        TARGET_ARCH: [i686-w64-mingw32, x86_64-w64-mingw32]
+      - TARGET_OS: osx
+        TARGET_ARCH: [x86_64-apple-darwin11]
+      - TARGET_OS: linux
+        TARGET_ARCH: [i686-pc-linux-gnu, x86_64-linux-gnu, arm-linux-gnueabihf, aarch64-linux-gnu]
+
+.docker pandacoind job:
+  extends: .build docker job
+  stage: package
+  tags: []
+  variables:
+    IMAGE: $CI_REGISTRY_IMAGE/pandacoind
+  script:
+    - mkdir -p pandacoin
+    - tar xzf pandacoin-*-$TARGET_ARCH.tar.gz -C pandacoin --strip-components=1
+    - rm pandacoin/bin/pandacoin-qt
+    - |
+      docker build --tag $IMAGE --tag $IMAGE:$CI_COMMIT_SHA --build-arg BUILDKIT_INLINE_CACHE=1 -f- .<<EOF
+        FROM ubuntu:focal
+        COPY pandacoin /usr/local
+      EOF
+    - docker push $IMAGE:$CI_COMMIT_SHA
+
+int. docker pandacoind:
+  extends: .docker pandacoind job
+  variables:
+    TARGET_ARCH: x86_64-linux-gnu
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "trigger"
+      when: never
+    - if: $CI_COMMIT_TAG
+      when: never
+    - when: always
+  needs: ["intermediary: [linux, x86_64-linux-gnu]"]
+  dependencies: ["intermediary: [linux, x86_64-linux-gnu]"]
+
+full docker pandacoind:
+  extends: .docker pandacoind job
+  variables:
+    TARGET_ARCH: x86_64-linux-gnu
+  rules:
+    - if: $CI_COMMIT_TAG
+  needs: ["full: [linux, x86_64-linux-gnu]"]
+  dependencies: ["full: [linux, x86_64-linux-gnu]"]
+
+.AppImage job:
+  image: appimagecrafters/appimage-builder:latest
+  stage: package
+  tags: []
+  before_script:
+    - apt-get -qq update
+    - apt-get install -qqy git wget
+    - pip3 install --upgrade git+https://www.opencode.net/azubieta/appimagecraft.git
+  script:
+    - cp -r contrib/appimage/{AppDir,AppImageBuilder.yml} .
+    - tar xzf pandacoin-*-$TARGET_ARCH.tar.gz -C AppDir --strip-components=1
+    - rm AppDir/bin/pandacoin{-cli,-tx,d}
+    - appimage-builder --skip-tests
+  artifacts:
+    paths:
+      - '*.AppImage*'
+    expire_in: 1 week
+
+int. AppImage x86_64:
+  extends: .AppImage job
+  variables:
+    TARGET_ARCH: x86_64-linux-gnu
+    APT_ARCH: amd64
+    BUILD_ARCH: x86_64
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "trigger"
+      when: never
+    - if: $CI_COMMIT_TAG
+      when: never
+    - when: always
+  needs: ["intermediary: [linux, x86_64-linux-gnu]"]
+  dependencies: ["intermediary: [linux, x86_64-linux-gnu]"]
+
+full AppImage x86_64:
+  extends: .AppImage job
+  variables:
+    TARGET_ARCH: x86_64-linux-gnu
+    APT_ARCH: amd64
+    BUILD_ARCH: x86_64
+  rules:
+    - if: $CI_COMMIT_TAG
+  needs: ["full: [linux, x86_64-linux-gnu]"]
+  dependencies: ["full: [linux, x86_64-linux-gnu]"]
+
+manual AppImage i686:
+  extends: .AppImage job
+  variables:
+    TARGET_ARCH: i686-pc-linux-gnu
+    APT_ARCH: i386
+    BUILD_ARCH: i686
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "trigger"
+      when: never
+    - if: $CI_COMMIT_TAG
+      when: never
+    - when: on_success
+  needs: ["manual: [linux, i686-pc-linux-gnu]"]
+  dependencies: ["manual: [linux, i686-pc-linux-gnu]"]
+
+full AppImage i686:
+  extends: .AppImage job
+  variables:
+    TARGET_ARCH: i686-pc-linux-gnu
+    APT_ARCH: i386
+    BUILD_ARCH: i686
+  rules:
+    - if: $CI_COMMIT_TAG
+  needs: ["full: [linux, i686-pc-linux-gnu]"]
+  dependencies: ["full: [linux, i686-pc-linux-gnu]"]
+
+.generate bootstrap.dat job:
+  stage: package
+  image: $CI_REGISTRY_IMAGE/pandacoind:$CI_COMMIT_SHA
+  variables:
+    GIT_DEPTH: 1
+    DEBIAN_FRONTEND: noninteractive
+  allow_failure: true
+  before_script:
+    - apt-get -qq update
+    - apt-get install -yqq python3 rhash
+  script:
+    - export BOOTSTRAP_DAT="pandacoin-bootstrap-${NET}net-$BLOCKCOUNT-blocks.dat"
+    - export RPC="-rpcuser=rpc -rpcpassword=rpc"
+    - eval 'pandacoind -server=1 -daemon=1 ${RPC} ${ARGS}' &
+    - |
+      while [ ! -f $HOME/.pandacoin${NETDIR}/debug.log ]; do sleep .1; done
+    - |
+      while ! grep -q "UpdateTip" $HOME/.pandacoin${NETDIR}/debug.log; do sleep .1; done
+    - |
+      while [ "$(eval 'pandacoin-cli ${RPC} ${ARGS} getblockcount')" -lt "$BLOCKCOUNT" ]; do sleep 5; done
+    - |
+      cat > linearize.cfg <<EOF
+      rpcuser = rpc
+      rpcpassword = rpc
+      datadir = $HOME/.pandacoin${NETDIR}
+      host = 127.0.0.1
+      port = $PORT
+      max_height = $BLOCKCOUNT
+      netmagic = $NETMAGIC
+      genesis = $GENESIS
+      input = $HOME/.pandacoin${NETDIR}/blocks
+      output_file = $PWD/$BOOTSTRAP_DAT
+      hashlist = hashlist.txt
+      out_of_order_cache_sz = 100000000
+      rev_hash_bytes = False
+      file_timestamp = 0
+      split_timestamp = 0
+      debug_output = False
+      EOF
+    - python3 contrib/linearize/linearize-hashes.py linearize.cfg > hashlist.txt
+    - python3 contrib/linearize/linearize-data.py linearize.cfg
+    - echo $BLOCKCOUNT > blockcount.txt
+    - rhash --torrent --magnet --btih --bt-announce udp://tracker.opentrackr.org:1337/announce --bt-announce udp://tracker.openbittorrent.com:6969/announce --bt-announce udp://exodus.desync.com:6969/announce $BOOTSTRAP_DAT | tr -d '\n' > magnet.txt
+    - echo "&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A6969%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce" | tr -d '\n' >> magnet.txt
+    - ln -s $BOOTSTRAP_DAT bootstrap.dat
+    - pandacoin-cli ${RPC} ${ARGS} getchaintxstats | tee chaintxstats.json
+    - pandacoin-cli ${RPC} ${ARGS} getblock $(pandacoin-cli ${RPC} ${ARGS} getblockhash $BLOCKCOUNT) 2 | tee block.json
+    - pandacoin-cli ${RPC} ${ARGS} stop
+    - cp $HOME/.pandacoin${NETDIR}/debug.log .
+  artifacts:
+    name: pandacoin-bootstrap-${NET}net-$BLOCKCOUNT-blocks
+    paths:
+      - block.json
+      - blockcount.txt
+      - chaintxstats.json
+      - debug.log
+      - hashlist.txt
+      - magnet.txt
+      - pandacoin-bootstrap*.dat
+      - pandacoin-bootstrap*.dat.torrent
+    expire_in: 1 week
+
+bootstrap.dat:
+  extends: .generate bootstrap.dat job
+  rules:
+    - if: $BLOCKCOUNT_MAIN || $BLOCKCOUNT_TEST
+  parallel:
+    matrix:
+      - NET: main
+        NETMAGIC: b5ca9dba
+        PORT: 22444
+        GENESIS: 000000003fa90365cae3b93740a5a08810a42dd122f87383afd45655a0101224
+        BLOCKCOUNT: $BLOCKCOUNT_MAIN
+      - NET: test
+        ARGS: -testnet
+        NETDIR: /testnet3
+        NETMAGIC: adafc9d6
+        PORT: 33444
+        GENESIS: 000000003fa90365cae3b93740a5a08810a42dd122f87383afd45655a0101224
+        BLOCKCOUNT: $BLOCKCOUNT_TEST
+
+sign:
+  stage: sign
+  image: alpine:latest
+  dependencies:
+    - full
+    - full AppImage x86_64
+    - full AppImage i686
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "trigger"
+      when: never
+    - if: $CI_COMMIT_TAG
+  variables:
+    GIT_STRATEGY: none
+    TEMP_DIR: pandacoin-${CI_COMMIT_TAG}
+  before_script:
+    - apk add gnupg mktorrent
+  script:
+    - rm *-debug*
+    - sha256sum * > SHA256SUMS
+    - cat $GPG_PRIVATE_KEY | gpg --batch --import
+    - gpg --digest-algo sha256 --clearsign SHA256SUMS
+    - rm SHA256SUMS
+    - mkdir ../${TEMP_DIR}
+    - mv * ../${TEMP_DIR}/
+    - mv ../${TEMP_DIR} .
+    - mktorrent -w ${PACKAGE_REGISTRY_BASE_URL} -a udp://tracker.opentrackr.org:1337/announce -a udp://tracker.openbittorrent.com:6969/announce -a udp://exodus.desync.com:6969/announce ${TEMP_DIR}
+    - mv ${TEMP_DIR}/SHA256SUMS.asc .
+  artifacts:
+    paths:
+      - SHA256SUMS.asc
+      - pandacoin*.torrent
+    expire_in: 1 week
+
+upload:
+  stage: upload
+  image: curlimages/curl:latest
+  dependencies:
+    - full
+    - full AppImage x86_64
+    - full AppImage i686
+    - sign
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "trigger"
+      when: never
+    - if: $CI_COMMIT_TAG
+  variables:
+    GIT_STRATEGY: none
+  script:
+    - rm *-debug*
+    - |
+      for i in *; do curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file ${i} ${PACKAGE_REGISTRY_URL}/${i}; done
+
+release:
+  stage: release
+  image: registry.gitlab.com/gitlab-org/release-cli:latest
+  needs:
+    - full
+    - full AppImage x86_64
+    - full AppImage i686
+    - sign
+    - upload
+  dependencies:
+    - full
+    - full AppImage x86_64
+    - full AppImage i686
+    - sign
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "trigger"
+      when: never
+    - if: $CI_COMMIT_TAG
+  variables:
+    GIT_STRATEGY: none
+  script:
+    - rm *-debug*
+    - |
+      eval 'release-cli create --name "Release $CI_COMMIT_TAG" --tag-name $CI_COMMIT_TAG $(for i in *; do echo  --assets-link "{\"name\":\"${i}\",\"url\":\"${PACKAGE_REGISTRY_URL}/${i}\"}"; done)'
