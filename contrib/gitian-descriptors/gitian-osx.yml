@@ -1,5 +1,5 @@
 ---
-name: "peercoin-osx-0.20"
+name: "pandacoin-osx-0.20"
 enable_cache: true
 distro: "ubuntu"
 suites:
@@ -29,8 +29,8 @@ packages:
 - "python3-setuptools"
 - "fonts-tuffy"
 remotes:
-- "url": "https://github.com/peercoin/peercoin.git"
-  "dir": "peercoin"
+- "url": "https://gitlab.com/pandacoin/pandacoin.git"
+  "dir": "pandacoin"
 files:
 - "MacOSX10.14.sdk.tar.gz"
 script: |
@@ -86,7 +86,7 @@ script: |
   create_per-host_faketime_wrappers "2000-01-01 12:00:00"
   export PATH=${WRAP_DIR}:${PATH}
 
-  cd peercoin
+  cd pandacoin
   BASEPREFIX="${PWD}/depends"
 
   mkdir -p ${BASEPREFIX}/SDKs
@@ -107,7 +107,7 @@ script: |
   ./autogen.sh
   CONFIG_SITE=${BASEPREFIX}/$(echo "${HOSTS}" | awk '{print $1;}')/share/config.site ./configure --prefix=/
   make dist
-  SOURCEDIST=$(echo peercoin-*.tar.gz)
+  SOURCEDIST=$(echo pandacoin-*.tar.gz)
   DISTNAME=${SOURCEDIST/%.tar.gz}
 
   # Workaround for tarball not building with the bare tag version (prep)

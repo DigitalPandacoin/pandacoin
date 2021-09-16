@@ -326,8 +326,8 @@
         <translation>Tarpinis serveris yra &lt;b&gt;įgalintas&lt;/b&gt;: %1</translation>
     </message>
     <message>
-        <source>Send coins to a Peercoin address</source>
-        <translation>Siųsti monetas Peercoin adresui</translation>
+        <source>Send coins to a Pandacoin address</source>
+        <translation>Siųsti monetas Pandacoin adresui</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -574,7 +574,7 @@
         <translation>Piniginė &lt;b&gt;užšifruota&lt;/b&gt; ir šiuo metu &lt;b&gt;užrakinta&lt;/b&gt;</translation>
     </message>
     <message>
-        <source>A fatal error occurred. Bitcoin can no longer continue safely and will quit.</source>
+        <source>A fatal error occurred. Pandacoin can no longer continue safely and will quit.</source>
         <translation>Kritinė klaida. Bitcoin nebegali tęsti saugiai ir bus išjungtas.</translation>
     </message>
 </context>
@@ -843,7 +843,7 @@
         <translation>Kadangi tai yra pirmas kartas, kai programa paleidžiama, galite pasirinkti, kur %1 išsaugos savo duomenis.</translation>
     </message>
     <message>
-        <source>When you click OK, %1 will begin to download and process the full %4 block chain (%2GB) starting with the earliest transactions in %3 when %4 initially launched.</source>
+        <source>When you click OK, %1 will begin to download and process the full %4 block chain (%2GB) starting with the earliest transactions in %3 when %4 initially re-launched.</source>
         <translation>Spustelėjus Gerai, %1 pradės atsisiųsti ir apdoroti visą %4 blokų grandinę (%2GB), pradedant nuo ankstesnių operacijų %3, kai iš pradžių buvo paleista %4.</translation>
     </message>
     <message>
@@ -2394,7 +2394,7 @@ Pastaba: Kadangi mokestis apskaičiuojamas pagal baitą, mokestis už „100 sat
     </message>
     <message>
         <source>The Bitcoin address the message was signed with</source>
-        <translation>Peercoin adresas, kuriuo buvo pasirašytas pranešimas</translation>
+        <translation>Pandacoin adresas, kuriuo buvo pasirašytas pranešimas</translation>
     </message>
     <message>
     </message>

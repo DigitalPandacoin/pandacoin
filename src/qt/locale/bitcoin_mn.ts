@@ -379,7 +379,7 @@
 <context>
     <name>Intro</name>
     <message>
-        <source>Peercoin</source>
+        <source>Pandacoin</source>
         <translation>Пиркойн</translation>
     </message>
     <message>

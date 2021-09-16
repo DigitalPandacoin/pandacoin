@@ -83,13 +83,13 @@
     </message>
     <message>
         <location line="+7"/>
-        <source>These are your Peercoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Ovo su vaše Peercoin adrese za slanje novca. Uvijek provjerite iznos i adresu primatelja prije slanja novca.</translation>
+        <source>These are your Pandacoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Ovo su vaše Pandacoin adrese za slanje novca. Uvijek provjerite iznos i adresu primatelja prije slanja novca.</translation>
     </message>
     <message>
         <location line="+5"/>
-        <source>These are your Peercoin addresses for receiving payments. Use the &apos;Create new receiving address&apos; button in the receive tab to create new addresses.</source>
-        <translation>Ovo su vaše Peercoin adrese za primanje novca. Preporučeno je da koristite novu primateljsku adresu za svaku transakciju.</translation>
+        <source>These are your Pandacoin addresses for receiving payments. Use the &apos;Create new receiving address&apos; button in the receive tab to create new addresses.</source>
+        <translation>Ovo su vaše Pandacoin adrese za primanje novca. Preporučeno je da koristite novu primateljsku adresu za svaku transakciju.</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -214,13 +214,13 @@
     </message>
     <message>
         <location line="+0"/>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR PEERCOINS&lt;/b&gt;!</source>
-        <translation>Upozorenje: Ako šifrirate vaš novčanik i izgubite lozinku, &lt;b&gt;IZGUBIT ĆETE SVE SVOJE PEERCOINE!&lt;/b&gt;</translation>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR PANDACOINS&lt;/b&gt;!</source>
+        <translation>Upozorenje: Ako šifrirate vaš novčanik i izgubite lozinku, &lt;b&gt;IZGUBIT ĆETE SVE SVOJE PANDACOINE!&lt;/b&gt;</translation>
     </message>
     <message>
         <location line="+7"/>
-        <source>Remember that encrypting your wallet cannot fully protect your peercoins from being stolen by malware infecting your computer.</source>
-        <translation>Zapamtite da šifriranje vašeg novčanika ne može u potpunosti zaštititi vaše peercoinove od zloćudnog softvera kojim se zarazi vaše računalo.</translation>
+        <source>Remember that encrypting your wallet cannot fully protect your pandacoins from being stolen by malware infecting your computer.</source>
+        <translation>Zapamtite da šifriranje vašeg novčanika ne može u potpunosti zaštititi vaše pandacoinove od zloćudnog softvera kojim se zarazi vaše računalo.</translation>
     </message>
     <message>
         <location line="+12"/>
@@ -344,13 +344,13 @@
     </message>
     <message>
         <location line="+7"/>
-        <source>Send coins to a Peercoin address</source>
-        <translation>Pošaljite novac na Peercoin adresu</translation>
+        <source>Send coins to a Pandacoin address</source>
+        <translation>Pošaljite novac na Pandacoin adresu</translation>
     </message>
     <message>
         <location line="+11"/>
-        <source>Request payments (generates QR codes and peercoin: URIs)</source>
-        <translation>Zatražite uplatu (stvara QR kod i peercoin: URI adresu)</translation>
+        <source>Request payments (generates QR codes and pandacoin: URIs)</source>
+        <translation>Zatražite uplatu (stvara QR kod i pandacoin: URI adresu)</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -439,13 +439,13 @@
     </message>
     <message>
         <location line="+3"/>
-        <source>Sign messages with your Peercoin addresses to prove you own them</source>
-        <translation>Poruku potpišemo s Peercoin adresom, kako bi dokazali vlasništvo nad tom adresom</translation>
+        <source>Sign messages with your Pandacoin addresses to prove you own them</source>
+        <translation>Poruku potpišemo s Pandacoin adresom, kako bi dokazali vlasništvo nad tom adresom</translation>
     </message>
     <message>
         <location line="+2"/>
-        <source>Verify messages to ensure they were signed with specified Peercoin addresses</source>
-        <translation>Provjerite poruku da je potpisana s navedenom Peercoin adresom</translation>
+        <source>Verify messages to ensure they were signed with specified Pandacoin addresses</source>
+        <translation>Provjerite poruku da je potpisana s navedenom Pandacoin adresom</translation>
     </message>
     <message>
         <location line="+13"/>
@@ -454,7 +454,7 @@
     </message>
     <message>
         <location line="+1"/>
-        <source>Open a peercoin: URI</source>
+        <source>Open a pandacoin: URI</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -469,7 +469,7 @@
     </message>
     <message>
         <location line="+4"/>
-        <source>Show the %1 help message to get a list with possible Peercoin command-line options</source>
+        <source>Show the %1 help message to get a list with possible Pandacoin command-line options</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -479,7 +479,7 @@
     </message>
     <message>
         <location line="+1"/>
-        <source>Open the Peercoin Discord in a web browser.</source>
+        <source>Open the Pandacoin Telegram in a web browser.</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -504,7 +504,7 @@
     </message>
     <message numerus="yes">
         <location line="+0"/>
-        <source>%n active connection(s) to Peercoin network</source>
+        <source>%n active connection(s) to Pandacoin network</source>
         <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
     <message>
@@ -831,8 +831,8 @@
     </message>
     <message>
         <location filename="../bitcoin.cpp" line="+384"/>
-        <source>A fatal error occurred. Bitcoin can no longer continue safely and will quit.</source>
-        <translation>Dogodila se kobna greška. Peercoin ne može više sigurno nastaviti te će se zatvoriti.</translation>
+        <source>A fatal error occurred. Pandacoin can no longer continue safely and will quit.</source>
+        <translation>Dogodila se kobna greška. Pandacoin ne može više sigurno nastaviti te će se zatvoriti.</translation>
     </message>
 </context>
 <context>
@@ -1148,8 +1148,8 @@
     </message>
     <message>
         <location line="-10"/>
-        <source>The entered address &quot;%1&quot; is not a valid Peercoin address.</source>
-        <translation>Upisana adresa &quot;%1&quot; nije valjana Peercoin adresa.</translation>
+        <source>The entered address &quot;%1&quot; is not a valid Pandacoin address.</source>
+        <translation>Upisana adresa &quot;%1&quot; nije valjana Pandacoin adresa.</translation>
     </message>
     <message>
         <location line="+15"/>
@@ -1222,7 +1222,7 @@
     </message>
     <message>
         <location line="+157"/>
-        <source>When you click OK, %1 will begin to download and process the full %4 block chain (%2GB) starting with the earliest transactions in %3 when %4 initially launched.</source>
+        <source>When you click OK, %1 will begin to download and process the full %4 block chain (%2GB) starting with the earliest transactions in %3 when %4 initially re-launched.</source>
         <translation>Kada kliknete OK, %1 počet će preuzimati i procesirati cijeli lanac blokova (%2GB) počevši s najranijim transakcijama u %3 kad je %4 prvi put pokrenut.</translation>
     </message>
     <message>
@@ -1257,8 +1257,8 @@
     </message>
     <message>
         <location line="-79"/>
-        <source>Peercoin</source>
-        <translation>Peercoin</translation>
+        <source>Pandacoin</source>
+        <translation>Pandacoin</translation>
     </message>
     <message>
         <location line="+108"/>
@@ -1476,12 +1476,12 @@
     </message>
     <message>
         <location line="+119"/>
-        <source>Recent transactions may not yet be visible, and therefore your wallet&apos;s balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the Peercoin network, as detailed below.</source>
+        <source>Recent transactions may not yet be visible, and therefore your wallet&apos;s balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the Pandacoin network, as detailed below.</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <location line="+19"/>
-        <source>Attempting to spend peercoins that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
+        <source>Attempting to spend pandacoins that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -1547,7 +1547,7 @@
     <name>OpenURIDialog</name>
     <message>
         <location filename="../forms/openuridialog.ui" line="+14"/>
-        <source>Open peercoin URI</source>
+        <source>Open pandacoin URI</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -1623,12 +1623,12 @@
     </message>
     <message>
         <location line="+104"/>
-        <source>Automatically open the Peercoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <source>Automatically open the Pandacoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <location line="+20"/>
-        <source>Connect to the Peercoin network through a SOCKS5 proxy.</source>
+        <source>Connect to the Pandacoin network through a SOCKS5 proxy.</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -1646,7 +1646,7 @@
     </message>
     <message>
         <location line="+35"/>
-        <source>Connect to the Peercoin network through a separate SOCKS5 proxy for Tor hidden services.</source>
+        <source>Connect to the Pandacoin network through a separate SOCKS5 proxy for Tor hidden services.</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -1836,7 +1836,7 @@
     <message>
         <location line="+13"/>
         <source>Choose the default subdivision unit to show in the interface and when sending coins.</source>
-        <translation>Izaberite željeni najmanji dio peercoina koji će biti prikazan u sučelju i koji će se koristiti za plaćanje.</translation>
+        <translation>Izaberite željeni najmanji dio pandacoina koji će biti prikazan u sučelju i koji će se koristiti za plaćanje.</translation>
     </message>
     <message>
         <location line="-450"/>
@@ -1970,7 +1970,7 @@
     <message>
         <location line="+16"/>
         <location line="+443"/>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Peercoin network after a connection is established, but this process has not completed yet.</source>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Pandacoin network after a connection is established, but this process has not completed yet.</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -2046,13 +2046,13 @@
     </message>
     <message>
         <location line="-76"/>
-        <source>Cannot start peercoin: click-to-pay handler</source>
+        <source>Cannot start pandacoin: click-to-pay handler</source>
         <translation>Ne može se pokrenuti klijent: rukovatelj &quot;kliknite da platite&quot;</translation>
     </message>
     <message>
         <location line="+50"/>
-        <source>&apos;peercoin://&apos; is not a valid URI. Use &apos;peercoin:&apos; instead.</source>
-        <translation>&apos;peercoin://&apos; nije ispravan URI. Koristite &apos;peercoin:&apos; umjesto toga.</translation>
+        <source>&apos;pandacoin://&apos; is not a valid URI. Use &apos;pandacoin:&apos; instead.</source>
+        <translation>&apos;pandacoin://&apos; nije ispravan URI. Koristite &apos;pandacoin:&apos; umjesto toga.</translation>
     </message>
     <message>
         <location line="+14"/>
@@ -2079,8 +2079,8 @@
     </message>
     <message>
         <location line="+8"/>
-        <source>URI cannot be parsed! This can be caused by an invalid Peercoin address or malformed URI parameters.</source>
-        <translation>Ne može se parsirati URI! Uzrok tomu može biti nevažeća Peercoin adresa ili neispravni parametri kod URI-a.</translation>
+        <source>URI cannot be parsed! This can be caused by an invalid Pandacoin address or malformed URI parameters.</source>
+        <translation>Ne može se parsirati URI! Uzrok tomu može biti nevažeća Pandacoin adresa ili neispravni parametri kod URI-a.</translation>
     </message>
     <message>
         <location line="+9"/>
@@ -2130,7 +2130,7 @@
     </message>
     <message>
         <location filename="../guiutil.cpp" line="+111"/>
-        <source>Enter a Peercoin address (e.g. %1)</source>
+        <source>Enter a Pandacoin address (e.g. %1)</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -2773,7 +2773,7 @@
     </message>
     <message>
         <location line="-137"/>
-        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Peercoin network.</source>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Pandacoin network.</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -3223,8 +3223,8 @@
     </message>
     <message>
         <location line="+213"/>
-        <source>Warning: Invalid Peercoin address</source>
-        <translation>Upozorenje: Nevažeća Peercoin adresa</translation>
+        <source>Warning: Invalid Pandacoin address</source>
+        <translation>Upozorenje: Nevažeća Pandacoin adresa</translation>
     </message>
     <message>
         <location line="+5"/>
@@ -3263,7 +3263,7 @@
     </message>
     <message>
         <location line="+18"/>
-        <source>The Peercoin address to send the payment to</source>
+        <source>The Pandacoin address to send the payment to</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -3305,7 +3305,7 @@
     </message>
     <message>
         <location line="+7"/>
-        <source>The fee will be deducted from the amount being sent. The recipient will receive less peercoins than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
+        <source>The fee will be deducted from the amount being sent. The recipient will receive less pandacoins than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
         <translation>Naknada će biti oduzeta od poslanog iznosa. Primatelj će primiti manji iznos od onoga koji unesete u polje iznosa. Ako je odabrano više primatelja, onda će naknada biti podjednako raspodijeljena.</translation>
     </message>
     <message>
@@ -3325,7 +3325,7 @@
     </message>
     <message>
         <location line="+10"/>
-        <source>A message that was attached to the Peercoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Peercoin network.</source>
+        <source>A message that was attached to the Pandacoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Pandacoin network.</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -3384,13 +3384,13 @@
     </message>
     <message>
         <location line="+6"/>
-        <source>You can sign messages/agreements with your addresses to prove you can receive peercoins sent to them. Be careful not to sign anything vague or random, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
+        <source>You can sign messages/agreements with your addresses to prove you can receive pandacoins sent to them. Be careful not to sign anything vague or random, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
         <translation>Možete potpisati poruke/dogovore svojim adresama kako biste dokazali da možete pristupiti bitcoinima poslanim na te adrese. Budite oprezni da ne potpisujte ništa nejasno ili nasumično, jer napadi phishingom vas mogu prevariti da prepišite svoj identitet njima. Potpisujte samo detaljno objašnjene izjave s kojima se slažete.</translation>
     </message>
     <message>
         <location line="+18"/>
-        <source>The Peercoin address to sign the message with</source>
-        <translation>Peercoin adresa pomoću koje ćete potpisati poruku</translation>
+        <source>The Pandacoin address to sign the message with</source>
+        <translation>Pandacoin adresa pomoću koje ćete potpisati poruku</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -3432,17 +3432,17 @@
     </message>
     <message>
         <location line="+21"/>
-        <source>Sign the message to prove you own this Peercoin address</source>
-        <translation>Potpišite poruku kako biste dokazali da posjedujete ovu Peercoin adresu</translation>
+        <source>Sign the message to prove you own this Pandacoin address</source>
+        <translation>Potpišite poruku kako biste dokazali da posjedujete ovu Pandacoin adresu</translation>
     </message>
     <message>
         <location line="+106"/>
-        <source>The Peercoin address the message was signed with</source>
+        <source>The Pandacoin address the message was signed with</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <location line="+51"/>
-        <source>Verify the message to ensure it was signed with the specified Peercoin address</source>
+        <source>Verify the message to ensure it was signed with the specified Pandacoin address</source>
         <translation type="unfinished"/>
     </message>
     <message>

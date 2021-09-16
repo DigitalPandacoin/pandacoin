@@ -38,7 +38,7 @@
 #include <QUrlQuery>
 
 const int BITCOIN_IPC_CONNECT_TIMEOUT = 1000; // milliseconds
-const QString BITCOIN_IPC_PREFIX("peercoin:");
+const QString BITCOIN_IPC_PREFIX("pandacoin:");
 
 //
 // Create a name that is unique for:
@@ -47,7 +47,7 @@ const QString BITCOIN_IPC_PREFIX("peercoin:");
 //
 static QString ipcServerName()
 {
-    QString name("PeercoinQt");
+    QString name("PandacoinQt");
 
     // Append a simple hash of the datadir
     // Note that GetDataDir(true) returns a different path
@@ -82,11 +82,11 @@ void PaymentServer::ipcParseCommandLine(interfaces::Node& node, int argc, char* 
         if (arg.startsWith("-"))
             continue;
 
-        // If the peercoin: URI contains a payment request, we are not able to detect the
+        // If the pandacoin: URI contains a payment request, we are not able to detect the
         // network as that would require fetching and parsing the payment request.
         // That means clicking such an URI which contains a testnet payment request
         // will start a mainnet instance and throw a "wrong network" error.
-        if (arg.startsWith(BITCOIN_IPC_PREFIX, Qt::CaseInsensitive)) // peercoin: URI
+        if (arg.startsWith(BITCOIN_IPC_PREFIX, Qt::CaseInsensitive)) // pandacoin: URI
         {
             if (savedPaymentRequests.contains(arg)) continue;
             savedPaymentRequests.insert(arg);
@@ -155,7 +155,7 @@ PaymentServer::PaymentServer(QObject* parent, bool startLocalServer) :
     optionsModel(nullptr)
 {
     // Install global event filter to catch QFileOpenEvents
-    // on Mac: sent when you click peercoin: links
+    // on Mac: sent when you click pandacoin: links
     // other OSes: helpful when dealing with payment request files
     if (parent)
         parent->installEventFilter(this);
@@ -172,7 +172,7 @@ PaymentServer::PaymentServer(QObject* parent, bool startLocalServer) :
         if (!uriServer->listen(name)) {
             // constructor is called early in init, so don't use "Q_EMIT message()" here
             QMessageBox::critical(nullptr, tr("Payment request error"),
-                tr("Cannot start peercoin: click-to-pay handler"));
+                tr("Cannot start pandacoin: click-to-pay handler"));
         }
         else {
             connect(uriServer, &QLocalServer::newConnection, this, &PaymentServer::handleURIConnection);
@@ -185,7 +185,7 @@ PaymentServer::~PaymentServer()
 }
 
 //
-// OSX-specific way of handling peercoin: URIs
+// OSX-specific way of handling pandacoin: URIs
 //
 bool PaymentServer::eventFilter(QObject *object, QEvent *event)
 {
@@ -220,12 +220,12 @@ void PaymentServer::handleURIOrFile(const QString& s)
         return;
     }
 
-    if (s.startsWith("peercoin://", Qt::CaseInsensitive))
+    if (s.startsWith("pandacoin://", Qt::CaseInsensitive))
     {
-        Q_EMIT message(tr("URI handling"), tr("'peercoin://' is not a valid URI. Use 'peercoin:' instead."),
+        Q_EMIT message(tr("URI handling"), tr("'pandacoin://' is not a valid URI. Use 'pandacoin:' instead."),
             CClientUIInterface::MSG_ERROR);
     }
-    else if (s.startsWith(BITCOIN_IPC_PREFIX, Qt::CaseInsensitive)) // peercoin: URI
+    else if (s.startsWith(BITCOIN_IPC_PREFIX, Qt::CaseInsensitive)) // pandacoin: URI
     {
         QUrlQuery uri((QUrl(s)));
         // normal URI
@@ -249,7 +249,7 @@ void PaymentServer::handleURIOrFile(const QString& s)
             }
             else
                 Q_EMIT message(tr("URI handling"),
-                    tr("URI cannot be parsed! This can be caused by an invalid Peercoin address or malformed URI parameters."),
+                    tr("URI cannot be parsed! This can be caused by an invalid Pandacoin address or malformed URI parameters."),
                     CClientUIInterface::ICON_WARNING);
 
             return;
