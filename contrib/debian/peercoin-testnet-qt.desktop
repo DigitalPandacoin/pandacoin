@@ -1,11 +1,11 @@
 [Desktop Entry]
 Encoding=UTF-8
-Name=Peercoin (testnet)
-Comment=Desktop allet for Peercoin Cryptocurrency (testnet)
-Comment[de]=Offizieller Client für die Kryptowährung Peercoin (testnet)
-Exec=peercoin-qt -testnet %u
+Name=Pandacoin (testnet)
+Comment=Desktop allet for Pandacoin Cryptocurrency (testnet)
+Comment[de]=Offizieller Client für die Kryptowährung Pandacoin (testnet)
+Exec=pandacoin-qt -testnet %u
 Terminal=false
 Type=Application
-Icon=/usr/share/pixmaps/peercoin-testnet128.png
-MimeType=x-scheme-handler/peercoin;
+Icon=/usr/share/pixmaps/pandacoin-testnet128.png
+MimeType=x-scheme-handler/pandacoin;
 Categories=Application;Network;

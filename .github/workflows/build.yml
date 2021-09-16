@@ -1,4 +1,4 @@
-name: Peercoin-artifact
+name: Pandacoin-artifact
 on: [push, pull_request]
 
 # Should do linux, mac and windows.

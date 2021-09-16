@@ -3,7 +3,7 @@ FROM debian:wheezy
 #Default branch name develop
 ARG BRANCH_NAME=develop
 #Default
-ARG REPO_SLUG=peercoin/peercoin
+ARG REPO_SLUG=pandacoin/pandacoin
 ENV REPO_SLUG=${REPO_SLUG}
 ENV REPO_URL=https://github.com/${REPO_SLUG}
 
@@ -14,9 +14,9 @@ RUN apt-get -qq update && \
 
 #RUN git clone ${REPO_URL} --branch $BRANCH_NAME --single-branch --depth 1
 
-COPY peercoin.tar.gz /peercoin.tar.gz
-RUN tar -xvf /peercoin.tar.gz
+COPY pandacoin.tar.gz /pandacoin.tar.gz
+RUN tar -xvf /pandacoin.tar.gz
 
-#ADD . /peercoin
-RUN cd /peercoin/scripts/windows-crosscompile && ./dependencies.sh
-RUN cd /peercoin && scripts/windows-crosscompile/compile-peercoin.sh
+#ADD . /pandacoin
+RUN cd /pandacoin/scripts/windows-crosscompile && ./dependencies.sh
+RUN cd /pandacoin && scripts/windows-crosscompile/compile-pandacoin.sh

@@ -1,4 +1,4 @@
-Peercoin 0.10.4 BETA
+Pandacoin 0.10.4 BETA
 
 Copyright (c) 2011-2021 Peercoin Developers
 Distributed under the MIT software license, see the accompanying
@@ -10,7 +10,7 @@ cryptographic software written by Eric Young (eay@cryptsoft.com).
 
 Intro
 -----
-Peercoin is a free open source project derived from Bitcoin, with
+Pandacoin is a free open source project derived from Bitcoin, with
 the goal of providing a long-term energy-efficient crypto-currency.
 Built on the foundation of Bitcoin, innovations such as proof-of-stake
 help further advance the field of crypto-currency.
@@ -18,13 +18,13 @@ help further advance the field of crypto-currency.
 
 Setup
 -----
-Unpack the files into a directory and run peercoin-qt.exe.
+Unpack the files into a directory and run pandacoin-qt.exe.
 
-Peercoin Core is the original Peercoin client and it builds the backbone of the network.
-However, it downloads and stores the entire history of Peercoin transactions;
+Pandacoin Core is the original Pandacoin client and it builds the backbone of the network.
+However, it downloads and stores the entire history of Pandacoin transactions;
 depending on the speed of your computer and network connection, the synchronization
 process can take anywhere from a few hours to a day or more.
 
-See the peercoin documentation at:
+See the pandacoin documentation at:
   https://docs.peercoin.net/
 for more help and information.

@@ -43,17 +43,17 @@ from the root of the repository.
 
 **Note**: You only need Berkeley DB if the wallet is enabled (see [*Disable-wallet mode*](/doc/build-osx.md#disable-wallet-mode)).
 
-Build Peercoin
+Build Pandacoin
 
-1. Clone the Peercoin source code and cd into `peercoin`
+1. Clone the Pandacoin source code and cd into `pandacoin`
     ```shell
     git clone https://github.com/peercoin/peercoin
-    cd peercoin
+    cd pandacoin
     ```
 
-2.  Build Peercoin:
+2.  Build Pandacoin:
 
-    Configure and build the headless Peercoin binaries as well as the GUI (if Qt is found).
+    Configure and build the headless Pandacoin binaries as well as the GUI (if Qt is found).
 
     You can disable the GUI build by passing `--without-gui` to configure.
     ```shell
@@ -84,30 +84,30 @@ In this case there is no dependency on Berkeley DB 4.8.
 Mining is also possible in disable-wallet mode using the `getblocktemplate` RPC call.
 
 ## Running
-Peercoin is now available at `./src/peercoind`
+Pandacoin is now available at `./src/pandacoind`
 
 Before running, you may create an empty configuration file:
 ```shell
-mkdir -p "/Users/${USER}/Library/Application Support/Peercoin"
+mkdir -p "/Users/${USER}/Library/Application Support/Pandacoin"
 
-touch "/Users/${USER}/Library/Application Support/Peercoin/peercoin.conf"
+touch "/Users/${USER}/Library/Application Support/Pandacoin/pandacoin.conf"
 
-chmod 600 "/Users/${USER}/Library/Application Support/Peercoin/peercoin.conf"
+chmod 600 "/Users/${USER}/Library/Application Support/Pandacoin/pandacoin.conf"
 ```
 
-The first time you run peercoind, it will start downloading the blockchain. This process could
+The first time you run pandacoind, it will start downloading the blockchain. This process could
 take several hours.
 
 You can monitor the download process by looking at the debug.log file:
 ```shell
-tail -f $HOME/Library/Application\ Support/Peercoin/debug.log
+tail -f $HOME/Library/Application\ Support/Pandacoin/debug.log
 ```
 
 ## Other commands:
 ```shell
-./src/peercoind -daemon      # Starts the peercoin daemon.
-./src/peercoin-cli --help    # Outputs a list of command-line options.
-./src/peercoin-cli help      # Outputs a list of RPC commands when the daemon is running.
+./src/pandacoind -daemon      # Starts the pandacoin daemon.
+./src/pandacoin-cli --help    # Outputs a list of command-line options.
+./src/pandacoin-cli help      # Outputs a list of RPC commands when the daemon is running.
 ```
 
 ## Notes

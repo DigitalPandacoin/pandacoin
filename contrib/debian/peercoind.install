@@ -1,2 +1,2 @@
-usr/local/bin/peercoind usr/bin
-usr/local/bin/peercoin-cli usr/bin
+usr/local/bin/pandacoind usr/bin
+usr/local/bin/pandacoin-cli usr/bin

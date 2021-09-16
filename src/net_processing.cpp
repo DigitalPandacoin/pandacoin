@@ -33,7 +33,7 @@
 #include <kernel.h>
 
 #if defined(NDEBUG)
-# error "Peercoin cannot be compiled without assertions."
+# error "Pandacoin cannot be compiled without assertions."
 #endif
 
 /** Expiration time for orphan transactions in seconds */

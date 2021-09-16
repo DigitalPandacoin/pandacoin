@@ -36,7 +36,7 @@ class QUrl;
 class QWidget;
 QT_END_NAMESPACE
 
-/** Utility functions used by the Peercoin Qt UI.
+/** Utility functions used by the Pandacoin Qt UI.
  */
 namespace GUIUtil
 {

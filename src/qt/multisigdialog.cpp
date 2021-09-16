@@ -548,7 +548,7 @@ void MultisigDialog::on_sendTransactionButton_clicked()
         pnode->PushInventory(inv);
     });
 
-    ui->statusLabel->setText(tr("The transaction is sent to peercoin network."));
+    ui->statusLabel->setText(tr("The transaction is sent to pandacoin network."));
 }
 
 MultisigInputEntry * MultisigDialog::addInput()

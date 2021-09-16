@@ -2,7 +2,7 @@
 # Copyright (c) 2017-2019 The Bitcoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
-"""Class for peercoind node under test"""
+"""Class for pandacoind node under test"""
 
 import contextlib
 import decimal
@@ -47,7 +47,7 @@ class ErrorMatch(Enum):
 
 
 class TestNode():
-    """A class for representing a peercoind node under test.
+    """A class for representing a pandacoind node under test.
 
     This class contains:
 
@@ -75,7 +75,7 @@ class TestNode():
         self.chain = chain
         self.rpchost = rpchost
         self.rpc_timeout = timewait
-        self.binary = peercoind
+        self.binary = pandacoind
         self.coverage_dir = coverage_dir
         self.cwd = cwd
         if extra_conf is not None:
@@ -110,7 +110,7 @@ class TestNode():
         if self.version is None or self.version >= 190000:
             self.args.append("-logthreadnames")
 
-        self.cli = TestNodeCLI(peercoin_cli, self.datadir)
+        self.cli = TestNodeCLI(pandacoin_cli, self.datadir)
         self.use_cli = use_cli
         self.start_perf = start_perf
 
@@ -157,7 +157,7 @@ class TestNode():
         raise AssertionError(self._node_msg(msg))
 
     def __del__(self):
-        # Ensure that we don't leave any peercoind processes lying around after
+        # Ensure that we don't leave any pandacoind processes lying around after
         # the test ends
         if self.process and self.cleanup_on_exit:
             # Should only happen on test failure
@@ -191,7 +191,7 @@ class TestNode():
             cwd = self.cwd
 
         # Delete any existing cookie file -- if such a file exists (eg due to
-        # unclean shutdown), it will get overwritten anyway by peercoind, and
+        # unclean shutdown), it will get overwritten anyway by pandacoind, and
         # potentially interfere with our attempt to authenticate
         delete_cookie_file(self.datadir, self.chain)
 
@@ -201,7 +201,7 @@ class TestNode():
         self.process = subprocess.Popen(self.args + extra_args, env=subp_env, stdout=stdout, stderr=stderr, cwd=cwd, **kwargs)
 
         self.running = True
-        self.log.debug("peercoind started, waiting for RPC to come up")
+        self.log.debug("pandacoind started, waiting for RPC to come up")
 
         if self.start_perf:
             self._start_perf()
@@ -210,13 +210,13 @@ class TestNode():
             self._start_perf()
 
     def wait_for_rpc_connection(self):
-        """Sets up an RPC connection to the peercoind process. Returns False if unable to connect."""
+        """Sets up an RPC connection to the pandacoind process. Returns False if unable to connect."""
         # Poll at a rate of four times per second
         poll_per_s = 4
         for _ in range(poll_per_s * self.rpc_timeout):
             if self.process.poll() is not None:
                 raise FailedToStartError(self._node_msg(
-                    'peercoind exited with status {} during initialization'.format(self.process.returncode)))
+                    'pandacoind exited with status {} during initialization'.format(self.process.returncode)))
             try:
                 rpc = get_rpc_proxy(rpc_url(self.datadir, self.index, self.chain, self.rpchost), self.index, timeout=self.rpc_timeout, coveragedir=self.coverage_dir)
                 rpc.getblockcount()
@@ -244,7 +244,7 @@ class TestNode():
                 if "No RPC credentials" not in str(e):
                     raise
             time.sleep(1.0 / poll_per_s)
-        self._raise_assertion_error("Unable to connect to peercoind")
+        self._raise_assertion_error("Unable to connect to pandacoind")
 
     def generate(self, nblocks, maxtries=1000000):
         self.log.debug("TestNode.generate() dispatches `generate` call to `generatetoaddress`")
@@ -529,17 +529,17 @@ def arg_to_cli(arg):
 
 
 class TestNodeCLI():
-    """Interface to peercoin-cli for an individual node"""
+    """Interface to pandacoin-cli for an individual node"""
 
     def __init__(self, binary, datadir):
         self.options = []
         self.binary = binary
         self.datadir = datadir
         self.input = None
-        self.log = logging.getLogger('TestFramework.peercoincli')
+        self.log = logging.getLogger('TestFramework.pandacoincli')
 
     def __call__(self, *options, input=None):
-        # TestNodeCLI is callable with peercoin-cli command-line options
+        # TestNodeCLI is callable with pandacoin-cli command-line options
         cli = TestNodeCLI(self.binary, self.datadir)
         cli.options = [str(o) for o in options]
         cli.input = input
@@ -558,17 +558,17 @@ class TestNodeCLI():
         return results
 
     def send_cli(self, command=None, *args, **kwargs):
-        """Run peercoin-cli command. Deserializes returned string as python object."""
+        """Run pandacoin-cli command. Deserializes returned string as python object."""
         pos_args = [arg_to_cli(arg) for arg in args]
         named_args = [str(key) + "=" + arg_to_cli(value) for (key, value) in kwargs.items()]
-        assert not (pos_args and named_args), "Cannot use positional arguments and named arguments in the same peercoin-cli call"
+        assert not (pos_args and named_args), "Cannot use positional arguments and named arguments in the same pandacoin-cli call"
         p_args = [self.binary, "-datadir=" + self.datadir] + self.options
         if named_args:
             p_args += ["-named"]
         if command is not None:
             p_args += [command]
         p_args += pos_args + named_args
-        self.log.debug("Running peercoin-cli command: %s" % command)
+        self.log.debug("Running pandacoin-cli command: %s" % command)
         process = subprocess.Popen(p_args, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True)
         cli_stdout, cli_stderr = process.communicate(input=self.input)
         returncode = process.poll()

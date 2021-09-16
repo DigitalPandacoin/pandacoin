@@ -32,7 +32,7 @@ class QMenu;
 class QItemSelection;
 QT_END_NAMESPACE
 
-/** Local Peercoin RPC console. */
+/** Local Pandacoin RPC console. */
 class RPCConsole: public QWidget
 {
     Q_OBJECT

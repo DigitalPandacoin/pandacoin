@@ -1,3 +1,3 @@
-contrib/peercoind.bash-completion	peercoind
-contrib/peercoin-cli.bash-completion	peercoin-cli
-contrib/peercoin-tx.bash-completion	peercoin-tx
+contrib/pandacoind.bash-completion	pandacoind
+contrib/pandacoin-cli.bash-completion	pandacoin-cli
+contrib/pandacoin-tx.bash-completion	pandacoin-tx

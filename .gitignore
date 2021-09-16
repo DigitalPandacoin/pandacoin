@@ -3,15 +3,15 @@
 *.exe
 *.pdb
 src/*/*.exe
-src/peercoin
-src/peercoind
-src/peercoin-cli
-src/peercoin-tx
-src/peercoin-wallet
+src/pandacoin
+src/pandacoind
+src/pandacoin-cli
+src/pandacoin-tx
+src/pandacoin-wallet
 src/test/fuzz
 !src/test/fuzz/*.*
-src/test/test_peercoin
-src/qt/test/test_peercoin-qt
+src/test/test_pandacoin
+src/qt/test/test_pandacoin-qt
 
 # autoreconf
 Makefile.in
@@ -68,7 +68,7 @@ src/qt/bitcoin-qt.includes
 *.o
 *.o-*
 .ppcoin
-.peercoin
+.pandacoin
 *.a
 *.pb.cc
 *.pb.h
@@ -93,9 +93,9 @@ src/qt/bitcoin-qt.includes
 *.qm
 Makefile
 !depends/Makefile
-src/qt/peercoin-qt
+src/qt/pandacoin-qt
 PPCoin-Qt.app
-Peercoin-Qt.app
+Pandacoin-Qt.app
 background.tiff*
 
 # Qt Creator
@@ -104,7 +104,7 @@ Makefile.am.user
 # Unit-tests
 Makefile.test
 ppcoin-qt_test
-peercoin-qt_test
+pandacoin-qt_test
 
 # Resources cpp
 qrc_*.cpp
