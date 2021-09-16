@@ -530,7 +530,7 @@
         <translation>Portmanyj je &lt;b&gt;zaszyfrowany&lt;/b&gt; i terŏźnie &lt;b&gt;zaszperowany&lt;/b&gt;</translation>
     </message>
     <message>
-        <source>A fatal error occurred. Bitcoin can no longer continue safely and will quit.</source>
+        <source>A fatal error occurred. Pandacoin can no longer continue safely and will quit.</source>
         <translation>Przitrefiōł sie krytyczny feler. Bitcoin niy poradzi kōntynuować bezpiycznie i ôstanie zawrzity.</translation>
     </message>
 </context>
@@ -795,7 +795,7 @@
         <translation>Pōniywŏż je to piyrsze sztartniyńcie programu, możesz ôbrać kaj %1 bydzie spamiyntować swoje daty.</translation>
     </message>
     <message>
-        <source>When you click OK, %1 will begin to download and process the full %4 block chain (%2GB) starting with the earliest transactions in %3 when %4 initially launched.</source>
+        <source>When you click OK, %1 will begin to download and process the full %4 block chain (%2GB) starting with the earliest transactions in %3 when %4 initially re-launched.</source>
         <translation>Kej naciśniesz OK, %1 zacznie pobiyrać i przetwŏrzać cołkõ %4 keta blokōw (%2GB) przi zaczynaniu ôd piyrszych transakcyji w %3 kej %4 ôstoł sztartniynty.</translation>
     </message>
     <message>

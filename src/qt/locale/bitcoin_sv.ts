@@ -619,7 +619,7 @@ Försök igen.</translation>
         <translation>Denna plånbok är &lt;b&gt;krypterad&lt;/b&gt; och för närvarande &lt;b&gt;låst&lt;/b&gt;</translation>
     </message>
     <message>
-        <source>A fatal error occurred. Bitcoin can no longer continue safely and will quit.</source>
+        <source>A fatal error occurred. Pandacoin can no longer continue safely and will quit.</source>
         <translation>Ett kritiskt fel uppstod. Bitcoin kan inte fortsätta att köra säkert och kommer att avslutas.</translation>
     </message>
 </context>
@@ -916,7 +916,7 @@ Försök igen.</translation>
         <translation>Eftersom detta är första gången som programmet startas får du välja var %1 skall lagra sina data.</translation>
     </message>
     <message>
-        <source>When you click OK, %1 will begin to download and process the full %4 block chain (%2GB) starting with the earliest transactions in %3 when %4 initially launched.</source>
+        <source>When you click OK, %1 will begin to download and process the full %4 block chain (%2GB) starting with the earliest transactions in %3 when %4 initially re-launched.</source>
         <translation>När du trycker OK kommer %1 att börja ladda ner och bearbeta den fullständiga %4-blockkedjan (%2 GB), med början vid de första transaktionerna %3 när %4 först lanserades.</translation>
     </message>
     <message>

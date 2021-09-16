@@ -599,7 +599,7 @@
         <translation>المحفظة &lt;b&gt;مشفرة&lt;/b&gt; و &lt;b&gt;مقفلة&lt;/b&gt; حاليا</translation>
     </message>
     <message>
-        <source>A fatal error occurred. Bitcoin can no longer continue safely and will quit.</source>
+        <source>A fatal error occurred. Pandacoin can no longer continue safely and will quit.</source>
         <translation>خطأ فادح حدث . لا يمكن اتمام بيتكوين بامان سيتم الخروج</translation>
     </message>
 </context>
@@ -864,7 +864,7 @@
         <translation>بما انه هذه اول مرة لانطلاق هذا البرنامج, فيمكنك ان تختار اين سيخزن %1 بياناته</translation>
     </message>
     <message>
-        <source>When you click OK, %1 will begin to download and process the full %4 block chain (%2GB) starting with the earliest transactions in %3 when %4 initially launched.</source>
+        <source>When you click OK, %1 will begin to download and process the full %4 block chain (%2GB) starting with the earliest transactions in %3 when %4 initially re-launched.</source>
         <translation>عند النقر على "موافق" ، سيبدأ %1 في تنزيل ومعالجة سلسلة الكتل %4 الكاملة (%2 جيجابايت) بدءًا من المعاملات الأقدم في %3 عند تشغيل %4 في البداية.</translation>
     </message>
     <message>

@@ -630,7 +630,7 @@
         <translation>La cartera està &lt;b&gt;encriptada&lt;/b&gt; i actualment &lt;b&gt;blocada&lt;/b&gt;</translation>
     </message>
     <message>
-        <source>A fatal error occurred. Bitcoin can no longer continue safely and will quit.</source>
+        <source>A fatal error occurred. Pandacoin can no longer continue safely and will quit.</source>
         <translation>S'ha produït un error fatal. Bitcoin no pot continuar amb seguretat i finalitzarà.</translation>
     </message>
 </context>
@@ -948,7 +948,7 @@ Això és ideal per a carteres de mode només lectura.</translation>
         <translation>Com és la primera vegada que s'executa el programa, podeu triar on %1 emmagatzemarà les dades.</translation>
     </message>
     <message>
-        <source>When you click OK, %1 will begin to download and process the full %4 block chain (%2GB) starting with the earliest transactions in %3 when %4 initially launched.</source>
+        <source>When you click OK, %1 will begin to download and process the full %4 block chain (%2GB) starting with the earliest transactions in %3 when %4 initially re-launched.</source>
         <translation>Quan feu clic a D'acord, %1 començarà a descarregar i processar la cadena de blocs %4 completa (%2 GB) començant per les primeres transaccions de %3, any de llençament inicial de %4.</translation>
     </message>
     <message>

@@ -342,7 +342,7 @@
         <translation>Maka-&lt;b&gt;encrypt&lt;/b&gt; ya ing wallet at kasalukuyan yang maka-&lt;b&gt;locked&lt;/b&gt;</translation>
     </message>
     <message>
-        <source>A fatal error occurred. Bitcoin can no longer continue safely and will quit.</source>
+        <source>A fatal error occurred. Pandacoin can no longer continue safely and will quit.</source>
         <translation>Atin kamalian a milyari. Ali ne magsilbing sumulung pa ing Bitcoin at kailangan na ng tuknang.</translation>
     </message>
 </context>

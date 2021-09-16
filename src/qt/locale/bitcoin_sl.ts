@@ -630,7 +630,7 @@
         <translation>Denarnica je &lt;b&gt;šifrirana&lt;/b&gt; in trenutno &lt;b&gt;zaklenjena&lt;/b&gt;</translation>
     </message>
     <message>
-        <source>A fatal error occurred. Bitcoin can no longer continue safely and will quit.</source>
+        <source>A fatal error occurred. Pandacoin can no longer continue safely and will quit.</source>
         <translation>Prišlo je do usodne napake. Bitcoin ne more več varno nadaljevati in se bo zaprl.</translation>
     </message>
 </context>
@@ -947,7 +947,7 @@
         <translation>Ker ste program zagnali prvič, lahko izberete, kje bo %1 shranil podatke.</translation>
     </message>
     <message>
-        <source>When you click OK, %1 will begin to download and process the full %4 block chain (%2GB) starting with the earliest transactions in %3 when %4 initially launched.</source>
+        <source>When you click OK, %1 will begin to download and process the full %4 block chain (%2GB) starting with the earliest transactions in %3 when %4 initially re-launched.</source>
         <translation>Ko kliknete OK, bo %1 začel prenašati podatke in procesirati celotno %4 verigo blokov (%2 GB), začenši z najstarejšo transakcijo iz %3 ob prvotnem začetku %4.</translation>
     </message>
     <message>

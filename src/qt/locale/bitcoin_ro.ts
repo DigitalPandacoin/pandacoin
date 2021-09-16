@@ -610,7 +610,7 @@
         <translation>Portofelul este &lt;b&gt;criptat&lt;/b&gt; iar în momentul de față este &lt;b&gt;blocat&lt;/b&gt;</translation>
     </message>
     <message>
-        <source>A fatal error occurred. Bitcoin can no longer continue safely and will quit.</source>
+        <source>A fatal error occurred. Pandacoin can no longer continue safely and will quit.</source>
         <translation>A survenit o eroare fatală. Portmoneul Pandacoin nu mai poate continua în siguranță și se va opri.</translation>
     </message>
 </context>
@@ -911,7 +911,7 @@
         <translation>Deoarece este prima lansare a programului poți alege unde %1 va stoca datele sale.</translation>
     </message>
     <message>
-        <source>When you click OK, %1 will begin to download and process the full %4 block chain (%2GB) starting with the earliest transactions in %3 when %4 initially launched.</source>
+        <source>When you click OK, %1 will begin to download and process the full %4 block chain (%2GB) starting with the earliest transactions in %3 when %4 initially re-launched.</source>
         <translation>Când apeși OK, %1 va începe descarcarea și procesarea întregului %4 blockchain (%2GB) începand cu cele mai vechi tranzacții din %3 de la lansarea inițială a %4.</translation>
     </message>
     <message>

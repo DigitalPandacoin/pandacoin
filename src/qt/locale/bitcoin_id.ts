@@ -630,7 +630,7 @@
         <translation>Dompet saat ini &lt;b&gt;terenkripsi&lt;/b&gt; dan &lt;b&gt;terkunci&lt;/b&gt;</translation>
     </message>
     <message>
-        <source>A fatal error occurred. Bitcoin can no longer continue safely and will quit.</source>
+        <source>A fatal error occurred. Pandacoin can no longer continue safely and will quit.</source>
         <translation>Terjadi Kesalahan Fatal. Bitcoin Tidak Dapat Melanjutkan Dengan Aman Dan Akan Keluar</translation>
     </message>
 </context>
@@ -947,7 +947,7 @@
         <translation>Karena ini adalah pertama kalinya program dijalankan, Anda dapat memilih lokasi %1 akan menyimpan data.</translation>
     </message>
     <message>
-        <source>When you click OK, %1 will begin to download and process the full %4 block chain (%2GB) starting with the earliest transactions in %3 when %4 initially launched.</source>
+        <source>When you click OK, %1 will begin to download and process the full %4 block chain (%2GB) starting with the earliest transactions in %3 when %4 initially re-launched.</source>
         <translation>Ketika Anda mengklik OK, %1 akan mulai mengunduh dan memproses %4 block chain penuh (%2GB), dimulai dari transaksi-transaksi awal di %3 saat %4 diluncurkan pertama kali.</translation>
     </message>
     <message>

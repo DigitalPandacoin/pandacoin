@@ -414,7 +414,7 @@
         <translation>Ҳамён &lt;b&gt;кодланган&lt;/b&gt; ва вақтинча &lt;b&gt;қулфланган&lt;/b&gt;</translation>
     </message>
     <message>
-        <source>A fatal error occurred. Bitcoin can no longer continue safely and will quit.</source>
+        <source>A fatal error occurred. Pandacoin can no longer continue safely and will quit.</source>
         <translation>Жиддий хато юз берди. Bitcoin хавфсиз ишлай олмайди, шунинг учун чиқиб кетилади.</translation>
     </message>
 </context>

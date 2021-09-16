@@ -800,7 +800,7 @@
         <translation>Al ser la primera vez que se ejecuta el programa, puede elegir donde %1 almacenará sus datos.</translation>
     </message>
     <message>
-        <source>When you click OK, %1 will begin to download and process the full %4 block chain (%2GB) starting with the earliest transactions in %3 when %4 initially launched.</source>
+        <source>When you click OK, %1 will begin to download and process the full %4 block chain (%2GB) starting with the earliest transactions in %3 when %4 initially re-launched.</source>
         <translation>Al hacer clic OK, %1 iniciará el proceso de descarga y procesará el blockchain completo de %4 (%2 GB), iniciando desde el la transacción más antigua %3 cuando %4 se ejecutó inicialmente.</translation>
     </message>
     <message>

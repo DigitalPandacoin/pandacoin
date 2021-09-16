@@ -440,7 +440,7 @@
         <translation>Monujo estas &lt;b&gt;ĉifrita&lt;/b&gt; kaj aktuale &lt;b&gt;ŝlosita&lt;/b&gt;</translation>
     </message>
     <message>
-        <source>A fatal error occurred. Bitcoin can no longer continue safely and will quit.</source>
+        <source>A fatal error occurred. Pandacoin can no longer continue safely and will quit.</source>
         <translation>Okazis neriparebla eraro. Bitmono ne plu povas sekure daŭri, do ĝi sekure ĉesos.</translation>
     </message>
 </context>

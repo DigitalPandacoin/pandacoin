@@ -547,7 +547,7 @@
         <translation>wallet رمزگذاری شد و در حال حاضر قفل است</translation>
     </message>
     <message>
-        <source>A fatal error occurred. Bitcoin can no longer continue safely and will quit.</source>
+        <source>A fatal error occurred. Pandacoin can no longer continue safely and will quit.</source>
         <translation>خطای بحرانی رخ داده است. بیتکوین دیگر به صورت ایمن قادر به ادامه دادن نمی‌باشد و خارج خواهد شد.</translation>
     </message>
 </context>

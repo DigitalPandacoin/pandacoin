@@ -586,7 +586,7 @@
         <translation>錢包&lt;b&gt;已加密&lt;/b&gt;並且&lt;b&gt;上鎖中&lt;/b&gt;</translation>
     </message>
     <message>
-        <source>A fatal error occurred. Bitcoin can no longer continue safely and will quit.</source>
+        <source>A fatal error occurred. Pandacoin can no longer continue safely and will quit.</source>
         <translation>發生了致命的錯誤。Bitcoin 軟體沒辦法再繼續安全執行，只好結束。</translation>
     </message>
 </context>
@@ -855,7 +855,7 @@
         <translation>因為這是程式第一次啓動，你可以選擇 %1 儲存資料的地方。</translation>
     </message>
     <message>
-        <source>When you click OK, %1 will begin to download and process the full %4 block chain (%2GB) starting with the earliest transactions in %3 when %4 initially launched.</source>
+        <source>When you click OK, %1 will begin to download and process the full %4 block chain (%2GB) starting with the earliest transactions in %3 when %4 initially re-launched.</source>
         <translation>在你按下「好」之後，%1 就會開始下載並處理整個 %4 區塊鏈(大小是  %2GB)，也就是從 %3 年 %4 剛剛起步時的最初交易開始。</translation>
     </message>
     <message>
