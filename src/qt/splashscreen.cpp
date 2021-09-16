@@ -72,7 +72,7 @@ SplashScreen::SplashScreen(interfaces::Node& node, Qt::WindowFlags f, const Netw
 
     QRect rectAvatar(QPoint(75,105), QSize(1000/3,1000/3));
 
-    pixPaint.drawPixmap(rectAvatar, QPixmap(":/images/scarab"));
+    pixPaint.drawPixmap(rectAvatar, QPixmap(":/images/panda_splash"));
 
     // check font size and drawing with
     pixPaint.setFont(QFont(font, 33*fontFactor));
