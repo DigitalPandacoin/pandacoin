@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+	<id>pandacoin-qt</id>
+	<metadata_license>CC0-1.0</metadata_license>
+	<project_license>MIT</project_license>
+	<name>Pandacoin</name>
+	<summary>Desktop wallet for Pandacoin Cryptocurrency</summary>
+	<description>
+		<p>The world's first efficient and sustainable public blockchain, serving as a secure base layer and cryptocurrency for the future blockchain connected world.</p>
+	</description>
+	<launchable type="desktop-id">pandacoin-qt.desktop</launchable>
+	<url type="homepage">https://pandacoin.tech</url>
+	<!--
+		screenshot here?
+	-->
+	<provides>
+		<id>pandacoin-qt.desktop</id>
+	</provides>
+</component>
