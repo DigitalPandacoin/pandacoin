@@ -47,7 +47,7 @@ Build Pandacoin
 
 1. Clone the Pandacoin source code and cd into `pandacoin`
     ```shell
-    git clone https://github.com/peercoin/peercoin
+    git clone https://gitlab.com/pandacoin/pandacoin
     cd pandacoin
     ```
 

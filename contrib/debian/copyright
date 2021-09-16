@@ -3,10 +3,11 @@ Upstream-Contact: Stichting Peercoin Foundation <foundation@peercoin.net>
 Source: https://github.com/peercoin/peercoin
 
 Files: *
+Copyright: 2014-2021 Pandacoin Developers
 Copyright: 2011-2021 Peercoin Developers
 Copyright: 2009-2020, Bitcoin Core Developers
 License: Expat
-Comment: The Pandacoin Developers encompasses the current developers listed on https://github.com/peercoin/peercoin,
+Comment: The Pandacoin Developers encompasses the current developers listed on https://gitlab.com/pandacoin/pandacoin,
          as well as the numerous contributors to the project.
 
 Files: debian/*

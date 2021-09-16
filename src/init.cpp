@@ -561,7 +561,7 @@ void SetupServerArgs()
 
 std::string LicenseInfo()
 {
-    const std::string URL_SOURCE_CODE = "<https://github.com/pandacoin/pandacoin>";
+    const std::string URL_SOURCE_CODE = "<https://gitlab.com/pandacoin/pandacoin>";
 
     return CopyrightHolders(strprintf(_("Copyright (C) %i-%i").translated, 2011, COPYRIGHT_YEAR) + " ") + "\n" +
            "\n" +

@@ -22,7 +22,7 @@ libtool
 pkg-config
 python37
 
-git clone https://github.com/peercoin/peercoin.git
+git clone https://gitlab.com/pandacoin/pandacoin.git
 ```
 
 See [dependencies.md](dependencies.md) for a complete overview.
