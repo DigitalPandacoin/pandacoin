@@ -48,7 +48,3 @@ development team as well as posting on
 
 Behavior outside of these expectations may be reasonable in some
 situations but should be discussed in public in advance.
-
-See also
-----------
-- [peercoin-seeder](https://github.com/peercoin/peercoin-seeder) is a reference implementation of a DNS seed.

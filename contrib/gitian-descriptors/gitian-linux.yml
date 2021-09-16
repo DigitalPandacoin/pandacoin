@@ -33,7 +33,7 @@ packages:
 - "ca-certificates"
 - "python3"
 remotes:
-- "url": "https://github.com/peercoin/peercoin.git"
+- "url": "https://gitlab.com/pandacoin/pandacoin.git"
   "dir": "pandacoin"
 files: []
 script: |

@@ -380,14 +380,14 @@ void BitcoinGUI::createActions()
     openWebAction = new QAction(tr("&Website"), this);
     openWebAction->setStatusTip(tr("Open the Pandacoin website in a web browser."));
 
-    openDonateAction = new QAction(tr("&Donate"), this);
-    openDonateAction->setStatusTip(tr("Finacially support development of the Pandacoin project."));
+    //openDonateAction = new QAction(tr("&Donate"), this);
+    //openDonateAction->setStatusTip(tr("Finacially support development of the Pandacoin project."));
 
     openChatroomAction = new QAction(tr("&Chatroom"), this);
-    openChatroomAction->setStatusTip(tr("Open the Pandacoin Discord chat in a web browser."));
+    openChatroomAction->setStatusTip(tr("Open the Pandacoin Telegram chat in a web browser."));
 
-    openForumAction = new QAction(tr("&Forum"), this);
-    openForumAction->setStatusTip(tr("Open talk.pandacoin.net in a web browser."));
+    //openForumAction = new QAction(tr("&Forum"), this);
+    //openForumAction->setStatusTip(tr("Open talk.pandacoin.net in a web browser."));
 
     connect(quitAction, &QAction::triggered, qApp, QApplication::quit);
     connect(aboutAction, &QAction::triggered, this, &BitcoinGUI::aboutClicked);
@@ -400,9 +400,9 @@ void BitcoinGUI::createActions()
     connect(quitAction, &QAction::triggered, rpcConsole, &QWidget::hide);
 
     connect(openWebAction, SIGNAL(triggered()), this, SLOT(openWeb()));
-    connect(openDonateAction, SIGNAL(triggered()), this, SLOT(openDonate()));
+    //connect(openDonateAction, SIGNAL(triggered()), this, SLOT(openDonate()));
     connect(openChatroomAction, SIGNAL(triggered()), this, SLOT(openChatroom()));
-    connect(openForumAction, SIGNAL(triggered()), this, SLOT(openForum()));
+    //connect(openForumAction, SIGNAL(triggered()), this, SLOT(openForum()));
 
 #ifdef ENABLE_WALLET
     if(walletFrame)
@@ -551,9 +551,9 @@ void BitcoinGUI::createMenuBar()
 
     QMenu *help = appMenuBar->addMenu(tr("&Help"));
     help->addAction(openWebAction);
-    help->addAction(openDonateAction);
+    //help->addAction(openDonateAction);
     help->addAction(openChatroomAction);
-    help->addAction(openForumAction);
+    //help->addAction(openForumAction);
     help->addAction(showHelpMessageAction);
     help->addSeparator();
     help->addAction(aboutAction);
@@ -921,20 +921,20 @@ void BitcoinGUI::gotoVerifyMessageTab(QString addr)
 }
 
 void BitcoinGUI::openWeb() {
-    QDesktopServices::openUrl(QUrl("https://pandacoin.net"));
+    QDesktopServices::openUrl(QUrl("https://pandacoin.tech"));
 }
 
-void BitcoinGUI::openDonate() {
+/*void BitcoinGUI::openDonate() {
     QDesktopServices::openUrl(QUrl("https://www.pandacoin.net/foundation"));
-}
+}*/
 
 void BitcoinGUI::openChatroom() {
-    QDesktopServices::openUrl(QUrl("https://discord.gg/XPxfwtG"));
+    QDesktopServices::openUrl(QUrl("https://t.me/pandacoin"));
 }
 
-void BitcoinGUI::openForum() {
+/*void BitcoinGUI::openForum() {
     QDesktopServices::openUrl(QUrl("https://talk.pandacoin.net"));
-}
+}*/
 
 #endif // ENABLE_WALLET
 

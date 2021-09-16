@@ -481,7 +481,7 @@
     </message>
     <message>
         <location line="+1"/>
-        <source>Open the Pandacoin Discord in a web browser.</source>
+        <source>Open the Pandacoin Telegram in a web browser.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

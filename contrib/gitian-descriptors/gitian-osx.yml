@@ -29,7 +29,7 @@ packages:
 - "python3-setuptools"
 - "fonts-tuffy"
 remotes:
-- "url": "https://github.com/peercoin/peercoin.git"
+- "url": "https://gitlab.com/pandacoin/pandacoin.git"
   "dir": "pandacoin"
 files:
 - "MacOSX10.14.sdk.tar.gz"

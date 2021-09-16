@@ -1,10 +1,10 @@
-Pandacoin 0.10.4 BETA
+Pandacoin 4.10.4 BETA
 
 Setup
 ---------------------
 Pandacoin is the original Pandacoin client and it builds the backbone of the network. It downloads and, by default, stores the entire history of Pandacoin transactions (which is currently less than one gigabyte); depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to a day or more.
 
-To download Pandacoin, visit [peercoin.net](https://peercoin.net/download).
+To download Pandacoin, visit [pandacoin.tech](http://pandacoin.tech/wallet).
 
 Running
 ---------------------
@@ -27,10 +27,10 @@ Drag Pandacoin to your applications folder, and then run Pandacoin.
 
 ### Need Help?
 
-* See the documentation at the [Peercoin Wiki](https://docs.peercoin.net/)
+* See the documentation at the [Pandacoin Wiki](http://wiki.pandacoin.tech/)
 for help and more information.
-* Pandacoin is very similar to bitcoin, so you can use their wiki [Bitcoin Wiki](https://en.bitcoin.it/wiki/Main_Page).
-* Ask for help on [#general](https://peercoin.chat/) on peercoin.chat.
+* Pandacoin is very similar to peercoin, so you can use their wiki [Peercoin Wiki](https://docs.peercoin.net/).
+* Ask for help on [telegram](https://t.me/pandacoin).
 
 Building
 ---------------------
@@ -64,7 +64,7 @@ The Pandacoin repo's [root README](/README.md) contains relevant information on 
 - [Benchmarking](benchmarking.md)
 
 ### Resources
-* Discuss on the [Pandacoin](https://talk.peercoin.net/) forums.
+* Discuss on the [Pandacoin](https://t.me/pandacoin) telegram.
 
 ### Miscellaneous
 - [Assets Attribution](assets-attribution.md)

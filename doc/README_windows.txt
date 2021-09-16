@@ -1,5 +1,6 @@
-Pandacoin 0.10.4 BETA
+Pandacoin 4.10.4 BETA
 
+Copyright (c) 2014-2021 Pandacoin Developers
 Copyright (c) 2011-2021 Peercoin Developers
 Distributed under the MIT software license, see the accompanying
 file COPYING or http://www.opensource.org/licenses/mit-license.php.
@@ -26,5 +27,5 @@ depending on the speed of your computer and network connection, the synchronizat
 process can take anywhere from a few hours to a day or more.
 
 See the pandacoin documentation at:
-  https://docs.peercoin.net/
+  https://wiki.pandacoin.tech/
 for more help and information.

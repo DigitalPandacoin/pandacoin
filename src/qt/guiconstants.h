@@ -47,7 +47,7 @@ static const int TOOLTIP_WRAP_THRESHOLD = 80;
 #define SPINNER_FRAMES 36
 
 #define QAPP_ORG_NAME "Pandacoin"
-#define QAPP_ORG_DOMAIN "pandacoin.net"
+#define QAPP_ORG_DOMAIN "pandacoin.tech"
 #define QAPP_APP_NAME_DEFAULT "Pandacoin-Qt"
 #define QAPP_APP_NAME_TESTNET "Pandacoin-Qt-testnet"
 #define QAPP_APP_NAME_REGTEST "Pandacoin-Qt-regtest"
