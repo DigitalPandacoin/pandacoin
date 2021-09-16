@@ -1,0 +1,3 @@
+contrib/pandacoind.bash-completion	pandacoind
+contrib/pandacoin-cli.bash-completion	pandacoin-cli
+contrib/pandacoin-tx.bash-completion	pandacoin-tx

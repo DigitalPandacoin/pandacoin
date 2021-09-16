@@ -70,11 +70,11 @@
         <translation>&amp;Kopirajte adresu</translation>
 	</message>
 	<message>
-        <source>These are your Peercoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <source>These are your Pandacoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
         <translation>אלו הן כתובות הביטקוין שלך לשליחת תשלומים. תמיד בדוק את כתובת הארנק המקבל לפני שליחת מטבעות</translation>
     </message>
     <message>
-        <source>These are your Peercoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <source>These are your Pandacoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
         <translation>אלו הן כתובות הביטקוין שלך לקבלת תשלומים. מומלץ להשתמש בכתובת חדשה בכל העברת מטבעות</translation>
     </message>
     <message>
@@ -114,7 +114,7 @@
 <context>
     <name>BitcoinGUI</name>
     <message>
-        <source>Peercoin</source>
+        <source>Pandacoin</source>
         <translation>ביטקוין</translation>
     </message>
     <message>
@@ -143,7 +143,7 @@
 <context>
     <name>Intro</name>
     <message>
-        <source>Peercoin</source>
+        <source>Pandacoin</source>
         <translation>ביטקוין</translation>
     </message>
     </context>

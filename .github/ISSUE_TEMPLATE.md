@@ -1,6 +1,6 @@
-<!-- This issue tracker is only for technical issues related to reference implementation of the Peercoin.
+<!-- This issue tracker is only for technical issues related to reference implementation of the Pandacoin.
 
-General Peercoin questions and/or support requests are best directed to the Peercoin Forum: https://talk.peercoin.net/.
+General Pandacoin questions and/or support requests are best directed to the Pandacoin Telegram: https://t.me/pandacoin.
 
 <!-- Describe the issue -->
 <!--- What behavior did you expect? -->
@@ -9,7 +9,7 @@ General Peercoin questions and/or support requests are best directed to the Peer
 
 <!--- How reliably can you reproduce the issue, what are the steps to do so? -->
 
-<!-- What version of Peercoin are you using, where did you get it (website, self-compiled, etc)? Which OS do you use, on which platform? -->
+<!-- What version of Pandacoin are you using, where did you get it (website, self-compiled, etc)? Which OS do you use, on which platform? -->
 
 <!-- GUI-related issue? What is your operating system and its version? If Linux, what is your desktop environment and graphical shell? -->
 

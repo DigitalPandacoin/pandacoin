@@ -66,7 +66,7 @@ AmountSpinBox, QDoubleSpinBox   {
     padding: 0px;
 }
 
-/* Up and down values eg. PPC units on send */
+/* Up and down values eg. PND units on send */
 AmountSpinBox::up-button, QDoubleSpinBox::up-button   {
     subcontrol-origin: border;
     subcontrol-position: top right;
