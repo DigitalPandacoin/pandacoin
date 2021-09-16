@@ -67,7 +67,7 @@ src/qt/bitcoin-qt.includes
 *.pyc
 *.o
 *.o-*
-.ppcoin
+.pndcoin
 .pandacoin
 *.a
 *.pb.cc
@@ -94,7 +94,7 @@ src/qt/bitcoin-qt.includes
 Makefile
 !depends/Makefile
 src/qt/pandacoin-qt
-PPCoin-Qt.app
+PNDcoin-Qt.app
 Pandacoin-Qt.app
 background.tiff*
 
@@ -103,7 +103,7 @@ Makefile.am.user
 
 # Unit-tests
 Makefile.test
-ppcoin-qt_test
+pndcoin-qt_test
 pandacoin-qt_test
 
 # Resources cpp

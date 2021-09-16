@@ -750,7 +750,7 @@
     </message>
     <message>
         <source>Can vary +/- %1 satoshi(s) per input.</source>
-        <translation>Poate varia +/- %1 ppc pentru fiecare intrare.</translation>
+        <translation>Poate varia +/- %1 pnd pentru fiecare intrare.</translation>
     </message>
     <message>
         <source>(no label)</source>
