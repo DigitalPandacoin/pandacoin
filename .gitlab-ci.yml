@@ -233,6 +233,7 @@ full docker pandacoind:
     - pip3 install --upgrade git+https://www.opencode.net/azubieta/appimagecraft.git
   script:
     - cp -r contrib/appimage/{AppDir,"${APPIMAGEBUILDER_YAML}"} .
+    - mv ${APPIMAGEBUILDER_YAML} AppImageBuilder.yml
     - tar xzf pandacoin-*-$TARGET_ARCH.tar.gz -C AppDir --strip-components=1
     - rm AppDir/bin/pandacoin{-cli,-tx,-wallet,d}
     - appimage-builder --skip-tests
