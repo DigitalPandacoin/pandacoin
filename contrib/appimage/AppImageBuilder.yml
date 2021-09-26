@@ -5,7 +5,7 @@ AppDir:
     id: pandacoin-qt
     name: Pandacoin-Qt
     icon: pandacoin
-    version: latest
+    version: !ENV ${VERSION}
     exec: bin/pandacoin-qt
     exec_args: $@
   runtime:

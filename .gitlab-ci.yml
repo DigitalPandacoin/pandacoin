@@ -236,7 +236,8 @@ full docker pandacoind:
     - mv ${APPIMAGEBUILDER_YAML} AppImageBuilder.yml
     - tar xzf pandacoin-*-$TARGET_ARCH.tar.gz -C AppDir --strip-components=1
     - rm AppDir/bin/pandacoin{-cli,-tx,-wallet,d}
-    - appimage-builder --skip-tests
+    - export VERSION=${CI_COMMIT_TAG:=latest}
+    - VERSION=${VERSION/v/} appimage-builder --skip-tests
   artifacts:
     paths:
       - '*.AppImage*'
@@ -297,6 +298,34 @@ full AppImage aarch64:
     - if: $CI_COMMIT_TAG
   needs: ["full: [linux, aarch64-linux-gnu]"]
   dependencies: ["full: [linux, aarch64-linux-gnu]"]
+
+manual AppImage armhf:
+  extends: .AppImage job
+  variables:
+    APPIMAGEBUILDER_YAML: AppImageBuilder.ports.yml
+    TARGET_ARCH: arm-linux-gnueabihf
+    APT_ARCH: armhf
+    BUILD_ARCH: armhf
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "trigger"
+      when: never
+    - if: $CI_COMMIT_TAG
+      when: never
+    - when: on_success
+  needs: ["manual: [linux, arm-linux-gnueabihf]"]
+  dependencies: ["manual: [linux, arm-linux-gnueabihf]"]
+
+full AppImage armhf:
+  extends: .AppImage job
+  variables:
+    APPIMAGEBUILDER_YAML: AppImageBuilder.ports.yml
+    TARGET_ARCH: arm-linux-gnueabihf
+    APT_ARCH: armhf
+    BUILD_ARCH: armhf
+  rules:
+    - if: $CI_COMMIT_TAG
+  needs: ["full: [linux, arm-linux-gnueabihf]"]
+  dependencies: ["full: [linux, arm-linux-gnueabihf]"]
 
 .generate bootstrap.dat job:
   stage: package
@@ -386,6 +415,7 @@ sign:
     - full
     - full AppImage x86_64
     - full AppImage aarch64
+    - full AppImage armhf
   rules:
     - if: $CI_PIPELINE_SOURCE == "trigger"
       when: never
@@ -419,6 +449,7 @@ upload:
     - full
     - full AppImage x86_64
     - full AppImage aarch64
+    - full AppImage armhf
     - sign
   rules:
     - if: $CI_PIPELINE_SOURCE == "trigger"
@@ -438,12 +469,14 @@ release:
     - full
     - full AppImage x86_64
     - full AppImage aarch64
+    - full AppImage armhf
     - sign
     - upload
   dependencies:
     - full
     - full AppImage x86_64
     - full AppImage aarch64
+    - full AppImage armhf
     - sign
   rules:
     - if: $CI_PIPELINE_SOURCE == "trigger"
