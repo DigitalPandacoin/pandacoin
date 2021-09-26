@@ -232,8 +232,7 @@ full docker pandacoind:
     - apt-get install -qqy git wget
     - pip3 install --upgrade git+https://www.opencode.net/azubieta/appimagecraft.git
   script:
-    - cp -r contrib/appimage/{AppDir,"${APPIMAGEBUILDER_YAML}"} .
-    - mv ${APPIMAGEBUILDER_YAML} AppImageBuilder.yml
+    - cp -r contrib/appimage/{AppDir,AppImageBuilder.yml} .
     - tar xzf pandacoin-*-$TARGET_ARCH.tar.gz -C AppDir --strip-components=1
     - rm AppDir/bin/pandacoin{-cli,-tx,-wallet,d}
     - export VERSION=${CI_COMMIT_TAG:=latest}
@@ -246,7 +245,7 @@ full docker pandacoind:
 int. AppImage x86_64:
   extends: .AppImage job
   variables:
-    APPIMAGEBUILDER_YAML: AppImageBuilder.yml
+    SOURCES_REPO: http://archive.ubuntu.com/ubuntu
     TARGET_ARCH: x86_64-linux-gnu
     APT_ARCH: amd64
     BUILD_ARCH: x86_64
@@ -262,7 +261,7 @@ int. AppImage x86_64:
 full AppImage x86_64:
   extends: .AppImage job
   variables:
-    APPIMAGEBUILDER_YAML: AppImageBuilder.yml
+    SOURCES_REPO: http://archive.ubuntu.com/ubuntu
     TARGET_ARCH: x86_64-linux-gnu
     APT_ARCH: amd64
     BUILD_ARCH: x86_64
@@ -274,7 +273,7 @@ full AppImage x86_64:
 manual AppImage aarch64:
   extends: .AppImage job
   variables:
-    APPIMAGEBUILDER_YAML: AppImageBuilder.ports.yml
+    SOURCES_REPO: http://ports.ubuntu.com/ubuntu-ports
     TARGET_ARCH: aarch64-linux-gnu
     APT_ARCH: arm64
     BUILD_ARCH: aarch64
@@ -290,7 +289,7 @@ manual AppImage aarch64:
 full AppImage aarch64:
   extends: .AppImage job
   variables:
-    APPIMAGEBUILDER_YAML: AppImageBuilder.ports.yml
+    SOURCES_REPO: http://ports.ubuntu.com/ubuntu-ports
     TARGET_ARCH: aarch64-linux-gnu
     APT_ARCH: arm64
     BUILD_ARCH: aarch64
@@ -302,7 +301,7 @@ full AppImage aarch64:
 manual AppImage armhf:
   extends: .AppImage job
   variables:
-    APPIMAGEBUILDER_YAML: AppImageBuilder.ports.yml
+    SOURCES_REPO: http://ports.ubuntu.com/ubuntu-ports
     TARGET_ARCH: arm-linux-gnueabihf
     APT_ARCH: armhf
     BUILD_ARCH: armhf
@@ -318,7 +317,7 @@ manual AppImage armhf:
 full AppImage armhf:
   extends: .AppImage job
   variables:
-    APPIMAGEBUILDER_YAML: AppImageBuilder.ports.yml
+    SOURCES_REPO: http://ports.ubuntu.com/ubuntu-ports
     TARGET_ARCH: arm-linux-gnueabihf
     APT_ARCH: armhf
     BUILD_ARCH: armhf
