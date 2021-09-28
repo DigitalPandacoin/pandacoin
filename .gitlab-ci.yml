@@ -86,7 +86,7 @@ warm extra worker:
 
 full warm extra worker:
   extends: warm extra worker
-  parallel: 3
+  parallel: 4
   rules:
     - if: $CI_COMMIT_TAG
 
