@@ -250,89 +250,64 @@ full docker pandacoind:
       - '*.AppImage*'
     expire_in: 1 week
 
-int. AppImage x86_64:
+manual AppImage:
   extends: .AppImage job
-  variables:
-    SOURCES_REPO: http://archive.ubuntu.com/ubuntu
-    TARGET_ARCH: x86_64-linux-gnu
-    APT_ARCH: amd64
-    BUILD_ARCH: x86_64
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "trigger"
+      when: never
+    - if: $CI_COMMIT_TAG
+      when: never
+    - when: on_success
+  parallel:
+    matrix:
+      - SOURCES_REPO: http://ports.ubuntu.com/ubuntu-ports
+        TARGET_ARCH: [arm-linux-gnueabihf, aarch64-linux-gnu]
+        APT_ARCH: arm64
+        BUILD_ARCH: aarch64
+      - SOURCES_REPO: http://ports.ubuntu.com/ubuntu-ports
+        TARGET_ARCH: arm-linux-gnueabihf
+        APT_ARCH: armhf
+        BUILD_ARCH: armhf
+  needs: [manual]
+  dependencies: [manual]
+
+int. AppImage:
+  extends: .AppImage job
   rules:
     - if: $CI_PIPELINE_SOURCE == "trigger"
       when: never
     - if: $CI_COMMIT_TAG
       when: never
     - when: always
-  needs: ["intermediary: [linux, x86_64-linux-gnu]"]
-  dependencies: ["intermediary: [linux, x86_64-linux-gnu]"]
+  parallel:
+    matrix:
+      - SOURCES_REPO: http://archive.ubuntu.com/ubuntu
+        TARGET_ARCH: x86_64-linux-gnu
+        APT_ARCH: amd64
+        BUILD_ARCH: x86_64
+  needs: [intermediary]
+  dependencies: [intermediary]
 
-full AppImage x86_64:
+full AppImage:
   extends: .AppImage job
-  variables:
-    SOURCES_REPO: http://archive.ubuntu.com/ubuntu
-    TARGET_ARCH: x86_64-linux-gnu
-    APT_ARCH: amd64
-    BUILD_ARCH: x86_64
   rules:
     - if: $CI_COMMIT_TAG
-  needs: ["full: [linux, x86_64-linux-gnu]"]
-  dependencies: ["full: [linux, x86_64-linux-gnu]"]
-
-manual AppImage aarch64:
-  extends: .AppImage job
-  variables:
-    SOURCES_REPO: http://ports.ubuntu.com/ubuntu-ports
-    TARGET_ARCH: aarch64-linux-gnu
-    APT_ARCH: arm64
-    BUILD_ARCH: aarch64
-  rules:
-    - if: $CI_PIPELINE_SOURCE == "trigger"
-      when: never
-    - if: $CI_COMMIT_TAG
-      when: never
-    - when: on_success
-  needs: ["manual: [linux, aarch64-linux-gnu]"]
-  dependencies: ["manual: [linux, aarch64-linux-gnu]"]
-
-full AppImage aarch64:
-  extends: .AppImage job
-  variables:
-    SOURCES_REPO: http://ports.ubuntu.com/ubuntu-ports
-    TARGET_ARCH: aarch64-linux-gnu
-    APT_ARCH: arm64
-    BUILD_ARCH: aarch64
-  rules:
-    - if: $CI_COMMIT_TAG
-  needs: ["full: [linux, aarch64-linux-gnu]"]
-  dependencies: ["full: [linux, aarch64-linux-gnu]"]
-
-manual AppImage armhf:
-  extends: .AppImage job
-  variables:
-    SOURCES_REPO: http://ports.ubuntu.com/ubuntu-ports
-    TARGET_ARCH: arm-linux-gnueabihf
-    APT_ARCH: armhf
-    BUILD_ARCH: armhf
-  rules:
-    - if: $CI_PIPELINE_SOURCE == "trigger"
-      when: never
-    - if: $CI_COMMIT_TAG
-      when: never
-    - when: on_success
-  needs: ["manual: [linux, arm-linux-gnueabihf]"]
-  dependencies: ["manual: [linux, arm-linux-gnueabihf]"]
-
-full AppImage armhf:
-  extends: .AppImage job
-  variables:
-    SOURCES_REPO: http://ports.ubuntu.com/ubuntu-ports
-    TARGET_ARCH: arm-linux-gnueabihf
-    APT_ARCH: armhf
-    BUILD_ARCH: armhf
-  rules:
-    - if: $CI_COMMIT_TAG
-  needs: ["full: [linux, arm-linux-gnueabihf]"]
-  dependencies: ["full: [linux, arm-linux-gnueabihf]"]
+  parallel:
+    matrix:
+      - SOURCES_REPO: http://archive.ubuntu.com/ubuntu
+        TARGET_ARCH: x86_64-linux-gnu
+        APT_ARCH: amd64
+        BUILD_ARCH: x86_64
+      - SOURCES_REPO: http://ports.ubuntu.com/ubuntu-ports
+        TARGET_ARCH: [arm-linux-gnueabihf, aarch64-linux-gnu]
+        APT_ARCH: arm64
+        BUILD_ARCH: aarch64
+      - SOURCES_REPO: http://ports.ubuntu.com/ubuntu-ports
+        TARGET_ARCH: arm-linux-gnueabihf
+        APT_ARCH: armhf
+        BUILD_ARCH: armhf
+  needs: [full]
+  dependencies: [full]
 
 .generate bootstrap.dat job:
   stage: package
@@ -420,9 +395,7 @@ sign:
   image: alpine:latest
   dependencies:
     - full
-    - full AppImage x86_64
-    - full AppImage aarch64
-    - full AppImage armhf
+    - full AppImage
   rules:
     - if: $CI_PIPELINE_SOURCE == "trigger"
       when: never
@@ -454,9 +427,7 @@ upload:
   image: curlimages/curl:latest
   dependencies:
     - full
-    - full AppImage x86_64
-    - full AppImage aarch64
-    - full AppImage armhf
+    - full AppImage
     - sign
   rules:
     - if: $CI_PIPELINE_SOURCE == "trigger"
@@ -474,16 +445,12 @@ release:
   image: registry.gitlab.com/gitlab-org/release-cli:latest
   needs:
     - full
-    - full AppImage x86_64
-    - full AppImage aarch64
-    - full AppImage armhf
+    - full AppImage
     - sign
     - upload
   dependencies:
     - full
-    - full AppImage x86_64
-    - full AppImage aarch64
-    - full AppImage armhf
+    - full AppImage
     - sign
   rules:
     - if: $CI_PIPELINE_SOURCE == "trigger"
