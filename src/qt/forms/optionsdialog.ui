@@ -38,6 +38,16 @@
         </widget>
        </item>
        <item>
+        <widget class="QCheckBox" name="checkpointEnforce">
+         <property name="toolTip">
+          <string>Check this box to follow the centrally issued checkpoints.</string>
+         </property>
+         <property name="text">
+          <string>Enforce checkpoints</string>
+         </property>
+        </widget>
+       </item>
+       <item>
         <spacer name="horizontalSpacer_0_Main">
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
