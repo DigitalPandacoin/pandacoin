@@ -865,8 +865,9 @@ UniValue sendcheckpoint(const JSONRPCRequest& request)
     std::string strHash = request.params[0].get_str();
     uint256 hash(uint256S(strHash));
 
+    BlockValidationState state;
     CConnman * connman = g_rpc_node->connman.get();
-    if (!SendSyncCheckpoint(hash, connman))
+    if (!SendSyncCheckpoint(hash, state, Params(), connman))
         throw std::runtime_error("Failed to send checkpoint, check log. ");
 
     UniValue result(UniValue::VOBJ);

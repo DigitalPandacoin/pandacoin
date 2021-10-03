@@ -3706,7 +3706,7 @@ bool ProcessNewBlock(const CChainParams& chainparams, const std::shared_ptr<cons
         bool ret = CheckBlock(*pblock, state, chainparams.GetConsensus());
         if (ret) {
             // Store to disk
-            ret = ::ChainstateActive().AcceptBlock(pblock, state, chainparams, &pindex, fForceProcessing, nullptr, fNewBlock);
+            ret = ::ChainstateActive().AcceptBlock(pblock, state, chainparams, &pindex, fForceProcessing, nullptr, fNewBlock, connman);
         }
         if (ppindex)
             *ppindex = ret ? pindex : nullptr;
@@ -3732,7 +3732,7 @@ bool ProcessNewBlock(const CChainParams& chainparams, const std::shared_ptr<cons
 #ifdef ENABLE_CHECKPOINTS
     // peercoin: if responsible for sync-checkpoint send it
     if (!CSyncCheckpoint::strMasterPrivKey.empty() && (int)gArgs.GetArg("-checkpointdepth", -1) >= 0)
-        SendSyncCheckpoint(AutoSelectSyncCheckpoint(), connman);
+        SendSyncCheckpoint(AutoSelectSyncCheckpoint(), state, chainparams, connman);
 #endif
     return true;
 }

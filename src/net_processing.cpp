@@ -3450,7 +3450,8 @@ bool ProcessMessage(CNode* pfrom, const std::string& msg_type, CDataStream& vRec
          CSyncCheckpoint checkpoint;
          vRecv >> checkpoint;
 
-         if (checkpoint.ProcessSyncCheckpoint(pfrom))
+         BlockValidationState state;
+         if (checkpoint.ProcessSyncCheckpoint(state, Params(), pfrom))
              connman->ForEachNode([&checkpoint, connman](CNode* pnode) {
                  checkpoint.RelayTo(pnode, connman);
              });

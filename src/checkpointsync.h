@@ -7,6 +7,8 @@
 #define CHECKPOINT_MAX_SPAN (60 * 60 * 4) // max 4 hours before latest block
 
 #include <netmessagemaker.h>
+#include <consensus/validation.h>
+#include <chainparams.h>
 
 class CBlock;
 class CBlockIndex;
@@ -29,7 +31,7 @@ bool ResetSyncCheckpoint();
 void AskForPendingSyncCheckpoint(CNode* pfrom);
 bool CheckCheckpointPubKey();
 bool SetCheckpointPrivKey(std::string strPrivKey);
-bool SendSyncCheckpoint(uint256 hashCheckpoint, CConnman* connman);
+bool SendSyncCheckpoint(uint256 hashCheckpoint, BlockValidationState& state, const CChainParams& params, CConnman* connman);
 bool IsSyncCheckpointTooOld(unsigned int nSeconds);
 
 // Synchronized checkpoint (introduced first in ppcoin)
@@ -123,7 +125,7 @@ public:
     }
 
     bool CheckSignature();
-    bool ProcessSyncCheckpoint(CNode* pfrom);
+    bool ProcessSyncCheckpoint(BlockValidationState& state, const CChainParams& params, CNode* pfrom);
 };
 
 #endif // PEERCOIN_CHECKPOINTSYNC_H

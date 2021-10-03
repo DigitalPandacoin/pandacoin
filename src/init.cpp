@@ -559,6 +559,8 @@ void SetupServerArgs()
 
 #if ENABLE_CHECKPOINTS
     gArgs.AddArg("-checkpointkey", "Turn node into checkpoint master", ArgsManager::ALLOW_STRING, OptionsCategory::OPTIONS);
+    gArgs.AddArg("-enforcecheckpoint", "Enforce sync checkpoint (default: true)", ArgsManager::ALLOW_BOOL, OptionsCategory::OPTIONS);
+    gArgs.AddArg("-checkpointdepth", "(default: -1)", ArgsManager::ALLOW_INT, OptionsCategory::OPTIONS);
 #endif
 
     // Add the hidden options
