@@ -31,7 +31,7 @@
 
 #include <univalue.h>
 
-//#include <checkpointsync.h>
+#include <checkpointsync.h>
 
 static UniValue getconnectioncount(const JSONRPCRequest& request)
 {
@@ -865,7 +865,8 @@ UniValue sendcheckpoint(const JSONRPCRequest& request)
     std::string strHash = request.params[0].get_str();
     uint256 hash(uint256S(strHash));
 
-    if (!SendSyncCheckpoint(hash))
+    CConnman * connman = g_rpc_node->connman.get();
+    if (!SendSyncCheckpoint(hash, connman))
         throw std::runtime_error("Failed to send checkpoint, check log. ");
 
     UniValue result(UniValue::VOBJ);

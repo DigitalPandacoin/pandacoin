@@ -33,6 +33,8 @@
 
 #include <kernel.h>
 
+#include <checkpointsync.h>
+
 #if defined(NDEBUG)
 # error "Pandacoin cannot be compiled without assertions."
 #endif
@@ -2922,7 +2924,7 @@ bool ProcessMessage(CNode* pfrom, const std::string& msg_type, CDataStream& vRec
             // we have a chain with at least nMinimumChainWork), and we ignore
             // compact blocks with less work than our tip, it is safe to treat
             // reconstructed compact blocks as having been requested.
-            ProcessNewBlock(chainparams, pblock, /*fForceProcessing=*/true, &fNewBlock);
+            ProcessNewBlock(chainparams, pblock, /*fForceProcessing=*/true, &fNewBlock, connman);
             if (fNewBlock) {
                 pfrom->nLastBlockTime = GetTime();
             } else {
@@ -3012,7 +3014,7 @@ bool ProcessMessage(CNode* pfrom, const std::string& msg_type, CDataStream& vRec
             // disk-space attacks), but this should be safe due to the
             // protections in the compact block handler -- see related comment
             // in compact block optimistic reconstruction handling.
-            ProcessNewBlock(chainparams, pblock, /*fForceProcessing=*/true, &fNewBlock);
+            ProcessNewBlock(chainparams, pblock, /*fForceProcessing=*/true, &fNewBlock, connman);
             if (fNewBlock) {
                 pfrom->nLastBlockTime = GetTime();
             } else {
@@ -3187,7 +3189,7 @@ bool ProcessMessage(CNode* pfrom, const std::string& msg_type, CDataStream& vRec
 
             bool fNewBlock = false;
             bool fPoSDuplicate = false;
-            ProcessNewBlock(chainparams, pblock, forceProcessing, &fNewBlock, &pindexLastAccepted, &fPoSDuplicate);
+            ProcessNewBlock(chainparams, pblock, forceProcessing, &fNewBlock, connman, &pindexLastAccepted, &fPoSDuplicate);
             if (fNewBlock) {
                 pfrom->nLastBlockTime = GetTime();
             } else {

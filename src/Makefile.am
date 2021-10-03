@@ -252,9 +252,9 @@ BITCOIN_CORE_H = \
   kernel.h \
   kernelrecord.h
 
-#if ENABLE_CHECKPOINTS
-#  BITCOIN_CORE_H += checkpointsync.h
-#endif
+if ENABLE_CHECKPOINTS
+  BITCOIN_CORE_H += checkpointsync.h
+endif
 
 
 obj/build.h: FORCE
@@ -318,9 +318,9 @@ libbitcoin_server_a_SOURCES = \
   kernel.cpp \
   $(BITCOIN_CORE_H)
 
-#if ENABLE_CHECKPOINTS
-#libbitcoin_server_a_SOURCES += checkpointsync.cpp
-#endif
+if ENABLE_CHECKPOINTS
+libbitcoin_server_a_SOURCES += checkpointsync.cpp
+endif
 if ENABLE_WALLET
 libbitcoin_server_a_SOURCES += wallet/init.cpp
 endif

@@ -22,14 +22,14 @@ CBlockIndex* GetLastSyncCheckpoint();
 bool WriteSyncCheckpoint(const uint256& hashCheckpoint);
 bool IsSyncCheckpointEnforced();
 void SetCheckpointEnforce(bool fEnforce);
-bool AcceptPendingSyncCheckpoint();
+bool AcceptPendingSyncCheckpoint(CConnman* connman);
 uint256 AutoSelectSyncCheckpoint();
 bool CheckSyncCheckpoint(const uint256& hashBlock, const CBlockIndex* pindexPrev);
 bool ResetSyncCheckpoint();
 void AskForPendingSyncCheckpoint(CNode* pfrom);
 bool CheckCheckpointPubKey();
 bool SetCheckpointPrivKey(std::string strPrivKey);
-bool SendSyncCheckpoint(uint256 hashCheckpoint);
+bool SendSyncCheckpoint(uint256 hashCheckpoint, CConnman* connman);
 bool IsSyncCheckpointTooOld(unsigned int nSeconds);
 
 // Synchronized checkpoint (introduced first in ppcoin)

@@ -111,6 +111,13 @@ AM_CONDITIONAL([HAVE_DOXYGEN], [test -n "$DOXYGEN"])
 
 AC_ARG_VAR(PYTHONPATH, Augments the default search path for python module files)
 
+# Enable sync checkpoints
+AC_ARG_ENABLE([checkpoints],
+  [AS_HELP_STRING([--disable-checkpoints],
+  [disable sync checkpoints (enabled by default)])],
+  [enable_checkpoints=$enableval],
+  [enable_checkpoints=yes])
+
 AC_ARG_ENABLE([wallet],
   [AS_HELP_STRING([--disable-wallet],
   [disable wallet (enabled by default)])],
@@ -1463,14 +1470,14 @@ if test "x$use_ccache" = "xyes"; then
     AX_CHECK_PREPROC_FLAG([-Qunused-arguments],[CPPFLAGS="-Qunused-arguments $CPPFLAGS"])
 fi
 
-#dnl enable sync checkpoints
-#AC_MSG_CHECKING([if sync checkpoints should be enabled])
-#if test x$enable_checkpoints != xno; then
-#  AC_MSG_RESULT(yes)
-#  AC_DEFINE_UNQUOTED([ENABLE_CHECKPOINTS],[1],[Define to 1 to enable sync checkpoints])
-#else
-#  AC_MSG_RESULT(no)
-#fi
+dnl enable sync checkpoints
+AC_MSG_CHECKING([if sync checkpoints should be enabled])
+if test x$enable_checkpoints != xno; then
+  AC_MSG_RESULT(yes)
+  AC_DEFINE_UNQUOTED([ENABLE_CHECKPOINTS],[1],[Define to 1 to enable sync checkpoints])
+else
+  AC_MSG_RESULT(no)
+fi
 
 dnl enable wallet
 AC_MSG_CHECKING([if wallet should be enabled])
@@ -1718,6 +1725,7 @@ esac
 
 echo
 echo "Options used to compile and link:"
+echo "  checkpoints   = $enable_checkpoints"
 echo "  with wallet   = $enable_wallet"
 echo "  with gui / qt = $bitcoin_enable_qt"
 if test x$bitcoin_enable_qt != xno; then

@@ -57,7 +57,7 @@
 
 #include <validationinterface.h>
 #include <walletinitinterface.h>
-//#include <checkpointsync.h>
+#include <checkpointsync.h>
 
 #include <stdint.h>
 #include <stdio.h>
@@ -556,6 +556,10 @@ void SetupServerArgs()
 
     gArgs.AddArg("-reservebalance=<amt>", "Reserve this many coins", ArgsManager::ALLOW_ANY, OptionsCategory::OPTIONS);
     gArgs.AddArg("-minting", "Enable minting (default: true)", ArgsManager::ALLOW_BOOL, OptionsCategory::OPTIONS);
+
+#if ENABLE_CHECKPOINTS
+    gArgs.AddArg("-checkpointkey", "Turn node into checkpoint master", ArgsManager::ALLOW_STRING, OptionsCategory::OPTIONS);
+#endif
 
     // Add the hidden options
     gArgs.AddHiddenArgs(hidden_args);

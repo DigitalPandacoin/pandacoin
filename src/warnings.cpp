@@ -4,7 +4,7 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include <alert.h>
-//#include <checkpointsync.h>
+#include <checkpointsync.h>
 
 #include <warnings.h>
 
@@ -81,7 +81,15 @@ std::string GetWarnings(bool verbose)
         warnings_concise = "Warning: We do not appear to fully agree with our peers! You may need to upgrade, or other nodes may need to upgrade.";
         warnings_verbose += (warnings_verbose.empty() ? "" : warning_separator) + _("Warning: We do not appear to fully agree with our peers! You may need to upgrade, or other nodes may need to upgrade.").translated;
     }
-
+    #ifdef ENABLE_CHECKPOINTS
+        // peercoin: detect invalid checkpoint
+        if (hashInvalidCheckpoint != uint256())
+        {
+            nPriority = 3000;
+            warnings_concise = "WARNING: Inconsistent checkpoint found! Stop enforcing checkpoints and notify developers to resolve the issue.";
+            warnings_verbose += (warnings_verbose.empty() ? "" : warning_separator) + _("WARNING: Invalid checkpoint found! Displayed transactions may not be correct! You may need to upgrade, or notify developers of the issue.").translated;
+        }
+    #endif
     // Alerts
     {
         LOCK(cs_mapAlerts);

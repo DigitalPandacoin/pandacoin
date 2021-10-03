@@ -46,7 +46,7 @@
 
 #include <kernel.h>
 #include <bignum.h>
-//#include <checkpointsync.h>
+#include <checkpointsync.h>
 #include <wallet/wallet.h>
 
 #include <string>
@@ -3587,7 +3587,7 @@ static FlatFilePos SaveBlockToDisk(const CBlock& block, int nHeight, const CChai
 }
 
 /** Store block on disk. If dbp is non-nullptr, the file is known to already reside on disk */
-bool CChainState::AcceptBlock(const std::shared_ptr<const CBlock>& pblock, BlockValidationState& state, const CChainParams& chainparams, CBlockIndex** ppindex, bool fRequested, const FlatFilePos* dbp, bool* fNewBlock)
+bool CChainState::AcceptBlock(const std::shared_ptr<const CBlock>& pblock, BlockValidationState& state, const CChainParams& chainparams, CBlockIndex** ppindex, bool fRequested, const FlatFilePos* dbp, bool* fNewBlock, CConnman* connman)
 {
     const CBlock& block = *pblock;
     bool fCheckPoS = true;
@@ -3681,13 +3681,13 @@ bool CChainState::AcceptBlock(const std::shared_ptr<const CBlock>& pblock, Block
 
 #ifdef ENABLE_CHECKPOINTS
     // peercoin: check pending sync-checkpoint
-    AcceptPendingSyncCheckpoint();
+    AcceptPendingSyncCheckpoint(connman);
 #endif
 
     return true;
 }
 
-bool ProcessNewBlock(const CChainParams& chainparams, const std::shared_ptr<const CBlock> pblock, bool fForceProcessing, bool* fNewBlock, CBlockIndex** ppindex, bool* fPoSDuplicate)
+bool ProcessNewBlock(const CChainParams& chainparams, const std::shared_ptr<const CBlock> pblock, bool fForceProcessing, bool* fNewBlock, CConnman* connman, CBlockIndex** ppindex, bool* fPoSDuplicate)
 {
     AssertLockNotHeld(cs_main);
 
@@ -3732,7 +3732,7 @@ bool ProcessNewBlock(const CChainParams& chainparams, const std::shared_ptr<cons
 #ifdef ENABLE_CHECKPOINTS
     // peercoin: if responsible for sync-checkpoint send it
     if (!CSyncCheckpoint::strMasterPrivKey.empty() && (int)gArgs.GetArg("-checkpointdepth", -1) >= 0)
-        SendSyncCheckpoint(AutoSelectSyncCheckpoint());
+        SendSyncCheckpoint(AutoSelectSyncCheckpoint(), connman);
 #endif
     return true;
 }
@@ -4446,7 +4446,7 @@ bool LoadExternalBlockFile(const CChainParams& chainparams, FILE* fileIn, FlatFi
                     CBlockIndex* pindex = LookupBlockIndex(hash);
                     if (!pindex || (pindex->nStatus & BLOCK_HAVE_DATA) == 0) {
                       BlockValidationState state;
-                      if (::ChainstateActive().AcceptBlock(pblock, state, chainparams, nullptr, true, dbp, nullptr)) {
+                      if (::ChainstateActive().AcceptBlock(pblock, state, chainparams, nullptr, true, dbp, nullptr, nullptr)) {
                           nLoaded++;
                       }
                       if (state.IsError()) {
@@ -4483,7 +4483,7 @@ bool LoadExternalBlockFile(const CChainParams& chainparams, FILE* fileIn, FlatFi
                                     head.ToString());
                             LOCK(cs_main);
                             BlockValidationState dummy;
-                            if (::ChainstateActive().AcceptBlock(pblockrecursive, dummy, chainparams, nullptr, true, &it->second, nullptr))
+                            if (::ChainstateActive().AcceptBlock(pblockrecursive, dummy, chainparams, nullptr, true, &it->second, nullptr, nullptr))
                             {
                                 nLoaded++;
                                 queue.push_back(pblockrecursive->GetHash());
