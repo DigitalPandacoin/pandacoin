@@ -228,7 +228,7 @@ full docker pandacoind:
   tags: []
   before_script:
     - apt-get -qq update
-    - apt-get install -qqy git wget
+    - apt-get install -qqy git wget ca-certificates
     - pip3 install --upgrade git+https://www.opencode.net/azubieta/appimagecraft.git
   script:
     - cp -r contrib/appimage/{AppDir,AppImageBuilder.yml} .
