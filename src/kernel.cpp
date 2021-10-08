@@ -44,6 +44,9 @@ const unsigned int nProtocolV09TestSwitchTime = 1581940800; // Mon 17 Feb 12:00:
 // Enable rewards
 const unsigned int nRewardsStartSwitchTime     = 1621249200; // Mon 17 May 11:00:00 UTC 2021
 const unsigned int nRewardsStartTestSwitchTime = 1621249200; // Mon 17 May 11:00:00 UTC 2021
+// Require PoS block to happen before new PoW blocks
+const unsigned int nPoWPoSDependenceSwitchTime = 1635760800; // Mon 01 Oct 10:00:00 UTC 2021
+const unsigned int nPoWPoSDependenceTestSwitchTime = 1633783010;
 
 // Hard checkpoints of stake modifiers to ensure they are deterministic
 static std::map<int, unsigned int> mapStakeModifierCheckpoints =
@@ -131,6 +134,11 @@ bool IsProtocolV09(unsigned int nTime)
 bool IsRewardsEnabled(unsigned int nTime)
 {
     return (nTime >= (Params().NetworkIDString() != CBaseChainParams::MAIN ? nRewardsStartTestSwitchTime : nRewardsStartSwitchTime));
+}
+
+bool IsPoWPoSDependence(unsigned int nTime)
+{
+    return (nTime >= (Params().NetworkIDString() != CBaseChainParams::MAIN ? nPoWPoSDependenceTestSwitchTime : nPoWPoSDependenceSwitchTime));
 }
 
 // Get the last stake modifier and its generation time from a given block
@@ -671,4 +679,14 @@ unsigned int GetStakeEntropyBit(const CBlock& block)
             LogPrintf(" entropybit=%d\n", nEntropyBit);
     }
     return nEntropyBit;
+}
+
+bool IsPoWAccepted(const CBlockIndex* pindex, const int depth)
+{
+    if (pindex == nullptr)
+        return true;
+    const CBlockIndex* pindexPrev = GetLastBlockIndex(pindex, false);
+    if (pindexPrev == nullptr || pindexPrev->nHeight <= depth)
+        return true;
+    return pindex->nHeight - pindexPrev->nHeight >= depth;
 }
