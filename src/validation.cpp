@@ -3052,6 +3052,15 @@ static bool ContextualCheckBlock(const CBlock& block, CValidationState& state, c
 {
     const int nHeight = pindexPrev == nullptr ? 0 : pindexPrev->nHeight + 1;
 
+    if (Params().NetworkIDString() != CBaseChainParams::REGTEST) {
+        if (block.IsProofOfWork() && pindexPrev && IsPoWPoSDependence(pindexPrev->nTime)) {
+            assert(pindexPrev != nullptr);
+            if (!IsPoWAccepted(pindexPrev))
+                return state.DoS(100, false, REJECT_INVALID, "bad-pow-pos-sequence", true,
+                                 strprintf("%s: need at least %s PoS blocks preceding a PoW block", __func__, REQUIRED_POS_DEPTH));
+        }
+    }
+
     // Start enforcing BIP113 (Median Time Past)
     int nLockTimeFlags = 0;
     if (pindexPrev && IsBTC16BIPsEnabled(pindexPrev->nTime)) {

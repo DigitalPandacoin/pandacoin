@@ -56,7 +56,11 @@ unsigned int GetNextTargetRequired(const CBlockIndex* pindexLast, bool fProofOfS
         int64_t nInterval = params.nTargetTimespan / nTargetSpacing;
         bnNew *= ((nInterval - 1) * nTargetSpacing + nActualSpacing + nActualSpacing);
         bnNew /= ((nInterval + 1) * nTargetSpacing);
-        }
+
+        // pandacoin: in case a block does go through for some reason we require it to have an impossible diff
+        if (!fProofOfStake && IsPoWPoSDependence(pindexLast->nTime) && !IsPoWAccepted(pindexLast))
+            return CBigNum(std::numeric_limits<unsigned int>::max()).GetCompact();
+    }
 
     if (bnNew > CBigNum(params.powLimit))
         bnNew = CBigNum(params.powLimit);

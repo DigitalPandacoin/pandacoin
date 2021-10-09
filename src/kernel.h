@@ -16,6 +16,8 @@ class CBlock;
 // ratio of group interval length between the last group and the first group
 static const int MODIFIER_INTERVAL_RATIO = 3;
 
+const int REQUIRED_POS_DEPTH = 4;
+
 // Protocol switch time of v0.3 kernel protocol
 extern unsigned int nProtocolV03SwitchTime;
 extern unsigned int nProtocolV03TestSwitchTime;
@@ -37,6 +39,8 @@ bool IsBTC16BIPsEnabled(uint32_t nTimeTx);
 bool IsProtocolV09(unsigned int nTimeTx);
 // pandacoin: Whether a miner is able to earn rewards
 bool IsRewardsEnabled(unsigned int nTime);
+// pandacoin: Require PoS block to happen before new PoW blocks
+bool IsPoWPoSDependence(unsigned int nTime);
 
 // Compute the hash modifier for proof-of-stake
 bool ComputeNextStakeModifier(const CBlockIndex* pindexCurrent, uint64_t& nStakeModifier, bool& fGeneratedStakeModifier);
@@ -62,5 +66,7 @@ bool IsSuperMajority(int minVersion, const CBlockIndex* pstart, unsigned int nRe
 
 // peercoin: entropy bit for stake modifier if chosen by modifier
 unsigned int GetStakeEntropyBit(const CBlock& block);
+
+bool IsPoWAccepted(const CBlockIndex* pindex, int depth = REQUIRED_POS_DEPTH);
 
 #endif // PANDACOIN_KERNEL_H
