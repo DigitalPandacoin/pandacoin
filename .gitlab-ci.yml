@@ -425,7 +425,7 @@ sign:
   before_script:
     - apk add gnupg mktorrent
   script:
-    - rm *-debug*
+    - rm *-debug* *-unsigned.tar.gz
     - sha256sum * > SHA256SUMS
     - cat $GPG_PRIVATE_KEY | gpg --batch --import
     - gpg --digest-algo sha256 --clearsign SHA256SUMS
@@ -457,7 +457,7 @@ upload:
   variables:
     GIT_STRATEGY: none
   script:
-    - rm *-debug*
+    - rm *-debug* *-unsigned.tar.gz
     - |
       for i in *; do curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file ${i} ${PACKAGE_REGISTRY_URL}/${i}; done
 
@@ -484,6 +484,6 @@ release:
   variables:
     GIT_STRATEGY: none
   script:
-    - rm *-debug*
+    - rm *-debug* *-unsigned.tar.gz
     - |
       eval 'release-cli create --name "Release $CI_COMMIT_TAG" --tag-name $CI_COMMIT_TAG $(for i in *; do echo  --assets-link "{\"name\":\"${i}\",\"url\":\"${PACKAGE_REGISTRY_URL}/${i}\"}"; done)'
