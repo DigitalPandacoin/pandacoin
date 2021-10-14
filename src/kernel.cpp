@@ -50,14 +50,16 @@ const unsigned int nPoWPoSDependenceTestSwitchTime = 1633783010;
 // Hard checkpoints of stake modifiers to ensure they are deterministic
 static std::map<int, unsigned int> mapStakeModifierCheckpoints =
     boost::assign::map_list_of
-    ( 0, 0xfd11f4e7u )
-    ( 2215, 0x95a81ca5u )
-    ( 7000, 0x18073da8u )
+    (     0, 0xfd11f4e7u )
+    (  2215, 0x95a81ca5u )
+    (  7000, 0x18073da8u )
+    ( 18000, 0xb6515044u )
     ;
 
 static std::map<int, unsigned int> mapStakeModifierTestnetCheckpoints =
     boost::assign::map_list_of
-    ( 0, 0xfd11f4e7u )
+    (     0, 0xfd11f4e7u )
+    ( 10800, 0x71e9e59bu )
     ;
 
 // Whether the given coinstake is subject to new v0.3 protocol

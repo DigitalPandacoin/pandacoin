@@ -92,10 +92,10 @@ public:
         consensus.nMinerConfirmationWindow = 2016; // nPowTargetTimespan / nPowTargetSpacing
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x0000000000000000000000000000000000000000000000000000677b5f6bb1ff");
+        consensus.nMinimumChainWork = uint256S("0x00000000000000000000000000000000000000000000000000078bafa76d43af");
 
         // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("0x9fb62c4eb3e0a61eb368a5edd3e22634dbc5ad6cd11cac0a8fed034b083ba37f");
+        consensus.defaultAssumeValid = uint256S("0xa83074a354d968b09df059aeb1daf75ef1e5b70f55fd7f19c2717874f0949ca5");
 
         /**
          * The message start string is designed to be unlikely to occur in normal data.
@@ -142,15 +142,16 @@ public:
             {
                 {     0,    uint256S("0x000000003fa90365cae3b93740a5a08810a42dd122f87383afd45655a0101224")},
                 {     2215, uint256S("0x1e596dbb7417c84e75428781eab0035ef30cefaea48079eaccd6974e949eb5d2")},
-                {     7000, uint256S("0x9fb62c4eb3e0a61eb368a5edd3e22634dbc5ad6cd11cac0a8fed034b083ba37f")}
+                {     7000, uint256S("0x9fb62c4eb3e0a61eb368a5edd3e22634dbc5ad6cd11cac0a8fed034b083ba37f")},
+                {    18000, uint256S("0xa83074a354d968b09df059aeb1daf75ef1e5b70f55fd7f19c2717874f0949ca5")},
             }
         };
 
         chainTxData = ChainTxData{
-            1629487224, // * UNIX timestamp of last known number of transactions
-            14070,    // * total number of transactions between genesis and that timestamp
+            1634237485, // * UNIX timestamp of last known number of transactions
+            36281,    // * total number of transactions between genesis and that timestamp
                         //   (the tx=... number in the SetBestChain debug.log lines)
-            0.00265074711481541 // * estimated number of transactions per second after that timestamp
+            0.004944084615700324 // * estimated number of transactions per second after that timestamp
                         // 1743720/(1580808868-1345400356) = 0.007407208
         };
     }
@@ -184,10 +185,10 @@ public:
         consensus.nMinerConfirmationWindow = 2016; // nPowTargetTimespan / nPowTargetSpacing
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x00");
+        consensus.nMinimumChainWork = uint256S("0x00000000000000000000000000000000000000000000000003126f8109c1c0d7");
 
         // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("0x00");
+        consensus.defaultAssumeValid = uint256S("0x16ea0c9099e14a4eda8d37e10c75e9a16023fe88d15e2510d7acd8702ac393d0");
 
         pchMessageStart[0] = 0xad;
         pchMessageStart[1] = 0xaf;
@@ -226,15 +227,16 @@ public:
         checkpointData = {
             {
                 {     0, uint256S("0x000000003fa90365cae3b93740a5a08810a42dd122f87383afd45655a0101224")},
+                { 10800, uint256S("0x16ea0c9099e14a4eda8d37e10c75e9a16023fe88d15e2510d7acd8702ac393d0")},
             }
         };
 
         chainTxData = ChainTxData{
             // Data as of block a3fd4a0a40b96ce78700dc14745536ec31efc63eebd54a99fa49d156402db88c (height 5539)
-            0, // * UNIX timestamp of last known number of transactions
-            0,     // * total number of transactions between genesis and that timestamp
+            1634237042, // * UNIX timestamp of last known number of transactions
+            20918,     // * total number of transactions between genesis and that timestamp
                         //   (the tx=... number in the SetBestChain debug.log lines)
-            0 // * estimated number of transactions per second after that timestamp
+            0.006780192544661512 // * estimated number of transactions per second after that timestamp
                         // 868816/(1588604853-1346029522) = 0.003581633
         };
     }
