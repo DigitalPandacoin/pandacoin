@@ -137,6 +137,7 @@ full warm extra worker:
   after_script:
     - mv ${GITIAN_DIR}/cache ${CI_PROJECT_DIR}/gitian-cache
     - cp -r ${GITIAN_DIR}/build/out/* ${CI_PROJECT_DIR}/
+    - cp -r ${GITIAN_DIR}/result/* ${CI_PROJECT_DIR}/
   artifacts:
     name: "pandacoin-${CI_COMMIT_REF_NAME}-${CI_JOB_NAME}"
     paths:
