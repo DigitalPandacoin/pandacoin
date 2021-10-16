@@ -104,8 +104,8 @@ full warm extra worker:
         - gitian-cache/common
       key: gitian-cache-bionic-common
     - paths:
-        - gitian-cache/pandacoin-${TARGET_OS}-0.20
-      key: gitian-cache-bionic-${TARGET_OS}-0.20
+        - gitian-cache/pandacoin-${TARGET_OS}-0.20/${TARGET_ARCH}
+      key: gitian-cache-bionic-${TARGET_OS}-0.20-${TARGET_ARCH}
   variables:
     GIT_DEPTH: 0
     DOCKER_BUILDKIT: 1
