@@ -99,7 +99,6 @@ full warm extra worker:
     - docker
     - cpx51
   cache:
-    # PANDACOIN TODO bind major versions to cache, eg. CI_JOB_NAME + v0.9.0
     - paths:
         - gitian-cache/common
       key: gitian-cache-bionic-common
