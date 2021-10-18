@@ -471,7 +471,7 @@ bool SignTransaction(CMutableTransaction& mtx, const SigningProvider* keystore, 
     bool fHashSingle = ((nHashType & ~SIGHASH_ANYONECANPAY) == SIGHASH_SINGLE);
 
     // we don't need nTime anymore
-    if (mtx.nVersion >= 3)
+    if (mtx.nVersion >= 4)
         mtx.nTime = 0;
 
     // Use CTransaction for the constant parts of the
