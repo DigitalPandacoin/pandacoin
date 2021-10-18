@@ -213,7 +213,7 @@ inline void UnserializeTransaction(TxType& tx, Stream& s) {
     const bool fAllowWitness = !(s.GetVersion() & SERIALIZE_TRANSACTION_NO_WITNESS);
 
     s >> tx.nVersion;
-    if (tx.nVersion < 3)
+    if (tx.nVersion < 4)
         s >> tx.nTime;
     else
         tx.nTime = 0;
@@ -257,7 +257,7 @@ inline void SerializeTransaction(const TxType& tx, Stream& s) {
     const bool fAllowWitness = !(s.GetVersion() & SERIALIZE_TRANSACTION_NO_WITNESS);
 
     s << tx.nVersion;
-    if (tx.nVersion<3)
+    if (tx.nVersion < 4)
         s << tx.nTime;
     unsigned char flags = 0;
     // Consistency check
