@@ -1745,7 +1745,7 @@ bool AppInitMain(NodeContext& node)
     }, DUMP_BANS_INTERVAL);
 
 #ifdef ENABLE_WALLET
-    if (!gArgs.GetBoolArg("-disablewallet", DEFAULT_DISABLE_WALLET) && GetWallets()[0] && gArgs.GetBoolArg("-stakegen", true))
+    if (HasWallets() && GetWallets()[0] && gArgs.GetBoolArg("-stakegen", true))
         MintStake(threadGroup, GetWallets()[0], node.connman.get(), node.mempool);
 #endif
 
