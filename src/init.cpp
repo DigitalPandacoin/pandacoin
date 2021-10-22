@@ -1744,8 +1744,10 @@ bool AppInitMain(NodeContext& node)
         banman->DumpBanlist();
     }, DUMP_BANS_INTERVAL);
 
-    if (GetWallets()[0] && gArgs.GetBoolArg("-stakegen", true))
+#ifdef ENABLE_WALLET
+    if (!gArgs.GetBoolArg("-disablewallet", DEFAULT_DISABLE_WALLET) && GetWallets()[0] && gArgs.GetBoolArg("-stakegen", true))
         MintStake(threadGroup, GetWallets()[0], node.connman.get(), node.mempool);
+#endif
 
     return true;
 }
