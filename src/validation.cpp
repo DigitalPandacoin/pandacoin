@@ -1504,10 +1504,7 @@ int ApplyTxInUndo(Coin&& undo, CCoinsViewCache& view, const COutPoint& out)
             undo.fCoinBase = alternate.fCoinBase;
             undo.fCoinStake = alternate.fCoinStake; // peercoin
             undo.nTime = alternate.nTime;           // peercoin
-        // pandacoin genesis block (0) is spendable
-        // there *should* be no need to re-assign
-        // PANDACOIN todo: possibly remove this
-        } else if (alternate.nHeight > 0) {
+        } else {
             return DISCONNECT_FAILED; // adding output for transaction without known metadata
         }
     }
