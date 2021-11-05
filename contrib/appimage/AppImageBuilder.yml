@@ -50,7 +50,6 @@ AppDir:
       - sound-theme-freedesktop
       - perl
       - perl-base
-      - kwayland-data
       - libwacom2
       - libasound2
       - breeze
