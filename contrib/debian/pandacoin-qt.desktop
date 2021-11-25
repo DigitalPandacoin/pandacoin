@@ -1,7 +1,7 @@
 [Desktop Entry]
 Encoding=UTF-8
 Name=Pandacoin
-Comment=Desktop allet for Pandacoin Cryptocurrency
+Comment=Desktop wallet for Pandacoin Cryptocurrency
 Comment[de]=Offizieller Client für die Kryptowährung Pandacoin
 Exec=pandacoin-qt %u
 Terminal=false
