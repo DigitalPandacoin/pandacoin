@@ -9,6 +9,7 @@
 
 #include <consensus/validation.h>
 #include <coins.h>
+#include <kernel.h>
 
 bool IsStandard(const CScript& scriptPubKey, txnouttype& whichType)
 {

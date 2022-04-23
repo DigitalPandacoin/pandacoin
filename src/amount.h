@@ -20,6 +20,7 @@ static const CAmount MIN_TX_FEE = COIN;
 static const CAmount PERKB_TX_FEE = COIN * 10;
 static const CAmount MIN_TXOUT_AMOUNT = COIN;
 static const CAmount MAX_MINT_PROOF_OF_WORK = 999 * COIN;
+static const CAmount MAX_MINT_PROOF_OF_WORK_V10 = MAX_MINT_PROOF_OF_WORK;
 static const std::string CURRENCY_UNIT = "PND";
 
 /** No amount larger than this (in satoshi) is valid.

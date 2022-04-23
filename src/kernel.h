@@ -1,4 +1,4 @@
-// Copyright (c) 2012-2021 The Peercoin developers
+// Copyright (c) 2012-2022 The Peercoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 #ifndef PANDACOIN_KERNEL_H
@@ -37,6 +37,8 @@ bool IsProtocolV07(unsigned int nTimeTx);
 bool IsBTC16BIPsEnabled(uint32_t nTimeTx);
 // Whether a given timestamp is subject to new v0.9 protocol
 bool IsProtocolV09(unsigned int nTimeTx);
+// Whether a given timestamp is subject to new v10 protocol
+bool IsProtocolV10(unsigned int nTimeTx);
 // pandacoin: Whether a miner is able to earn rewards
 bool IsRewardsEnabled(unsigned int nTime);
 // pandacoin: Require PoS block to happen before new PoW blocks
@@ -51,7 +53,7 @@ bool CheckStakeKernelHash(unsigned int nBits, CBlockIndex* pindexPrev, const CBl
 
 // Check kernel hash target and coinstake signature
 // Sets hashProofOfStake on success return
-bool CheckProofOfStake(BlockValidationState &state, CBlockIndex* pindexPrev, const CTransactionRef &tx, unsigned int nBits, uint256& hashProofOfStake);
+bool CheckProofOfStake(BlockValidationState &state, CBlockIndex* pindexPrev, const CTransactionRef &tx, unsigned int nBits, uint256& hashProofOfStake, unsigned int nTimeTx);
 
 // Check whether the coinstake timestamp meets protocol
 bool CheckCoinStakeTimestamp(int64_t nTimeBlock, int64_t nTimeTx);

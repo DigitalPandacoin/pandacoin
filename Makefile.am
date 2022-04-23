@@ -1,5 +1,5 @@
 # Copyright (c) 2014-2021 Pandacoin Developers
-# Copyright (c) 2012-2021 The Peercoin developers
+# Copyright (c) 2012-2022 The Peercoin developers
 # Copyright (c) 2013-2020 The Bitcoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.

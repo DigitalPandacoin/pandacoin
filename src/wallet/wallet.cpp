@@ -1448,10 +1448,12 @@ bool CWallet::SetWalletFlags(uint64_t overwriteFlags, bool memonly)
 
 int64_t CWalletTx::GetTxTime() const
 {
-//    int64_t n = nTimeSmart;
-//    return n ? n : nTimeReceived;
     // peercoin: we still have the timestamp, so use it to avoid confusion
-    return tx->nTime;
+    if (tx->nTime)
+        return tx->nTime;
+
+    int64_t n = nTimeSmart;
+    return n ? n : nTimeReceived;
 }
 
 // Helper for producing a max-sized low-S low-R signature (eg 71 bytes)
@@ -2833,6 +2835,7 @@ bool CWallet::CreateTransaction(interfaces::Chain::Lock& locked_chain, const std
     }
 
     CMutableTransaction txNew;
+    txNew.nVersion = gArgs.GetArg("-txversion", CTransaction::CURRENT_VERSION);
 
     txNew.nLockTime = GetLocktimeForNewTransaction(chain(), locked_chain);
 
@@ -3020,7 +3023,7 @@ bool CWallet::CreateTransaction(interfaces::Chain::Lock& locked_chain, const std
                     vin.scriptWitness.SetNull();
                 }
 
-                nFeeNeeded = GetMinFee(nBytes, txNew.nTime);
+                nFeeNeeded = GetMinFee(nBytes, txNew.nVersion < 3 ? txNew.nTime : 1591617600);
 
                 if (nFeeRet >= nFeeNeeded) {
                     // Reduce fee to only the needed amount if possible. This
@@ -3035,7 +3038,7 @@ bool CWallet::CreateTransaction(interfaces::Chain::Lock& locked_chain, const std
                     // change output. Only try this once.
                     if (nChangePosInOut == -1 && nSubtractFeeFromAmount == 0 && pick_new_inputs) {
                         unsigned int tx_size_with_change = nBytes + coin_selection_params.change_output_size + 2; // Add 2 as a buffer in case increasing # of outputs changes compact size
-                        CAmount fee_needed_with_change = GetMinFee(tx_size_with_change, txNew.nTime);
+                        CAmount fee_needed_with_change = GetMinFee(tx_size_with_change,  txNew.nVersion < 3 ? txNew.nTime : 1591617600);
                         CAmount minimum_value_for_change = MIN_TXOUT_AMOUNT;  //ppcTODO - is this correct?
                         if (nFeeRet >= fee_needed_with_change + minimum_value_for_change) {
                             pick_new_inputs = false;
@@ -3975,6 +3978,11 @@ std::shared_ptr<CWallet> CWallet::CreateWalletFromFile(interfaces::Chain& chain,
     }
 
     walletInstance->m_spend_zero_conf_change = gArgs.GetBoolArg("-spendzeroconfchange", DEFAULT_SPEND_ZEROCONF_CHANGE);
+    walletInstance->m_split_coins = gArgs.GetBoolArg("-splitcoins", DEFAULT_SPLIT_COINS);
+    walletInstance->WalletLogPrintf("Wallet will%s split coins during minting\n", walletInstance->m_split_coins? "" : " not");
+
+    walletInstance->m_check_github = gArgs.GetBoolArg("-checkgithub", DEFAULT_CHECK_GITHUB);
+    walletInstance->WalletLogPrintf("Wallet will%s check github for newer version on startup\n", walletInstance->m_check_github? "" : " not");
 
     walletInstance->WalletLogPrintf("Wallet completed loading in %15dms\n", GetTimeMillis() - nStart);
 
@@ -4465,7 +4473,7 @@ bool CWallet::CreateCoinStake(const CWallet* pwallet, unsigned int nBits, int64_
                 nCredit += pcoin.txout.nValue;
                 vwtxPrev.push_back(tx);
                 txNew.vout.push_back(CTxOut(0, scriptPubKeyOut));
-                if (header.GetBlockTime() + nStakeSplitAge > txNew.nTime)
+                if ((header.GetBlockTime() + nStakeSplitAge > txNew.nTime) && pwallet->m_split_coins)
                     txNew.vout.push_back(CTxOut(0, scriptPubKeyOut)); //split stake
                 if (gArgs.GetBoolArg("-debug", false) && gArgs.GetBoolArg("-printcoinstake", false))
                     LogPrintf("CreateCoinStake : added kernel type=%d\n", whichType);
@@ -4526,7 +4534,7 @@ bool CWallet::CreateCoinStake(const CWallet* pwallet, unsigned int nBits, int64_
     {
         uint64_t nCoinAge;
         CCoinsViewCache view(&::ChainstateActive().CoinsTip());
-        if (!GetCoinAge((const CTransaction)txNew, view, nCoinAge, true))
+        if (!GetCoinAge((const CTransaction)txNew, view, nCoinAge, txNew.nTime, true))
             return error("CreateCoinStake : failed to calculate coin age");
 
         CAmount nReward = GetProofOfStakeReward(nCoinAge, txNew.nTime, ::ChainActive().Tip()->nMoneySupply);
@@ -4564,9 +4572,9 @@ bool CWallet::CreateCoinStake(const CWallet* pwallet, unsigned int nBits, int64_
             return error("CreateCoinStake : exceeded coinstake size limit");
 
         // Check enough fee is paid
-        if (nMinFee < GetMinFee(CTransaction(txNew)) - nMinFeeBase)
+        if (nMinFee < GetMinFee(CTransaction(txNew), txNew.nTime) - nMinFeeBase)
         {
-            nMinFee = GetMinFee(CTransaction(txNew)) - nMinFeeBase;
+            nMinFee = GetMinFee(CTransaction(txNew), txNew.nTime) - nMinFeeBase;
             continue; // try signing again
         }
         else
