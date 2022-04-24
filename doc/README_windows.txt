@@ -1,6 +1,6 @@
-Pandacoin 4.11.5 BETA
+Pandacoin 4.11.7 BETA
 
-Copyright (c) 2014-2021 Pandacoin Developers
+Copyright (c) 2014-2022 Pandacoin Developers
 Copyright (c) 2011-2022 Peercoin Developers
 Distributed under the MIT software license, see the accompanying
 file COPYING or http://www.opensource.org/licenses/mit-license.php.

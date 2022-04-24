@@ -1,4 +1,4 @@
-Pandacoin 4.11.5 BETA
+Pandacoin 4.11.7 BETA
 
 Setup
 ---------------------
