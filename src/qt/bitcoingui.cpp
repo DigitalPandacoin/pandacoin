@@ -218,7 +218,7 @@ BitcoinGUI::BitcoinGUI(interfaces::Node& node, const PlatformStyle *_platformSty
     if(settings.value("bCheckGithub").toBool()) {
         QNetworkAccessManager* nam = new QNetworkAccessManager(this);
         connect(nam, &QNetworkAccessManager::finished, this, &BitcoinGUI::onResult);
-        QUrl url("https://api.github.com/repos/peercoin/peercoin/releases/latest");
+        QUrl url("https://api.github.com/repos/DigitalPandacoin/pandacoin/releases/latest");
         nam->get(QNetworkRequest(url));
     }
 #endif
@@ -239,7 +239,7 @@ void BitcoinGUI::onResult(QNetworkReply *reply) {
         std::string tag_name = obj["tag_name"].toString().toStdString();
         if(std::regex_search(tag_name, matches, versionRgx) && matches.size()==4) {
             newVersion = std::stoi(matches[1].str()) * 1000000 + std::stoi(matches[2]) * 10000 + std::stoi(matches[3]) * 100;
-            if (newVersion > PEERCOIN_VERSION) {
+            if (newVersion > PANDACOIN_VERSION) {
                 char versionInfo[200];
                 snprintf(versionInfo, 200, "This client is not the most recent version available, please update to release %s from github or disable this check in settings.", obj["tag_name"].toString().toUtf8().constData());
                 std::string strVersionInfo = versionInfo;
