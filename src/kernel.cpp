@@ -49,8 +49,8 @@ const unsigned int nPoWPoSDependenceSwitchTime = 1635760800; // Mon 01 Nov 10:00
 const unsigned int nPoWPoSDependenceTestSwitchTime = 1633783010;
 
 // Protocol switch time for v10 kernel protocol
-const unsigned int nProtocolV10SwitchTime     = 1635768000; // Mon  1 Nov 12:00:00 UTC 2021
-const unsigned int nProtocolV10TestSwitchTime = 1625140800; // Thu  1 Jul 12:00:00 UTC 2021
+const unsigned int nProtocolV10SwitchTime     = 1659348000; // Mon  1 Aug 12:00:00 UTC 2022
+const unsigned int nProtocolV10TestSwitchTime = 1651399200; // Thu  1 May 12:00:00 UTC 2022
 
 
 // Hard checkpoints of stake modifiers to ensure they are deterministic
@@ -149,8 +149,6 @@ bool IsPoWPoSDependence(unsigned int nTime)
 // Whether a given timestamp is subject to new v10 protocol
 bool IsProtocolV10(unsigned int nTime)
 {
-    // pandacoin we do not use V10
-    return false;
     return (nTime >= (Params().NetworkIDString() != CBaseChainParams::MAIN ? nProtocolV10TestSwitchTime : nProtocolV10SwitchTime));
 }
 
