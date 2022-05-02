@@ -230,7 +230,7 @@ BitcoinGUI::BitcoinGUI(interfaces::Node& node, const PlatformStyle *_platformSty
 
 void BitcoinGUI::onResult(QNetworkReply *reply) {
     if(reply->error() == QNetworkReply::NoError) {
-        std::regex versionRgx("v([0-9]+).([0-9]+).([0-9]+)ppc");
+        std::regex versionRgx("v([0-9]+).([0-9]+).([0-9]+)pnd");
         std::smatch matches;
         int newVersion=0;
         QByteArray result = reply->readAll();
