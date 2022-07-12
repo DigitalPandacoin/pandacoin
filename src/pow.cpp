@@ -38,6 +38,9 @@ unsigned int GetNextTargetRequired(const CBlockIndex* pindexLast, bool fProofOfS
         if (fProofOfStake) {
             nTargetSpacing = params.nStakeTargetSpacing;
         } else {
+            // pandacoin: in case a block does go through for some reason we require it to have an impossible diff
+            if (IsPoWPoSDependence(pindexLast->nTime) && !IsPoWAccepted(pindexLast))
+                return UintToArith256(uint256S("00000000000000000009a7af0000000000000000000000000000000000000000")).GetCompact();
             if (IsProtocolV09(pindexLast->nTime)) {
                 nTargetSpacing = params.nStakeTargetSpacing * 6;
             } else {
@@ -48,10 +51,6 @@ unsigned int GetNextTargetRequired(const CBlockIndex* pindexLast, bool fProofOfS
         int64_t nInterval = params.nTargetTimespan / nTargetSpacing;
         bnNew *= ((nInterval - 1) * nTargetSpacing + nActualSpacing + nActualSpacing);
         bnNew /= ((nInterval + 1) * nTargetSpacing);
-
-        // pandacoin: in case a block does go through for some reason we require it to have an impossible diff
-        if (!fProofOfStake && IsPoWPoSDependence(pindexLast->nTime) && !IsPoWAccepted(pindexLast))
-            return CBigNum(std::numeric_limits<unsigned int>::max()).GetCompact();
     }
 
     if (bnNew > CBigNum(params.powLimit))
