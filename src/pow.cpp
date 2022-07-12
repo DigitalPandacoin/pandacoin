@@ -40,7 +40,7 @@ unsigned int GetNextTargetRequired(const CBlockIndex* pindexLast, bool fProofOfS
         } else {
             // pandacoin: in case a block does go through for some reason we require it to have an impossible diff
             if (IsPoWPoSDependence(pindexLast->nTime) && !IsPoWAccepted(pindexLast))
-                return UintToArith256(uint256S("00000000000000000009a7af0000000000000000000000000000000000000000")).GetCompact();
+                return UintToArith256(uint256S("0000000000000000000000000000000000000000000000000000000000000000")).GetCompact();
             if (IsProtocolV09(pindexLast->nTime)) {
                 nTargetSpacing = params.nStakeTargetSpacing * 6;
             } else {
