@@ -1,4 +1,4 @@
-Pandacoin 4.11.7 BETA
+Pandacoin 4.11.8 BETA
 
 Copyright (c) 2014-2022 Pandacoin Developers
 Copyright (c) 2011-2022 Peercoin Developers
