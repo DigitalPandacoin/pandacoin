@@ -27,9 +27,6 @@ workflow:
     - if: $CI_PIPELINE_SOURCE != "trigger"
   services:
     - docker:stable-dind
-  tags:
-    - docker
-    - cpx51
   before_script:
     - echo $CI_JOB_TOKEN | docker login -u gitlab-ci-token --password-stdin $CI_REGISTRY
   after_script:
@@ -72,9 +69,6 @@ bionic base image:
 
 warm extra worker:
   stage: base
-  tags:
-    - docker
-    - cpx51
   rules:
     - if: $CI_PIPELINE_SOURCE == "trigger"
       when: never
@@ -95,9 +89,6 @@ full warm extra worker:
   image: $CI_REGISTRY_IMAGE/gitian/builder:$CI_COMMIT_REF_SLUG
   services:
     - docker:stable-dind
-  tags:
-    - docker
-    - cpx51
   cache:
     - paths:
         - gitian-cache/common
