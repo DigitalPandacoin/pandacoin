@@ -28,8 +28,7 @@ workflow:
   services:
     - docker:stable-dind
   tags:
-    - docker
-    - cpx51
+    -  gitlab-org-docker
   before_script:
     - echo $CI_JOB_TOKEN | docker login -u gitlab-ci-token --password-stdin $CI_REGISTRY
   after_script:
@@ -73,8 +72,7 @@ bionic base image:
 warm extra worker:
   stage: base
   tags:
-    - docker
-    - cpx51
+    - gitlab-org-docker
   rules:
     - if: $CI_PIPELINE_SOURCE == "trigger"
       when: never
@@ -96,8 +94,7 @@ full warm extra worker:
   services:
     - docker:stable-dind
   tags:
-    - docker
-    - cpx51
+    - gitlab-org-docker
   cache:
     - paths:
         - gitian-cache/common
@@ -133,7 +130,7 @@ full warm extra worker:
   script:
     - make -j$(nproc) -C ${CI_PROJECT_DIR}/depends download SOURCES_PATH=${GITIAN_DIR}/cache/common
     - sed -i "s/^\ \ \(HOSTS=\"\).*/\ \ \1${TARGET_ARCH}\"/g" ${CI_PROJECT_DIR}/contrib/gitian-descriptors/gitian-${TARGET_OS}.yml
-    - ./bin/gbuild -j $(nproc) -m 30000 --commit pandacoin=${CI_COMMIT_TAG:-$CI_COMMIT_SHA} --url pandacoin=${CI_PROJECT_DIR} ${CI_PROJECT_DIR}/contrib/gitian-descriptors/gitian-${TARGET_OS}.yml
+    - ./bin/gbuild -j $(nproc) -m 6000 --commit pandacoin=${CI_COMMIT_TAG:-$CI_COMMIT_SHA} --url pandacoin=${CI_PROJECT_DIR} ${CI_PROJECT_DIR}/contrib/gitian-descriptors/gitian-${TARGET_OS}.yml
   after_script:
     - mv ${GITIAN_DIR}/cache ${CI_PROJECT_DIR}/gitian-cache
     - cp -r ${GITIAN_DIR}/build/out/* ${CI_PROJECT_DIR}/
@@ -154,7 +151,6 @@ intermediary:
     - if: $CI_COMMIT_TAG
       when: never
     - when: always
-  # todo: check if this does what we need it to
   interruptible: true
   parallel:
     matrix:
@@ -197,7 +193,8 @@ full:
 .docker pandacoind job:
   extends: .build docker job
   stage: package
-  tags: []
+  tags: 
+    - gitlab-org-docker
   variables:
     IMAGE: $CI_REGISTRY_IMAGE/pandacoind
   script:
@@ -236,7 +233,8 @@ full docker pandacoind:
 .AppImage job:
   image: appimagecrafters/appimage-builder:latest
   stage: package
-  tags: []
+  tags:
+    - gitlab-org-docker
   before_script:
     - apt-get -qq update
     - apt-get install -qqy git wget ca-certificates
@@ -342,6 +340,8 @@ full AppImage armhf:
   variables:
     GIT_DEPTH: 1
     DEBIAN_FRONTEND: noninteractive
+  tags:
+    - gitlab-org-docker
   allow_failure: true
   before_script:
     - apt-get -qq update
