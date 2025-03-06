@@ -19,16 +19,16 @@ workflow:
 
 .build docker job:
   stage: base
-  image: docker:stable
+  image: docker:25
   variables:
     DOCKER_BUILDKIT: 1
     GIT_STRATEGY: none
   rules:
     - if: $CI_PIPELINE_SOURCE != "trigger"
   services:
-    - docker:stable-dind
+    - docker:25-dind
   tags:
-    -  gitlab-org-docker
+    - gitlab-org-docker
   before_script:
     - echo $CI_JOB_TOKEN | docker login -u gitlab-ci-token --password-stdin $CI_REGISTRY
   after_script:
@@ -43,7 +43,7 @@ build gitian builder:
   script:
     - |
       docker build --tag $IMAGE --cache-from $IMAGE:$CI_COMMIT_REF_SLUG --build-arg BUILDKIT_INLINE_CACHE=1 -<<EOF
-        FROM docker:stable-dind
+        FROM docker:25-dind
         RUN apk add curl make ruby wget git sed
         RUN git clone https://github.com/devrandom/gitian-builder.git ${GITIAN_DIR}
         RUN mkdir ${GITIAN_DIR}/inputs ${GITIAN_DIR}/var
@@ -92,7 +92,7 @@ full warm extra worker:
   stage: build
   image: $CI_REGISTRY_IMAGE/gitian/builder:$CI_COMMIT_REF_SLUG
   services:
-    - docker:stable-dind
+    - docker:25-dind
   tags:
     - gitlab-org-docker
   cache:
@@ -193,8 +193,7 @@ full:
 .docker pandacoind job:
   extends: .build docker job
   stage: package
-  tags: 
-    - gitlab-org-docker
+  tags: []
   variables:
     IMAGE: $CI_REGISTRY_IMAGE/pandacoind
   script:
@@ -233,8 +232,7 @@ full docker pandacoind:
 .AppImage job:
   image: appimagecrafters/appimage-builder:latest
   stage: package
-  tags:
-    - gitlab-org-docker
+  tags: []
   before_script:
     - apt-get -qq update
     - apt-get install -qqy git wget ca-certificates
@@ -340,8 +338,7 @@ full AppImage armhf:
   variables:
     GIT_DEPTH: 1
     DEBIAN_FRONTEND: noninteractive
-  tags:
-    - gitlab-org-docker
+  tags: []
   allow_failure: true
   before_script:
     - apt-get -qq update
